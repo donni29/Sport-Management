@@ -57,7 +57,7 @@ public class SBM extends JFrame implements ActionListener {
         Nuovo = new JMenuItem("Nuovo...");
         Nuovo.addActionListener(this);
         Rimborso.add(Nuovo);
-
+        //prova git//
 
         Open=new JMenuItem("Apri...");
         Open.addActionListener(this);
