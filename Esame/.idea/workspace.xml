@@ -4,58 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed313ac-a3e8-4c21-95e4-38ef1d7bb5ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Esame.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ExamTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/ExamTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Head_First_Java_Second_Edition.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../O'Reilly Head First Object-Oriented Design and Analysis.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../StorageData.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../StorageObject.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../StorageText.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ahr-ad-hoc-revolution.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../unnamed.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/basics/StringReverse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/basics/StringReverse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/collections/SpeedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/collections/SpeedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/io/ReaderWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/io/ReaderWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/jdbc/BasicOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/jdbc/BasicOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/rest/JSONServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/rest/JSONServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/CelsiusConverterFull.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/CelsiusConverterFull.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/CelsiusConverterLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/CelsiusConverterLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/MouseDrag.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/MouseDrag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/Notepad.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/code/src/main/java/org/nbicocchi/swing/Notepad.java" afterDir="false" />
+    <list default="true" id="2ed313ac-a3e8-4c21-95e4-38ef1d7bb5ff" name="Default Changelist" comment="prova git">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +36,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="ExamTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -117,6 +68,14 @@
       <option name="presentableId" value="Default" />
       <updated>1621326552498</updated>
     </task>
+    <task id="LOCAL-00001" summary="prova git">
+      <created>1621336429861</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621336429861</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,5 +89,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="prova git" />
+    <option name="LAST_COMMIT_MESSAGE" value="prova git" />
   </component>
 </project>
