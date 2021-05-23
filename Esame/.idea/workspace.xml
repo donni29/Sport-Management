@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 <project version="4">
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed313ac-a3e8-4c21-95e4-38ef1d7bb5ff" name="Default Changelist" comment="prova git" />
+    <list default="true" id="2ed313ac-a3e8-4c21-95e4-38ef1d7bb5ff" name="Default Changelist" comment="prova git1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621788273856</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="prova git1">
+      <created>1621788374134</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1621788374134</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +111,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="prova git" />
-    <option name="LAST_COMMIT_MESSAGE" value="prova git" />
+    <MESSAGE value="prova git1" />
+    <option name="LAST_COMMIT_MESSAGE" value="prova git1" />
   </component>
 </project>
