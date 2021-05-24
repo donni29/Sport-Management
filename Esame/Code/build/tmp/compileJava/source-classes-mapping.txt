@@ -1,3 +1,7 @@
+Exam/Utils/Atleta.java
+ Exam.Utils.Atleta
+Exam/Utils/DBManager.java
+ Exam.Utils.DBManager
 Exam/ExamTest.java
  Exam.ExamTest
 Exam/SBM.java

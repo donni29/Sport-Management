@@ -1,11 +1,19 @@
 package Exam;
 
-import jdk.jfr.SettingDefinition;
-import org.eclipse.jetty.websocket.common.events.JettyAnnotatedMetadata;
+
+
+
+
+
+
+import Exam.Utils.DBManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SBM extends JFrame implements ActionListener {
     private static final long serialVersionUID =1L;
@@ -17,6 +25,10 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
+    int selectedItem;
+    /*
+    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
+     */
 
     public SBM(){
         super("Sport Business Management ");
@@ -90,7 +102,5 @@ public class SBM extends JFrame implements ActionListener {
                  }
             }
         }
-
-
     }
 }
