@@ -1,21 +1,12 @@
 package Exam;
 
-
-
-
-
-
-
-import Exam.Utils.DBManager;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.Serial;
 
 public class SBM extends JFrame implements ActionListener {
+    @Serial
     private static final long serialVersionUID =1L;
     private static JMenu openArchivio;
     private static JMenuItem close;
@@ -25,10 +16,6 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
-    int selectedItem;
-    /*
-    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
-     */
 
     public SBM(){
         super("Sport Business Management ");
@@ -102,5 +89,7 @@ public class SBM extends JFrame implements ActionListener {
                  }
             }
         }
+
+
     }
 }
