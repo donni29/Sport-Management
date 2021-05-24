@@ -29,6 +29,7 @@ public class SBM extends JFrame implements ActionListener {
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
      */
+    DB_Model model;
 
     public SBM(){
         super("Sport Business Management ");
@@ -83,6 +84,12 @@ public class SBM extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        try {
+            model = new DB_Model();
+        } catch (SQLException | NullPointerException e ){
+            JOptionPane.showMessageDialog(this,"Errore nel Databse!!");
+        }
+        // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }
 
     public void actionPerformed(ActionEvent e){
