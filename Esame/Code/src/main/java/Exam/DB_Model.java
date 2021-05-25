@@ -14,11 +14,12 @@ public class DB_Model {
     ResultSet rs;
     public DB_Model() throws SQLException{
         DBManager.setConnection(
-                DBManager.JDBC_Driver,
-                DBManager.JDBC_URL);
+                "com.mysql.cj.jdbc.Driver",
+                "jdbc:mysql://localhost:3306/jdbc_prova?user=Nico&password=10");
         Statement statement = DBManager.getConnection().createStatement(
                 ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);
+
         try{
             rs = statement.executeQuery("SELECT * FROM ATLETA");
         } catch (SQLException e){

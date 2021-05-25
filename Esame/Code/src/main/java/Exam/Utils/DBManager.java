@@ -7,8 +7,8 @@ import java.sql.*;
 /*  DMManager Class for managing DB connections  */
 public class DBManager {
 
-        public static String JDBC_Driver ="com.microsoft.jdbc.sqlserver.SQLServerDriver";
-        public static String JDBC_URL ="jdbc:sqlserver:LAPTOP-P4JNTMIH\\SQLEXPRESS;database=Esame;";
+        public static String JDBC_Driver = null ;
+        public static String JDBC_URL = null;
         static Connection connection;
 
 
@@ -18,11 +18,13 @@ public class DBManager {
         }
 
         public static Connection getConnection() throws SQLException {
+
             if (connection == null) {
                 if (JDBC_Driver == null || JDBC_URL == null) {
                     throw new IllegalStateException("Illegal request. Call setConnection() before.");
                 }
                 try {
+
                     Class.forName(JDBC_Driver);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -32,6 +34,7 @@ public class DBManager {
                 System.out.println("connected");
                 showMetadata();
             }
+
             return connection;
         }
 

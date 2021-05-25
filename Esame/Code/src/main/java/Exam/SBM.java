@@ -87,7 +87,8 @@ public class SBM extends JFrame implements ActionListener {
         try {
             model = new DB_Model();
         } catch (SQLException | NullPointerException e ){
-            JOptionPane.showMessageDialog(this,"Errore nel Databse!!");
+
+             JOptionPane.showMessageDialog(this,"Errore nel Databse!!");
         }
         // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }
