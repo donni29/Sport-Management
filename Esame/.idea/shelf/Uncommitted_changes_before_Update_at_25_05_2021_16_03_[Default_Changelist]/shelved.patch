@@ -1,0 +1,104 @@
+Index: Code/src/main/java/Exam/SBM.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.Serial;\r\n\r\npublic class SBM extends JFrame implements ActionListener {\r\n    @Serial\r\n    private static final long serialVersionUID =1L;\r\n    private static JMenu openArchivio;\r\n    private static JMenuItem close;\r\n    private static JMenuItem Atleti;\r\n    private static JMenuItem Allenatori;\r\n    private static JMenuItem Dirigenti;\r\n    private static JMenuItem Nuovo;\r\n    private static JMenuItem Open;\r\n    private static JFileChooser OpenSource;\r\n\r\n    public SBM(){\r\n        super(\"Sport Business Management \");\r\n\r\n\r\n        JMenuBar menuBar =new JMenuBar();\r\n        JMenu Archivio =new JMenu(\"Archivio\");\r\n        menuBar.add(Archivio);\r\n        JMenu Rimborso =new JMenu(\"Rimborso\");\r\n        JMenu Strutture =new JMenu(\"Strutture\");\r\n        menuBar.add(Rimborso);\r\n        menuBar.add(Strutture);\r\n\r\n        openArchivio =new JMenu(\"Open Archivio di ...\");\r\n        openArchivio.addSeparator();\r\n        openArchivio.addActionListener(this);\r\n        Archivio.add(openArchivio);\r\n\r\n        //parte codice menu Archivio//\r\n\r\n        Atleti =new JMenuItem(\"Atleti\");\r\n        Atleti.addActionListener(this);\r\n        openArchivio.add(Atleti);\r\n\r\n        Allenatori =new JMenuItem(\"Allenatori\");\r\n        Allenatori.addActionListener(this);\r\n        openArchivio.add(Allenatori);\r\n\r\n        Dirigenti = new JMenuItem(\"Dirigenti\");\r\n        Dirigenti.addActionListener(this);\r\n        openArchivio.add(Dirigenti);\r\n\r\n        close = new JMenuItem(\"Close\");\r\n         close.addActionListener(this);\r\n        Archivio.add(close);\r\n\r\n        //parte codice menu Rimborso//\r\n        Nuovo = new JMenuItem(\"Nuovo...\");\r\n        Nuovo.addActionListener(this);\r\n        Rimborso.add(Nuovo);\r\n        //prova git//\r\n\r\n        Open=new JMenuItem(\"Apri...\");\r\n        Open.addActionListener(this);\r\n        Rimborso.add(Open);\r\n\r\n\r\n        setJMenuBar(menuBar);\r\n        setSize(640,480);\r\n\r\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\r\n        setVisible(true);\r\n\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e){\r\n        if (e.getSource() == this.close) {\r\n            dispose();\r\n        }\r\n\r\n        else\r\n        {\r\n            if (e.getSource()== this.Atleti){\r\n\r\n                };\r\n            }\r\n            if (e.getSource() == this.Open){\r\n                OpenSource =new JFileChooser();\r\n\r\n                 int option = OpenSource.showOpenDialog(this);\r\n                if (option == JFileChooser.APPROVE_OPTION){\r\n\r\n                 }\r\n            }\r\n        }\r\n\r\n\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/SBM.java b/Code/src/main/java/Exam/SBM.java
+--- a/Code/src/main/java/Exam/SBM.java	(revision 623eca30126f707a2d70f845abf985effaf9fc46)
++++ b/Code/src/main/java/Exam/SBM.java	(date 1621951281434)
+@@ -69,6 +69,11 @@
+         setDefaultCloseOperation(EXIT_ON_CLOSE);
+         setVisible(true);
+ 
++
++        try{
++
++        }
++
+     }
+ 
+     public void actionPerformed(ActionEvent e){
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e7d168e2-96fe-4e56-9abf-c7506023d25b\" name=\"Default Changelist\" comment=\"prova2\">\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1swg5yBvOjrE6g5VbvszIUXItO7\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Exam\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"ExamTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Exam.ExamTest\" />\r\n      <module name=\"Esame.Code.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Exam.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ExamTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SQLPlugin.ProjectConfiguration\">\r\n    <queries />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e7d168e2-96fe-4e56-9abf-c7506023d25b\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1621788891277</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1621788891277</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"prova2\">\r\n      <created>1621788921438</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621788921438</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"prova2\">\r\n      <created>1621789003870</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621789003870</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"prova2\">\r\n      <created>1621789022518</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621789022518</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"prova2\">\r\n      <created>1621851773552</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621851773552</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"prova2\">\r\n      <created>1621869108800</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621869108800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"prova2\">\r\n      <created>1621946724429</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621946724429</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"prova2\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"prova2\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 623eca30126f707a2d70f845abf985effaf9fc46)
++++ b/.idea/workspace.xml	(date 1621951194255)
+@@ -5,12 +5,13 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="prova2">
+-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/DBManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/DBManager.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -132,7 +133,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1621946724429</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="prova2">
++      <created>1621951010479</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1621951010480</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+Index: Code/build/tmp/compileJava/source-classes-mapping.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Exam/Utils/Persona.java\r\n Exam.Utils.Persona\r\nExam/Utils/Atleta.java\r\n Exam.Utils.Atleta\r\nExam/Utils/Allenatore.java\r\n Exam.Utils.Allenatore\r\nExam/Utils/Dirigente.java\r\n Exam.Utils.Dirigente\r\nExam/ArchivioPanel.java\r\n Exam.ArchivioPanel\r\n Exam.ArchivioPanel$MyTableModel\r\nExam/Utils/DBManager.java\r\n Exam.Utils.DBManager\r\nExam/DB_Model.java\r\n Exam.DB_Model\r\nExam/ExamTest.java\r\n Exam.ExamTest\r\nExam/SBM.java\r\n Exam.SBM\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/build/tmp/compileJava/source-classes-mapping.txt b/Code/build/tmp/compileJava/source-classes-mapping.txt
+--- a/Code/build/tmp/compileJava/source-classes-mapping.txt	(revision 623eca30126f707a2d70f845abf985effaf9fc46)
++++ b/Code/build/tmp/compileJava/source-classes-mapping.txt	(date 1621950846959)
+@@ -1,7 +1,7 @@
+ Exam/Utils/Persona.java
+  Exam.Utils.Persona
+-Exam/Utils/Atleta.java
+- Exam.Utils.Atleta
++Exam/ExamTest.java
++ Exam.ExamTest
+ Exam/Utils/Allenatore.java
+  Exam.Utils.Allenatore
+ Exam/Utils/Dirigente.java
+@@ -9,11 +9,11 @@
+ Exam/ArchivioPanel.java
+  Exam.ArchivioPanel
+  Exam.ArchivioPanel$MyTableModel
++Exam/SBM.java
++ Exam.SBM
++Exam/Utils/Atleta.java
++ Exam.Utils.Atleta
+ Exam/Utils/DBManager.java
+  Exam.Utils.DBManager
+ Exam/DB_Model.java
+  Exam.DB_Model
+-Exam/ExamTest.java
+- Exam.ExamTest
+-Exam/SBM.java
+- Exam.SBM
