@@ -1,7 +1,7 @@
 Exam/Utils/Persona.java
  Exam.Utils.Persona
-Exam/Utils/Atleta.java
- Exam.Utils.Atleta
+Exam/ExamTest.java
+ Exam.ExamTest
 Exam/Utils/Allenatore.java
  Exam.Utils.Allenatore
 Exam/Utils/Dirigente.java
@@ -9,10 +9,10 @@ Exam/Utils/Dirigente.java
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
  Exam.ArchivioPanel$MyTableModel
+Exam/Utils/Atleta.java
+ Exam.Utils.Atleta
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
-Exam/ExamTest.java
- Exam.ExamTest
 Exam/SBM.java
  Exam.SBM
 Exam/DB_Model.java
