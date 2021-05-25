@@ -8,7 +8,7 @@ import java.sql.*;
 public class DBManager {
 
         public static String JDBC_Driver ="com.microsoft.jdbc.sqlserver.SQLServerDriver";
-        public static String JDBC_URL ="jdbc:microsoft:sqlserver://:";
+        public static String JDBC_URL ="jdbc:sqlserver:LAPTOP-P4JNTMIH\\SQLEXPRESS;database=Esame;";
         static Connection connection;
 
 
@@ -27,7 +27,9 @@ public class DBManager {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+
                 connection = DriverManager.getConnection(JDBC_URL);
+                System.out.println("connected");
                 showMetadata();
             }
             return connection;
