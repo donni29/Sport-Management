@@ -8,8 +8,8 @@ public class Allenatore extends Persona{
     String allena_Squadra;
     DateTime scadenza_contratto;
 
-    public Allenatore(String nome_cognome, String luogo_nascita, String città_resistenza, String CF, LocalTime data_nascita, String allena_Squadra, DateTime scadenza_contratto) {
-        super(nome_cognome, luogo_nascita, città_resistenza, CF, data_nascita);
+    public Allenatore(String nome_cognome, String luogo_nascita, String citta_resistenza, String CF, LocalTime data_nascita, String allena_Squadra, DateTime scadenza_contratto) {
+        super(nome_cognome, luogo_nascita, citta_resistenza, CF, data_nascita);
         this.allena_Squadra = allena_Squadra;
         this.scadenza_contratto = scadenza_contratto;
     }
