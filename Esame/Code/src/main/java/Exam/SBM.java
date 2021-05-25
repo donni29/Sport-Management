@@ -1,12 +1,21 @@
 package Exam;
 
+
+
+
+
+
+
+import Exam.Utils.DBManager;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serial;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SBM extends JFrame implements ActionListener {
-    @Serial
     private static final long serialVersionUID =1L;
     private static JMenu openArchivio;
     private static JMenuItem close;
@@ -16,6 +25,11 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
+    int selectedItem;
+    /*
+    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
+     */
+    DB_Model model;
 
     public SBM(){
         super("Sport Business Management ");
@@ -63,12 +77,19 @@ public class SBM extends JFrame implements ActionListener {
         Rimborso.add(Open);
 
 
+
         setJMenuBar(menuBar);
         setSize(640,480);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+        try {
+            model = new DB_Model();
+        } catch (SQLException | NullPointerException e ){
+            JOptionPane.showMessageDialog(this,"Errore nel Databse!!");
+        }
+        // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }
 
     public void actionPerformed(ActionEvent e){
@@ -76,12 +97,9 @@ public class SBM extends JFrame implements ActionListener {
             dispose();
         }
 
+
         else
         {
-            if (e.getSource()== this.Atleti){
-
-                };
-            }
             if (e.getSource() == this.Open){
                 OpenSource =new JFileChooser();
 
@@ -91,7 +109,5 @@ public class SBM extends JFrame implements ActionListener {
                  }
             }
         }
-
-
     }
-
+}
