@@ -22,6 +22,7 @@ public class DB_Model {
         try{
             rs = statement.executeQuery("SELECT * FROM ATLETA");
         } catch (SQLException e){
+            /* TOGLIERE ALLA FINE DEL PROGETTO */
             statement.executeQuery("DROP TABLE IF EXISTS atleta");
             statement.executeQuery("CREATE TABLE ATLETA ("+" utente VARCHAR(50),"+" luogo_nascita VARCHAR(50),"+"data_nascita DATE"+"p_iva VARCHAR(50) NOT NULL UNIQUE"+"città_residenza VARCHAR(50),"+"CF VARCHAR(50)PRIMARY KEY,"+" sport VARCHAR(50)"+"squadra VARCHAR(50))");
             statement.executeQuery("INSERT INTO atleta (utente, luogo_nascita, data_nascita, p_iva, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Ladispoli','17/12/1995','0764352056C','Modena','FSGSGP47C22E764C','Tennis','Circolo Modena')");
