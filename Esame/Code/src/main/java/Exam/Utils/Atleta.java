@@ -9,7 +9,7 @@ public class Atleta extends  Persona{
     String squadra_appartenenza;
     String p_iva;
 
-    public Atleta(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra, String p_iva) {
+    public Atleta(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
         super(Utente, luogo_nascita, citta_residenza, CF, data_nascita);
         this.sport = sport;
         this.squadra_appartenenza = squadra_appartenenza;
@@ -24,9 +24,6 @@ public class Atleta extends  Persona{
         this.squadra_appartenenza = squadra;
     }
 
-    public void setP_iva(String p_iva) {
-        this.p_iva = p_iva;
-    }
 
     public String getSport() {
         return sport;

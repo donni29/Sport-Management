@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="prova2">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Archivio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Archivio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/ArchivioPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Allenatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Allenatore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Atleta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Dirigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Dirigente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +32,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1swg5yBvOjrE6g5VbvszIUXItO7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,6 +48,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -77,6 +77,9 @@
         <item itemvalue="Application.ExamTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SQLPlugin.ProjectConfiguration">
+    <queries />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -122,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621869108800</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="prova2">
+      <created>1621946724429</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621946724429</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,5 +150,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="prova2" />
     <option name="LAST_COMMIT_MESSAGE" value="prova2" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
