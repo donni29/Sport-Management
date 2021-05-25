@@ -63,7 +63,6 @@ public class SBM extends JFrame implements ActionListener {
         Rimborso.add(Open);
 
 
-
         setJMenuBar(menuBar);
         setSize(640,480);
 
@@ -77,9 +76,12 @@ public class SBM extends JFrame implements ActionListener {
             dispose();
         }
 
-
         else
         {
+            if (e.getSource()== this.Atleti){
+
+                };
+            }
             if (e.getSource() == this.Open){
                 OpenSource =new JFileChooser();
 
@@ -92,4 +94,4 @@ public class SBM extends JFrame implements ActionListener {
 
 
     }
-}
+

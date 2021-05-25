@@ -6,8 +6,8 @@ public class Dirigente extends Persona {
     String ruolo;
     String p_iva;
 
-    public Dirigente(String nome_cognome, String luogo_nascita, String città_resistenza, String CF, LocalTime data_nascita, String ruolo, String p_iva) {
-        super(nome_cognome, luogo_nascita, città_resistenza, CF, data_nascita);
+    public Dirigente(String nome_cognome, String luogo_nascita, String citta_resistenza, String CF, LocalTime data_nascita, String ruolo, String p_iva) {
+        super(nome_cognome, luogo_nascita, citta_resistenza, CF, data_nascita);
         ruolo = ruolo;
         this.p_iva = p_iva;
     }

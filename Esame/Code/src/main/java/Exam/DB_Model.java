@@ -81,12 +81,12 @@ public class DB_Model {
             e.printStackTrace();
         }
     }
-    public void insert(String utente, String luogo_nascita, String città_residenza, String CF, LocalTime data_nascita, String sport, String squadra, String p_iva){
+   public void insert(String utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra, String p_iva){
         try{
             rs.moveToInsertRow();
             rs.updateString("utente",utente);
             rs.updateString("luogo_nascita",luogo_nascita);
-            rs.updateString("città_residenza",città_residenza);
+            rs.updateString("citta_residenza",citta_residenza);
             rs.updateString("CF",CF);
             rs.updateTime("data_nascita", Time.valueOf(data_nascita));
             rs.updateString("sport",sport);
@@ -98,5 +98,6 @@ public class DB_Model {
             e.printStackTrace();
         }
     }
+
 }
 

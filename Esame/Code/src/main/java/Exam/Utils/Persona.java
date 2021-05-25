@@ -2,6 +2,7 @@ package Exam.Utils;
 
 import org.joda.time.DateTime;
 
+import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -10,19 +11,19 @@ public class Persona {
 
     String Utente;
     String luogo_nascita;
-    String città_residenza;
+    String citta_residenza;
     String CF;
     LocalTime data_nascita;
 
-    public Persona(String Utente, String luogo_nascita, String città_residenza, String CF, LocalTime data_nascita) {
+    public Persona(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita) {
         this.Utente = Utente;
         this.luogo_nascita = luogo_nascita;
-        this.città_residenza = città_residenza ;
+        this.citta_residenza = citta_residenza ;
         this.CF = CF;
         this.data_nascita = data_nascita;
     }
 
-    public Persona(String utente, String luogo_nascita, Date data_nascita, String p_iva, String città_residenza, String cf, String sport) {
+    public Persona(String utente, String luogo_nascita, Date data_nascita, String p_iva, String citta_residenza, String cf, String sport) {
     }
 
     public void setUtente(String Utente) {
@@ -33,8 +34,8 @@ public class Persona {
         this.luogo_nascita = luogo_nascita;
     }
 
-    public void setCittà_residenza(String città_residenza) {
-        this.città_residenza = città_residenza;
+    public void setCitta_residenza(String citta_residenza) {
+        this.citta_residenza = citta_residenza;
     }
 
     public void setCF(String CF) {
@@ -53,8 +54,8 @@ public class Persona {
         return luogo_nascita;
     }
 
-    public String getCittà_residenza() {
-        return città_residenza;
+    public String getCitta_residenza() {
+        return citta_residenza;
     }
 
     public String getCF() {
@@ -70,7 +71,7 @@ public class Persona {
         return "Persona{" +
                 "Utente='" + Utente + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
-                ", città_residenza='" + città_residenza + '\'' +
+                ", citta_residenza='" + citta_residenza + '\'' +
                 ", CF='" + CF + '\'' +
                 ", data_nascita=" + data_nascita +
                 '}';
