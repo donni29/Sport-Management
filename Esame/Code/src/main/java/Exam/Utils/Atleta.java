@@ -4,8 +4,8 @@ import org.joda.time.DateTime;
 
 import java.time.LocalTime;
 
-public class Atleta extends  Persona{
-    String sport ;
+public class Atleta extends Persona {
+    String sport;
     String squadra_appartenenza;
     String p_iva;
 

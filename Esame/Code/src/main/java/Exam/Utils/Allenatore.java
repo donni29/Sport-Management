@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 import java.time.LocalTime;
 
-public class Allenatore extends Persona{
+public class Allenatore extends Persona {
     String allena_Squadra;
     DateTime scadenza_contratto;
 

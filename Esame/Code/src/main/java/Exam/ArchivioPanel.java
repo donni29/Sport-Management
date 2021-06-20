@@ -7,7 +7,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.Serial;
 
-public class  ArchivioPanel  extends JPanel {
+public class ArchivioPanel extends JPanel {
 
     @Serial
     private static final long serialVersionUID = 1L;

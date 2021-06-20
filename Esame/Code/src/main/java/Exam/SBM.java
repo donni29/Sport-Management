@@ -1,19 +1,10 @@
 package Exam;
 
 
-
-
-
-
-
-import Exam.Utils.DBManager;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class SBM extends JFrame implements ActionListener {
     private static final long serialVersionUID =1L;
@@ -85,10 +76,13 @@ public class SBM extends JFrame implements ActionListener {
         setVisible(true);
 
         try {
+           /* System.out.println(("ciao"));*/
             model = new DB_Model();
-        } catch (SQLException | NullPointerException e ){
+            /*il problema è questo catch che non capisco perchè ci entro!!
+            il resto ora funziona*/
 
-             JOptionPane.showMessageDialog(this,"Errore nel Databse!!");
+        } catch (SQLException | NullPointerException e ){
+            JOptionPane.showMessageDialog(this,"Errore nel Database!!");
         }
         // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }

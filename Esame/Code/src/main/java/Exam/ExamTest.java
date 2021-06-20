@@ -1,11 +1,12 @@
 package Exam;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
 
 
 public class ExamTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {

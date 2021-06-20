@@ -18,7 +18,7 @@ public class Persona {
     public Persona(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita) {
         this.Utente = Utente;
         this.luogo_nascita = luogo_nascita;
-        this.citta_residenza = citta_residenza ;
+        this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.data_nascita = data_nascita;
     }
