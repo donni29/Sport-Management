@@ -11,10 +11,10 @@ Exam/Utils/Dirigente.java
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
  Exam.ArchivioPanel$MyTableModel
-Exam/ExamTest.java
- Exam.ExamTest
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
+Exam/ExamTest.java
+ Exam.ExamTest
 Exam/SBM.java
  Exam.SBM
 Exam/DB_Model.java
