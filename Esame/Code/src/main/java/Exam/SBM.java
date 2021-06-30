@@ -18,6 +18,7 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
+
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
      */
@@ -28,12 +29,17 @@ public class SBM extends JFrame implements ActionListener {
 
 
         JMenuBar menuBar = new JMenuBar();
+        JPanel panel =new JPanel();
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
         JMenu Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
+        JTextArea prova =new JTextArea();
+        panel.add(prova);
+
+        setContentPane(panel);
 
         openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
@@ -93,10 +99,10 @@ public class SBM extends JFrame implements ActionListener {
             if (e.getSource() == this.Open) {
                 OpenSource = new JFileChooser();
 
-                /* int option = OpenSource.showOpenDialog(this);
+                int option =OpenSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
 
-                }*/
+                }
             }
 
 
