@@ -8,9 +8,6 @@ Exam/Utils/Allenatore.java
  Exam.Utils.Allenatore
 Exam/Utils/Dirigente.java
  Exam.Utils.Dirigente
-Exam/ArchivioPanel.java
- Exam.ArchivioPanel
- Exam.ArchivioPanel$MyTableModel
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
 Exam/ExamTest.java
