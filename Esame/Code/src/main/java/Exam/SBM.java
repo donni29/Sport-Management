@@ -2,15 +2,17 @@ package Exam;
 
 //questo è il nostro progetto, madonne//
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.Serial;
 import java.sql.SQLException;
 
 public class SBM extends JFrame implements ActionListener {
     @Serial
     private static final long serialVersionUID = 1L;
-    private static JMenu openArchivio;
+    public static JMenu openArchivio;
     private static JMenuItem close;
     private static JMenuItem Atleti;
     private static JMenuItem Allenatori;
@@ -18,6 +20,7 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
+    private static ArchivioPanel panelAtleti ;
 
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
@@ -38,7 +41,7 @@ public class SBM extends JFrame implements ActionListener {
         menuBar.add(Strutture);
 
 
-        openArchivio = new JMenu("Open Archivio di ...");
+        openArchivio = new JMenu ("Open Archivio di ...");
         openArchivio.addSeparator();
         openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
@@ -102,8 +105,11 @@ public class SBM extends JFrame implements ActionListener {
                 }
             }
             if (e.getSource() == this.Atleti){
-                ArchivioPanel panelAtleti =new ArchivioPanel("atleti");
-                setContentPane(panelAtleti);
+                panelAtleti =new ArchivioPanel();
+                add(panelAtleti, BorderLayout.SOUTH);
+                setVisible(true);
+
+
             }
 
         }

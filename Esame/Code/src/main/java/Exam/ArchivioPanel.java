@@ -9,28 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serial;
 
-public class ArchivioPanel extends JPanel implements ActionListener {
+public class ArchivioPanel extends JPanel {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     private String nome;
+    private JPanel Archivio;
+    private JButton Button;
     JTextArea text= new JTextArea();
 
 
-    public ArchivioPanel(String nome) {
-        if (nome == "atleti"){
-            JPanel pane =new JPanel();
-            JButton prova =new JButton();
-            prova.add("prova",text);
-            pane.add(prova);
-
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public  ArchivioPanel (){
+            Archivio = new JPanel();
+            Button = new JButton( "CAVOLI");
+            Button.setSize(20,20);
+            Archivio.add(Button);
+            add(Archivio);
     }
 }
 

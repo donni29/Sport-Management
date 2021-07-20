@@ -8,13 +8,13 @@ Exam/Utils/Allenatore.java
  Exam.Utils.Allenatore
 Exam/Utils/Dirigente.java
  Exam.Utils.Dirigente
-Exam/Utils/DBManager.java
- Exam.Utils.DBManager
 Exam/DB_Model.java
  Exam.DB_Model
-Exam/ArchivioPanel.java
- Exam.ArchivioPanel
+Exam/Utils/DBManager.java
+ Exam.Utils.DBManager
 Exam/ExamTest.java
  Exam.ExamTest
+Exam/ArchivioPanel.java
+ Exam.ArchivioPanel
 Exam/SBM.java
  Exam.SBM
