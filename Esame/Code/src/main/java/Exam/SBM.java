@@ -36,10 +36,7 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
-        JTextArea prova =new JTextArea();
-        panel.add(prova);
 
-        setContentPane(panel);
 
         openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
@@ -104,7 +101,10 @@ public class SBM extends JFrame implements ActionListener {
 
                 }
             }
-
+            if (e.getSource() == this.Atleti){
+                ArchivioPanel panelAtleti =new ArchivioPanel("atleti");
+                setContentPane(panelAtleti);
+            }
 
         }
     }
