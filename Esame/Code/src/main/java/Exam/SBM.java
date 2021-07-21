@@ -106,7 +106,7 @@ public class SBM extends JFrame implements ActionListener {
             }
             if (e.getSource() == this.Atleti){
                 panelAtleti =new ArchivioPanel();
-                add(panelAtleti, BorderLayout.SOUTH);
+                add(panelAtleti);
                 setVisible(true);
 
 

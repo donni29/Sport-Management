@@ -32,22 +32,27 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f05d7464-032e-4be7-8ce0-cd081db62c2a">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[create table atleta (
-utente varchar(50),
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[drop table atleta
+
+insert into atleta
+values ("A","Mattia","Nico","scandiano",9/6/1995,"castellarano",000000001,"calcio","under20");
+
+values ("A","Luca","Giono","scandiano",2/6/1995,"castellarano",20003330001,"calcio","under19");
+
+
+select * from atleta
+
+create table atleta (
+utente varchar(1),
+nome varchar  (50),
+cognome varchar (50),
 luogo_di_nascita varchar(50),
 data_di_nascita date,
 citta_di_residenza varchar (50),
 cf varchar(12) primary key,
 sport varchar (15),
 squadra varchar (20) 
-)
-
-
-insert into atleta (utente, luogo_di_nascita,data_di_nascita,citta_di_residenza,cf,sport,squadra)
-values ("Mattia","scandiano",9/6/1995,"castellarano",000000001,"calcio","under20");
-drop table atleta
-
-select * from atleta]]></console>
+)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

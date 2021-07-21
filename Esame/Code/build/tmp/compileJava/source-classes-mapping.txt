@@ -14,6 +14,8 @@ Exam/Utils/DBManager.java
  Exam.Utils.DBManager
 Exam/ExamTest.java
  Exam.ExamTest
+Exam/Utils/SBM_JTable_Model.java
+ Exam.Utils.SBM_JTable_Model
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
 Exam/SBM.java
