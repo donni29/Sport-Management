@@ -24,6 +24,7 @@ public class Persona {
         this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.data_nascita = data_nascita;
+        System.out.println("prova");
     }
 
     public String getNome() {
