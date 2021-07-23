@@ -8,15 +8,17 @@ import java.time.LocalTime;
 
 public class Persona {
 
-    String anagrafe;
+    String nome;
+    String cognome;
     String tipo;
     String luogo_nascita;
     String citta_residenza;
     String CF;
     Time data_nascita;
 
-    public Persona(String anagrafe, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita) {
-        this.anagrafe = anagrafe;
+    public Persona(String nome, String cognome, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita) {
+        this.nome = nome;
+        this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
         this.citta_residenza = citta_residenza;
@@ -24,12 +26,20 @@ public class Persona {
         this.data_nascita = data_nascita;
     }
 
-    public String getAnagrafe() {
-        return anagrafe;
+    public String getNome() {
+        return nome;
     }
 
-    public void setAnagrafe(String anagrafe) {
-        this.anagrafe = anagrafe;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
     public String getTipo() {
@@ -75,7 +85,8 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" +
-                "anagrafe='" + anagrafe + '\'' +
+                "nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
                 ", citta_residenza='" + citta_residenza + '\'' +

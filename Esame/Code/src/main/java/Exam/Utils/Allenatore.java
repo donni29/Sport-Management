@@ -2,14 +2,15 @@ package Exam.Utils;
 
 import org.joda.time.DateTime;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class Allenatore extends Persona {
     String allena_Squadra;
     DateTime scadenza_contratto;
 
-    public Allenatore(String nome_cognome, String luogo_nascita, String citta_resistenza, String CF, LocalTime data_nascita, String allena_Squadra, DateTime scadenza_contratto) {
-        super(nome_cognome, luogo_nascita, citta_resistenza, CF, data_nascita);
+    public Allenatore(String nome, String cognome, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita, String allena_Squadra, DateTime scadenza_contratto) {
+        super(nome, cognome, tipo, luogo_nascita, citta_residenza, CF, data_nascita);
         this.allena_Squadra = allena_Squadra;
         this.scadenza_contratto = scadenza_contratto;
     }
@@ -18,12 +19,12 @@ public class Allenatore extends Persona {
         return allena_Squadra;
     }
 
-    public DateTime getScadenza_contratto() {
-        return scadenza_contratto;
-    }
-
     public void setAllena_Squadra(String allena_Squadra) {
         this.allena_Squadra = allena_Squadra;
+    }
+
+    public DateTime getScadenza_contratto() {
+        return scadenza_contratto;
     }
 
     public void setScadenza_contratto(DateTime scadenza_contratto) {
@@ -35,6 +36,13 @@ public class Allenatore extends Persona {
         return "Allenatore{" +
                 "allena_Squadra='" + allena_Squadra + '\'' +
                 ", scadenza_contratto=" + scadenza_contratto +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", luogo_nascita='" + luogo_nascita + '\'' +
+                ", citta_residenza='" + citta_residenza + '\'' +
+                ", CF='" + CF + '\'' +
+                ", data_nascita=" + data_nascita +
                 '}';
     }
 }
