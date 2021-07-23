@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="f05d7464-032e-4be7-8ce0-cd081db62c2a">
-        <schema name="main" object-types="table, view, column" />
+        <schema name="main" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -52,7 +52,11 @@ citta_di_residenza varchar (50),
 cf varchar(12) primary key,
 sport varchar (15),
 squadra varchar (20) 
-)]]></console>
+)
+
+
+select * from "Persona" ;
+drop table "Persona";]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

@@ -4,12 +4,13 @@ import javax.swing.table.AbstractTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 
 public class SBM_JTable_Model extends AbstractTableModel {
 
 private static final long serialVersionUID = 1L;
-private final String[] columnNames = new String[]{"utente","nome", "cognome","citta_di_residenza", "CF","data_di_nascita","sport","squadra"};
-private final Class<?>[] columnClass = new Class<?>[]{String.class, String.class,String.class,String.class,String.class,Double.class,String.class,String.class};
+private final String[] columnNames = new String[]{"nome", "cognome","tipo","citta_di_residenza", "CF","data_di_nascita","sport","squadra"};
+private final Class<?>[] columnClass = new Class<?>[]{String.class, String.class,String.class,String.class,String.class, Time.class,String.class,String.class};
 private ResultSet rs;
 
     public SBM_JTable_Model() throws SQLException {
@@ -21,7 +22,7 @@ private ResultSet rs;
                 ResultSet.CONCUR_UPDATABLE);
 
         try {
-            rs = statement.executeQuery("SELECT * FROM atleta");
+            rs = statement.executeQuery("SELECT * FROM Persona");
             rs.first();
         } catch (SQLException e) {
             System.out.print("non Funziona");
@@ -31,14 +32,15 @@ private ResultSet rs;
         public void insertRow(Object[] data) {
             try {
                 rs.moveToInsertRow();
-                rs.updateString("utente", java.util.UUID.randomUUID().toString());
+
                 rs.updateDouble("nome", Double.parseDouble(java.util.UUID.randomUUID().toString()));
                 rs.updateDouble("cognome", Double.parseDouble((String) data[1]));
+                rs.updateString("tipo", java.util.UUID.randomUUID().toString());
                 rs.updateDouble("citta_di_residenza", Double.parseDouble((String) data[2]));
                 rs.updateString("CF", (String) data[3]);
-                rs.updateString("data_di_nascita", String.valueOf(Double.parseDouble((String) data[4])));
-                rs.updateString("sport", String.valueOf(Double.parseDouble((String) data[5])));
-                rs.updateString("squadra", String.valueOf(Double.parseDouble((String) data[4])));
+                rs.updateString("data_di_nascita", String.valueOf(Time.valueOf((String) data[4])));
+                rs.updateString("sport", String.valueOf(String.valueOf(data[5])));
+                rs.updateString("squadra", String.valueOf(Double.parseDouble((String) data[6])));
                 rs.insertRow();
                 fireTableRowsInserted(rs.getRow(), rs.getRow());
             } catch (SQLException e) {

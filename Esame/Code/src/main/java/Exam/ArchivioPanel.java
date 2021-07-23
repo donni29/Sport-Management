@@ -41,7 +41,7 @@ public class ArchivioPanel extends JPanel  {
             try {
                 testconnection();
                 JScrollPane scrollPane =new JScrollPane();
-                Archivio.add(new JScrollPane(getTable("Select * from atleta")));
+                Archivio.add(new JScrollPane( getTable("Select * from Persona")));
 
             }catch (SQLException e){
                 JOptionPane.showMessageDialog(this,"Database Error");
@@ -58,7 +58,7 @@ public class ArchivioPanel extends JPanel  {
         Statement statement = DBManager.getConnection().createStatement();
 
         try {
-            statement.executeQuery("SELECT * FROM atleta");
+            statement.executeQuery("SELECT * FROM Persona");
         } catch (SQLException e) {
             System.out.println("non funziona");
         }
@@ -89,6 +89,22 @@ public class ArchivioPanel extends JPanel  {
             dm.addRow(row);
         }
 
+        btInsert = new JButton("Insert...");
+        //btInsert.addActionListener(this);
+        btDelete = new JButton("Remove");
+        //btDelete.addActionListener(this);
+
+
+        Archivio.add(btInsert);
+        Archivio.add(btDelete);
+
+        setLayout(new BorderLayout());
+        add(Archivio, BorderLayout.SOUTH);
+        add(new JScrollPane(tResults), BorderLayout.CENTER);
+
+        setSize(600, 400);
+        add(Archivio);
+        setVisible(true);
         t.setModel(dm);
         t.setGridColor(Color.BLACK);
         return t;
@@ -103,22 +119,7 @@ public class ArchivioPanel extends JPanel  {
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
 
-        btInsert = new JButton("Insert...");
-        btInsert.addActionListener(this);
-        btDelete = new JButton("Remove");
-        btDelete.addActionListener(this);
 
-        JPanel p01 = new JPanel(new GridLayout(1, 2));
-        p01.add(btInsert);
-        p01.add(btDelete);
-
-        setLayout(new BorderLayout());
-        add(p01, BorderLayout.SOUTH);
-        add(new JScrollPane(tResults), BorderLayout.CENTER);
-
-        setSize(600, 400);
-        add(p01);
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {

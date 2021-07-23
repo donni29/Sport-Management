@@ -17,18 +17,19 @@ public class DB_Model {
         DBManager.setConnection(
                  Utils.JDBC_Driver,
                  Utils.JDBC_URL);
-        System.out.println("ciao2");
+        //frase di prova System.out.println("ciao2");
         statement = DBManager.getConnection().createStatement();
 
         try {
             statement.executeQuery("SELECT * FROM Persona");
         } catch (SQLException e) {
             /* TOGLIERE ALLA FINE DEL PROGETTO */
-            statement.executeQuery("DROP TABLE IF EXISTS Persona");
-            statement.executeQuery("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita DATE," + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50))");
-            statement.executeQuery("INSERT INTO atleta (nome,cognome, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Atleta','Ladispoli','17/12/1995','0764352056C','Modena','Tennis','Circolo Modena')");
-            statement.executeQuery("INSERT INTO atleta (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli Racho','Dirigente','Rodi','17/11/1991','0764357052C','Sassuolo','Calcio','Valsa Calcio')");
-            statement.executeQuery("INSERT INTO atleta (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni Sforza','Allenatore','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')");
+            statement.executeUpdate("DROP TABLE IF EXISTS Persona");
+            statement.executeUpdate("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita DATE," + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50))");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli',17/12/1995,'0764352056C','Modena','Tennis','Circolo Modena')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli', 'Racho','Dirigente','Rodi',17/11/1991,'0764357052C','Sassuolo','Calcio','Valsa Calcio')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle',14/02/2001,'0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')");
+
         }
     }
 
