@@ -36,11 +36,12 @@ private ResultSet rs;
                 rs.updateDouble("nome", Double.parseDouble(java.util.UUID.randomUUID().toString()));
                 rs.updateDouble("cognome", Double.parseDouble((String) data[1]));
                 rs.updateString("tipo", java.util.UUID.randomUUID().toString());
-                rs.updateDouble("citta_di_residenza", Double.parseDouble((String) data[2]));
-                rs.updateString("CF", (String) data[3]);
-                rs.updateString("data_di_nascita", String.valueOf(Time.valueOf((String) data[4])));
-                rs.updateString("sport", String.valueOf(String.valueOf(data[5])));
-                rs.updateString("squadra", String.valueOf(Double.parseDouble((String) data[6])));
+                rs.updateDouble("luogo_nascita ", Double.parseDouble((String) data[2]));
+                rs.updateString("data_di_nascita", String.valueOf(Time.valueOf((String) data[3])));
+                rs.updateDouble("citta_di_residenza", Double.parseDouble(String.copyValueOf((char[]) data[4])));
+                rs.updateString("CF", (String) data[5]);
+                rs.updateString("sport", String.valueOf(String.valueOf(data[6])));
+                rs.updateString("squadra", String.valueOf(Double.parseDouble((String) data[7])));
                 rs.insertRow();
                 fireTableRowsInserted(rs.getRow(), rs.getRow());
             } catch (SQLException e) {
