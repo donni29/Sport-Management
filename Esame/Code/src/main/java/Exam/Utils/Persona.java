@@ -2,74 +2,81 @@ package Exam.Utils;
 
 import org.joda.time.DateTime;
 
-import javax.xml.crypto.Data;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalTime;
-import java.util.UUID;
 
 public class Persona {
 
-    String Utente;
+    String anagrafe;
+    String tipo;
     String luogo_nascita;
     String citta_residenza;
     String CF;
-    LocalTime data_nascita;
+    Time data_nascita;
 
-    public Persona(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita) {
-        this.Utente = Utente;
+    public Persona(String anagrafe, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita) {
+        this.anagrafe = anagrafe;
+        this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
         this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.data_nascita = data_nascita;
     }
 
-    public Persona(String utente, String luogo_nascita, Date data_nascita, String p_iva, String citta_residenza, String cf, String sport) {
+    public String getAnagrafe() {
+        return anagrafe;
     }
 
-    public void setUtente(String Utente) {
-        this.Utente = Utente;
+    public void setAnagrafe(String anagrafe) {
+        this.anagrafe = anagrafe;
     }
 
-    public void setLuogo_nascita(String luogo_nascita) {
-        this.luogo_nascita = luogo_nascita;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCitta_residenza(String citta_residenza) {
-        this.citta_residenza = citta_residenza;
-    }
-
-    public void setCF(String CF) {
-        this.CF = CF;
-    }
-
-    public void setData_nascita(LocalTime data_nascita) {
-        this.data_nascita = data_nascita;
-    }
-
-    public String getUtente() {
-        return Utente;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getLuogo_nascita() {
         return luogo_nascita;
     }
 
+    public void setLuogo_nascita(String luogo_nascita) {
+        this.luogo_nascita = luogo_nascita;
+    }
+
     public String getCitta_residenza() {
         return citta_residenza;
+    }
+
+    public void setCitta_residenza(String citta_residenza) {
+        this.citta_residenza = citta_residenza;
     }
 
     public String getCF() {
         return CF;
     }
 
-    public LocalTime getData_nascita() {
+    public void setCF(String CF) {
+        this.CF = CF;
+    }
+
+    public Time getData_nascita() {
         return data_nascita;
+    }
+
+    public void setData_nascita(Time data_nascita) {
+        this.data_nascita = data_nascita;
     }
 
     @Override
     public String toString() {
         return "Persona{" +
-                "Utente='" + Utente + '\'' +
+                "anagrafe='" + anagrafe + '\'' +
+                ", tipo='" + tipo + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
                 ", citta_residenza='" + citta_residenza + '\'' +
                 ", CF='" + CF + '\'' +

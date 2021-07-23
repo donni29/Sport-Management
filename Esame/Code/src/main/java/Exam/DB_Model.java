@@ -21,22 +21,21 @@ public class DB_Model {
         statement = DBManager.getConnection().createStatement();
 
         try {
-            statement.executeQuery("SELECT * FROM ATLETA");
+            statement.executeQuery("SELECT * FROM PERSONA");
         } catch (SQLException e) {
             /* TOGLIERE ALLA FINE DEL PROGETTO */
-            statement.executeQuery("DROP TABLE IF EXISTS atleta");
-            statement.executeQuery("CREATE TABLE ATLETA (" + " utente VARCHAR(50)," + " luogo_nascita VARCHAR(50)," + "data_nascita DATE" + "p_iva VARCHAR(50) NOT NULL UNIQUE" + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)" + "squadra VARCHAR(50))");
-            statement.executeQuery("INSERT INTO atleta (utente, luogo_nascita, data_nascita, p_iva, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Ladispoli','17/12/1995','0764352056C','Modena','FSGSGP47C22E764C','Tennis','Circolo Modena')");
-            statement.executeQuery("INSERT INTO atleta (utente, luogo_nascita, città_residenza,data_nascita, p_iva, CF, sport) VALUES ('Cavoli Racho','Rodi','17/11/1991','0764357052C','Sassuolo','RNXCYH38D29G463W','Calcio','Valsa Calcio')");
-            statement.executeQuery("INSERT INTO atleta (utente, luogo_nascita, città_residenza,data_nascita, p_iva, CF, sport) VALUES ('Giovanni Sforza','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','NPBBVZ28P28I700E','Nuoto','Piscina Reggio Emilia')");
+            statement.executeQuery("DROP TABLE IF EXISTS Persona");
+            statement.executeQuery("CREATE TABLE Persona (" + " anagrafe VARCHAR(50)," +" tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita DATE," + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50))");
+            statement.executeQuery("INSERT INTO atleta (anagrafe, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Atleta','Ladispoli','17/12/1995','0764352056C','Modena','Tennis','Circolo Modena')");
+            statement.executeQuery("INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli Racho','Dirigente','Rodi','17/11/1991','0764357052C','Sassuolo','Calcio','Valsa Calcio')");
+            statement.executeQuery("INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni Sforza','Allenatore','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')");
         }
     }
 
     public Persona getSelectedItem() {
         try {
-            return new Persona(rs.getString("Utente"), rs.getString("luogo_nascita"),
-                    rs.getDate("data_nascita"), rs.getString("p_iva"),
-                    rs.getString("città_residenza"), rs.getString("CF"), rs.getString("sport"));
+            return new Persona(rs.getString("anagrafe"),rs.getString("tipo"), rs.getString("luogo_nascita"),
+                    rs.getString("città_residenza"), rs.getString("CF"),rs.getTime("data_nascita"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,17 +85,17 @@ public class DB_Model {
         }
     }
 
-    public void insert(String utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra, String p_iva) {
+    public void insert(String anagrafe,String tipo, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
         try {
             rs.moveToInsertRow();
-            rs.updateString("utente", utente);
+            rs.updateString("anagrafe", anagrafe);
+            rs.updateString("tipo", tipo);
             rs.updateString("luogo_nascita", luogo_nascita);
             rs.updateString("citta_residenza", citta_residenza);
             rs.updateString("CF", CF);
             rs.updateTime("data_nascita", Time.valueOf(data_nascita));
             rs.updateString("sport", sport);
             rs.updateString("squadra", squadra);
-            rs.updateString("p_iva", p_iva);
             rs.insertRow();
             rs.last();
         } catch (SQLException e) {

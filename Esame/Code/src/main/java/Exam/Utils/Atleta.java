@@ -2,47 +2,47 @@ package Exam.Utils;
 
 import org.joda.time.DateTime;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class Atleta extends Persona {
     String sport;
     String squadra_appartenenza;
-    String p_iva;
 
-    public Atleta(String Utente, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
-        super(Utente, luogo_nascita, citta_residenza, CF, data_nascita);
+    public Atleta(String anagrafe, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita, String sport, String squadra_appartenenza) {
+        super(anagrafe, tipo, luogo_nascita, citta_residenza, CF, data_nascita);
         this.sport = sport;
         this.squadra_appartenenza = squadra_appartenenza;
-        this.p_iva = p_iva;
+
+    }
+
+    public String getSport() {
+        return sport;
     }
 
     public void setSport(String sport) {
         this.sport = sport;
     }
 
-    public void setSquadra(String squadra) {
-        this.squadra_appartenenza = squadra;
-    }
-
-
-    public String getSport() {
-        return sport;
-    }
-
-    public String getSquadra() {
+    public String getSquadra_appartenenza() {
         return squadra_appartenenza;
     }
 
-    public String getP_iva() {
-        return p_iva;
+    public void setSquadra_appartenenza(String squadra_appartenenza) {
+        this.squadra_appartenenza = squadra_appartenenza;
     }
 
     @Override
     public String toString() {
         return "Atleta{" +
                 "sport='" + sport + '\'' +
-                ", squadra='" + squadra_appartenenza + '\'' +
-                ", p_iva='" + p_iva + '\'' +
+                ", squadra_appartenenza='" + squadra_appartenenza + '\'' +
+                ", anagrafe='" + anagrafe + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", luogo_nascita='" + luogo_nascita + '\'' +
+                ", citta_residenza='" + citta_residenza + '\'' +
+                ", CF='" + CF + '\'' +
+                ", data_nascita=" + data_nascita +
                 '}';
     }
 }
