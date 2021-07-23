@@ -1,0 +1,445 @@
+Index: Code/src/main/java/Exam/ArchivioPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam;\r\n\r\nimport Exam.Utils.DBManager;\r\nimport Exam.Utils.SBM_JTable_Model;\r\nimport Exam.Utils.Utils;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.event.TableModelEvent;\r\nimport javax.swing.event.TableModelListener;\r\nimport javax.swing.table.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.Serial;\r\nimport java.sql.ResultSet;\r\nimport java.sql.ResultSetMetaData;\r\nimport java.sql.SQLException;\r\nimport java.sql.Statement;\r\n\r\npublic class ArchivioPanel extends JPanel  {\r\n\r\n    @Serial\r\n    private static final long serialVersionUID = 1L;\r\n\r\n    private String nome;\r\n    private JPanel Archivio;\r\n    private JButton Button;\r\n    JTable tResults;\r\n    JButton btInsert;\r\n    JButton btDelete;\r\n    JTextArea text= new JTextArea();\r\n\r\n\r\n    public  ArchivioPanel () {\r\n        Archivio = new JPanel();\r\n            /*Button = new JButton( \"CAVOLI\");\r\n            Button.setSize(20,20);\r\n            Archivio.add(Button);\r\n            add(Archivio);*/\r\n\r\n            try {\r\n                testconnection();\r\n                JScrollPane scrollPane =new JScrollPane();\r\n                Archivio.add(new JScrollPane(getTable(\"Select * from atleta\")));\r\n\r\n            }catch (SQLException e){\r\n                JOptionPane.showMessageDialog(this,\"Database Error\");\r\n            }\r\n\r\n\r\n            add(Archivio);\r\n            setVisible(true);\r\n    }\r\n\r\n\r\n    public  void testconnection() throws SQLException{\r\n        DBManager.setConnection(Utils.JDBC_Driver,Utils.JDBC_URL);\r\n        Statement statement = DBManager.getConnection().createStatement();\r\n\r\n        try {\r\n            statement.executeQuery(\"SELECT * FROM atleta\");\r\n        } catch (SQLException e) {\r\n            System.out.println(\"non funziona\");\r\n        }\r\n\r\n    }\r\n\r\n    public JTable getTable(String query) throws SQLException {\r\n        JTable t = new JTable();\r\n        DefaultTableModel dm = new DefaultTableModel();\r\n\r\n        ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);\r\n        ResultSetMetaData rsMetaData = rs.getMetaData();\r\n\r\n        // get columns metadata\r\n        int cols = rsMetaData.getColumnCount();\r\n        String[] c = new String[cols];\r\n        for (int i = 0; i < cols; i++) {\r\n            c[i] = rsMetaData.getColumnName(i + 1);\r\n            dm.addColumn(c[i]);\r\n        }\r\n\r\n        // Get rows\r\n        Object[] row = new Object[cols];\r\n        while (rs.next()) {\r\n            for (int i = 0; i < cols; i++) {\r\n                row[i] = rs.getString(i + 1);\r\n            }\r\n            dm.addRow(row);\r\n        }\r\n\r\n        t.setModel(dm);\r\n        t.setGridColor(Color.BLACK);\r\n        return t;\r\n    }\r\n\r\n        /*try {\r\n            tResults = new JTable();\r\n            tResults.setModel(new SBM_JTable_Model());\r\n            tResults.getModel().addTableModelListener(this);\r\n        } catch (SQLException | NullPointerException e) {\r\n            System.out.println(e);\r\n            JOptionPane.showMessageDialog(this, \"Database Error!\");\r\n        }\r\n\r\n        btInsert = new JButton(\"Insert...\");\r\n        btInsert.addActionListener(this);\r\n        btDelete = new JButton(\"Remove\");\r\n        btDelete.addActionListener(this);\r\n\r\n        JPanel p01 = new JPanel(new GridLayout(1, 2));\r\n        p01.add(btInsert);\r\n        p01.add(btDelete);\r\n\r\n        setLayout(new BorderLayout());\r\n        add(p01, BorderLayout.SOUTH);\r\n        add(new JScrollPane(tResults), BorderLayout.CENTER);\r\n\r\n        setSize(600, 400);\r\n        add(p01);\r\n        setVisible(true);\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e) {\r\n        if (e.getSource() == btInsert) {\r\n            String[] v = JOptionPane.showInputDialog(this, \"Insert sausage (length;diameter;weight;quality)\")\r\n                    .split(\";\");\r\n            ((SBM_JTable_Model) tResults.getModel()).insertRow(v);\r\n        }\r\n\r\n        if (e.getSource() == btDelete) {\r\n            ((SBM_JTable_Model) tResults.getModel()).removeRow(tResults.getSelectedRow(),\r\n                    tResults.getSelectedRow());\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void tableChanged(TableModelEvent e) {\r\n        System.out.println(\"The table has been modified!\");\r\n    }*/\r\n\r\n}\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/ArchivioPanel.java b/Code/src/main/java/Exam/ArchivioPanel.java
+--- a/Code/src/main/java/Exam/ArchivioPanel.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/src/main/java/Exam/ArchivioPanel.java	(date 1627028969878)
+@@ -58,7 +58,7 @@
+         Statement statement = DBManager.getConnection().createStatement();
+ 
+         try {
+-            statement.executeQuery("SELECT * FROM atleta");
++            statement.executeQuery("SELECT * FROM Persona");
+         } catch (SQLException e) {
+             System.out.println("non funziona");
+         }
+@@ -89,10 +89,8 @@
+             dm.addRow(row);
+         }
+ 
+-        t.setModel(dm);
+-        t.setGridColor(Color.BLACK);
+-        return t;
+-    }
++
++
+ 
+         /*try {
+             tResults = new JTable();
+@@ -101,27 +99,31 @@
+         } catch (SQLException | NullPointerException e) {
+             System.out.println(e);
+             JOptionPane.showMessageDialog(this, "Database Error!");
+-        }
++        }*/
+ 
+         btInsert = new JButton("Insert...");
+-        btInsert.addActionListener(this);
++        //btInsert.addActionListener((ActionListener) this);
+         btDelete = new JButton("Remove");
+-        btDelete.addActionListener(this);
++        //btDelete.addActionListener((ActionListener) this);
+ 
+-        JPanel p01 = new JPanel(new GridLayout(1, 2));
+-        p01.add(btInsert);
+-        p01.add(btDelete);
++
++        Archivio.add(btInsert);
++        Archivio.add(btDelete);
+ 
+         setLayout(new BorderLayout());
+-        add(p01, BorderLayout.SOUTH);
++        add(Archivio, BorderLayout.SOUTH);
+         add(new JScrollPane(tResults), BorderLayout.CENTER);
+ 
+         setSize(600, 400);
+-        add(p01);
++        add(Archivio);
++        Archivio.add(t);
+         setVisible(true);
++        t.setModel(dm);
++        t.setGridColor(Color.BLACK);
++        return t;
+     }
+ 
+-    public void actionPerformed(ActionEvent e) {
++    /*public void actionPerformed(ActionEvent e) {
+         if (e.getSource() == btInsert) {
+             String[] v = JOptionPane.showInputDialog(this, "Insert sausage (length;diameter;weight;quality)")
+                     .split(";");
+@@ -134,7 +136,7 @@
+         }
+     }
+ 
+-    @Override
++
+     public void tableChanged(TableModelEvent e) {
+         System.out.println("The table has been modified!");
+     }*/
+Index: Code/src/main/java/Exam/SBM.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam;\r\n\r\n//questo è il nostro progetto, madonne//\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.awt.event.KeyEvent;\r\nimport java.io.Serial;\r\nimport java.sql.SQLException;\r\n\r\npublic class SBM extends JFrame implements ActionListener {\r\n    @Serial\r\n    private static final long serialVersionUID = 1L;\r\n    public static JMenu openArchivio;\r\n    private static JMenuItem close;\r\n    private static JMenuItem Atleti;\r\n    private static JMenuItem Allenatori;\r\n    private static JMenuItem Dirigenti;\r\n    private static JMenuItem Nuovo;\r\n    private static JMenuItem Open;\r\n    private static JFileChooser OpenSource;\r\n    private static ArchivioPanel panelAtleti ;\r\n\r\n    /*\r\n    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati\r\n     */\r\n    DB_Model model;\r\n\r\n    public SBM() {\r\n        super(\"Sport Business Management \");\r\n\r\n\r\n        JMenuBar menuBar = new JMenuBar();\r\n        JPanel panel =new JPanel();\r\n        JMenu Archivio = new JMenu(\"Archivio\");\r\n        menuBar.add(Archivio);\r\n        JMenu Rimborso = new JMenu(\"Rimborso\");\r\n        JMenu Strutture = new JMenu(\"Strutture\");\r\n        menuBar.add(Rimborso);\r\n        menuBar.add(Strutture);\r\n\r\n\r\n        openArchivio = new JMenu (\"Open Archivio di ...\");\r\n        openArchivio.addSeparator();\r\n        openArchivio.addActionListener(this);\r\n        Archivio.add(openArchivio);\r\n\r\n        //parte codice menu Archivio//\r\n\r\n        Atleti = new JMenuItem(\"Atleti\");\r\n        Atleti.addActionListener(this);\r\n        openArchivio.add(Atleti);\r\n\r\n        Allenatori = new JMenuItem(\"Allenatori\");\r\n        Allenatori.addActionListener(this);\r\n        openArchivio.add(Allenatori);\r\n\r\n        Dirigenti = new JMenuItem(\"Dirigenti\");\r\n        Dirigenti.addActionListener(this);\r\n        openArchivio.add(Dirigenti);\r\n\r\n        close = new JMenuItem(\"Close\");\r\n        close.addActionListener(this);\r\n        Archivio.add(close);\r\n\r\n        //parte codice menu Rimborso//\r\n        Nuovo = new JMenuItem(\"Nuovo...\");\r\n        Nuovo.addActionListener(this);\r\n        Rimborso.add(Nuovo);\r\n        //prova git//\r\n\r\n        Open = new JMenuItem(\"Apri...\");\r\n        Open.addActionListener(this);\r\n        Rimborso.add(Open);\r\n\r\n        setJMenuBar(menuBar);\r\n        setSize(640, 480);\r\n\r\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\r\n        setVisible(true);\r\n\r\n        try {\r\n            /* System.out.println((\"ciao\"));*/\r\n            model = new DB_Model();\r\n            /*il problema è questo catch che non capisco perchè ci entro!!\r\n            il resto ora funziona*/\r\n        } catch (SQLException e) {\r\n            /*System.out.println(e);*/\r\n            JOptionPane.showMessageDialog(this, \"Database Error!\");\r\n        }\r\n        // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e) {\r\n        if (e.getSource() == this.close) {\r\n            dispose();\r\n        } else {\r\n            if (e.getSource() == this.Open) {\r\n                OpenSource = new JFileChooser();\r\n\r\n                int option =OpenSource.showOpenDialog(this);\r\n                if (option == JFileChooser.APPROVE_OPTION) {\r\n\r\n                }\r\n            }\r\n            if (e.getSource() == this.Atleti){\r\n                panelAtleti =new ArchivioPanel();\r\n                add(panelAtleti);\r\n                setVisible(true);\r\n\r\n\r\n            }\r\n\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/SBM.java b/Code/src/main/java/Exam/SBM.java
+--- a/Code/src/main/java/Exam/SBM.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/src/main/java/Exam/SBM.java	(date 1627028969898)
+@@ -75,8 +75,11 @@
+         Rimborso.add(Open);
+ 
+         setJMenuBar(menuBar);
+-        setSize(640, 480);
++
++        setExtendedState(MAXIMIZED_BOTH);
++        setSize(640,480);
+ 
++
+         setDefaultCloseOperation(EXIT_ON_CLOSE);
+         setVisible(true);
+ 
+Index: Code/src/main/java/Exam/Utils/Persona.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam.Utils;\r\n\r\nimport org.joda.time.DateTime;\r\n\r\nimport java.sql.Date;\r\nimport java.sql.Time;\r\nimport java.time.LocalTime;\r\n\r\npublic class Persona {\r\n\r\n    String anagrafe;\r\n    String tipo;\r\n    String luogo_nascita;\r\n    String citta_residenza;\r\n    String CF;\r\n    Time data_nascita;\r\n\r\n    public Persona(String anagrafe, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita) {\r\n        this.anagrafe = anagrafe;\r\n        this.tipo = tipo;\r\n        this.luogo_nascita = luogo_nascita;\r\n        this.citta_residenza = citta_residenza;\r\n        this.CF = CF;\r\n        this.data_nascita = data_nascita;\r\n    }\r\n\r\n    public String getAnagrafe() {\r\n        return anagrafe;\r\n    }\r\n\r\n    public void setAnagrafe(String anagrafe) {\r\n        this.anagrafe = anagrafe;\r\n    }\r\n\r\n    public String getTipo() {\r\n        return tipo;\r\n    }\r\n\r\n    public void setTipo(String tipo) {\r\n        this.tipo = tipo;\r\n    }\r\n\r\n    public String getLuogo_nascita() {\r\n        return luogo_nascita;\r\n    }\r\n\r\n    public void setLuogo_nascita(String luogo_nascita) {\r\n        this.luogo_nascita = luogo_nascita;\r\n    }\r\n\r\n    public String getCitta_residenza() {\r\n        return citta_residenza;\r\n    }\r\n\r\n    public void setCitta_residenza(String citta_residenza) {\r\n        this.citta_residenza = citta_residenza;\r\n    }\r\n\r\n    public String getCF() {\r\n        return CF;\r\n    }\r\n\r\n    public void setCF(String CF) {\r\n        this.CF = CF;\r\n    }\r\n\r\n    public Time getData_nascita() {\r\n        return data_nascita;\r\n    }\r\n\r\n    public void setData_nascita(Time data_nascita) {\r\n        this.data_nascita = data_nascita;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Persona{\" +\r\n                \"anagrafe='\" + anagrafe + '\\'' +\r\n                \", tipo='\" + tipo + '\\'' +\r\n                \", luogo_nascita='\" + luogo_nascita + '\\'' +\r\n                \", citta_residenza='\" + citta_residenza + '\\'' +\r\n                \", CF='\" + CF + '\\'' +\r\n                \", data_nascita=\" + data_nascita +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/Utils/Persona.java b/Code/src/main/java/Exam/Utils/Persona.java
+--- a/Code/src/main/java/Exam/Utils/Persona.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/src/main/java/Exam/Utils/Persona.java	(date 1627028969906)
+@@ -22,6 +22,7 @@
+         this.citta_residenza = citta_residenza;
+         this.CF = CF;
+         this.data_nascita = data_nascita;
++        System.out.println("prova");
+     }
+ 
+     public String getAnagrafe() {
+Index: Code/src/main/java/Exam/DB_Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam;\r\n\r\nimport Exam.Utils.*;\r\n\r\n\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.sql.Statement;\r\nimport java.sql.Time;\r\nimport java.time.LocalTime;\r\n\r\npublic class DB_Model {\r\n    ResultSet rs;\r\n    Statement statement;\r\n\r\n    public DB_Model() throws SQLException {\r\n        DBManager.setConnection(\r\n                 Utils.JDBC_Driver,\r\n                 Utils.JDBC_URL);\r\n        System.out.println(\"ciao2\");\r\n        statement = DBManager.getConnection().createStatement();\r\n\r\n        try {\r\n            statement.executeQuery(\"SELECT * FROM PERSONA\");\r\n        } catch (SQLException e) {\r\n            /* TOGLIERE ALLA FINE DEL PROGETTO */\r\n            statement.executeQuery(\"DROP TABLE IF EXISTS Persona\");\r\n            statement.executeQuery(\"CREATE TABLE Persona (\" + \" anagrafe VARCHAR(50),\" +\" tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), \" + \" luogo_nascita VARCHAR(50),\" + \"data_nascita DATE,\" + \"città_residenza VARCHAR(50),\" + \"CF VARCHAR(50)PRIMARY KEY,\" + \" sport VARCHAR(50),\" + \"squadra VARCHAR(50))\");\r\n            statement.executeQuery(\"INSERT INTO atleta (anagrafe, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Atleta','Ladispoli','17/12/1995','0764352056C','Modena','Tennis','Circolo Modena')\");\r\n            statement.executeQuery(\"INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli Racho','Dirigente','Rodi','17/11/1991','0764357052C','Sassuolo','Calcio','Valsa Calcio')\");\r\n            statement.executeQuery(\"INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni Sforza','Allenatore','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')\");\r\n        }\r\n    }\r\n\r\n    public Persona getSelectedItem() {\r\n        try {\r\n            return new Persona(rs.getString(\"anagrafe\"),rs.getString(\"tipo\"), rs.getString(\"luogo_nascita\"),\r\n                    rs.getString(\"città_residenza\"), rs.getString(\"CF\"),rs.getTime(\"data_nascita\"));\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public int getSelectedIndex() {\r\n        try {\r\n            return rs.getRow();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return 0;\r\n    }\r\n\r\n    public void first() {\r\n        try {\r\n            rs.first();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void last() {\r\n        try {\r\n            rs.last();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void next() {\r\n        try {\r\n            if (!rs.isLast())\r\n                rs.next();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void previous() {\r\n        try {\r\n            if (!rs.isFirst())\r\n                rs.previous();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void insert(String anagrafe,String tipo, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {\r\n        try {\r\n            rs.moveToInsertRow();\r\n            rs.updateString(\"anagrafe\", anagrafe);\r\n            rs.updateString(\"tipo\", tipo);\r\n            rs.updateString(\"luogo_nascita\", luogo_nascita);\r\n            rs.updateString(\"citta_residenza\", citta_residenza);\r\n            rs.updateString(\"CF\", CF);\r\n            rs.updateTime(\"data_nascita\", Time.valueOf(data_nascita));\r\n            rs.updateString(\"sport\", sport);\r\n            rs.updateString(\"squadra\", squadra);\r\n            rs.insertRow();\r\n            rs.last();\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/DB_Model.java b/Code/src/main/java/Exam/DB_Model.java
+--- a/Code/src/main/java/Exam/DB_Model.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/src/main/java/Exam/DB_Model.java	(date 1627028969914)
+@@ -17,24 +17,24 @@
+         DBManager.setConnection(
+                  Utils.JDBC_Driver,
+                  Utils.JDBC_URL);
+-        System.out.println("ciao2");
++        //System.out.println("ciao2");
+         statement = DBManager.getConnection().createStatement();
+ 
+         try {
+-            statement.executeQuery("SELECT * FROM PERSONA");
++            statement.executeQuery("SELECT * FROM Persona");
+         } catch (SQLException e) {
+             /* TOGLIERE ALLA FINE DEL PROGETTO */
+             statement.executeQuery("DROP TABLE IF EXISTS Persona");
+-            statement.executeQuery("CREATE TABLE Persona (" + " anagrafe VARCHAR(50)," +" tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita DATE," + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50))");
+-            statement.executeQuery("INSERT INTO atleta (anagrafe, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Atleta','Ladispoli','17/12/1995','0764352056C','Modena','Tennis','Circolo Modena')");
+-            statement.executeQuery("INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli Racho','Dirigente','Rodi','17/11/1991','0764357052C','Sassuolo','Calcio','Valsa Calcio')");
+-            statement.executeQuery("INSERT INTO atleta (anagrafe,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni Sforza','Allenatore','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')");
++            statement.executeQuery("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita DATE," + "città_residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50))");
++            statement.executeQuery("INSERT INTO atleta (nome,cognome, tipo, luogo_nascita, data_nascita, città_residenza, CF, sport, squadra) VALUES ('Piero Giovanni','Atleta','Ladispoli','17/12/1995','0764352056C','Modena','Tennis','Circolo Modena')");
++            statement.executeQuery("INSERT INTO atleta (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita, CF, sport) VALUES ('Cavoli Racho','Dirigente','Rodi','17/11/1991','0764357052C','Sassuolo','Calcio','Valsa Calcio')");
++            statement.executeQuery("INSERT INTO atleta (nome,cognome,tipo, luogo_nascita, città_residenza,data_nascita,CF, sport) VALUES ('Giovanni Sforza','Allenatore','CentoCelle','14/02/2001','0764352086F','Reggio Emilia','Nuoto','Piscina Reggio Emilia')");
+         }
+     }
+ 
+     public Persona getSelectedItem() {
+         try {
+-            return new Persona(rs.getString("anagrafe"),rs.getString("tipo"), rs.getString("luogo_nascita"),
++            return new Persona(rs.getString("nome"),rs.getString("cognome"),rs.getString("tipo"), rs.getString("luogo_nascita"),
+                     rs.getString("città_residenza"), rs.getString("CF"),rs.getTime("data_nascita"));
+         } catch (SQLException e) {
+             e.printStackTrace();
+@@ -85,10 +85,11 @@
+         }
+     }
+ 
+-    public void insert(String anagrafe,String tipo, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
++    public void insert(String nome,String cognome,String tipo, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
+         try {
+             rs.moveToInsertRow();
+-            rs.updateString("anagrafe", anagrafe);
++            rs.updateString("nome", nome);
++            rs.updateString("cognome", cognome);
+             rs.updateString("tipo", tipo);
+             rs.updateString("luogo_nascita", luogo_nascita);
+             rs.updateString("citta_residenza", citta_residenza);
+Index: Code/src/main/java/Exam/Utils/SBM_JTable_Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exam.Utils;\r\n\r\nimport javax.swing.table.AbstractTableModel;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.sql.Statement;\r\n\r\npublic class SBM_JTable_Model extends AbstractTableModel {\r\n\r\nprivate static final long serialVersionUID = 1L;\r\nprivate final String[] columnNames = new String[]{\"utente\",\"nome\", \"cognome\",\"citta_di_residenza\", \"CF\",\"data_di_nascita\",\"sport\",\"squadra\"};\r\nprivate final Class<?>[] columnClass = new Class<?>[]{String.class, String.class,String.class,String.class,String.class,Double.class,String.class,String.class};\r\nprivate ResultSet rs;\r\n\r\n    public SBM_JTable_Model() throws SQLException {\r\n        DBManager.setConnection(\r\n                Utils.JDBC_Driver,\r\n                Utils.JDBC_URL);\r\n        Statement statement = DBManager.getConnection().createStatement(\r\n                ResultSet.TYPE_SCROLL_SENSITIVE,\r\n                ResultSet.CONCUR_UPDATABLE);\r\n\r\n        try {\r\n            rs = statement.executeQuery(\"SELECT * FROM atleta\");\r\n            rs.first();\r\n        } catch (SQLException e) {\r\n            System.out.print(\"non Funziona\");\r\n        }\r\n    }\r\n\r\n        public void insertRow(Object[] data) {\r\n            try {\r\n                rs.moveToInsertRow();\r\n                rs.updateString(\"utente\", java.util.UUID.randomUUID().toString());\r\n                rs.updateDouble(\"nome\", Double.parseDouble(java.util.UUID.randomUUID().toString()));\r\n                rs.updateDouble(\"cognome\", Double.parseDouble((String) data[1]));\r\n                rs.updateDouble(\"citta_di_residenza\", Double.parseDouble((String) data[2]));\r\n                rs.updateString(\"CF\", (String) data[3]);\r\n                rs.updateString(\"data_di_nascita\", String.valueOf(Double.parseDouble((String) data[4])));\r\n                rs.updateString(\"sport\", String.valueOf(Double.parseDouble((String) data[5])));\r\n                rs.updateString(\"squadra\", String.valueOf(Double.parseDouble((String) data[4])));\r\n                rs.insertRow();\r\n                fireTableRowsInserted(rs.getRow(), rs.getRow());\r\n            } catch (SQLException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n\r\n        public void removeRow(int firstRow, int lastRow) {\r\n            try {\r\n                rs.absolute(firstRow);\r\n                for (int i = firstRow; i <= lastRow; i++) {\r\n                    rs.deleteRow();\r\n                }\r\n                fireTableRowsDeleted(firstRow, lastRow);\r\n            } catch (SQLException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n\r\n    @Override\r\n    public int getRowCount() {\r\n        return 0;\r\n    }\r\n\r\n    @Override\r\n    public int getColumnCount() {\r\n        return 0;\r\n    }\r\n\r\n    @Override\r\n    public Object getValueAt(int rowIndex, int columnIndex) {\r\n        return null;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java b/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java
+--- a/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java	(date 1627028969921)
+@@ -21,7 +21,7 @@
+                 ResultSet.CONCUR_UPDATABLE);
+ 
+         try {
+-            rs = statement.executeQuery("SELECT * FROM atleta");
++            rs = statement.executeQuery("SELECT * FROM Persona");
+             rs.first();
+         } catch (SQLException e) {
+             System.out.print("non Funziona");
+Index: Code/src/main/java/Exam/Utils/Atleta.java
+===================================================================
+diff --git a/Code/src/main/java/Exam/Utils/Atleta.java b/Code/src/main/java/Exam/Utils/Atleta.java
+deleted file mode 100644
+--- a/Code/src/main/java/Exam/Utils/Atleta.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ /dev/null	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
+@@ -1,48 +0,0 @@
+-package Exam.Utils;
+-
+-import org.joda.time.DateTime;
+-
+-import java.sql.Time;
+-import java.time.LocalTime;
+-
+-public class Atleta extends Persona {
+-    String sport;
+-    String squadra_appartenenza;
+-
+-    public Atleta(String anagrafe, String tipo, String luogo_nascita, String citta_residenza, String CF, Time data_nascita, String sport, String squadra_appartenenza) {
+-        super(anagrafe, tipo, luogo_nascita, citta_residenza, CF, data_nascita);
+-        this.sport = sport;
+-        this.squadra_appartenenza = squadra_appartenenza;
+-
+-    }
+-
+-    public String getSport() {
+-        return sport;
+-    }
+-
+-    public void setSport(String sport) {
+-        this.sport = sport;
+-    }
+-
+-    public String getSquadra_appartenenza() {
+-        return squadra_appartenenza;
+-    }
+-
+-    public void setSquadra_appartenenza(String squadra_appartenenza) {
+-        this.squadra_appartenenza = squadra_appartenenza;
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "Atleta{" +
+-                "sport='" + sport + '\'' +
+-                ", squadra_appartenenza='" + squadra_appartenenza + '\'' +
+-                ", anagrafe='" + anagrafe + '\'' +
+-                ", tipo='" + tipo + '\'' +
+-                ", luogo_nascita='" + luogo_nascita + '\'' +
+-                ", citta_residenza='" + citta_residenza + '\'' +
+-                ", CF='" + CF + '\'' +
+-                ", data_nascita=" + data_nascita +
+-                '}';
+-    }
+-}
+Index: Code/src/main/java/Exam/Utils/Dirigente.java
+===================================================================
+diff --git a/Code/src/main/java/Exam/Utils/Dirigente.java b/Code/src/main/java/Exam/Utils/Dirigente.java
+deleted file mode 100644
+--- a/Code/src/main/java/Exam/Utils/Dirigente.java	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ /dev/null	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
+@@ -1,38 +0,0 @@
+-package Exam.Utils;
+-
+-import java.time.LocalTime;
+-
+-public class Dirigente extends Persona {
+-    String ruolo;
+-    String p_iva;
+-
+-    public Dirigente(String nome_cognome, String luogo_nascita, String citta_resistenza, String CF, LocalTime data_nascita, String ruolo, String p_iva) {
+-        super(nome_cognome, luogo_nascita, citta_resistenza, CF, data_nascita);
+-        ruolo = ruolo;
+-        this.p_iva = p_iva;
+-    }
+-
+-    public String getRuolo() {
+-        return ruolo;
+-    }
+-
+-    public String getP_iva() {
+-        return p_iva;
+-    }
+-
+-    public void setRuolo(String ruolo) {
+-        ruolo = ruolo;
+-    }
+-
+-    public void setP_iva(String p_iva) {
+-        this.p_iva = p_iva;
+-    }
+-
+-    @Override
+-    public String toString() {
+-        return "Dirigente{" +
+-                "Ruolo='" + ruolo + '\'' +
+-                ", p_iva='" + p_iva + '\'' +
+-                '}';
+-    }
+-}
+Index: .idea/dbnavigator.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DBNavigator.Project.DataEditorManager\">\r\n    <record-view-column-sorting-type value=\"BY_INDEX\" />\r\n    <value-preview-text-wrapping value=\"false\" />\r\n    <value-preview-pinned value=\"false\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DataExportManager\">\r\n    <export-instructions>\r\n      <create-header value=\"true\" />\r\n      <friendly-headers value=\"false\" />\r\n      <quote-values-containing-separator value=\"true\" />\r\n      <quote-all-values value=\"false\" />\r\n      <value-separator value=\"\" />\r\n      <file-name value=\"\" />\r\n      <file-location value=\"\" />\r\n      <scope value=\"GLOBAL\" />\r\n      <destination value=\"FILE\" />\r\n      <format value=\"EXCEL\" />\r\n      <charset value=\"windows-1252\" />\r\n    </export-instructions>\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseBrowserManager\">\r\n    <autoscroll-to-editor value=\"false\" />\r\n    <autoscroll-from-editor value=\"true\" />\r\n    <show-object-properties value=\"true\" />\r\n    <loaded-nodes>\r\n      <connection connection-id=\"f05d7464-032e-4be7-8ce0-cd081db62c2a\">\r\n        <schema name=\"main\" object-types=\"table, view, column\" />\r\n      </connection>\r\n    </loaded-nodes>\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseConsoleManager\">\r\n    <connection id=\"f05d7464-032e-4be7-8ce0-cd081db62c2a\">\r\n      <console name=\"Connection\" type=\"STANDARD\" schema=\"main\" session=\"Main\"><![CDATA[drop table atleta\r\n\r\ninsert into atleta\r\nvalues (\"A\",\"Mattia\",\"Nico\",\"scandiano\",9/6/1995,\"castellarano\",000000001,\"calcio\",\"under20\");\r\n\r\nvalues (\"A\",\"Luca\",\"Giono\",\"scandiano\",2/6/1995,\"castellarano\",20003330001,\"calcio\",\"under19\");\r\n\r\n\r\nselect * from atleta\r\n\r\ncreate table atleta (\r\nutente varchar(1),\r\nnome varchar  (50),\r\ncognome varchar (50),\r\nluogo_di_nascita varchar(50),\r\ndata_di_nascita date,\r\ncitta_di_residenza varchar (50),\r\ncf varchar(12) primary key,\r\nsport varchar (15),\r\nsquadra varchar (20) \r\n)]]></console>\r\n    </connection>\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseFileManager\">\r\n    <open-files />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseSessionManager\">\r\n    <connection id=\"f05d7464-032e-4be7-8ce0-cd081db62c2a\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.EditorStateManager\">\r\n    <last-used-providers />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.ExecutionManager\">\r\n    <retain-sticky-names value=\"false\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.MethodExecutionManager\">\r\n    <method-browser />\r\n    <execution-history>\r\n      <group-entries value=\"true\" />\r\n      <execution-inputs />\r\n    </execution-history>\r\n    <argument-values-cache />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.ObjectDependencyManager\">\r\n    <last-used-dependency-type value=\"INCOMING\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.ObjectQuickFilterManager\">\r\n    <last-used-operator value=\"EQUAL\" />\r\n    <filters />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.ScriptExecutionManager\" clear-outputs=\"true\">\r\n    <recently-used-interfaces />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.Settings\">\r\n    <connections>\r\n      <connection id=\"f05d7464-032e-4be7-8ce0-cd081db62c2a\" active=\"true\">\r\n        <database>\r\n          <name value=\"Connection\" />\r\n          <description value=\"exam\" />\r\n          <database-type value=\"SQLITE\" />\r\n          <config-type value=\"BASIC\" />\r\n          <database-version value=\"3.34\" />\r\n          <driver-source value=\"BUILTIN\" />\r\n          <driver-library value=\"\" />\r\n          <driver value=\"\" />\r\n          <url-type value=\"FILE\" />\r\n          <host value=\"localhost\" />\r\n          <port value=\"1234\" />\r\n          <database value=\"database\" />\r\n          <files>\r\n            <file path=\"C:\\Users\\Utente\\Desktop\\Exam\\exam.sqlite\" schema=\"main\" />\r\n          </files>\r\n          <type value=\"NONE\" />\r\n          <user value=\"\" />\r\n          <deprecated-pwd value=\"\" />\r\n        </database>\r\n        <properties>\r\n          <auto-commit value=\"true\" />\r\n        </properties>\r\n        <ssh-settings>\r\n          <active value=\"false\" />\r\n          <proxy-host value=\"\" />\r\n          <proxy-port value=\"22\" />\r\n          <proxy-user value=\"\" />\r\n          <deprecated-proxy-pwd value=\"\" />\r\n          <auth-type value=\"PASSWORD\" />\r\n          <key-file value=\"\" />\r\n          <key-passphrase value=\"\" />\r\n        </ssh-settings>\r\n        <ssl-settings>\r\n          <active value=\"false\" />\r\n          <certificate-authority-file value=\"\" />\r\n          <client-certificate-file value=\"\" />\r\n          <client-key-file value=\"\" />\r\n        </ssl-settings>\r\n        <details>\r\n          <charset value=\"UTF-8\" />\r\n          <session-management value=\"true\" />\r\n          <ddl-file-binding value=\"true\" />\r\n          <database-logging value=\"false\" />\r\n          <connect-automatically value=\"true\" />\r\n          <restore-workspace value=\"true\" />\r\n          <restore-workspace-deep value=\"true\" />\r\n          <environment-type value=\"default\" />\r\n          <connectivity-timeout value=\"5\" />\r\n          <idle-time-to-disconnect value=\"30\" />\r\n          <idle-time-to-disconnect-pool value=\"5\" />\r\n          <credential-expiry-time value=\"10\" />\r\n          <max-connection-pool-size value=\"7\" />\r\n          <alternative-statement-delimiter value=\"\" />\r\n        </details>\r\n        <object-filters hide-empty-schemas=\"false\" hide-pseudo-columns=\"false\">\r\n          <object-type-filter use-master-settings=\"true\">\r\n            <object-type name=\"SCHEMA\" enabled=\"true\" />\r\n            <object-type name=\"USER\" enabled=\"true\" />\r\n            <object-type name=\"ROLE\" enabled=\"true\" />\r\n            <object-type name=\"PRIVILEGE\" enabled=\"true\" />\r\n            <object-type name=\"CHARSET\" enabled=\"true\" />\r\n            <object-type name=\"TABLE\" enabled=\"true\" />\r\n            <object-type name=\"VIEW\" enabled=\"true\" />\r\n            <object-type name=\"MATERIALIZED_VIEW\" enabled=\"true\" />\r\n            <object-type name=\"NESTED_TABLE\" enabled=\"true\" />\r\n            <object-type name=\"COLUMN\" enabled=\"true\" />\r\n            <object-type name=\"INDEX\" enabled=\"true\" />\r\n            <object-type name=\"CONSTRAINT\" enabled=\"true\" />\r\n            <object-type name=\"DATASET_TRIGGER\" enabled=\"true\" />\r\n            <object-type name=\"DATABASE_TRIGGER\" enabled=\"true\" />\r\n            <object-type name=\"SYNONYM\" enabled=\"true\" />\r\n            <object-type name=\"SEQUENCE\" enabled=\"true\" />\r\n            <object-type name=\"PROCEDURE\" enabled=\"true\" />\r\n            <object-type name=\"FUNCTION\" enabled=\"true\" />\r\n            <object-type name=\"PACKAGE\" enabled=\"true\" />\r\n            <object-type name=\"TYPE\" enabled=\"true\" />\r\n            <object-type name=\"TYPE_ATTRIBUTE\" enabled=\"true\" />\r\n            <object-type name=\"ARGUMENT\" enabled=\"true\" />\r\n            <object-type name=\"DIMENSION\" enabled=\"true\" />\r\n            <object-type name=\"CLUSTER\" enabled=\"true\" />\r\n            <object-type name=\"DBLINK\" enabled=\"true\" />\r\n          </object-type-filter>\r\n          <object-name-filters />\r\n        </object-filters>\r\n      </connection>\r\n    </connections>\r\n    <browser-settings>\r\n      <general>\r\n        <display-mode value=\"TABBED\" />\r\n        <navigation-history-size value=\"100\" />\r\n        <show-object-details value=\"false\" />\r\n      </general>\r\n      <filters>\r\n        <object-type-filter>\r\n          <object-type name=\"SCHEMA\" enabled=\"true\" />\r\n          <object-type name=\"USER\" enabled=\"true\" />\r\n          <object-type name=\"ROLE\" enabled=\"true\" />\r\n          <object-type name=\"PRIVILEGE\" enabled=\"true\" />\r\n          <object-type name=\"CHARSET\" enabled=\"true\" />\r\n          <object-type name=\"TABLE\" enabled=\"true\" />\r\n          <object-type name=\"VIEW\" enabled=\"true\" />\r\n          <object-type name=\"MATERIALIZED_VIEW\" enabled=\"true\" />\r\n          <object-type name=\"NESTED_TABLE\" enabled=\"true\" />\r\n          <object-type name=\"COLUMN\" enabled=\"true\" />\r\n          <object-type name=\"INDEX\" enabled=\"true\" />\r\n          <object-type name=\"CONSTRAINT\" enabled=\"true\" />\r\n          <object-type name=\"DATASET_TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"DATABASE_TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"SYNONYM\" enabled=\"true\" />\r\n          <object-type name=\"SEQUENCE\" enabled=\"true\" />\r\n          <object-type name=\"PROCEDURE\" enabled=\"true\" />\r\n          <object-type name=\"FUNCTION\" enabled=\"true\" />\r\n          <object-type name=\"PACKAGE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE_ATTRIBUTE\" enabled=\"true\" />\r\n          <object-type name=\"ARGUMENT\" enabled=\"true\" />\r\n          <object-type name=\"DIMENSION\" enabled=\"true\" />\r\n          <object-type name=\"CLUSTER\" enabled=\"true\" />\r\n          <object-type name=\"DBLINK\" enabled=\"true\" />\r\n        </object-type-filter>\r\n      </filters>\r\n      <sorting>\r\n        <object-type name=\"COLUMN\" sorting-type=\"NAME\" />\r\n        <object-type name=\"FUNCTION\" sorting-type=\"NAME\" />\r\n        <object-type name=\"PROCEDURE\" sorting-type=\"NAME\" />\r\n        <object-type name=\"ARGUMENT\" sorting-type=\"POSITION\" />\r\n      </sorting>\r\n      <default-editors>\r\n        <object-type name=\"VIEW\" editor-type=\"SELECTION\" />\r\n        <object-type name=\"PACKAGE\" editor-type=\"SELECTION\" />\r\n        <object-type name=\"TYPE\" editor-type=\"SELECTION\" />\r\n      </default-editors>\r\n    </browser-settings>\r\n    <navigation-settings>\r\n      <lookup-filters>\r\n        <lookup-objects>\r\n          <object-type name=\"SCHEMA\" enabled=\"true\" />\r\n          <object-type name=\"USER\" enabled=\"false\" />\r\n          <object-type name=\"ROLE\" enabled=\"false\" />\r\n          <object-type name=\"PRIVILEGE\" enabled=\"false\" />\r\n          <object-type name=\"CHARSET\" enabled=\"false\" />\r\n          <object-type name=\"TABLE\" enabled=\"true\" />\r\n          <object-type name=\"VIEW\" enabled=\"true\" />\r\n          <object-type name=\"MATERIALIZED VIEW\" enabled=\"true\" />\r\n          <object-type name=\"INDEX\" enabled=\"true\" />\r\n          <object-type name=\"CONSTRAINT\" enabled=\"true\" />\r\n          <object-type name=\"DATASET TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"DATABASE TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"SYNONYM\" enabled=\"false\" />\r\n          <object-type name=\"SEQUENCE\" enabled=\"true\" />\r\n          <object-type name=\"PROCEDURE\" enabled=\"true\" />\r\n          <object-type name=\"FUNCTION\" enabled=\"true\" />\r\n          <object-type name=\"PACKAGE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE\" enabled=\"true\" />\r\n          <object-type name=\"DIMENSION\" enabled=\"false\" />\r\n          <object-type name=\"CLUSTER\" enabled=\"false\" />\r\n          <object-type name=\"DBLINK\" enabled=\"true\" />\r\n        </lookup-objects>\r\n        <force-database-load value=\"false\" />\r\n        <prompt-connection-selection value=\"true\" />\r\n        <prompt-schema-selection value=\"true\" />\r\n      </lookup-filters>\r\n    </navigation-settings>\r\n    <dataset-grid-settings>\r\n      <general>\r\n        <enable-zooming value=\"true\" />\r\n        <enable-column-tooltip value=\"true\" />\r\n      </general>\r\n      <sorting>\r\n        <nulls-first value=\"true\" />\r\n        <max-sorting-columns value=\"4\" />\r\n      </sorting>\r\n      <tracking-columns>\r\n        <columnNames value=\"\" />\r\n        <visible value=\"true\" />\r\n        <editable value=\"false\" />\r\n      </tracking-columns>\r\n    </dataset-grid-settings>\r\n    <dataset-editor-settings>\r\n      <text-editor-popup>\r\n        <active value=\"false\" />\r\n        <active-if-empty value=\"false\" />\r\n        <data-length-threshold value=\"100\" />\r\n        <popup-delay value=\"1000\" />\r\n      </text-editor-popup>\r\n      <values-actions-popup>\r\n        <show-popup-button value=\"true\" />\r\n        <element-count-threshold value=\"1000\" />\r\n        <data-length-threshold value=\"250\" />\r\n      </values-actions-popup>\r\n      <general>\r\n        <fetch-block-size value=\"100\" />\r\n        <fetch-timeout value=\"30\" />\r\n        <trim-whitespaces value=\"true\" />\r\n        <convert-empty-strings-to-null value=\"true\" />\r\n        <select-content-on-cell-edit value=\"true\" />\r\n        <large-value-preview-active value=\"true\" />\r\n      </general>\r\n      <filters>\r\n        <prompt-filter-dialog value=\"true\" />\r\n        <default-filter-type value=\"BASIC\" />\r\n      </filters>\r\n      <qualified-text-editor text-length-threshold=\"300\">\r\n        <content-types>\r\n          <content-type name=\"Text\" enabled=\"true\" />\r\n          <content-type name=\"Properties\" enabled=\"true\" />\r\n          <content-type name=\"XML\" enabled=\"true\" />\r\n          <content-type name=\"DTD\" enabled=\"true\" />\r\n          <content-type name=\"HTML\" enabled=\"true\" />\r\n          <content-type name=\"XHTML\" enabled=\"true\" />\r\n          <content-type name=\"Java\" enabled=\"true\" />\r\n          <content-type name=\"SQL\" enabled=\"true\" />\r\n          <content-type name=\"PL/SQL\" enabled=\"true\" />\r\n          <content-type name=\"JSON\" enabled=\"true\" />\r\n          <content-type name=\"JSON5\" enabled=\"true\" />\r\n          <content-type name=\"Groovy\" enabled=\"true\" />\r\n          <content-type name=\"AIDL\" enabled=\"true\" />\r\n          <content-type name=\"YAML\" enabled=\"true\" />\r\n          <content-type name=\"Manifest\" enabled=\"true\" />\r\n        </content-types>\r\n      </qualified-text-editor>\r\n      <record-navigation>\r\n        <navigation-target value=\"VIEWER\" />\r\n      </record-navigation>\r\n    </dataset-editor-settings>\r\n    <code-editor-settings>\r\n      <general>\r\n        <show-object-navigation-gutter value=\"false\" />\r\n        <show-spec-declaration-navigation-gutter value=\"true\" />\r\n        <enable-spellchecking value=\"true\" />\r\n        <enable-reference-spellchecking value=\"false\" />\r\n      </general>\r\n      <confirmations>\r\n        <save-changes value=\"false\" />\r\n        <revert-changes value=\"true\" />\r\n      </confirmations>\r\n    </code-editor-settings>\r\n    <code-completion-settings>\r\n      <filters>\r\n        <basic-filter>\r\n          <filter-element type=\"RESERVED_WORD\" id=\"keyword\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"function\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"parameter\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"datatype\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"exception\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"schema\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"role\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"user\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"privilege\" selected=\"true\" />\r\n          <user-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </user-schema>\r\n          <public-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"false\" />\r\n          </public-schema>\r\n          <any-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </any-schema>\r\n        </basic-filter>\r\n        <extended-filter>\r\n          <filter-element type=\"RESERVED_WORD\" id=\"keyword\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"function\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"parameter\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"datatype\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"exception\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"schema\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"user\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"role\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"privilege\" selected=\"true\" />\r\n          <user-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </user-schema>\r\n          <public-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </public-schema>\r\n          <any-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </any-schema>\r\n        </extended-filter>\r\n      </filters>\r\n      <sorting enabled=\"true\">\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"keyword\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"datatype\" />\r\n        <sorting-element type=\"OBJECT\" id=\"column\" />\r\n        <sorting-element type=\"OBJECT\" id=\"table\" />\r\n        <sorting-element type=\"OBJECT\" id=\"view\" />\r\n        <sorting-element type=\"OBJECT\" id=\"materialized view\" />\r\n        <sorting-element type=\"OBJECT\" id=\"index\" />\r\n        <sorting-element type=\"OBJECT\" id=\"constraint\" />\r\n        <sorting-element type=\"OBJECT\" id=\"trigger\" />\r\n        <sorting-element type=\"OBJECT\" id=\"synonym\" />\r\n        <sorting-element type=\"OBJECT\" id=\"sequence\" />\r\n        <sorting-element type=\"OBJECT\" id=\"procedure\" />\r\n        <sorting-element type=\"OBJECT\" id=\"function\" />\r\n        <sorting-element type=\"OBJECT\" id=\"package\" />\r\n        <sorting-element type=\"OBJECT\" id=\"type\" />\r\n        <sorting-element type=\"OBJECT\" id=\"dimension\" />\r\n        <sorting-element type=\"OBJECT\" id=\"cluster\" />\r\n        <sorting-element type=\"OBJECT\" id=\"dblink\" />\r\n        <sorting-element type=\"OBJECT\" id=\"schema\" />\r\n        <sorting-element type=\"OBJECT\" id=\"role\" />\r\n        <sorting-element type=\"OBJECT\" id=\"user\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"function\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"parameter\" />\r\n      </sorting>\r\n      <format>\r\n        <enforce-code-style-case value=\"true\" />\r\n      </format>\r\n    </code-completion-settings>\r\n    <execution-engine-settings>\r\n      <statement-execution>\r\n        <fetch-block-size value=\"100\" />\r\n        <execution-timeout value=\"20\" />\r\n        <debug-execution-timeout value=\"600\" />\r\n        <focus-result value=\"false\" />\r\n        <prompt-execution value=\"false\" />\r\n      </statement-execution>\r\n      <script-execution>\r\n        <command-line-interfaces />\r\n        <execution-timeout value=\"300\" />\r\n      </script-execution>\r\n      <method-execution>\r\n        <execution-timeout value=\"30\" />\r\n        <debug-execution-timeout value=\"600\" />\r\n        <parameter-history-size value=\"10\" />\r\n      </method-execution>\r\n    </execution-engine-settings>\r\n    <operation-settings>\r\n      <transactions>\r\n        <uncommitted-changes>\r\n          <on-project-close value=\"ASK\" />\r\n          <on-disconnect value=\"ASK\" />\r\n          <on-autocommit-toggle value=\"ASK\" />\r\n        </uncommitted-changes>\r\n        <multiple-uncommitted-changes>\r\n          <on-commit value=\"ASK\" />\r\n          <on-rollback value=\"ASK\" />\r\n        </multiple-uncommitted-changes>\r\n      </transactions>\r\n      <session-browser>\r\n        <disconnect-session value=\"ASK\" />\r\n        <kill-session value=\"ASK\" />\r\n        <reload-on-filter-change value=\"false\" />\r\n      </session-browser>\r\n      <compiler>\r\n        <compile-type value=\"KEEP\" />\r\n        <compile-dependencies value=\"ASK\" />\r\n        <always-show-controls value=\"false\" />\r\n      </compiler>\r\n      <debugger>\r\n        <debugger-type value=\"ASK\" />\r\n        <use-generic-runners value=\"true\" />\r\n      </debugger>\r\n    </operation-settings>\r\n    <ddl-file-settings>\r\n      <extensions>\r\n        <mapping file-type-id=\"VIEW\" extensions=\"vw\" />\r\n        <mapping file-type-id=\"TRIGGER\" extensions=\"trg\" />\r\n        <mapping file-type-id=\"PROCEDURE\" extensions=\"prc\" />\r\n        <mapping file-type-id=\"FUNCTION\" extensions=\"fnc\" />\r\n        <mapping file-type-id=\"PACKAGE\" extensions=\"pkg\" />\r\n        <mapping file-type-id=\"PACKAGE_SPEC\" extensions=\"pks\" />\r\n        <mapping file-type-id=\"PACKAGE_BODY\" extensions=\"pkb\" />\r\n        <mapping file-type-id=\"TYPE\" extensions=\"tpe\" />\r\n        <mapping file-type-id=\"TYPE_SPEC\" extensions=\"tps\" />\r\n        <mapping file-type-id=\"TYPE_BODY\" extensions=\"tpb\" />\r\n      </extensions>\r\n      <general>\r\n        <lookup-ddl-files value=\"true\" />\r\n        <create-ddl-files value=\"false\" />\r\n        <synchronize-ddl-files value=\"true\" />\r\n        <use-qualified-names value=\"false\" />\r\n        <make-scripts-rerunnable value=\"true\" />\r\n      </general>\r\n    </ddl-file-settings>\r\n    <general-settings>\r\n      <regional-settings>\r\n        <date-format value=\"MEDIUM\" />\r\n        <number-format value=\"UNGROUPED\" />\r\n        <locale value=\"SYSTEM_DEFAULT\" />\r\n        <use-custom-formats value=\"false\" />\r\n      </regional-settings>\r\n      <environment>\r\n        <environment-types>\r\n          <environment-type id=\"development\" name=\"Development\" description=\"Development environment\" color=\"-2430209/-12296320\" readonly-code=\"false\" readonly-data=\"false\" />\r\n          <environment-type id=\"integration\" name=\"Integration\" description=\"Integration environment\" color=\"-2621494/-12163514\" readonly-code=\"true\" readonly-data=\"false\" />\r\n          <environment-type id=\"production\" name=\"Production\" description=\"Productive environment\" color=\"-11574/-10271420\" readonly-code=\"true\" readonly-data=\"true\" />\r\n          <environment-type id=\"other\" name=\"Other\" description=\"\" color=\"-1576/-10724543\" readonly-code=\"false\" readonly-data=\"false\" />\r\n        </environment-types>\r\n        <visibility-settings>\r\n          <connection-tabs value=\"true\" />\r\n          <dialog-headers value=\"true\" />\r\n          <object-editor-tabs value=\"true\" />\r\n          <script-editor-tabs value=\"false\" />\r\n          <execution-result-tabs value=\"true\" />\r\n        </visibility-settings>\r\n      </environment>\r\n    </general-settings>\r\n  </component>\r\n  <component name=\"DBNavigator.Project.StatementExecutionManager\">\r\n    <execution-variables />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dbnavigator.xml b/.idea/dbnavigator.xml
+--- a/.idea/dbnavigator.xml	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/.idea/dbnavigator.xml	(date 1627026341004)
+@@ -34,9 +34,9 @@
+     <connection id="f05d7464-032e-4be7-8ce0-cd081db62c2a">
+       <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[drop table atleta
+ 
+-insert into atleta
++
+ values ("A","Mattia","Nico","scandiano",9/6/1995,"castellarano",000000001,"calcio","under20");
+-
++insert into atleta
+ values ("A","Luca","Giono","scandiano",2/6/1995,"castellarano",20003330001,"calcio","under19");
+ 
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e7d168e2-96fe-4e56-9abf-c7506023d25b\" name=\"Default Changelist\" comment=\"iooo20/07\">\r\n      <change afterPath=\"$PROJECT_DIR$/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dbnavigator.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dbnavigator.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/build/classes/java/main/Exam/ArchivioPanel.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/build/classes/java/main/Exam/ArchivioPanel.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/src/main/java/Exam/ArchivioPanel.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/src/main/java/Exam/ArchivioPanel.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"ebe62ecf-88d5-4f76-9f3b-2c531073db05\" name=\"Changes by nicor\" comment=\"Changes by nicor\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1swg5yBvOjrE6g5VbvszIUXItO7\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$USER_HOME$/Downloads/SQL2019-SSEI-Expr.exe\" />\r\n    <property name=\"project.structure.last.edited\" value=\"SDKs\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"inlay.hints.JAVA\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Exam\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.ExamTest\">\r\n    <configuration name=\"ExamTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Exam.ExamTest\" />\r\n      <module name=\"Esame.Code.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"Exam.Utils.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"mssql-jdbc-9.2.1.jre15.jar\" type=\"JarApplication\" temporary=\"true\">\r\n      <option name=\"JAR_PATH\" value=\"$PROJECT_DIR$/Code/Lib/mssql-jdbc-9.2.1.jre15.jar\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ExamTest\" />\r\n        <item itemvalue=\"JAR Application.mssql-jdbc-9.2.1.jre15.jar\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SQLPlugin.ProjectConfiguration\">\r\n    <queries />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e7d168e2-96fe-4e56-9abf-c7506023d25b\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1621788891277</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1621788891277</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"prova2\">\r\n      <created>1621788921438</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621788921438</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"prova2\">\r\n      <created>1621789003870</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621789003870</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"prova2\">\r\n      <created>1621789022518</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621789022518</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"prova2\">\r\n      <created>1621851773552</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621851773552</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"prova2\">\r\n      <created>1621869108800</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621869108800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"prova2\">\r\n      <created>1621946724429</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621946724429</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"prova2\">\r\n      <created>1621951455551</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621951455551</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"20giu21\">\r\n      <created>1624204250281</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1624204250281</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"provo io\">\r\n      <created>1625065634199</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625065634199</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Changes by nicor\">\r\n      <created>1625065690044</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625065690044</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"provo io2\">\r\n      <created>1625065699807</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625065699807</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"textarea\">\r\n      <created>1625067012500</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625067012500</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"textarea\">\r\n      <created>1625067029277</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625067029277</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"textarea\">\r\n      <created>1625067463803</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1625067463803</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"15\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"prova2\" />\r\n    <MESSAGE value=\"20giu21\" />\r\n    <MESSAGE value=\"30giugno\" />\r\n    <MESSAGE value=\"333\" />\r\n    <MESSAGE value=\"provo io\" />\r\n    <MESSAGE value=\"Changes by nicor\" />\r\n    <MESSAGE value=\"provo io2\" />\r\n    <MESSAGE value=\"textarea\" />\r\n    <MESSAGE value=\"iooo20/07\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"iooo20/07\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/.idea/workspace.xml	(date 1627029051074)
+@@ -4,23 +4,29 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="iooo20/07">
+-      <change afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java" afterDir="false" />
++    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="23/07">
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ArchivioPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ArchivioPanel.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Allenatore.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Allenatore.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Atleta.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Dirigente.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Utils.class" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/ArchivioPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/ArchivioPanel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Allenatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Allenatore.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java" afterDir="false" />
+     </list>
+     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
+     <option name="SHOW_DIALOG" value="false" />
+@@ -60,7 +66,7 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/SQL2019-SSEI-Expr.exe" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="project.structure.last.edited" value="SDKs" />
+     <property name="project.structure.proportion" value="0.15" />
+     <property name="project.structure.side.proportion" value="0.2" />
+@@ -206,7 +212,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1625067463803</updated>
+     </task>
+-    <option name="localTasksCounter" value="15" />
++    <task id="LOCAL-00015" summary="prove Jtable">
++      <created>1626884155184</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1626884155184</updated>
++    </task>
++    <task id="LOCAL-00016" summary="23/07">
++      <created>1627027354120</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1627027354120</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -231,7 +251,9 @@
+     <MESSAGE value="provo io2" />
+     <MESSAGE value="textarea" />
+     <MESSAGE value="iooo20/07" />
+-    <option name="LAST_COMMIT_MESSAGE" value="iooo20/07" />
++    <MESSAGE value="prove Jtable" />
++    <MESSAGE value="23/07" />
++    <option name="LAST_COMMIT_MESSAGE" value="23/07" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: Code/build/tmp/compileJava/source-classes-mapping.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Exam/Utils/Persona.java\r\n Exam.Utils.Persona\r\nExam/Utils/Utils.java\r\n Exam.Utils.Utils\r\nExam/Utils/Atleta.java\r\n Exam.Utils.Atleta\r\nExam/Utils/Allenatore.java\r\n Exam.Utils.Allenatore\r\nExam/Utils/Dirigente.java\r\n Exam.Utils.Dirigente\r\nExam/DB_Model.java\r\n Exam.DB_Model\r\nExam/Utils/DBManager.java\r\n Exam.Utils.DBManager\r\nExam/ExamTest.java\r\n Exam.ExamTest\r\nExam/Utils/SBM_JTable_Model.java\r\n Exam.Utils.SBM_JTable_Model\r\nExam/ArchivioPanel.java\r\n Exam.ArchivioPanel\r\nExam/SBM.java\r\n Exam.SBM\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Code/build/tmp/compileJava/source-classes-mapping.txt b/Code/build/tmp/compileJava/source-classes-mapping.txt
+--- a/Code/build/tmp/compileJava/source-classes-mapping.txt	(revision cb440ccfa82f00122c2895fa81417e8c32c69ded)
++++ b/Code/build/tmp/compileJava/source-classes-mapping.txt	(date 1627028969940)
+@@ -1,22 +1,16 @@
+ Exam/Utils/Persona.java
+  Exam.Utils.Persona
+-Exam/Utils/Utils.java
+- Exam.Utils.Utils
+ Exam/Utils/Atleta.java
+  Exam.Utils.Atleta
+ Exam/Utils/Allenatore.java
+  Exam.Utils.Allenatore
+-Exam/Utils/Dirigente.java
+- Exam.Utils.Dirigente
+-Exam/DB_Model.java
+- Exam.DB_Model
++Exam/ArchivioPanel.java
++ Exam.ArchivioPanel
+ Exam/Utils/DBManager.java
+  Exam.Utils.DBManager
+ Exam/ExamTest.java
+  Exam.ExamTest
+-Exam/Utils/SBM_JTable_Model.java
+- Exam.Utils.SBM_JTable_Model
+-Exam/ArchivioPanel.java
+- Exam.ArchivioPanel
+ Exam/SBM.java
+  Exam.SBM
++Exam/DB_Model.java
++ Exam.DB_Model

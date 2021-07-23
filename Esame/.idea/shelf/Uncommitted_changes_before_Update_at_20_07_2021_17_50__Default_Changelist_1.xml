@@ -1,0 +1,54 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1" date="1626796270131" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20/07/2021 17:50 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Code/build/classes/java/main/Exam/ArchivioPanel.class" />
+    <option name="AFTER_PATH" value="Code/build/classes/java/main/Exam/ArchivioPanel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/ArchivioPanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/javaCompile/classAnalysis.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.8/javaCompile/classAnalysis.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/classAnalysis.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/javaCompile/javaCompile.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.8/javaCompile/javaCompile.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/javaCompile.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.8/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/fileHashes.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/executionHistory/executionHistory.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.8/executionHistory/executionHistory.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/executionHistory.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Code/build/classes/java/main/Exam/SBM.class" />
+    <option name="AFTER_PATH" value="Code/build/classes/java/main/Exam/SBM.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/SBM.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.8/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/fileHashes.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Code/build/classes/java/main/Exam/DB_Model.class" />
+    <option name="AFTER_PATH" value="Code/build/classes/java/main/Exam/DB_Model.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/DB_Model.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.8/executionHistory/executionHistory.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.8/executionHistory/executionHistory.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/executionHistory.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_07_2021_17_50_[Default_Changelist]1/buildOutputCleanup.lock" />
+  </binary>
+</changelist>
