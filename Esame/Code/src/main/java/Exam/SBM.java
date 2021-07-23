@@ -75,6 +75,7 @@ public class SBM extends JFrame implements ActionListener {
         Rimborso.add(Open);
 
         setJMenuBar(menuBar);
+        set;
         setSize(640, 480);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
