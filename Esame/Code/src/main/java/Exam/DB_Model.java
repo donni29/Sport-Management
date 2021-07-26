@@ -17,7 +17,6 @@ public class DB_Model {
         DBManager.setConnection(
                  Utils.JDBC_Driver,
                  Utils.JDBC_URL);
-        //frase di prova System.out.println("ciao2");
         statement = DBManager.getConnection().createStatement();
 
         try {

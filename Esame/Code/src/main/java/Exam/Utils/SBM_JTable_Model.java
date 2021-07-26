@@ -1,15 +1,18 @@
 package Exam.Utils;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 
-public class SBM_JTable_Model extends AbstractTableModel {
+public class SBM_JTable_Model extends DefaultTableModel {
+
 
 private static final long serialVersionUID = 1L;
-private final String[] columnNames = new String[]{"nome", "cognome","tipo","citta_di_residenza", "CF","data_di_nascita","sport","squadra"};
+private final String[] columnNames = new String[]{"nome", "cognome","tipo","luogo di nascita","data_di_nascita","citta_di_residenza", "CF","sport","squadra"};
 private final Class<?>[] columnClass = new Class<?>[]{String.class, String.class,String.class,String.class,String.class, Time.class,String.class,String.class};
 private ResultSet rs;
 
@@ -22,10 +25,10 @@ private ResultSet rs;
                 ResultSet.CONCUR_UPDATABLE);
 
         try {
-            rs = statement.executeQuery("SELECT * FROM Persona");
-            rs.first();
+            statement.executeUpdate("SELECT * FROM Persona");
         } catch (SQLException e) {
-            System.out.print("non Funziona");
+            System.out.println("SQL Exception");
+            System.out.print(e);
         }
     }
 

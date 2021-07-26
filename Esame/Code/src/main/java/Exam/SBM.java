@@ -81,11 +81,10 @@ public class SBM extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
+
         try {
             /* System.out.println(("ciao"));*/
             model = new DB_Model();
-            /*il problema è questo catch che non capisco perchè ci entro!!
-            il resto ora funziona*/
         } catch (SQLException e) {
             /*System.out.println(e);*/
             JOptionPane.showMessageDialog(this, "Database Error!");
@@ -107,7 +106,7 @@ public class SBM extends JFrame implements ActionListener {
             }
             if (e.getSource() == this.Atleti){
                 panelAtleti =new ArchivioPanel();
-                add(panelAtleti);
+                setContentPane(panelAtleti);
                 setVisible(true);
 
 

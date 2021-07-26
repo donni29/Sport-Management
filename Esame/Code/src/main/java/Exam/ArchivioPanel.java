@@ -16,31 +16,26 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.awt.Dimension;
 
 public class ArchivioPanel extends JPanel  {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String nome;
+
     private JPanel Archivio;
-    private JButton Button;
-    JTable tResults;
     JButton btInsert;
     JButton btDelete;
-    JTextArea text= new JTextArea();
+
 
 
     public  ArchivioPanel () {
         Archivio = new JPanel();
-            /*Button = new JButton( "CAVOLI");
-            Button.setSize(20,20);
-            Archivio.add(Button);
-            add(Archivio);*/
 
             try {
                 testconnection();
-                JScrollPane scrollPane =new JScrollPane();
+                //JScrollPane scrollPane =new JScrollPane();
                 Archivio.add(new JScrollPane( getTable("Select * from Persona")));
 
             }catch (SQLException e){
@@ -48,7 +43,7 @@ public class ArchivioPanel extends JPanel  {
             }
 
 
-            add(Archivio);
+           add(Archivio);
             setVisible(true);
     }
 
@@ -60,20 +55,23 @@ public class ArchivioPanel extends JPanel  {
         try {
             statement.executeQuery("SELECT * FROM Persona");
         } catch (SQLException e) {
-            System.out.println("non funziona");
+            System.out.println("SQL Exception");
+            System.out.println(e);
         }
 
     }
 
     public JTable getTable(String query) throws SQLException {
-        JTable t = new JTable();
-        DefaultTableModel dm = new DefaultTableModel();
+        JTable t = new JTable(new MyTableModel());
+        DefaultTableModel dm =new DefaultTableModel();
+        t.setFillsViewportHeight(true);
+        t.setPreferredScrollableViewportSize(new Dimension(1000,1000));
 
         ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);
         ResultSetMetaData rsMetaData = rs.getMetaData();
 
         // get columns metadata
-        int cols = rsMetaData.getColumnCount();
+        int cols =t.getColumnCount();
         String[] c = new String[cols];
         for (int i = 0; i < cols; i++) {
             c[i] = rsMetaData.getColumnName(i + 1);
@@ -89,56 +87,59 @@ public class ArchivioPanel extends JPanel  {
             dm.addRow(row);
         }
 
+        JPanel p2 =new JPanel(new GridLayout(1,2));
         btInsert = new JButton("Insert...");
         //btInsert.addActionListener(this);
         btDelete = new JButton("Remove");
         //btDelete.addActionListener(this);
 
 
-        Archivio.add(btInsert);
-        Archivio.add(btDelete);
+        p2.add(btInsert);
+        p2.add(btDelete);
+
+
+        //add(Archivio, BorderLayout.SOUTH);
+        //add(new JScrollPane(tResults), BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
-        add(Archivio, BorderLayout.SOUTH);
-        add(new JScrollPane(tResults), BorderLayout.CENTER);
-
-        setSize(600, 400);
-        add(Archivio);
+        add(p2, BorderLayout.PAGE_END);
         setVisible(true);
-        t.setModel(dm);
+        t.setAutoResizeMode(t.AUTO_RESIZE_ALL_COLUMNS);
         t.setGridColor(Color.BLACK);
+        t.setModel(dm);
         return t;
     }
 
-        /*try {
-            tResults = new JTable();
-            tResults.setModel(new SBM_JTable_Model());
-            tResults.getModel().addTableModelListener(this);
-        } catch (SQLException | NullPointerException e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(this, "Database Error!");
+
+    class MyTableModel extends AbstractTableModel{
+    private String[] columnNames ={
+            "Nome",
+            "Cognome",
+            "Tipo",
+            "Luogo di nascita",
+            "Data di nascita",
+            "Città di Residenza",
+            "CF",
+            "Sport",
+            "Squadra"
+    };
+
+        @Override
+        public int getRowCount() {
+            return 0;
         }
 
+        @Override
+        public int getColumnCount() {
+            return columnNames.length;
+        }
 
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return null;
+        }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btInsert) {
-            String[] v = JOptionPane.showInputDialog(this, "Insert sausage (length;diameter;weight;quality)")
-                    .split(";");
-            ((SBM_JTable_Model) tResults.getModel()).insertRow(v);
-        }
-
-        if (e.getSource() == btDelete) {
-            ((SBM_JTable_Model) tResults.getModel()).removeRow(tResults.getSelectedRow(),
-                    tResults.getSelectedRow());
-        }
-    }
-
-    @Override
-    public void tableChanged(TableModelEvent e) {
-        System.out.println("The table has been modified!");
-    }*/
 
 }
 
