@@ -10,10 +10,10 @@ Exam/Utils/SBM_JTable_Model.java
  Exam.Utils.SBM_JTable_Model
 Exam/DB_Model.java
  Exam.DB_Model
+Exam/ExamTest.java
+ Exam.ExamTest
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
  Exam.ArchivioPanel$MyTableModel
-Exam/ExamTest.java
- Exam.ExamTest
 Exam/SBM.java
  Exam.SBM
