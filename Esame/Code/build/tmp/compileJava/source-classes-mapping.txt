@@ -2,18 +2,18 @@ Exam/Utils/Persona.java
  Exam.Utils.Persona
 Exam/Utils/Utils.java
  Exam.Utils.Utils
-Exam/Utils/DBManager.java
- Exam.Utils.DBManager
-Exam/Utils/Allenatore.java
- Exam.Utils.Allenatore
 Exam/Utils/SBM_JTable_Model.java
  Exam.Utils.SBM_JTable_Model
+Exam/Utils/Allenatore.java
+ Exam.Utils.Allenatore
+Exam/ArchivioPanel.java
+ Exam.ArchivioPanel
+ Exam.ArchivioPanel$MyTableModel
+Exam/Utils/DBManager.java
+ Exam.Utils.DBManager
 Exam/DB_Model.java
  Exam.DB_Model
 Exam/ExamTest.java
  Exam.ExamTest
-Exam/ArchivioPanel.java
- Exam.ArchivioPanel
- Exam.ArchivioPanel$MyTableModel
 Exam/SBM.java
  Exam.SBM

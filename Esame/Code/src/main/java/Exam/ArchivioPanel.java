@@ -38,6 +38,7 @@ public class ArchivioPanel extends JPanel  {
 
         }catch (SQLException e){
             JOptionPane.showMessageDialog(this,"Database Error");
+            System.out.println(e);
         }
 
         add(archivio);

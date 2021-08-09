@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.Serial;
+import java.io.*;
 import java.sql.SQLException;
 
 public class SBM extends JFrame implements ActionListener {
@@ -20,7 +20,8 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JMenuItem Open;
     private static JFileChooser OpenSource;
-    private static ArchivioPanel panelAtleti ;
+    private static ArchivioPanel panelAtleti;
+    private static JTextArea textArea;
 
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
@@ -74,6 +75,8 @@ public class SBM extends JFrame implements ActionListener {
         Open.addActionListener(this);
         Rimborso.add(Open);
 
+        textArea =new JTextArea("");
+
         setJMenuBar(menuBar);
         setExtendedState(MAXIMIZED_BOTH);
         setSize(640, 480);
@@ -99,20 +102,35 @@ public class SBM extends JFrame implements ActionListener {
             if (e.getSource() == this.Open) {
                 OpenSource = new JFileChooser();
 
-                int option =OpenSource.showOpenDialog(this);
+                int option = OpenSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
+                    textArea.setText("");
+
+                    try {
+                        File file =new File((OpenSource.getSelectedFile().getPath()));
+                        System.out.println(String.valueOf(new FileReader(OpenSource.getSelectedFile().getPath())));
+                        if (!Desktop.isDesktopSupported()){
+                            System.out.println("not supported");
+                        }
+                        Desktop desktop =Desktop.getDesktop();
+                        if (file.exists()){
+                            desktop.open(file);
+                        }
+                    }
+                    catch (IOException e2) {
+                       e2.printStackTrace();
+                        System.out.println(e);
+                    }
+                }
+                if (e.getSource() == this.Atleti) {
+                    panelAtleti = new ArchivioPanel();
+                    setContentPane(panelAtleti);
+                    setVisible(true);
+
 
                 }
-            }
-            if (e.getSource() == this.Atleti){
-                panelAtleti =new ArchivioPanel();
-                setContentPane(panelAtleti);
-                setVisible(true);
-
 
             }
-
         }
     }
-
 }
