@@ -6,13 +6,13 @@ Exam/Utils/SBM_JTable_Model.java
  Exam.Utils.SBM_JTable_Model
 Exam/Utils/Allenatore.java
  Exam.Utils.Allenatore
+Exam/DB_Model.java
+ Exam.DB_Model
+Exam/Utils/DBManager.java
+ Exam.Utils.DBManager
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
  Exam.ArchivioPanel$MyTableModel
-Exam/Utils/DBManager.java
- Exam.Utils.DBManager
-Exam/DB_Model.java
- Exam.DB_Model
 Exam/ExamTest.java
  Exam.ExamTest
 Exam/SBM.java

@@ -52,9 +52,9 @@ public class ArchivioPanel extends JPanel  {
 
         try {
             statement.executeQuery("SELECT * FROM Persona");
-        } catch (SQLException e) {
+        } catch (SQLException e1) {
             System.out.println("SQL Exception");
-            System.out.println(e);
+
         }
 
     }

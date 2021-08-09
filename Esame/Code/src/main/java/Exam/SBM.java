@@ -86,10 +86,9 @@ public class SBM extends JFrame implements ActionListener {
 
 
         try {
-            /* System.out.println(("ciao"));*/
             model = new DB_Model();
         } catch (SQLException e) {
-            /*System.out.println(e);*/
+            System.out.println(e);
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
         // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
@@ -107,21 +106,21 @@ public class SBM extends JFrame implements ActionListener {
                     textArea.setText("");
 
                     try {
-                        File file =new File((OpenSource.getSelectedFile().getPath()));
+                        File file = new File((OpenSource.getSelectedFile().getPath()));
                         System.out.println(String.valueOf(new FileReader(OpenSource.getSelectedFile().getPath())));
-                        if (!Desktop.isDesktopSupported()){
+                        if (!Desktop.isDesktopSupported()) {
                             System.out.println("not supported");
                         }
-                        Desktop desktop =Desktop.getDesktop();
-                        if (file.exists()){
+                        Desktop desktop = Desktop.getDesktop();
+                        if (file.exists()) {
                             desktop.open(file);
                         }
-                    }
-                    catch (IOException e2) {
-                       e2.printStackTrace();
-                        System.out.println(e);
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                        System.out.println("IOException"+ "\n" + e2);
                     }
                 }
+            }
                 if (e.getSource() == this.Atleti) {
                     panelAtleti = new ArchivioPanel();
                     setContentPane(panelAtleti);
@@ -133,4 +132,3 @@ public class SBM extends JFrame implements ActionListener {
             }
         }
     }
-}
