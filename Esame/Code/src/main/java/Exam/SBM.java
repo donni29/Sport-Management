@@ -131,6 +131,7 @@ public class SBM extends JFrame implements ActionListener {
                         setContentPane(pp);
                         setVisible(true);
                     } catch (SQLException throwables) {
+                        System.out.println("Errore Database Atleta"+ throwables);
                         throwables.printStackTrace();
                     }
 
@@ -143,6 +144,7 @@ public class SBM extends JFrame implements ActionListener {
                             setContentPane(pp);
                             setVisible(true);
                         } catch (SQLException throwables) {
+                            System.out.println("Errore Database Allenatore"+ throwables);
                             throwables.printStackTrace();
                         }
                     }
@@ -153,6 +155,7 @@ public class SBM extends JFrame implements ActionListener {
                             setContentPane(pp);
                             setVisible(true);
                         } catch (SQLException throwables) {
+                            System.out.println("Errore Database Dirigente"+ throwables);
                             throwables.printStackTrace();
                         }
 
