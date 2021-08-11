@@ -136,7 +136,28 @@ public class SBM extends JFrame implements ActionListener {
 
 
                 }
+                    if (e.getSource() == this.Allenatori) {
+                        try {
+                            String query = "SELECT * FROM Persona WHERE tipo like 'Allenatore'";
+                            PersonaPanel pp = new PersonaPanel(query);
+                            setContentPane(pp);
+                            setVisible(true);
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+                    if (e.getSource()== this.Dirigenti){
+                        try {
+                            String query ="SELECT * FROM Persona WHERE tipo like 'Dirigente'";
+                            PersonaPanel pp= new PersonaPanel(query);
+                            setContentPane(pp);
+                            setVisible(true);
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+
+                    }
+                }
 
             }
         }
-    }
