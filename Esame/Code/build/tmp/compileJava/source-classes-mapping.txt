@@ -13,6 +13,8 @@ Exam/Utils/DBManager.java
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
  Exam.ArchivioPanel$MyTableModel
+Exam/PersonaPanel.java
+ Exam.PersonaPanel
 Exam/ExamTest.java
  Exam.ExamTest
 Exam/SBM.java

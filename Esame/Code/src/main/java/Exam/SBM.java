@@ -79,7 +79,7 @@ public class SBM extends JFrame implements ActionListener {
 
         setJMenuBar(menuBar);
         setExtendedState(MAXIMIZED_BOTH);
-        setSize(640, 480);
+        setSize(900, 600);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -122,9 +122,17 @@ public class SBM extends JFrame implements ActionListener {
                 }
             }
                 if (e.getSource() == this.Atleti) {
-                    panelAtleti = new ArchivioPanel();
+                    /*panelAtleti = new ArchivioPanel();
                     setContentPane(panelAtleti);
-                    setVisible(true);
+                    setVisible(true);*/
+                    try {
+                        String query ="SELECT * FROM Persona";
+                        PersonaPanel pp= new PersonaPanel(query);
+                        setContentPane(pp);
+                        setVisible(true);
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
 
 
                 }
