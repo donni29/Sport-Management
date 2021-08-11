@@ -126,7 +126,7 @@ public class SBM extends JFrame implements ActionListener {
                     setContentPane(panelAtleti);
                     setVisible(true);*/
                     try {
-                        String query ="SELECT * FROM Persona";
+                        String query ="SELECT * FROM Persona WHERE tipo like 'Atleta'";
                         PersonaPanel pp= new PersonaPanel(query);
                         setContentPane(pp);
                         setVisible(true);
