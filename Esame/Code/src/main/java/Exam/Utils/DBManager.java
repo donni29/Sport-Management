@@ -1,6 +1,6 @@
 package Exam.Utils;
 
-import com.mysql.jdbc.Driver;
+
 
 import java.sql.*;
 
