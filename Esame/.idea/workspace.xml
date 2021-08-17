@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="openFile e PersonaPanel gio12/08">
-      <change afterPath="$PROJECT_DIR$/Code/src/main/resources/sportinsime.jpg" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="select+background">
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,19 +12,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ExamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ExamTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/SBM_JTable_Model.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/ExamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/ExamTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/SBM_JTable_Model.java" beforeDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -307,7 +298,21 @@
       <option name="project" value="LOCAL" />
       <updated>1628697654249</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="select+background">
+      <created>1629208716383</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1629208716383</updated>
+    </task>
+    <task id="LOCAL-00029" summary="select+background">
+      <created>1629208786865</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1629208786865</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -339,7 +344,8 @@
     <MESSAGE value="26/07" />
     <MESSAGE value="openFile" />
     <MESSAGE value="openFile e PersonaPanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="openFile e PersonaPanel" />
+    <MESSAGE value="select+background" />
+    <option name="LAST_COMMIT_MESSAGE" value="select+background" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

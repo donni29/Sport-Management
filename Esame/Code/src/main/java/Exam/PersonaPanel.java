@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import java.util.List;
 public class PersonaPanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
+    public static String[] options = {"Atleta","Allenatore","Dirigente"};
     private final JButton btnRemove;
     private final JButton btnInsert;
     private final JTextField tfNome;
@@ -33,10 +35,14 @@ public class PersonaPanel extends JPanel implements ActionListener {
     private final JTextField tfCF;
     private final JTextField tfsport;
     private final JTextField tfsquadra;
+    private final JComboBox<String> cbtipo;
 
 
     JTable t;
     DefaultTableModel dm;
+    ResultSet rs;
+    ResultSetMetaData rsMetaData;
+    JPanel p3;
 
     private List<Persona> listPersona;
     private int selectedPersonaIndex = 0;
@@ -52,6 +58,8 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
         //listPersona= getListPersona(query);
 
+        cbtipo =new JComboBox<>(options);
+        cbtipo.addActionListener(this);
         tftipo = new JTextField();
         tftipo.addActionListener(this);
         tfNome = new JTextField();
@@ -75,7 +83,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         JPanel p1 = new JPanel();
         p1.setLayout(new GridLayout(9, 2));
         p1.add(new JLabel("Tipo"));
-        p1.add(tftipo);
+        p1.add(cbtipo);
         p1.add(new JLabel("Nome"));
         p1.add(tfNome);
         p1.add(new JLabel("Cognome"));
@@ -99,15 +107,8 @@ public class PersonaPanel extends JPanel implements ActionListener {
         p2.add(btnInsert);
         p2.add(btnRemove);
 
-        JPanel p3 = new JPanel(new BorderLayout());
-        try {
-            testconnection();
-            p3.add(new JScrollPane(getTable(query)));
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database Error");
-            System.out.println(e);
-        }
+        p3 = new JPanel(new BorderLayout());
+        ShowItem(query,p3);
 
         setLayout(new BorderLayout());
         add(p1, BorderLayout.PAGE_START);
@@ -165,8 +166,8 @@ public class PersonaPanel extends JPanel implements ActionListener {
         t.setFillsViewportHeight(true);
         t.setPreferredScrollableViewportSize(new Dimension(1000, 1000));
 
-        ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);
-        ResultSetMetaData rsMetaData = rs.getMetaData();
+        rs = DBManager.getConnection().createStatement().executeQuery(query);
+        rsMetaData = rs.getMetaData();
 
         // get columns metadata
         int cols = t.getColumnCount();
@@ -232,7 +233,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
         tfNome.setText(model.getValueAt(i,0).toString());
         tfcognome.setText(model.getValueAt(i,1).toString());
-        tftipo.setText(model.getValueAt(i,2).toString());
+        cbtipo.setSelectedItem(model.getValueAt(i,2).toString());
         tfdatanascita.setText(model.getValueAt(i,4).toString());
         tfluogonascita.setText(model.getValueAt(i,3).toString());
         tfcittadiresidenza.setText(model.getValueAt(i,5).toString());
@@ -247,8 +248,10 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
         try {
             if (e.getSource() == this.btnRemove) {
-
-
+                deletePersona();
+            }
+            else if (e.getSource() == this.btnInsert){
+                insertPersona();
             }
 
         } catch (Exception exception) {
@@ -256,15 +259,52 @@ public class PersonaPanel extends JPanel implements ActionListener {
         }
     }
 
+    public void remove() {
+        try {
+            rs.deleteRow();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+
+    public void ShowItem(String query, JPanel p3) throws SQLException{
+        try {
+            testconnection();
+            p3.add(new JScrollPane(getTable(query)));
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database Error");
+            System.out.println(e);
+        }
+    }
 
 
 
         public void insertPersona() throws SQLException {
 
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,città_residenza,CF,sport,squadra) VALUES () ");
-
+        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,città_residenza,CF,sport,squadra) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+                tfNome.getText(),
+                tfcognome.getText(),
+                cbtipo.getSelectedItem(),
+                tfluogonascita.getText(),
+                tfdatanascita.getText(),
+                tfcittadiresidenza.getText(),
+                tfCF.getText(),
+                tfsport.getText(),
+                tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
+        }
+
+        public void deletePersona() throws SQLException {
+            Statement statement = DBManager.getConnection().createStatement();
+            String query =String.format("DELETE FROM Persona WHERE cf like '%s'",
+                    tfCF.getText());
+            statement.executeUpdate(query);
+            statement.close();
+            ShowItem(query,p3);
+            //add(p3,BorderLayout.CENTER);
         }
 }
