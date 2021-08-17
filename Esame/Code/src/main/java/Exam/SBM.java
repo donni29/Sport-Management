@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.sql.SQLException;
 
@@ -22,6 +21,10 @@ public class SBM extends JFrame implements ActionListener {
     private static JFileChooser OpenSource;
     private static ArchivioPanel panelAtleti;
     private static JTextArea textArea;
+    private final ImageIcon sportIcon;
+    private final JLabel label;
+
+
 
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
@@ -40,6 +43,12 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
+
+        sportIcon =new ImageIcon(this.getClass().getResource("/sportinsime.jpg"));
+        label = new JLabel(sportIcon);
+        label.setSize(600,600);
+        setLocationRelativeTo(null);
+        add(label);
 
 
         openArchivio = new JMenu ("Open Archivio di ...");
@@ -130,6 +139,7 @@ public class SBM extends JFrame implements ActionListener {
                         PersonaPanel pp= new PersonaPanel(query);
                         setContentPane(pp);
                         setVisible(true);
+
                     } catch (SQLException throwables) {
                         System.out.println("Errore Database Atleta"+ throwables);
                         throwables.printStackTrace();

@@ -10,7 +10,7 @@ public class Persona {
     String cognome;
     String tipo;
     String luogo_nascita;
-    DateTime data_nascita;
+    Date data_nascita;
     String citta_residenza;
     String CF;
     String sport;
@@ -21,7 +21,7 @@ public class Persona {
         this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
-        this.data_nascita = this.data_nascita;
+        this.data_nascita = data_nascita;
         this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.sport =sport;
@@ -60,11 +60,11 @@ public class Persona {
         this.luogo_nascita = luogo_nascita;
     }
 
-    public DateTime getData_nascita() {
+    public Date getData_nascita() {
         return data_nascita;
     }
 
-    public void setData_nascita(DateTime data_nascita) {
+    public void setData_nascita(Date data_nascita) {
         this.data_nascita = data_nascita;
     }
 

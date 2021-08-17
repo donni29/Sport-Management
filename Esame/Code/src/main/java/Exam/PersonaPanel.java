@@ -103,6 +103,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         try {
             testconnection();
             p3.add(new JScrollPane(getTable(query)));
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
             System.out.println(e);
@@ -191,6 +192,13 @@ public class PersonaPanel extends JPanel implements ActionListener {
             dm.addRow(row);
         }
 
+        t.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               selectRow(e);
+            }
+        });
+
 
         t.setModel(dm);
         setVisible(true);
@@ -228,8 +236,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
     public void selectRow(MouseEvent evt){
         int i=t.getSelectedRow();
         TableModel model =t.getModel();
-        System.out.println(model);
-        System.out.println(i);
 
         tfNome.setText(model.getValueAt(i,0).toString());
         tfcognome.setText(model.getValueAt(i,1).toString());
