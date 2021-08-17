@@ -115,13 +115,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
         add(p3, BorderLayout.CENTER);
 
         //update();
-        t.addMouseListener(new MouseAdapter(){
-             public void mouse( MouseEvent evt){
-                 selectRow(evt);
-                 System.out.println("ciaoooo");
-             }
-        });
-
     }
 
 
