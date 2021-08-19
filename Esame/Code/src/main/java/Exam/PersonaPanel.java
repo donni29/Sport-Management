@@ -44,7 +44,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     DefaultTableModel dm;
     ResultSet rs;
     ResultSetMetaData rsMetaData;
-    JPanel p3;
+    JPanel p3= new JPanel(new BorderLayout());
 
     private List<Persona> listPersona;
     private int selectedPersonaIndex = 0;
@@ -115,7 +115,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
         p2.add(btnSelezione);
         p2.add(btnRemove);
 
-        p3 = new JPanel(new BorderLayout());
         ShowItem(query,p3);
 
         setLayout(new BorderLayout());
@@ -201,7 +200,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
             }
         });
 
-        t.repaint();
         t.setModel(dm);
         setVisible(true);
         t.setGridColor(Color.BLACK);
@@ -272,13 +270,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
         }
     }
 
-    public void remove() {
-        try {
-            rs.deleteRow();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-    }
 
 
     public void ShowItem(String query, JPanel p3) throws SQLException{

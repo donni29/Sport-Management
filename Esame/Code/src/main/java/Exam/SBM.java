@@ -16,14 +16,8 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Atleti;
     private static JMenuItem Allenatori;
     private static JMenuItem Dirigenti;
-    private static JMenuItem Nuovo;
     private static JMenuItem Open;
-    private static JFileChooser OpenSource;
-    private static ArchivioPanel panelAtleti;
     private static JTextArea textArea;
-    private final ImageIcon sportIcon;
-    private final JLabel label;
-
 
 
     /*
@@ -44,11 +38,11 @@ public class SBM extends JFrame implements ActionListener {
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
 
-        sportIcon =new ImageIcon(this.getClass().getResource("/sportinsime.jpg"));
-        label = new JLabel(sportIcon);
-        label.setSize(600,600);
-        setLocationRelativeTo(null);
-        add(label);
+        ImageIcon sportIcon = new ImageIcon(this.getClass().getResource("/sportinsime.jpg"));
+        JLabel label = new JLabel(sportIcon);
+        //label.setSize(400,400);
+        panel.add(label);
+        setContentPane(panel);
 
 
         openArchivio = new JMenu ("Open Archivio di ...");
@@ -75,10 +69,9 @@ public class SBM extends JFrame implements ActionListener {
         Archivio.add(close);
 
         //parte codice menu Rimborso//
-        Nuovo = new JMenuItem("Nuovo...");
-        Nuovo.addActionListener(this);
-        Rimborso.add(Nuovo);
-        //prova git//
+        JMenuItem nuovo = new JMenuItem("Nuovo...");
+        nuovo.addActionListener(this);
+        Rimborso.add(nuovo);
 
         Open = new JMenuItem("Apri...");
         Open.addActionListener(this);
@@ -108,15 +101,15 @@ public class SBM extends JFrame implements ActionListener {
             dispose();
         } else {
             if (e.getSource() == this.Open) {
-                OpenSource = new JFileChooser();
+                JFileChooser openSource = new JFileChooser();
 
-                int option = OpenSource.showOpenDialog(this);
+                int option = openSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
                     textArea.setText("");
 
                     try {
-                        File file = new File((OpenSource.getSelectedFile().getPath()));
-                        System.out.println(String.valueOf(new FileReader(OpenSource.getSelectedFile().getPath())));
+                        File file = new File((openSource.getSelectedFile().getPath()));
+                        System.out.println(new FileReader(openSource.getSelectedFile().getPath()));
                         if (!Desktop.isDesktopSupported()) {
                             System.out.println("not supported");
                         }
@@ -131,9 +124,6 @@ public class SBM extends JFrame implements ActionListener {
                 }
             }
                 if (e.getSource() == this.Atleti) {
-                    /*panelAtleti = new ArchivioPanel();
-                    setContentPane(panelAtleti);
-                    setVisible(true);*/
                     try {
                         String query ="SELECT * FROM Persona WHERE tipo like 'Atleta'";
                         PersonaPanel pp= new PersonaPanel(query);
