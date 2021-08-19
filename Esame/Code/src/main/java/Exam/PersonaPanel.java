@@ -201,7 +201,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
             }
         });
 
-
+        t.repaint();
         t.setModel(dm);
         setVisible(true);
         t.setGridColor(Color.BLACK);
@@ -311,6 +311,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         statement.close();
         Svuotare();
 
+
         }
 
         public void DeletePersona() throws SQLException {
@@ -320,6 +321,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
             statement.executeUpdate(query);
             statement.close();
             Svuotare();
+
         }
 
         public void FilterPersona(String query1) throws SQLException{
