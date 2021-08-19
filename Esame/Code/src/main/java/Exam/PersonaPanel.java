@@ -4,6 +4,7 @@ import Exam.Utils.DBManager;
 import Exam.Utils.Persona;
 import Exam.Utils.Utils;
 
+import javax.management.Query;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -26,6 +27,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     public static String[] options = {"Atleta","Allenatore","Dirigente"};
     private final JButton btnRemove;
     private final JButton btnInsert;
+    private final JButton btnSelezione;
     private final JTextField tfNome;
     private final JTextField tfcognome;
     private final JTextField tftipo;
@@ -55,6 +57,9 @@ public class PersonaPanel extends JPanel implements ActionListener {
         btnRemove.addActionListener(this);
         btnInsert = new JButton("Insert");
         btnInsert.addActionListener(this);
+        btnSelezione =new JButton("Filter");
+        btnSelezione.addActionListener(this);
+
 
         //listPersona= getListPersona(query);
 
@@ -102,9 +107,12 @@ public class PersonaPanel extends JPanel implements ActionListener {
         p1.add(tfsquadra);
 
 
+
+
         JPanel p2 = new JPanel();
-        p2.setLayout(new GridLayout(2, 4));
+        p2.setLayout(new GridLayout(3, 4));
         p2.add(btnInsert);
+        p2.add(btnSelezione);
         p2.add(btnRemove);
 
         p3 = new JPanel(new BorderLayout());
@@ -159,7 +167,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         }
     }
 
-    public JTable getTable(String query) throws SQLException {
+    public JTable GetTable(String query) throws SQLException {
 
         dm = new DefaultTableModel();
         t = new JTable(new ArchivioPanel.MyTableModel());
@@ -189,7 +197,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         t.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               selectRow(e);
+               SelectRow(e);
             }
         });
 
@@ -227,7 +235,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     }
 */
 
-    public void selectRow(MouseEvent evt){
+    public void SelectRow(MouseEvent evt){
         int i=t.getSelectedRow();
         TableModel model =t.getModel();
 
@@ -248,10 +256,15 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
         try {
             if (e.getSource() == this.btnRemove) {
-                deletePersona();
+                DeletePersona();
+
             }
             else if (e.getSource() == this.btnInsert){
-                insertPersona();
+                InsertPersona();
+
+            }
+            else if (e.getSource() == this.btnSelezione) {
+                FilterPersona(query);
             }
 
         } catch (Exception exception) {
@@ -271,7 +284,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     public void ShowItem(String query, JPanel p3) throws SQLException{
         try {
             testconnection();
-            p3.add(new JScrollPane(getTable(query)));
+            p3.add(new JScrollPane(GetTable(query)));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
@@ -281,7 +294,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
 
 
-        public void insertPersona() throws SQLException {
+        public void InsertPersona() throws SQLException {
 
         Statement statement = DBManager.getConnection().createStatement();
         String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,città_residenza,CF,sport,squadra) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
@@ -296,15 +309,37 @@ public class PersonaPanel extends JPanel implements ActionListener {
                 tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
+        Svuotare();
+
         }
 
-        public void deletePersona() throws SQLException {
+        public void DeletePersona() throws SQLException {
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("DELETE FROM Persona WHERE cf like '%s'",
                     tfCF.getText());
             statement.executeUpdate(query);
             statement.close();
-            ShowItem(query,p3);
-            //add(p3,BorderLayout.CENTER);
+            Svuotare();
+        }
+
+        public void FilterPersona(String query1) throws SQLException{
+            Statement statement = DBManager.getConnection().createStatement();
+            String query =String.format(query1 + "AND WHERE sport like '%s' AND squadra like '%s'",
+                    tfsport.getText(),
+                    tfsquadra.getText());
+            statement.executeUpdate(query);
+            statement.close();
+        }
+        public void Svuotare() {
+            tfNome.setText("");
+            tfcognome.setText("");
+            tfdatanascita.setText("");
+            tfluogonascita.setText("");
+            tfsport.setText("");
+            tfcittadiresidenza.setText("");
+            tfsquadra.setText("");
+            tfCF.setText("");
+            cbtipo.setSelectedItem(options);
         }
 }
+
