@@ -4,16 +4,11 @@ import Exam.Utils.DBManager;
 import Exam.Utils.Persona;
 import Exam.Utils.Utils;
 
-import javax.management.Query;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.nio.charset.StandardCharsets;
+import java.awt.event.*;
+import java.io.Serial;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -21,8 +16,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonaPanel extends JPanel implements ActionListener {
 
+public class PersonaPanel extends JPanel implements ActionListener, KeyListener {
+
+    @Serial
     private static final long serialVersionUID = 1L;
     public static String[] options = {"Atleta","Allenatore","Dirigente"};
     private final JButton btnRemove;
@@ -30,7 +27,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
     private final JButton btnSelezione;
     private final JTextField tfNome;
     private final JTextField tfcognome;
-    private final JTextField tftipo;
     private final JTextField tfdatanascita;
     private final JTextField tfluogonascita;
     private final JTextField tfcittadiresidenza;
@@ -47,7 +43,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     JPanel p3= new JPanel(new BorderLayout());
 
     private List<Persona> listPersona;
-    private int selectedPersonaIndex = 0;
+    private int selectedPersonaIndex;
     String query;
 
     public PersonaPanel(String query) throws SQLException {
@@ -61,12 +57,10 @@ public class PersonaPanel extends JPanel implements ActionListener {
         btnSelezione.addActionListener(this);
 
 
-        //listPersona= getListPersona(query);
+        listPersona= getListPersona(query);
 
         cbtipo =new JComboBox<>(options);
         cbtipo.addActionListener(this);
-        tftipo = new JTextField();
-        tftipo.addActionListener(this);
         tfNome = new JTextField();
         tfNome.addActionListener(this);
         tfcognome = new JTextField();
@@ -79,6 +73,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         tfcittadiresidenza.addActionListener(this);
         tfCF = new JTextField();
         tfCF.addActionListener(this);
+        tfCF.addKeyListener(this);
         tfsport = new JTextField();
         tfsport.addActionListener(this);
         tfsquadra = new JTextField();
@@ -122,36 +117,39 @@ public class PersonaPanel extends JPanel implements ActionListener {
         add(p2, BorderLayout.PAGE_END);
         add(p3, BorderLayout.CENTER);
 
-        //update();
+        update();
     }
 
 
 
-    /*public List<Persona> getListPersona(String query) throws SQLException{
-            ArrayList<Persona> personas =new ArrayList<>();
+    public List<Persona> getListPersona(String query) throws SQLException{
 
-            Statement statement =DBManager.getConnection().createStatement();
-            ResultSet rs =statement.executeQuery(query);
-            while (rs.next()){
+            ArrayList<Persona> personas = new ArrayList<>();
+            Statement statement = DBManager.getConnection().createStatement();
+                try {
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
                 personas.add(
                         new Persona(rs.getString("nome"),
-                                                        rs.getString("cognome"),
-                                                        rs.getString("tipo"),
-                                                        rs.getString("luogo_nascita"),
-                                                        rs.getDate("data_nascita"),
-                                                        rs.getString("città_residenza"),
-                                                        rs.getString("CF"),
-                                                        rs.getString("sport"),
-                                                        rs.getString("squadra")
-                                                        )
+                                rs.getString("cognome"),
+                                rs.getString("tipo"),
+                                rs.getString("luogo_nascita"),
+                                rs.getString("data_nascita"),
+                                rs.getString("città_residenza"),
+                                rs.getString("CF"),
+                                rs.getString("sport"),
+                                rs.getString("squadra")
+                        )
                 );
             }
-        statement.close();
+            statement.close();
+
+             }catch (SQLException e ){
+            System.out.println(e);
+              }
         return personas;
 
-
-
-    }*/
+    }
 
     private void testconnection() throws SQLException {
         DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
@@ -168,7 +166,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
     public JTable GetTable(String query) throws SQLException {
 
         dm = new DefaultTableModel();
-        t = new JTable(new ArchivioPanel.MyTableModel());
+        t = new JTable();
         t.setFillsViewportHeight(true);
         t.setPreferredScrollableViewportSize(new Dimension(1000, 1000));
 
@@ -176,7 +174,7 @@ public class PersonaPanel extends JPanel implements ActionListener {
         rsMetaData = rs.getMetaData();
 
         // get columns metadata
-        int cols = t.getColumnCount();
+        int cols = rsMetaData.getColumnCount();
         String[] c = new String[cols];
         for (int i = 0; i < cols; i++) {
             c[i] = rsMetaData.getColumnName(i + 1);
@@ -207,45 +205,30 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
     }
 
-    /*private void update() {
+    private void update() {
         try{
             listPersona.clear();
             listPersona.addAll(getListPersona(query));
-            Persona person =listPersona.get(selectedPersonaIndex);
-
-
-
-            tfNome.setText(person.getNome());
-            tfcognome.setText(person.getCognome());
-            tftipo.setText(person.getTipo());
-            tfdatanascita.setText(person.getData_nascita().toString());
-            tfluogonascita.setText(person.getLuogo_nascita());
-            tfcittadiresidenza.setText(person.getCitta_residenza());
-            tfCF.setText(person.getCF());
-            tfsport.setText(person.getSport());
-            tfsquadra.setText(person.getSquadra());
-
 
         } catch (IndexOutOfBoundsException| SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-*/
 
-    public void SelectRow(MouseEvent evt){
-        int i=t.getSelectedRow();
-        TableModel model =t.getModel();
 
-        tfNome.setText(model.getValueAt(i,0).toString());
-        tfcognome.setText(model.getValueAt(i,1).toString());
-        cbtipo.setSelectedItem(model.getValueAt(i,2).toString());
-        tfdatanascita.setText(model.getValueAt(i,4).toString());
-        tfluogonascita.setText(model.getValueAt(i,3).toString());
-        tfcittadiresidenza.setText(model.getValueAt(i,5).toString());
-        tfCF.setText(model.getValueAt(i,6).toString());
-        tfsport.setText(model.getValueAt(i,7).toString());
-        tfsquadra.setText(model.getValueAt(i,8).toString());
+    public void SelectRow(MouseEvent e){
+        selectedPersonaIndex=t.getSelectedRow();
+        Persona person =listPersona.get(selectedPersonaIndex);
 
+        tfNome.setText(person.getNome());
+        tfcognome.setText(person.getCognome());
+        cbtipo.setSelectedItem(person.getTipo());
+        tfdatanascita.setText(person.getData_nascita());
+        tfluogonascita.setText(person.getLuogo_nascita());
+        tfcittadiresidenza.setText(person.getCitta_residenza());
+        tfCF.setText(person.getCF());
+        tfsport.setText(person.getSport());
+        tfsquadra.setText(person.getSquadra());
     }
 
     @Override
@@ -294,12 +277,13 @@ public class PersonaPanel extends JPanel implements ActionListener {
                 tfluogonascita.getText(),
                 tfdatanascita.getText(),
                 tfcittadiresidenza.getText(),
-                tfCF.getText(),
+                tfCF.getText().toUpperCase(),
                 tfsport.getText(),
                 tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
         Svuotare();
+        update();
 
 
         }
@@ -333,5 +317,22 @@ public class PersonaPanel extends JPanel implements ActionListener {
             tfCF.setText("");
             cbtipo.setSelectedItem(options);
         }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int pos = tfCF.getCaretPosition();
+        tfCF.setText(tfCF.getText().toUpperCase());
+        tfCF.setCaretPosition(pos);
+    }
 }
 

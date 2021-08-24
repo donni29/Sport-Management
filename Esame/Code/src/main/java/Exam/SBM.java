@@ -163,9 +163,9 @@ public class SBM extends JFrame implements ActionListener {
 
                     }
                     if (e.getSource()== this.Nuovo){
-                        /*Rimborso rim =new Rimborso();
+                        Rimborso rim =new Rimborso();
                         setContentPane(rim);
-                        setVisible(true);*/
+                        setVisible(true);
                     }
                 }
 

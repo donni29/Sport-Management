@@ -1,8 +1,5 @@
 package Exam.Utils;
 
-import org.joda.time.DateTime;
-import java.sql.Date;
-
 
 public class Persona {
 
@@ -10,18 +7,18 @@ public class Persona {
     String cognome;
     String tipo;
     String luogo_nascita;
-    Date data_nascita;
+    String data_nascita;
     String citta_residenza;
     String CF;
     String sport;
     String squadra;
 
-    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, Date data_nascita,String citta_residenza, String CF, String sport, String squadra) {
+    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String citta_residenza, String CF, String sport, String squadra) {
         this.nome = nome;
         this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
-        this.data_nascita = data_nascita;
+        this.data_nascita =data_nascita;
         this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.sport =sport;
@@ -60,11 +57,11 @@ public class Persona {
         this.luogo_nascita = luogo_nascita;
     }
 
-    public Date getData_nascita() {
+    public String getData_nascita() {
         return data_nascita;
     }
 
-    public void setData_nascita(Date data_nascita) {
+    public void setData_nascita(String data_nascita) {
         this.data_nascita = data_nascita;
     }
 
