@@ -132,7 +132,6 @@ public class PersonaPanel extends JPanel implements ActionListener {
 
             Statement statement =DBManager.getConnection().createStatement();
             ResultSet rs =statement.executeQuery(query);
-            System.out.println("prova2");
             while (rs.next()){
                 personas.add(
                         new Persona(rs.getString("nome"),

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class SBM extends JFrame implements ActionListener {
     @Serial
@@ -17,6 +18,7 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Allenatori;
     private static JMenuItem Dirigenti;
     private static JMenuItem Open;
+    private static JMenuItem Nuovo;
     private static JTextArea textArea;
 
 
@@ -38,7 +40,7 @@ public class SBM extends JFrame implements ActionListener {
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
 
-        ImageIcon sportIcon = new ImageIcon(this.getClass().getResource("/sportinsime.jpg"));
+        ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         JLabel label = new JLabel(sportIcon);
         //label.setSize(400,400);
         panel.add(label);
@@ -69,9 +71,9 @@ public class SBM extends JFrame implements ActionListener {
         Archivio.add(close);
 
         //parte codice menu Rimborso//
-        JMenuItem nuovo = new JMenuItem("Nuovo...");
-        nuovo.addActionListener(this);
-        Rimborso.add(nuovo);
+        Nuovo = new JMenuItem("Nuovo...");
+        Nuovo.addActionListener(this);
+        Rimborso.add(Nuovo);
 
         Open = new JMenuItem("Apri...");
         Open.addActionListener(this);
@@ -159,6 +161,11 @@ public class SBM extends JFrame implements ActionListener {
                             throwables.printStackTrace();
                         }
 
+                    }
+                    if (e.getSource()== this.Nuovo){
+                        /*Rimborso rim =new Rimborso();
+                        setContentPane(rim);
+                        setVisible(true);*/
                     }
                 }
 
