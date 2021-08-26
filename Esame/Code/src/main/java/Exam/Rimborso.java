@@ -68,8 +68,8 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
         p4.add(titolo, BorderLayout.NORTH);
 
 
-
-        JPanel grigliabox =new JPanel(new GridLayout(8,1));
+        Container pane = new Container();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         for(int i =0; i< numAll; i++) {
             UtilDateModel model = new UtilDateModel();
             Properties properties = new Properties();
@@ -81,10 +81,9 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
             Date selectedDate = (Date) checkInDatePicker.getModel().getValue();
             datee = selectedDate + "";
-            grigliabox.add(checkInDatePicker);
+            pane.add(checkInDatePicker);
         }
-        p4.add(grigliabox,BorderLayout.CENTER);
-
+        p4.add(pane,BorderLayout.CENTER);
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
 
