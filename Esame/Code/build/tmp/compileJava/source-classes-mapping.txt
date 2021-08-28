@@ -19,3 +19,5 @@ Exam/Rimborso.java
  Exam.Rimborso$DateLabelFormatter
 Exam/SBM.java
  Exam.SBM
+Exam/Utils/JtableRef.java
+ Exam.Utils.JtableRef

@@ -2,9 +2,6 @@ package Exam;
 
 
 import Exam.Utils.DBManager;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -15,11 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -27,6 +24,7 @@ import java.util.Properties;
 
 public class Rimborso extends JPanel implements ActionListener, KeyListener {
     public static String[] options = {"Ciclismo", "Podismo", "Calcio"};
+    private String[] data;
 
 
     JButton rim;
@@ -37,6 +35,7 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
     JComboBox<String> jc;
     int numAll=8;
     private JDatePickerImpl checkInDatePicker;
+    ArrayList<Date> dateList;
 
 
     public Rimborso() {
@@ -81,17 +80,30 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
             Date selectedDate = (Date) checkInDatePicker.getModel().getValue();
             datee = selectedDate + "";
+            dateList = new ArrayList<>();
+            dateList.add(selectedDate);
             pane.add(checkInDatePicker);
         }
         p4.add(pane,BorderLayout.CENTER);
+
+        JPanel pbutton =new JPanel();
+        pbutton.add(new JButton("Crea Tabella"));
+        pbutton.add(new JButton("Genera il pdf"));
+
+        p4.add(pbutton,BorderLayout.EAST);
+
+        JPanel paneltable =new JPanel();
+        paneltable.add(new JScrollPane());
+        paneltable.add(new JButton("prova"));
+
+
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
-
-
+        add(paneltable,BorderLayout.PAGE_END);
 
     }
 
-    public void Generate_PDF() {
+    /*public void Generate_PDF() {
         try {
             String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborso\\pdf_prova.pdf";
             com.itextpdf.text.Document document = new Document();
@@ -107,12 +119,12 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
             System.out.println(e);
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.rim) {
-            Generate_PDF();
+            //Generate_PDF();
         }
     }
 
