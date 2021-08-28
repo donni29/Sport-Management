@@ -21,6 +21,8 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
 
+    private static JDesktopPane desktop;
+
 
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
@@ -43,7 +45,7 @@ public class SBM extends JFrame implements ActionListener {
         ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         JLabel label = new JLabel(sportIcon);
         //label.setSize(400,400);
-        panel.add(label);
+        add(label);
         setContentPane(panel);
 
 
@@ -87,6 +89,12 @@ public class SBM extends JFrame implements ActionListener {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        desktop = new JDesktopPane();
+        desktop.putClientProperty("JDesktopPane.dragMode",
+                "outline");
+        desktop.setPreferredSize(new Dimension(500,300));
+        setContentPane(desktop);
+
 
 
         try {
@@ -129,6 +137,10 @@ public class SBM extends JFrame implements ActionListener {
                     try {
                         String query ="SELECT * FROM Persona WHERE tipo like 'Atleta'";
                         PersonaPanel pp= new PersonaPanel(query);
+
+                       // pp.setTitle("Atleta");
+
+                        desktop.add(pp);
                         setContentPane(pp);
                         setVisible(true);
 
