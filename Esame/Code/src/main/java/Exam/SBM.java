@@ -1,11 +1,15 @@
 package Exam;
 
 //questo è il nostro progetto, madonne//
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Serial;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -21,8 +25,6 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
 
-    private static JDesktopPane desktop;
-
 
     /*
     Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
@@ -34,7 +36,6 @@ public class SBM extends JFrame implements ActionListener {
 
 
         JMenuBar menuBar = new JMenuBar();
-        JPanel panel =new JPanel();
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
@@ -42,14 +43,9 @@ public class SBM extends JFrame implements ActionListener {
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
 
-        ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
-        JLabel label = new JLabel(sportIcon);
-        //label.setSize(400,400);
-        add(label);
-        setContentPane(panel);
+        Desktop();
 
-
-        openArchivio = new JMenu ("Open Archivio di ...");
+        openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
         openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
@@ -81,20 +77,13 @@ public class SBM extends JFrame implements ActionListener {
         Open.addActionListener(this);
         Rimborso.add(Open);
 
-        textArea =new JTextArea("");
+        textArea = new JTextArea("");
 
         setJMenuBar(menuBar);
         setExtendedState(MAXIMIZED_BOTH);
         setSize(900, 600);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-        desktop = new JDesktopPane();
-        desktop.putClientProperty("JDesktopPane.dragMode",
-                "outline");
-        desktop.setPreferredSize(new Dimension(500,300));
-        setContentPane(desktop);
-
 
 
         try {
@@ -108,7 +97,8 @@ public class SBM extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.close) {
-            dispose();
+
+            Desktop();
         } else {
             if (e.getSource() == this.Open) {
                 JFileChooser openSource = new JFileChooser();
@@ -129,57 +119,68 @@ public class SBM extends JFrame implements ActionListener {
                         }
                     } catch (IOException e2) {
                         e2.printStackTrace();
-                        System.out.println("IOException"+ "\n" + e2);
+                        System.out.println("IOException" + "\n" + e2);
                     }
                 }
             }
-                if (e.getSource() == this.Atleti) {
-                    try {
-                        String query ="SELECT * FROM Persona WHERE tipo like 'Atleta'";
-                        PersonaPanel pp= new PersonaPanel(query);
-
-                       // pp.setTitle("Atleta");
-
-                        desktop.add(pp);
-                        setContentPane(pp);
-                        setVisible(true);
-
-                    } catch (SQLException throwables) {
-                        System.out.println("Errore Database Atleta"+ throwables);
-                        throwables.printStackTrace();
-                    }
-
-
-                }
-                    if (e.getSource() == this.Allenatori) {
-                        try {
-                            String query = "SELECT * FROM Persona WHERE tipo like 'Allenatore'";
-                            PersonaPanel pp = new PersonaPanel(query);
-                            setContentPane(pp);
-                            setVisible(true);
-                        } catch (SQLException throwables) {
-                            System.out.println("Errore Database Allenatore"+ throwables);
-                            throwables.printStackTrace();
-                        }
-                    }
-                    if (e.getSource()== this.Dirigenti){
-                        try {
-                            String query ="SELECT * FROM Persona WHERE tipo like 'Dirigente'";
-                            PersonaPanel pp= new PersonaPanel(query);
-                            setContentPane(pp);
-                            setVisible(true);
-                        } catch (SQLException throwables) {
-                            System.out.println("Errore Database Dirigente"+ throwables);
-                            throwables.printStackTrace();
-                        }
-
-                    }
-                    if (e.getSource()== this.Nuovo){
-                        Rimborso rim =new Rimborso();
-                        setContentPane(rim);
-                        setVisible(true);
-                    }
+            if (e.getSource() == this.Atleti) {
+                try {
+                    String query = "SELECT * FROM Persona WHERE tipo like 'Atleta'";
+                    PersonaPanel pp = new PersonaPanel(query);
+                    setContentPane(pp);
+                    setVisible(true);
+                } catch (SQLException throwables) {
+                    System.out.println("Errore Database Atleta" + throwables);
+                    throwables.printStackTrace();
                 }
 
+
+            }
+            if (e.getSource() == this.Allenatori) {
+                try {
+                    String query = "SELECT * FROM Persona WHERE tipo like 'Allenatore'";
+                    PersonaPanel pp = new PersonaPanel(query);
+                    setContentPane(pp);
+                    setVisible(true);
+                } catch (SQLException throwables) {
+                    System.out.println("Errore Database Allenatore" + throwables);
+                    throwables.printStackTrace();
+                }
+            }
+            if (e.getSource() == this.Dirigenti) {
+                try {
+                    String query = "SELECT * FROM Persona WHERE tipo like 'Dirigente'";
+                    PersonaPanel pp = new PersonaPanel(query);
+                    setContentPane(pp);
+                    setVisible(true);
+                } catch (SQLException throwables) {
+                    System.out.println("Errore Database Dirigente" + throwables);
+                    throwables.printStackTrace();
+                }
+
+            }
+            if (e.getSource() == this.Nuovo) {
+                Rimborso rim = new Rimborso();
+                setContentPane(rim);
+                setVisible(true);
             }
         }
+
+    }
+
+    public void Desktop() {
+        ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
+        Image image = sportIcon.getImage();
+        Image newing = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
+        sportIcon = new ImageIcon(newing);
+
+        JLabel jLabelObject = new JLabel("Welcome to " +
+                "SPORTINSIEME's " +
+                "Sport Management");
+        jLabelObject.setIcon(sportIcon);
+        Font font = new Font("Helvetica", Font.BOLD, 30);
+        jLabelObject.setFont(font);
+        setContentPane(jLabelObject);
+        setVisible(true);
+    }
+}

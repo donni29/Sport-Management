@@ -135,6 +135,12 @@ public class ArchivioPanel extends JPanel  {
         }
     }
 
+        if (e.getSource() == btDelete) {
+            ((SBM_JTable_Model) tResults.getModel()).removeRow(tResults.getSelectedRow(),
+                    tResults.getSelectedRow());
+        }
+    }
+
     @Override
     public void tableChanged(TableModelEvent e) {
         System.out.println("The table has been modified!");

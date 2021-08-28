@@ -4,21 +4,17 @@ Exam/Utils/Utils.java
  Exam.Utils.Utils
 Exam/Rimborso.java
  Exam.Rimborso
+ Exam.Rimborso$DateLabelFormatter
 Exam/ArchivioPanel.java
  Exam.ArchivioPanel
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
+Exam/PersonaPanel.java
+ Exam.PersonaPanel
+ Exam.PersonaPanel$1
+Exam/DB_Model.java
+ Exam.DB_Model
 Exam/ExamTest.java
  Exam.ExamTest
 Exam/SBM.java
  Exam.SBM
-Exam/DB_Model.java
- Exam.DB_Model
-Exam/PersonaPanel.java
- Exam.PersonaPanel
- Exam.PersonaPanel$1
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
-Exam/Utils/JtableRef.java
- Exam.Utils.JtableModelRef
- Exam.Utils.JtableRef
