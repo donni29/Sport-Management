@@ -210,7 +210,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         try{
             listPersona.clear();
             listPersona.addAll(getListPersona(query));
-            Persona person =listPersona.get(selectedPersonaIndex);
 
         } catch (IndexOutOfBoundsException| SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
