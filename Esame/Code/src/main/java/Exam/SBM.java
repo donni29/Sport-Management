@@ -81,7 +81,7 @@ public class SBM extends JFrame implements ActionListener {
 
         setJMenuBar(menuBar);
         setExtendedState(MAXIMIZED_BOTH);
-        setSize(900, 600);
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -173,14 +173,13 @@ public class SBM extends JFrame implements ActionListener {
         Image image = sportIcon.getImage();
         Image newing = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
         sportIcon = new ImageIcon(newing);
-
-        JLabel jLabelObject = new JLabel("Welcome to " +
-                "SPORTINSIEME's " +
-                "Sport Management");
+        JLabel jLabelObject = new JLabel();
+        jLabelObject.setText( "<html>Welcome to <br> SPORTINSIEME's <br> Sport Management");
         jLabelObject.setIcon(sportIcon);
         Font font = new Font("Helvetica", Font.BOLD, 30);
         jLabelObject.setFont(font);
-        setContentPane(jLabelObject);
+        add(jLabelObject);
+        setSize(900,600);
         setVisible(true);
     }
 }
