@@ -92,7 +92,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(tfluogonascita);
         p1.add(new JLabel("Data di Nascita"));
         p1.add(tfdatanascita);
-        p1.add(new JLabel("Città di Residenza"));
+        p1.add(new JLabel("<html>Citt\u00E0 di Residenza"));
         p1.add(tfcittadiresidenza);
         p1.add(new JLabel("CF"));
         p1.add(tfCF);
@@ -111,6 +111,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p2.add(btnRemove);
 
         ShowItem(query,p3);
+        //ShowItem(query);
+
 
         setLayout(new BorderLayout());
         add(p1, BorderLayout.PAGE_START);
@@ -255,7 +257,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
 
-    public void ShowItem(String query, JPanel p3) throws SQLException{
+    public void ShowItem(String query,JPanel p3) throws SQLException{
         try {
             testconnection();
             p3.add(new JScrollPane(GetTable(query)));
@@ -264,6 +266,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             JOptionPane.showMessageDialog(this, "Database Error");
             System.out.println(e);
         }
+
     }
 
 
@@ -334,6 +337,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfCF.setText(tfCF.getText().toUpperCase());
         tfCF.setCaretPosition(pos);
     }
+
+
 
 }
 

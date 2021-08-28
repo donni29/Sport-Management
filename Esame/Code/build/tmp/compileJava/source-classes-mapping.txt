@@ -9,12 +9,12 @@ Exam/ArchivioPanel.java
  Exam.ArchivioPanel
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
+Exam/ExamTest.java
+ Exam.ExamTest
+Exam/DB_Model.java
+ Exam.DB_Model
+Exam/SBM.java
+ Exam.SBM
 Exam/PersonaPanel.java
  Exam.PersonaPanel
  Exam.PersonaPanel$1
-Exam/DB_Model.java
- Exam.DB_Model
-Exam/ExamTest.java
- Exam.ExamTest
-Exam/SBM.java
- Exam.SBM
