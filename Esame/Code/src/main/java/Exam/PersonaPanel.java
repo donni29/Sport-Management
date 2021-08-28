@@ -46,6 +46,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     public PersonaPanel(String query) throws SQLException {
 
+
+        setLayout(new BorderLayout());
         this.query =query;
         btnRemove = new JButton("Delete");
         btnRemove.addActionListener(this);
@@ -110,14 +112,15 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p2.add(btnSelezione);
         p2.add(btnRemove);
 
-        ShowItem(query,p3);
-        //ShowItem(query);
 
 
-        setLayout(new BorderLayout());
+        ShowItem();
+
+
         add(p1, BorderLayout.PAGE_START);
         add(p2, BorderLayout.PAGE_END);
-        add(p3, BorderLayout.CENTER);
+        add(p3,BorderLayout.CENTER);
+
 
         update();
     }
@@ -239,6 +242,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         try {
             if (e.getSource() == this.btnRemove) {
                 DeletePersona();
+                ShowItem();
 
             }
             else if (e.getSource() == this.btnInsert){
@@ -256,7 +260,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
 
-    public void ShowItem(String query,JPanel p3) throws SQLException{
+    public void ShowItem() throws SQLException{
         try {
             testconnection();
             p3.add(new JScrollPane(GetTable(query)));
@@ -298,7 +302,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         statement.executeUpdate(query);
         statement.close();
         Svuotare();
-
+        update();
     }
 
     public void FilterPersona(String query1) throws SQLException{
