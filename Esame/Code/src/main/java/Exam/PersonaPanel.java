@@ -19,6 +19,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     private static final long serialVersionUID = 1L;
     public static String[] options = {"Atleta","Allenatore","Dirigente"};
+
     private final JButton btnRemove;
     private final JButton btnInsert;
     private final JButton btnSelezione;
@@ -200,10 +201,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 SelectRow(e);
             }
         });
-
         t.setModel(dm);
         setVisible(true);
         t.setGridColor(Color.BLACK);
+
 
         return t;
 
@@ -242,7 +243,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         try {
             if (e.getSource() == this.btnRemove) {
                 DeletePersona();
-                ShowItem();
+
 
             }
             else if (e.getSource() == this.btnInsert){
@@ -289,6 +290,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
+        ShowItem();
         Svuotare();
         update();
 

@@ -80,6 +80,7 @@ public class SBM extends JFrame implements ActionListener {
         textArea = new JTextArea("");
 
         setJMenuBar(menuBar);
+        setSize(900,600);
         setExtendedState(MAXIMIZED_BOTH);
 
 
@@ -97,7 +98,6 @@ public class SBM extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.close) {
-
             Desktop();
         } else {
             if (e.getSource() == this.Open) {
@@ -179,7 +179,6 @@ public class SBM extends JFrame implements ActionListener {
         Font font = new Font("Helvetica", Font.BOLD, 30);
         jLabelObject.setFont(font);
         add(jLabelObject);
-        setSize(900,600);
         setVisible(true);
     }
 }

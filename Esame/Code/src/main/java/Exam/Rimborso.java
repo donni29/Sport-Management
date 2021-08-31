@@ -2,6 +2,13 @@ package Exam;
 
 
 import Exam.Utils.DBManager;
+import Exam.Utils.Persona;
+import Exam.Utils.Utils;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -12,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileOutputStream;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
@@ -28,7 +37,9 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
     JButton rim;
-    JTextField days;
+    private final JTextField days;
+    private final JButton bPdf;
+    private final JButton bcreate;
     JTextField tcf;
     String datee;
 
@@ -87,8 +98,14 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
         p4.add(pane,BorderLayout.CENTER);
 
         JPanel pbutton =new JPanel();
-        pbutton.add(new JButton("Crea Tabella"));
-        pbutton.add(new JButton("Genera il pdf"));
+        bcreate= new JButton ("Crea Tabella");
+        bcreate.addActionListener(this);
+        pbutton.add(bcreate);
+        bPdf =new JButton("Genera Pdf");
+        bPdf.addActionListener(this);
+        pbutton.add(bPdf);
+
+
 
         p4.add(pbutton,BorderLayout.EAST);
 
@@ -101,34 +118,72 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    /*public void Generate_PDF() {
+    public void Generate_PDF(Persona person) {
         try {
-            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborso\\pdf_prova.pdf";
+            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\"+ person.getCognome()+".pdf";
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
+            document.setPageSize(PageSize.A4);
+
 
             document.open();
-            Paragraph para = new Paragraph("Questa è una prova del file pdf_prova");
+            Paragraph para = new Paragraph(person.toString2());
+            Paragraph p = new Paragraph(Utils.Intestazione);
+            p.setAlignment(Element.ALIGN_RIGHT);
+
+            document.add(p);
             document.add(para);
+
             document.close();
 
-            System.out.println("La creazione del pdf è avvenuta con successo");
+
+            JOptionPane.showMessageDialog(this,"Creazione PDF avvenuta con successo!");
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
         }
-    }*/
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.rim) {
             //Generate_PDF();
+        }else if (e.getSource()==this.bPdf){
+            try {
+                Persona atleta = checkCF();
+                Generate_PDF(atleta);
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
 
-    public void checkCF() throws SQLException {
+    public Persona checkCF() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
+        Persona person = null;
+        try{
+            String query1 = String.format("SELECT * FROM Persona WHERE CF like '%s'",
+                    tcf.getText());
+            ResultSet rs =statement.executeQuery(query1);
+
+            while (rs.next()){
+                person =new Persona(rs.getString("nome"),
+                        rs.getString("cognome"),
+                        rs.getString("tipo"),
+                        rs.getString("luogo_nascita"),
+                        rs.getString("data_nascita"),
+                        rs.getString("città_residenza"),
+                        rs.getString("CF"),
+                        rs.getString("sport"),
+                        rs.getString("squadra")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  person;
 
     }
 

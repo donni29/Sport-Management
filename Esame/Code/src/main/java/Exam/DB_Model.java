@@ -1,13 +1,12 @@
 package Exam;
 
-import Exam.Utils.*;
-
+import Exam.Utils.DBManager;
+import Exam.Utils.Persona;
+import Exam.Utils.Utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
-import java.time.LocalTime;
 
 public class DB_Model {
     ResultSet rs;
@@ -86,7 +85,7 @@ public class DB_Model {
         }
     }
 
-    public void insert(String nome,String cognome,String tipo, String luogo_nascita, String citta_residenza, String CF, LocalTime data_nascita, String sport, String squadra) {
+    public void insert(String nome,String cognome,String tipo, String luogo_nascita, String citta_residenza, String CF, String data_nascita, String sport, String squadra) {
         try {
             rs.moveToInsertRow();
             rs.updateString("nome", nome);
@@ -95,7 +94,7 @@ public class DB_Model {
             rs.updateString("luogo_nascita", luogo_nascita);
             rs.updateString("citta_residenza", citta_residenza);
             rs.updateString("CF", CF);
-            rs.updateTime("data_nascita", Time.valueOf(data_nascita));
+            rs.updateString("data_nascita",(data_nascita));
             rs.updateString("sport", sport);
             rs.updateString("squadra", squadra);
             rs.insertRow();
