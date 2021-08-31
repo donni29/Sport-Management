@@ -92,14 +92,12 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
         p4.add(pbutton,BorderLayout.EAST);
 
-        JPanel paneltable =new JPanel();
-        paneltable.add(new JScrollPane());
-        paneltable.add(new JButton("prova"));
+
 
 
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
-        add(paneltable,BorderLayout.PAGE_END);
+
 
     }
 
