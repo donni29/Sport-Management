@@ -24,6 +24,7 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
+    private static JMenuItem  Strutture;
 
 
     /*
@@ -39,7 +40,8 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
-        JMenu Strutture = new JMenu("Strutture");
+        Strutture = new JMenuItem("Strutture");
+        Strutture.addActionListener(this);
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
 
@@ -162,6 +164,11 @@ public class SBM extends JFrame implements ActionListener {
             if (e.getSource() == this.Nuovo) {
                 Rimborso rim = new Rimborso();
                 setContentPane(rim);
+                setVisible(true);
+            }
+            if(e.getSource() == this.Strutture){
+                StrutturaPanel st = new StrutturaPanel();
+                setContentPane(st);
                 setVisible(true);
             }
         }
