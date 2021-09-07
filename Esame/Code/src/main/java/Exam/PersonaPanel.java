@@ -203,6 +203,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         });
         t.setModel(dm);
         setVisible(true);
+        new tableUpdater(t);
         t.setGridColor(Color.BLACK);
 
 
@@ -266,6 +267,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             testconnection();
             p3.add(new JScrollPane(GetTable(query)));
 
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
             System.out.println(e);
@@ -293,6 +295,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         ShowItem();
         Svuotare();
         update();
+        ShowItem();
 
 
     }
@@ -305,6 +308,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         statement.close();
         Svuotare();
         update();
+        ShowItem();
     }
 
     public void FilterPersona(String query1) throws SQLException{
@@ -345,5 +349,27 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
 
+}
+
+class tableUpdater extends Thread {
+
+    private JTable tTable;
+
+    public tableUpdater(JTable tTable) {
+        this.tTable = tTable;
+        this.start();
+    }
+
+    public void run() {
+        try {
+            while (true) {
+                tTable.repaint();
+
+                Thread.sleep(500);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

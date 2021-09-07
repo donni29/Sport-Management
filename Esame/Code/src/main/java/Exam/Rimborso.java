@@ -14,6 +14,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,29 +26,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
 
 
-public class Rimborso extends JPanel implements ActionListener, KeyListener {
+public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     public static String[] options = {"Ciclismo", "Podismo", "Calcio"};
-    private String[] data;
+    private String[] columnNames ={"Data","Localit\u00E0","Campionato","Titolo Prestazione","Compenso"};
+    public static Integer[] num ={8,6};
 
+    public JPanel p4;
 
     JButton rim;
     private final JTextField days;
     private final JButton bPdf;
     private final JButton bcreate;
+    private final JButton check;
+    private final JComboBox<Integer> cbn;
     JTextField tcf;
-    String datee;
 
     JComboBox<String> jc;
-    int numAll=8;
-    private JDatePickerImpl checkInDatePicker;
-    ArrayList<Date> dateList;
-
+    int numAll;
+    private JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
+    String[] dateList;
 
     public Rimborso() {
 
@@ -58,44 +59,52 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
         setLayout(new BorderLayout());
         jc = new JComboBox(options);
-        JPanel p1 = new JPanel(new GridLayout(1, 2));
+        JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
         p1.add(new JLabel("CF"));
         p1.add(tcf);
-        JPanel p2 = new JPanel(new GridLayout(1, 3));
+        check =new JButton("check");
+        check.setSize(4,4);
+        check.addActionListener(this);
+        p1.add(check);
+        JPanel p2 = new JPanel(new GridLayout(1, 3,10,2));
         p2.add(jc);
         p2.add(new JLabel("Giorno Allenamento:"));
         p2.add(days);
 
 
-        JPanel p3 = new JPanel(new BorderLayout());
+        JPanel p3 = new JPanel(new BorderLayout(10,10));
         p3.add(p1, BorderLayout.PAGE_START);
         p3.add(p2, BorderLayout.PAGE_END);
 
-        JPanel p4 = new JPanel(new BorderLayout());
+        p4 = new JPanel(new BorderLayout(3,3));
+
+        JPanel p5 =new JPanel(new FlowLayout());
         Font font = new Font("Helvetica", Font.BOLD, 30);
         JLabel titolo = new JLabel("Selezionare le date degli allenamenti:");
         titolo.setFont(font);
-        p4.add(titolo, BorderLayout.NORTH);
+        JLabel titolonum =new JLabel("Selezionare numero allenamenti:");
+        cbn =new JComboBox<>(num);
+        cbn.addActionListener(this);
+        p5.add(titolo);
+        p5.add(titolonum);
+        p5.add(cbn);
+
+        p4.add(p5,BorderLayout.NORTH);
 
 
         Container pane = new Container();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        for(int i =0; i< numAll; i++) {
+        for(int i =0; i< 8; i++) {
             UtilDateModel model = new UtilDateModel();
             Properties properties = new Properties();
             properties.put("text.today", "Today");
             properties.put("text.month", "Month");
             properties.put("text.year", "Year");
             JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
-            checkInDatePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-
-            Date selectedDate = (Date) checkInDatePicker.getModel().getValue();
-            datee = selectedDate + "";
-            dateList = new ArrayList<>();
-            dateList.add(selectedDate);
-            pane.add(checkInDatePicker);
+            checkInDatePicker[i] = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+            pane.add(checkInDatePicker[i]);
         }
-        p4.add(pane,BorderLayout.CENTER);
+        p4.add(pane,BorderLayout.WEST);
 
         JPanel pbutton =new JPanel();
         bcreate= new JButton ("Crea Tabella");
@@ -105,15 +114,18 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
         bPdf.addActionListener(this);
         pbutton.add(bPdf);
 
-
-
         p4.add(pbutton,BorderLayout.EAST);
 
+        //contentPane =new JPanel();
+        //contentPane.setSize(50,30);
+        //p4.add(contentPane,BorderLayout.CENTER);
 
 
 
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
+        //add(contentPane,BorderLayout.CENTER);
+
 
 
     }
@@ -134,6 +146,8 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
             document.add(p);
             document.add(para);
 
+
+
             document.close();
 
 
@@ -148,16 +162,36 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.rim) {
             //Generate_PDF();
-        }else if (e.getSource()==this.bPdf){
+        }/*else if (e.getSource()==this.bPdf) {
             try {
                 Persona atleta = checkCF();
                 Generate_PDF(atleta);
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }*/
+        else if (e.getSource()==this.cbn){
+            numAll = (int) cbn.getSelectedItem();
+            dateList =new String[numAll];
+
+        }else if (e.getSource()== this.check){
+            try {
+                Persona atleta = checkCF();
+
+                if (atleta == null){
+                    JOptionPane.showMessageDialog(this,"CF errato o atleta non presente");
+                }
+
+            } catch (SQLException throwables) {
+                System.out.println(throwables);
             }
         }
+        else if (e.getSource()== this.bcreate){
+            p4.add(new JScrollPane(crtTable()),BorderLayout.CENTER);
+            setVisible(true);
+        }
     }
+
 
 
     public Persona checkCF() throws SQLException {
@@ -168,8 +202,8 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
                     tcf.getText());
             ResultSet rs =statement.executeQuery(query1);
 
-            while (rs.next()){
-                person =new Persona(rs.getString("nome"),
+            while (rs.next()) {
+                person = new Persona(rs.getString("nome"),
                         rs.getString("cognome"),
                         rs.getString("tipo"),
                         rs.getString("luogo_nascita"),
@@ -179,7 +213,15 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("sport"),
                         rs.getString("squadra")
                 );
+                jc.setSelectedItem(rs.getString("sport"));
             }
+
+            if (jc.getSelectedItem()=="Podismo" || jc.getSelectedItem() == "Calcio"){
+                days.setText("Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica");
+            }else if (jc.getSelectedItem()=="Ciclismo"){
+                days.setText("Marted\u00EC, Gioved\u00EC, Sabato, Domenica");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -187,6 +229,16 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
+
+    /*public Object[][] CreateData (String[] datelist, Object sport){
+        Object [][] dati = new Object[0][];
+        for (int i =0; i<numAll;i++){
+            dati = new Object[][]{
+                    {datelist[i], "Castellarano", sport, "Allenamento", 30.00}
+            };
+        }
+        return dati;
+    }*/
 
 
     @Override
@@ -206,10 +258,13 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
         tcf.setCaretPosition(pos);
     }
 
+
+
+
     public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
-        private String datePattern = "dd/MM/yyyy";
-        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+        private final String datePattern = "dd/MM/yyyy";
+        private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
         @Override
         public Object stringToValue(String text) throws ParseException {
@@ -226,6 +281,25 @@ public class Rimborso extends JPanel implements ActionListener, KeyListener {
             return "";
         }
 
+    }
+
+    public JTable crtTable(){
+        System.out.println(numAll);
+        JTable table = new JTable();
+        DefaultTableModel model =new DefaultTableModel(columnNames,0);
+        dateList =new String[numAll];
+        for (int i =0; i< numAll;i++) {
+            dateList[i]=checkInDatePicker[i].getJFormattedTextField().getText();
+            System.out.println(dateList[i]);
+            model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento",30.00});
+            checkInDatePicker[i].getJFormattedTextField().setText("");
+
+        }
+        table.setModel(model);
+        JOptionPane.showMessageDialog(this,"CREATA LA TABELLA");
+        setVisible(true);
+
+        return table;
     }
 }
 
