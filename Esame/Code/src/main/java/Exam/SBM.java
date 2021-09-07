@@ -45,7 +45,9 @@ public class SBM extends JFrame implements ActionListener {
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
 
-        Desktop();
+        setContentPane(new DesktopTop());
+        setVisible(true);
+
 
         openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
@@ -83,10 +85,11 @@ public class SBM extends JFrame implements ActionListener {
 
         setJMenuBar(menuBar);
 
+
+        setSize(900,600);
         setExtendedState(MAXIMIZED_BOTH);
-
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 
 
 
@@ -101,7 +104,10 @@ public class SBM extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.close) {
-            Desktop();
+            DesktopTop desktopTop    = new DesktopTop();
+            setContentPane(desktopTop);
+            setVisible(true);
+
         } else {
             if (e.getSource() == this.Open) {
                 JFileChooser openSource = new JFileChooser();
@@ -175,19 +181,22 @@ public class SBM extends JFrame implements ActionListener {
         }
 
     }
+}
 
-    public void Desktop() {
+class DesktopTop extends JPanel {
+
+    public DesktopTop() {
         ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         Image image = sportIcon.getImage();
         Image newing = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
         sportIcon = new ImageIcon(newing);
         JLabel jLabelObject = new JLabel();
-        jLabelObject.setText( "<html>Welcome to <br> SPORTINSIEME's <br> Sport Management");
+        jLabelObject.setText("<html>Welcome to <br> SPORTINSIEME's <br> Sport Management");
         jLabelObject.setIcon(sportIcon);
         Font font = new Font("Helvetica", Font.BOLD, 30);
         jLabelObject.setFont(font);
         add(jLabelObject);
-        setSize(900,600);
+        setSize(900, 600);
         setVisible(true);
     }
 }

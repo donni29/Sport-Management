@@ -8,6 +8,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -42,8 +43,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     private final JButton bPdf;
     private final JButton bcreate;
     private final JButton check;
+    private final JButton delete;
     private final JComboBox<Integer> cbn;
     JTextField tcf;
+    JTable table;
 
     JComboBox<String> jc;
     int numAll;
@@ -113,6 +116,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         bPdf =new JButton("Genera Pdf");
         bPdf.addActionListener(this);
         pbutton.add(bPdf);
+        delete = new JButton("Elimina Tabella");
+        delete.addActionListener(this);
+        pbutton.add(delete);
 
         p4.add(pbutton,BorderLayout.EAST);
 
@@ -146,8 +152,17 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             document.add(p);
             document.add(para);
 
+            PdfPTable pdfPTable =new PdfPTable(table.getColumnCount());
+            for (int t =0; t<table.getColumnCount(); t++ ){
+                pdfPTable.addCell(table.getColumnName(t));
+            }
+            for (int rows =0; rows< table.getRowCount()-1; rows ++){
+                for (int cols =0; cols< table.getColumnCount(); cols ++){
+                    pdfPTable.addCell(table.getModel().getValueAt(rows,cols).toString());
+                }
+            }
 
-
+            document.add(pdfPTable);
             document.close();
 
 
@@ -160,21 +175,22 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.rim) {
-            //Generate_PDF();
-        }/*else if (e.getSource()==this.bPdf) {
+         if (e.getSource()==this.bPdf) {
             try {
                 Persona atleta = checkCF();
                 Generate_PDF(atleta);
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
-            }*/
+            }
+
+        }
         else if (e.getSource()==this.cbn){
             numAll = (int) cbn.getSelectedItem();
             dateList =new String[numAll];
 
-        }else if (e.getSource()== this.check){
+        }
+        else if (e.getSource()== this.check){
             try {
                 Persona atleta = checkCF();
 
@@ -189,6 +205,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         else if (e.getSource()== this.bcreate){
             p4.add(new JScrollPane(crtTable()),BorderLayout.CENTER);
             setVisible(true);
+        }
+        else if (e.getSource() ==this.delete){
+            p4.remove(3);
+            JOptionPane.showMessageDialog(this, "TABELLA ELIMINATA");
         }
     }
 
@@ -228,17 +248,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         return  person;
 
     }
-
-
-    /*public Object[][] CreateData (String[] datelist, Object sport){
-        Object [][] dati = new Object[0][];
-        for (int i =0; i<numAll;i++){
-            dati = new Object[][]{
-                    {datelist[i], "Castellarano", sport, "Allenamento", 30.00}
-            };
-        }
-        return dati;
-    }*/
 
 
     @Override
@@ -285,7 +294,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     public JTable crtTable(){
         System.out.println(numAll);
-        JTable table = new JTable();
+        table = new JTable();
         DefaultTableModel model =new DefaultTableModel(columnNames,0);
         dateList =new String[numAll];
         for (int i =0; i< numAll;i++) {
@@ -293,11 +302,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             System.out.println(dateList[i]);
             model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento",30.00});
             checkInDatePicker[i].getJFormattedTextField().setText("");
-
         }
         table.setModel(model);
         JOptionPane.showMessageDialog(this,"CREATA LA TABELLA");
-        setVisible(true);
+        setVisible(false);
 
         return table;
     }

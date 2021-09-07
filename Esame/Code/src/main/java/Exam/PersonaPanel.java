@@ -202,10 +202,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             }
         });
         t.setModel(dm);
-        setVisible(true);
-        new tableUpdater(t);
         t.setGridColor(Color.BLACK);
-
+        setVisible(true);
 
         return t;
 
@@ -245,10 +243,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             if (e.getSource() == this.btnRemove) {
                 DeletePersona();
 
-
             }
             else if (e.getSource() == this.btnInsert){
                 InsertPersona();
+
 
             }
             else if (e.getSource() == this.btnSelezione) {
@@ -266,6 +264,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         try {
             testconnection();
             p3.add(new JScrollPane(GetTable(query)));
+
 
 
         } catch (SQLException e) {
@@ -292,11 +291,9 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
-        ShowItem();
         Svuotare();
         update();
         ShowItem();
-
 
     }
 
@@ -319,6 +316,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         statement.executeUpdate(query);
         statement.close();
     }
+
     public void Svuotare() {
         tfNome.setText("");
         tfcognome.setText("");
