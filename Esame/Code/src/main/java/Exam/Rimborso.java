@@ -152,6 +152,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             document.add(p);
             document.add(para);
 
+            for (int i =0; i< 3; i++){
+                document.add(new Paragraph(" "));
+            }
+
             PdfPTable pdfPTable =new PdfPTable(table.getColumnCount());
             for (int t =0; t<table.getColumnCount(); t++ ){
                 pdfPTable.addCell(table.getColumnName(t));

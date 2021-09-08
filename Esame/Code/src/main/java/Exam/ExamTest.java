@@ -4,7 +4,6 @@ package Exam;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.*;
-import java.io.IOException;
 
 
 public class ExamTest  {

@@ -10,19 +10,18 @@ Exam/Utils/DBManager.java
  Exam.Utils.DBManager
 Exam/Utils/Struttura.java
  Exam.Utils.Struttura
+Exam/ExamTest.java
+ Exam.ExamTest
+Exam/StrutturaPanel.java
+ Exam.StrutturaPanel
+Exam/Utils/PersonaTableModel.java
+ Exam.Utils.PersonaTableModel
 Exam/Rimborso.java
  Exam.Rimborso
  Exam.Rimborso$DateLabelFormatter
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
-Exam/PersonaPanel.java
- Exam.PersonaPanel
- Exam.PersonaPanel$1
- Exam.tableUpdater
-Exam/Utils/DesktopNew.java
- Exam.Utils.DesktopNew
-Exam/ExamTest.java
- Exam.ExamTest
 Exam/SBM.java
  Exam.DesktopTop
  Exam.SBM
+Exam/PersonaPanel.java
+ Exam.PersonaPanel
+ Exam.PersonaPanel$1

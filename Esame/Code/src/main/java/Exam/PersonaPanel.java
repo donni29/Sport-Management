@@ -2,14 +2,13 @@ package Exam;
 
 import Exam.Utils.DBManager;
 import Exam.Utils.Persona;
+import Exam.Utils.PersonaTableModel;
 import Exam.Utils.Utils;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JButton btnRemove;
     private final JButton btnInsert;
     private final JButton btnSelezione;
+    private final JButton btnUpdate;
     private final JTextField tfNome;
     private final JTextField tfcognome;
     private final JTextField tftipo;
@@ -33,12 +33,9 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JTextField tfsport;
     private final JTextField tfsquadra;
     private final JComboBox<String> cbtipo;
+    private JTable table;
+    private PersonaTableModel tableModel;
 
-
-    JTable t;
-    DefaultTableModel dm;
-    ResultSet rs;
-    ResultSetMetaData rsMetaData;
     JPanel p3= new JPanel(new BorderLayout());
 
     private List<Persona> listPersona;
@@ -56,6 +53,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         btnInsert.addActionListener(this);
         btnSelezione =new JButton("Filter");
         btnSelezione.addActionListener(this);
+        btnUpdate =new JButton("Update");
+        btnUpdate.addActionListener(this);
 
 
         listPersona= getListPersona(query);
@@ -104,28 +103,22 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(new JLabel("Squadra"));
         p1.add(tfsquadra);
 
-
-
-
         JPanel p2 = new JPanel();
-        p2.setLayout(new GridLayout(3, 4));
+        p2.setLayout(new GridLayout(4, 4));
         p2.add(btnInsert);
         p2.add(btnSelezione);
         p2.add(btnRemove);
-
-
+        p2.add(btnUpdate);
 
         ShowItem();
-
 
         add(p1, BorderLayout.PAGE_START);
         add(p2, BorderLayout.PAGE_END);
         add(p3,BorderLayout.CENTER);
 
-
         update();
-    }
 
+    }
 
 
     public List<Persona> getListPersona(String query) throws SQLException {
@@ -168,47 +161,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         }
     }
 
-    public JTable GetTable(String query) throws SQLException {
-
-        dm = new DefaultTableModel();
-        t = new JTable();
-        t.setFillsViewportHeight(true);
-        t.setPreferredScrollableViewportSize(new Dimension(1000, 1000));
-
-        rs = DBManager.getConnection().createStatement().executeQuery(query);
-        rsMetaData = rs.getMetaData();
-
-        // get columns metadata
-        int cols = rsMetaData.getColumnCount();
-        String[] c = new String[cols];
-        for (int i = 0; i < cols; i++) {
-            c[i] = rsMetaData.getColumnName(i + 1);
-            dm.addColumn(c[i]);
-        }
-
-        // Get rows
-        Object[] row = new Object[cols];
-        while (rs.next()) {
-            for (int i = 0; i < cols; i++) {
-                row[i] = rs.getString(i + 1);
-            }
-            dm.addRow(row);
-        }
-
-        t.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                SelectRow(e);
-            }
-        });
-        t.setModel(dm);
-        t.setGridColor(Color.BLACK);
-        setVisible(true);
-
-        return t;
-
-    }
-
     private void update() {
         try{
             listPersona.clear();
@@ -221,7 +173,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
     public void SelectRow(MouseEvent evt){
-        selectedPersonaIndex =t.getSelectedRow();
+        selectedPersonaIndex =table.getSelectedRow();
         Persona person =listPersona.get(selectedPersonaIndex);
 
         tfNome.setText(person.getNome());
@@ -252,6 +204,9 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             else if (e.getSource() == this.btnSelezione) {
                 FilterPersona(query);
             }
+            else if (e.getSource() == this.btnUpdate){
+                UpdatePersona();
+            }
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -260,21 +215,28 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
 
-    public void ShowItem() throws SQLException{
+    public void ShowItem(){
         try {
             testconnection();
-            p3.add(new JScrollPane(GetTable(query)));
+            table = new JTable();
+            tableModel = new PersonaTableModel(listPersona);
+            table.setModel(tableModel);
+            table.setAutoCreateRowSorter(true);
 
+            p3.add(new JScrollPane(table));
 
-
+            table.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    SelectRow(e);
+                }
+            });
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
             System.out.println(e);
         }
 
     }
-
-
 
     public void InsertPersona() throws SQLException {
 
@@ -293,7 +255,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         statement.close();
         Svuotare();
         update();
-        ShowItem();
+        tableModel.fireTableDataChanged();
 
     }
 
@@ -305,16 +267,41 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         statement.close();
         Svuotare();
         update();
-        ShowItem();
+        tableModel.fireTableDataChanged();
+
     }
 
     public void FilterPersona(String query1) throws SQLException{
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format(query1 + "AND WHERE sport like '%s' AND squadra like '%s'",
-                tfsport.getText(),
-                tfsquadra.getText());
+        String query =String.format(query1 + " WHERE sport like '%s'",// AND squadra like '%s'",
+                tfsport.getText());
+                //tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
+        Svuotare();
+        listPersona = getListPersona(query);
+        ShowItem();
+        tableModel.fireTableDataChanged();
+
+    }
+
+    public  void UpdatePersona() throws SQLException{
+            Statement statement = DBManager.getConnection().createStatement();
+            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',città_residenza = '%s',sport ='%s',squadra ='%s' WHERE CF like '%s'",
+                    tfNome.getText(),
+                    tfcognome.getText(),
+                    cbtipo.getSelectedItem(),
+                    tfluogonascita.getText(),
+                    tfdatanascita.getText(),
+                    tfcittadiresidenza.getText(),
+                    tfsport.getText(),
+                    tfsquadra.getText(),
+                    tfCF.getText());
+            statement.executeUpdate(query);
+            statement.close();
+            Svuotare();
+            update();
+            tableModel.fireTableDataChanged();
     }
 
     public void Svuotare() {
@@ -345,29 +332,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfCF.setCaretPosition(pos);
     }
 
-
-
 }
 
-class tableUpdater extends Thread {
-
-    private JTable tTable;
-
-    public tableUpdater(JTable tTable) {
-        this.tTable = tTable;
-        this.start();
-    }
-
-    public void run() {
-        try {
-            while (true) {
-                tTable.repaint();
-
-                Thread.sleep(500);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}
 
