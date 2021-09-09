@@ -3,6 +3,8 @@ package Exam;
 //questo è il nostro progetto, madonne//
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ import java.io.Serial;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class SBM extends JFrame implements ActionListener {
+public class SBM extends JFrame implements ActionListener, MenuListener {
     @Serial
     private static final long serialVersionUID = 1L;
     public static JMenu openArchivio;
@@ -24,12 +26,8 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
-    private static JMenuItem  Strutture;
+    private static JMenu Strutture;
 
-
-    /*
-    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
-     */
     DB_Model model;
 
     public SBM() {
@@ -40,10 +38,11 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
-        Strutture = new JMenuItem("Strutture");
-        Strutture.addActionListener(this);
+        Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
+        Strutture.addMenuListener(this);
         menuBar.add(Strutture);
+
 
         setContentPane(new DesktopTop());
         setVisible(true);
@@ -91,15 +90,12 @@ public class SBM extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-
-
         try {
             model = new DB_Model();
         } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
-        // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -180,6 +176,23 @@ public class SBM extends JFrame implements ActionListener {
             }
         }
 
+    }
+
+    @Override
+    public void menuSelected(MenuEvent e) {
+        if (e.getSource() == this.Strutture) {
+            StrutturaPanel st = new StrutturaPanel();
+            setContentPane(st);
+            setVisible(true);
+        }
+    }
+    //questi due metodi implementano la classe per non far diventare la classe abstract
+    @Override
+    public void menuDeselected(MenuEvent e) {
+    }
+
+    @Override
+    public void menuCanceled(MenuEvent e) {
     }
 }
 
