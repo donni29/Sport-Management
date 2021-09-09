@@ -316,12 +316,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
     }
 
     public void keyReleased(KeyEvent e) {

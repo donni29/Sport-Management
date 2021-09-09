@@ -3,6 +3,8 @@ package Exam;
 //questo è il nostro progetto, madonne//
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ import java.io.Serial;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class SBM extends JFrame implements ActionListener {
+public class SBM extends JFrame implements ActionListener, MenuListener {
     @Serial
     private static final long serialVersionUID = 1L;
     public static JMenu openArchivio;
@@ -24,7 +26,7 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
-    private static JButton Strutture;
+    private static JMenu Strutture;
 
     DB_Model model;
 
@@ -36,10 +38,11 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
-        Strutture = new JButton("Strutture");
-        Strutture.addActionListener(this);
+        Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
+        Strutture.addMenuListener(this);
         menuBar.add(Strutture);
+
 
         setContentPane(new DesktopTop());
         setVisible(true);
@@ -173,6 +176,23 @@ public class SBM extends JFrame implements ActionListener {
             }
         }
 
+    }
+
+    @Override
+    public void menuSelected(MenuEvent e) {
+        if (e.getSource() == this.Strutture) {
+            StrutturaPanel st = new StrutturaPanel();
+            setContentPane(st);
+            setVisible(true);
+        }
+    }
+    //questi due metodi implementano la classe per non far diventare la classe abstract
+    @Override
+    public void menuDeselected(MenuEvent e) {
+    }
+
+    @Override
+    public void menuCanceled(MenuEvent e) {
     }
 }
 
