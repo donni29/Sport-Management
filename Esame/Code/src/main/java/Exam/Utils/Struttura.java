@@ -5,15 +5,15 @@ public class Struttura {
     String nome;
     String via ;
     String num_telefono;
-    String orario_apertura;
-    String orario_chiusura;
+    String orario_mattina;
+    String orario_pomeriggio;
 
-    public Struttura(String nome, String via, String num_telefono, String orario_apertura, String orario_chiusura) {
+    public Struttura(String nome, String via, String num_telefono, String orario_mattina, String orario_pomeriggio) {
         this.nome = nome;
         this.via = via;
         this.num_telefono = num_telefono;
-        this.orario_apertura = orario_apertura;
-        this.orario_chiusura = orario_chiusura;
+        this.orario_mattina = orario_mattina;
+        this.orario_pomeriggio = orario_pomeriggio;
     }
 
     public String getNome() {
@@ -40,20 +40,20 @@ public class Struttura {
         this.num_telefono = num_telefono;
     }
 
-    public String getOrario_apertura() {
-        return orario_apertura;
+    public String getOrario_mattina() {
+        return orario_mattina;
     }
 
-    public void setOrario_apertura(String orario_apertura) {
-        this.orario_apertura = orario_apertura;
+    public void setOrario_mattina(String orario_mattina) {
+        this.orario_mattina = orario_mattina;
     }
 
-    public String getOrario_chiusura() {
-        return orario_chiusura;
+    public String getOrario_pomeriggio() {
+        return orario_pomeriggio;
     }
 
-    public void setOrario_chiusura(String orario_chiusura) {
-        this.orario_chiusura = orario_chiusura;
+    public void setOrario_pomeriggio(String orario_pomeriggio) {
+        this.orario_pomeriggio = orario_pomeriggio;
     }
 
     @Override
@@ -62,8 +62,8 @@ public class Struttura {
                 "nome='" + nome + '\'' +
                 ", via='" + via + '\'' +
                 ", num_telefono='" + num_telefono + '\'' +
-                ", orario_apertura='" + orario_apertura + '\'' +
-                ", orario_chiusura='" + orario_chiusura + '\'' +
+                ", orario_mattina='" + orario_mattina + '\'' +
+                ", orario_pomeriggio='" + orario_pomeriggio + '\'' +
                 '}';
     }
 }

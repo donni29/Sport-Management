@@ -72,6 +72,10 @@ public class ArchivioPanel extends JPanel  {
         ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);
         ResultSetMetaData rsMetaData = rs.getMetaData();
 
+
+        //((AbstractTableModel) t.getModel()).fireTableCellUpdated(rs.getRow(),0);
+        ((AbstractTableModel) t.getModel()).fireTableDataChanged();
+
         // get columns metadata
         int cols = rsMetaData.getColumnCount();
         String[] c = new String[cols];
