@@ -2,12 +2,10 @@ package Exam;
 
 
 import Exam.Utils.DBManager;
+import Exam.Utils.JTableUtilities;
 import Exam.Utils.Persona;
 import Exam.Utils.Utils;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -16,12 +14,15 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,31 +34,36 @@ import java.util.Properties;
 
 public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     public static String[] options = {"Ciclismo", "Podismo", "Calcio"};
-    private String[] columnNames ={"Data","Localit\u00E0","Campionato","Titolo Prestazione","Compenso"};
+    private final String[] columnNames ={"Data","Localit\u00E0","Campionato","Titolo Prestazione","Compenso"};
     public static Integer[] num ={8,6};
 
     public JPanel p4;
 
-    JButton rim;
     private final JTextField days;
+    private final JTextField tfdate;
     private final JButton bPdf;
     private final JButton bcreate;
     private final JButton check;
     private final JButton delete;
     private final JComboBox<Integer> cbn;
-    JTextField tcf;
+    private final JTextField tcf;
+    private final JComboBox<String> jc;
+
+    private final JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
+
+
+    int numAll;
+    String[] dateList;
     JTable table;
 
-    JComboBox<String> jc;
-    int numAll;
-    private JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
-    String[] dateList;
 
     public Rimborso() {
 
         days = new JTextField("");
         tcf = new JTextField("");
         tcf.addKeyListener(this);
+        tfdate =new JTextField("");
+
 
 
         setLayout(new BorderLayout());
@@ -119,18 +125,15 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         delete = new JButton("Elimina Tabella");
         delete.addActionListener(this);
         pbutton.add(delete);
+        JLabel label = new JLabel("Data Pagamento:");
+        pbutton.add(label);
+        pbutton.add(tfdate);
 
         p4.add(pbutton,BorderLayout.EAST);
-
-        //contentPane =new JPanel();
-        //contentPane.setSize(50,30);
-        //p4.add(contentPane,BorderLayout.CENTER);
-
 
 
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
-        //add(contentPane,BorderLayout.CENTER);
 
 
 
@@ -160,20 +163,65 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             for (int t =0; t<table.getColumnCount(); t++ ){
                 pdfPTable.addCell(table.getColumnName(t));
             }
-            for (int rows =0; rows< table.getRowCount()-1; rows ++){
+            for (int rows =0; rows< table.getRowCount(); rows ++){
                 for (int cols =0; cols< table.getColumnCount(); cols ++){
                     pdfPTable.addCell(table.getModel().getValueAt(rows,cols).toString());
                 }
             }
 
+            pdfPTable.setTotalWidth(PageSize.A4.getWidth()-30);
+            pdfPTable.setLockedWidth(true);
+            JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER); //non funziona secondo me, da controllare
             document.add(pdfPTable);
+
+            document.add(new Paragraph(" "));
+
+            Paragraph p1 = new Paragraph("Autocertificazione COMPENSI ai sensi del D.M. 26.11.99 n.473");
+            p1.setAlignment(Element.ALIGN_CENTER);
+            document.add(p1);
+            document.add(new Paragraph(" "));
+
+
+            Chunk c =new Chunk("Dichiaro di ricevere da SPORTINSIEME A.S.D. per i titoli riportati e relativi al periodo " + dateList[0] + "-" + dateList[numAll-1] + " e comunque riferentesi "+
+            "ad attivit\u00E0 sportiva dilettantistica (Leggi n.342/2000 e 289/2002) le somme indicate in calce", FontFactory.getFont(FontFactory.HELVETICA,8));
+            Paragraph p2 = new Paragraph(c);
+            p2.setAlignment(Element.ALIGN_CENTER);
+            document.add(p2);
+
+            document.add(new Paragraph(" "));
+
+            Chunk c1 =new Chunk("Nel corso dell'anno solare 2021 dichiaro inoltre di:\n" +
+                    "[ ] non aver percepito alla data odierna compensi della stessa natura.\n" +
+                    "[ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 10.000,00, ma inferiori a Euro 28.158,28\n" +
+                    "[ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28",FontFactory.getFont(FontFactory.HELVETICA,9));
+            document.add(c1);
+            document.add(new Paragraph(" "));
+
+            Chunk date= new Chunk("Pagato il: "+ tfdate.getText(), FontFactory.getFont(FontFactory.HELVETICA,10));
+            document.add(date);
+
+
+            Paragraph firma =new Paragraph("FIRMA");
+            firma.setAlignment(Element.ALIGN_RIGHT);
+            document.add(firma);
+
             document.close();
 
 
             JOptionPane.showMessageDialog(this,"Creazione PDF avvenuta con successo!");
+
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File myFile = new File(file_name);
+                    Desktop.getDesktop().open(myFile);
+                } catch (IOException ex) {
+                   System.out.println(ex);
+                }
+            }
+
         } catch (Exception e) {
-            System.out.println(e);
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Errore nella creazione del PDF" + e);
         }
     }
 
@@ -274,7 +322,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
 
-    public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
+    public static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
         private final String datePattern = "dd/MM/yyyy";
         private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
@@ -285,7 +333,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
 
         @Override
-        public String valueToString(Object value) throws ParseException {
+        public String valueToString(Object value) {
             if (value != null) {
                 Calendar cal = (Calendar) value;
                 return dateFormatter.format(cal.getTime());
@@ -303,12 +351,14 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         dateList =new String[numAll];
         for (int i =0; i< numAll;i++) {
             dateList[i]=checkInDatePicker[i].getJFormattedTextField().getText();
-            System.out.println(dateList[i]);
-            model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento",30.00});
+            System.out.println(dateList[i]); //solo per controllo nel debug
+            model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento","30,00"});
             checkInDatePicker[i].getJFormattedTextField().setText("");
         }
+        model.addRow(new Object[]{"","","TOTALE:","euro",(30* numAll) + ",00"});
         table.setModel(model);
         JOptionPane.showMessageDialog(this,"CREATA LA TABELLA");
+        JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
         setVisible(false);
 
         return table;

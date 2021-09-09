@@ -1,9 +1,6 @@
 package Exam;
 
-import Exam.Utils.DBManager;
-import Exam.Utils.Persona;
-import Exam.Utils.PersonaTableModel;
-import Exam.Utils.Utils;
+import Exam.Utils.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -224,6 +221,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             table.setAutoCreateRowSorter(true);
 
             p3.add(new JScrollPane(table));
+            JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
 
             table.addMouseListener(new MouseAdapter() {
                 @Override

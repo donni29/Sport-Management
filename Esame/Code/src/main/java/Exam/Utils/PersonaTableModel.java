@@ -6,7 +6,7 @@ import java.util.List;
 public class PersonaTableModel extends AbstractTableModel {
 
     private final String[] ColumnNames ={"Nome","Cognome","Tipo","Luogo di Nascita"," Data di Nascita","<html>Citt\u00E0 di Residenza","CF","Sport","squadra"};
-    private List<Persona> personaList;
+    private final List<Persona> personaList;
 
     public PersonaTableModel(List<Persona> personaList) {
         this.personaList = personaList;
@@ -42,5 +42,5 @@ public class PersonaTableModel extends AbstractTableModel {
         return  ColumnNames[column];
     }
 
-
 }
+

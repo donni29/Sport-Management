@@ -24,12 +24,8 @@ public class SBM extends JFrame implements ActionListener {
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
-    private static JMenuItem  Strutture;
+    private static JButton Strutture;
 
-
-    /*
-    Creare una variabile model( come nell'esempio SM_Updatable < sausagemanager < jdbc per separare la grafica dai dati
-     */
     DB_Model model;
 
     public SBM() {
@@ -40,7 +36,7 @@ public class SBM extends JFrame implements ActionListener {
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
-        Strutture = new JMenuItem("Strutture");
+        Strutture = new JButton("Strutture");
         Strutture.addActionListener(this);
         menuBar.add(Rimborso);
         menuBar.add(Strutture);
@@ -91,15 +87,12 @@ public class SBM extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-
-
         try {
             model = new DB_Model();
         } catch (SQLException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
-        // ShowItem(); come nel esempio del prof :  SM_Updatable < sausagemanager < jdbc
     }
 
     public void actionPerformed(ActionEvent e) {
