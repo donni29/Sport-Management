@@ -5,6 +5,7 @@ import Exam.Utils.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class PersonaPanel extends JPanel implements ActionListener, KeyListener {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     public static String[] options = {"Atleta","Allenatore","Dirigente"};
 
@@ -36,7 +38,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     JPanel p3= new JPanel(new BorderLayout());
 
     private List<Persona> listPersona;
-    private int selectedPersonaIndex = 0;
     String query;
 
     public PersonaPanel(String query) throws SQLException {
@@ -103,11 +104,14 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         JPanel p2 = new JPanel();
         p2.setLayout(new GridLayout(4, 4));
         p2.add(btnInsert);
-        p2.add(btnSelezione);
         p2.add(btnRemove);
         p2.add(btnUpdate);
+        p2.add(btnSelezione);
+
+
 
         ShowItem();
+
 
         add(p1, BorderLayout.PAGE_START);
         add(p2, BorderLayout.PAGE_END);
@@ -170,7 +174,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
 
     public void SelectRow(MouseEvent evt){
-        selectedPersonaIndex =table.getSelectedRow();
+        int selectedPersonaIndex = table.getSelectedRow();
         Persona person =listPersona.get(selectedPersonaIndex);
 
         tfNome.setText(person.getNome());
@@ -191,18 +195,20 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         try {
             if (e.getSource() == this.btnRemove) {
                 DeletePersona();
+                JOptionPane.showMessageDialog(this,"Eliminazione di atleta avvenuta con successo");
 
             }
             else if (e.getSource() == this.btnInsert){
                 InsertPersona();
+                JOptionPane.showMessageDialog(this,"Inserimento avvenuto con successo");
 
 
-            }
-            else if (e.getSource() == this.btnSelezione) {
-                FilterPersona(query);
             }
             else if (e.getSource() == this.btnUpdate){
                 UpdatePersona();
+                JOptionPane.showMessageDialog(this,"Update avvenuto con successo");
+            }
+            else if (e.getSource() == this.btnSelezione){
             }
 
         } catch (Exception exception) {
@@ -329,5 +335,4 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     }
 
 }
-
 
