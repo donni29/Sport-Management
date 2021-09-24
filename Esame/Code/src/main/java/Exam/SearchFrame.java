@@ -18,9 +18,8 @@ public class SearchFrame extends JFrame implements ActionListener {
     private final JButton bsearch;
     private final JTextField tfserach;
     private final JButton binsert;
-    private final JTextField tfcf;
+    public static JTextField tfcf;
     private JTable table;
-    private PersonaTableModel model;
     private List<Persona> personas;
 
     public SearchFrame() {
@@ -31,7 +30,7 @@ public class SearchFrame extends JFrame implements ActionListener {
         tfserach = new JTextField("");
         binsert = new JButton("Insert CF");
         binsert.addActionListener(this);
-        tfcf = new JTextField("");
+        tfcf = new javax.swing.JTextField("");
 
         setLayout(new BorderLayout());
 
@@ -64,74 +63,43 @@ public class SearchFrame extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == this.binsert) {
+            Rimborso.tcf.setText(tfcf.getText());
+            System.out.println(tfcf.getText());
             dispose();
         }
     }
 
 
-    public void Table (){
-        String query = String.format("SELECT * FROM Persona WHERE cognome like '%s'",tfserach.getText());
+    public void Table() {
+        String query = String.format("SELECT * FROM Persona WHERE cognome like '%s'", tfserach.getText());
         PersonaPanel pp = null;
         try {
             pp = new PersonaPanel(query);
-            //personas = getListPersona("SELECT * FROM Persona where cognome like " + cognome);
-            personas= pp.getListPersona(query);
+            personas = pp.getListPersona(query);
+            if (personas.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Non sono stati riscontrati valori!");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        table = new JTable();
-        model = new PersonaTableModel(personas);
-        table.setModel(model);
-        table.setAutoCreateRowSorter(true);
+        if (!personas.isEmpty()) {
+            table = new JTable();
+            PersonaTableModel model = new PersonaTableModel(personas);
+            table.setModel(model);
+            table.setAutoCreateRowSorter(true);
 
-        add(new JScrollPane(table),BorderLayout.CENTER);
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int selectedPersonaIndex = table.getSelectedRow();
-                Persona person = personas.get(selectedPersonaIndex);
+            add(new JScrollPane(table), BorderLayout.CENTER);
+            table.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int selectedPersonaIndex = table.getSelectedRow();
+                    Persona person = personas.get(selectedPersonaIndex);
 
-                tfcf.setText(person.getCF());
-            }
-        });
-        setVisible(false);
-    }
-
-    @Override
-    public String toString() {
-        return tfcf.getText();
-    }
-
-/* private ArrayList<Persona> getListPersona(String query) throws SQLException {
-
-
-        ArrayList<Persona> personas = new ArrayList<>();
-        Statement statement = DBManager.getConnection().createStatement();
-        try {
-            ResultSet rs = statement.executeQuery(query);
-
-            while (rs.next()) {
-                personas.add(
-                        new Persona(rs.getString("nome"),
-                                rs.getString("cognome"),
-                                rs.getString("tipo"),
-                                rs.getString("luogo_nascita"),
-                                rs.getString("data_nascita"),
-                                rs.getString("città_residenza"),
-                                rs.getString("CF"),
-                                rs.getString("sport"),
-                                rs.getString("squadra")
-                        )
-                );
-            }
-            statement.close();
-        }catch (SQLException e){
-            System.out.println(e);
+                    tfcf.setText(person.getCF());
+                }
+            });
+            setVisible(false);
         }
-        return personas;
-
-    }*/
-
-
+    }
 }
 

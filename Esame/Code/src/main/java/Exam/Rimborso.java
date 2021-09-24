@@ -45,8 +45,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     private final JButton bcreate;
     private final JButton check;
     private final JButton delete;
+    private final JButton srcat;
     private final JComboBox<Integer> cbn;
-    private final JTextField tcf;
+    public static JTextField tcf;
     private final JComboBox<String> jc;
 
     private final JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
@@ -60,7 +61,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     public Rimborso() {
 
         days = new JTextField("");
-        tcf = new JTextField("");
+        tcf = new javax.swing.JTextField("");
         tcf.addKeyListener(this);
         tfdate =new JTextField("");
 
@@ -71,6 +72,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
         p1.add(new JLabel("CF"),SwingConstants.CENTER);
         p1.add(tcf);
+        srcat =new JButton("Search");
+        srcat.setSize(4,4);
+        srcat.addActionListener(this);
+        p1.add(srcat);
         check =new JButton("check");
         check.setSize(4,4);
         check.addActionListener(this);
@@ -119,16 +124,15 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         bcreate= new JButton ("Crea Tabella");
         bcreate.addActionListener(this);
         pbutton.add(bcreate);
-        bPdf =new JButton("Genera Pdf");
-        bPdf.addActionListener(this);
-        pbutton.add(bPdf);
-        JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
-        pbutton.add(label);
-        pbutton.add(tfdate);
         delete = new JButton("Ripulisci Tabella");
         delete.addActionListener(this);
         pbutton.add(delete);
-
+        JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
+        pbutton.add(label);
+        pbutton.add(tfdate);
+        bPdf =new JButton("Genera Pdf");
+        bPdf.addActionListener(this);
+        pbutton.add(bPdf);
 
         p4.add(pbutton,BorderLayout.PAGE_END);
 
@@ -183,7 +187,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
             Chunk c =new Chunk("Dichiaro di ricevere da SPORTINSIEME A.S.D. per i titoli riportati e relativi al periodo " + dateList[0] + "-" + dateList[numAll-1] + " e comunque riferentesi "+
-            "ad attivit\u00E0 sportiva dilettantistica (Leggi n.342/2000 e 289/2002) le somme indicate in calce", FontFactory.getFont(FontFactory.HELVETICA,8));
+                    "ad attivit\u00E0 sportiva dilettantistica (Leggi n.342/2000 e 289/2002) le somme indicate in calce", FontFactory.getFont(FontFactory.HELVETICA,8));
             Paragraph p2 = new Paragraph(c);
             p2.setAlignment(Element.ALIGN_CENTER);
             document.add(p2);
@@ -215,7 +219,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                     File myFile = new File(file_name);
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
-                   System.out.println(ex);
+                    System.out.println(ex);
                 }
             }
 
@@ -227,7 +231,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         if (e.getSource()==this.bPdf) {
+        if (e.getSource()==this.bPdf) {
             try {
                 Persona atleta = checkCF();
                 Generate_PDF(atleta);
@@ -242,10 +246,17 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             dateList =new String[numAll];
 
         }
+        else if (e.getSource() == this.srcat){
+            SearchFrame a = new SearchFrame();
+            tcf.setText(SearchFrame.tfcf.getText());
+            a.setVisible(true);
+            /**
+             * riga di debug
+             * System.out.println(tcf.getText());
+             * **/
+        }
         else if (e.getSource()== this.check){
             try {
-                SearchFrame a = new SearchFrame();
-                tcf.setText(a.toString());
                 Persona atleta = checkCF();
 
                 if (atleta == null){
@@ -347,13 +358,19 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     }
 
     public JTable crtTable(){
-        System.out.println(numAll);
+        /**
+         * System.out.println(numAll); riga debug nostro
+         **/
         table = new JTable();
         DefaultTableModel model =new DefaultTableModel(columnNames,0);
         dateList =new String[numAll];
         for (int i =0; i< numAll;i++) {
             dateList[i]=checkInDatePicker[i].getJFormattedTextField().getText();
-            System.out.println(dateList[i]); //solo per controllo nel debug
+            /**
+             *    per nostro controllo
+             *    System.out.println(dateList[i]);
+             */
+
             model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento","30,00"});
             checkInDatePicker[i].getJFormattedTextField().setText("");
         }
