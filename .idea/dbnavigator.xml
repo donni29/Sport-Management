@@ -71,6 +71,12 @@ orario_pomeriggio varchar (50)
 insert  into "Struttura" (nome,via,num_telefono,orario_mattina,orario_pomeriggio) 
 values ("Tazio Nuvolari","via fratelli cervi 5 ,Savignano Sul Panaro","3468523354","8:30","16:30");
 
+insert  into "Struttura" (nome,via,num_telefono,orario_mattina,orario_pomeriggio) 
+values ("Poggio","via giovanni falcone 10 vignola,Modena","3483050565","8:30","16:30");
+
+insert  into "Struttura" (nome,via,num_telefono,orario_mattina,orario_pomeriggio) 
+values ("Bosco saliceta","Modena","3341256354","8:30","16:30");
+
 select  * from "Struttura"]]></console>
     </connection>
   </component>

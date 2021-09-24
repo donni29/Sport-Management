@@ -21,7 +21,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public static  String[] Posti = {"Modena","Carpi","Cesena","Bologna","Sassuolo"};
+    public static  String[] Posti = {"Poggio","Tazio Nuvolari","Bosco saliceta"};
     private JPanel Strutture;
     JComboBox<String> jc;
     private JTextArea tel;
@@ -31,11 +31,13 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
     private  JTextArea nome;
 
     public StrutturaPanel() {
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10,10));
         jc = new JComboBox(Posti);
         jc.setEditable(true);
         jc.addActionListener(this);
-        jc.setSize(4,4);
+        jc.setSize(1,1);
+        Font font1 = new Font("Helvetica", Font.ITALIC, 15);
+        jc.setFont(font1);
 
         JPanel p1 = new JPanel(new GridLayout(1, 2,1,1));
         JLabel titolo =  new JLabel("Seleziona Struttura :");
@@ -62,36 +64,23 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         p3.add(l2);
         p3.add(Ind);
 
-        JLabel l3 = new JLabel("Ora Mattina");
+        JLabel l3 = new JLabel("Orario Mattina");
          Ora_ap = new JTextArea();
         p3.add(l3);
         p3.add(Ora_ap);
 
-        JLabel l4 = new JLabel("Ora Mattina");
+        JLabel l4 = new JLabel("Orario Pomeriggio");
         Ora_ch = new JTextArea();
         p3.add(l4);
         p3.add(Ora_ch);
 
-
-        //p2.setPreferredSize(new Dimension(450,110));
         p2.add(p3);
-        /*Text = new JTextArea();
-        JScrollPane sc = new JScrollPane(Text);
-        sc.setPreferredSize( new Dimension(450,110));
-        p2.add(sc);*/
 
 
 
-
-
-
-
-        Strutture = new JPanel();
-        Strutture.setLayout(new GridLayout(1,2,100,50));
-
-        Strutture.add(p1);
-        Strutture.add(p2);
-        add(Strutture,BorderLayout.NORTH);
+        add(p1,BorderLayout.NORTH);
+        add(p2,BorderLayout.CENTER);
+        //setBackground();
         setVisible(true);
 
     }
@@ -159,8 +148,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         Statement statement = DBManager.getConnection().createStatement();
         Struttura Posto = null;
         try{
-            String query1 = String.format("SELECT * FROM STRUTTURA WHERE nome like '%s'",
-                    nome.getText());
+            String query1 = String.format("SELECT * FROM STRUTTURA WHERE nome like '%s'",jc.getSelectedItem());
             ResultSet rs =statement.executeQuery(query1);
             while(rs.next()){
                 Posto = new Struttura(rs.getString("nome"),
@@ -169,6 +157,12 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
                         rs.getString("orario_mattina"),
                         rs.getString("orario_pomeriggio")
                 );
+                nome.setText(Posto.getNome());
+                tel.setText(Posto.getNum_telefono());
+                Ind.setText(Posto.getVia());
+                Ora_ap.setText(Posto.getOrario_mattina());
+                Ora_ch.setText(Posto.getOrario_pomeriggio());
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

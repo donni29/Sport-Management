@@ -170,7 +170,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 setVisible(true);
             }
             if(e.getSource() == this.Strutture){
-                StrutturaPanel st = new StrutturaPanel();
+                    StrutturaPanel st = new StrutturaPanel();
                 setContentPane(st);
                 setVisible(true);
             }
