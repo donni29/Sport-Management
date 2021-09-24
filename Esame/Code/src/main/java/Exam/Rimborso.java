@@ -69,7 +69,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         setLayout(new BorderLayout());
         jc = new JComboBox(options);
         JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
-        p1.add(new JLabel("CF"));
+        p1.add(new JLabel("CF"),SwingConstants.CENTER);
         p1.add(tcf);
         check =new JButton("check");
         check.setSize(4,4);
@@ -115,22 +115,22 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
         p4.add(pane,BorderLayout.WEST);
 
-        JPanel pbutton =new JPanel();
+        JPanel pbutton =new JPanel(new GridLayout(3,2));
         bcreate= new JButton ("Crea Tabella");
         bcreate.addActionListener(this);
         pbutton.add(bcreate);
         bPdf =new JButton("Genera Pdf");
         bPdf.addActionListener(this);
         pbutton.add(bPdf);
-        delete = new JButton("Elimina Tabella");
-        delete.addActionListener(this);
-        pbutton.add(delete);
-        JLabel label = new JLabel("Data Pagamento:");
+        JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
         pbutton.add(label);
         pbutton.add(tfdate);
+        delete = new JButton("Ripulisci Tabella");
+        delete.addActionListener(this);
+        pbutton.add(delete);
 
-        p4.add(pbutton,BorderLayout.EAST);
 
+        p4.add(pbutton,BorderLayout.PAGE_END);
 
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
@@ -244,6 +244,8 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
         else if (e.getSource()== this.check){
             try {
+                SearchFrame a = new SearchFrame();
+                tcf.setText(a.toString());
                 Persona atleta = checkCF();
 
                 if (atleta == null){
@@ -363,5 +365,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
         return table;
     }
+
 }
 

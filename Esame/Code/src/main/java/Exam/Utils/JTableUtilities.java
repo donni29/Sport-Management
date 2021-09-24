@@ -16,5 +16,4 @@ public class JTableUtilities {
             table.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
     }
-
 }
