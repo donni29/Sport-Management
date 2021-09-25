@@ -148,7 +148,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
             document.open();
-            Paragraph para = new Paragraph(person.toString2());
+            Paragraph para = new Paragraph(person.toString());
             Paragraph p = new Paragraph(Utils.Intestazione);
             p.setAlignment(Element.ALIGN_RIGHT);
 
@@ -282,7 +282,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("tipo"),
                         rs.getString("luogo_nascita"),
                         rs.getString("data_nascita"),
-                        rs.getString("città_residenza"),
+                        rs.getString("residenza"),
                         rs.getString("CF"),
                         rs.getString("sport"),
                         rs.getString("squadra")

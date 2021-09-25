@@ -8,18 +8,18 @@ public class Persona {
     String tipo;
     String luogo_nascita;
     String data_nascita;
-    String citta_residenza;
+    String residenza;
     String CF;
     String sport;
     String squadra;
 
-    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String citta_residenza, String CF, String sport, String squadra) {
+    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String residenza, String CF, String sport, String squadra) {
         this.nome = nome;
         this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
         this.data_nascita =data_nascita;
-        this.citta_residenza = citta_residenza;
+        this.residenza = residenza;
         this.CF = CF;
         this.sport =sport;
         this.squadra=squadra;
@@ -65,12 +65,12 @@ public class Persona {
         this.data_nascita = data_nascita;
     }
 
-    public String getCitta_residenza() {
-        return citta_residenza;
+    public String getResidenza() {
+        return residenza;
     }
 
-    public void setCitta_residenza(String citta_residenza) {
-        this.citta_residenza = citta_residenza;
+    public void setResidenza(String residenza) {
+        this.residenza = residenza;
     }
 
     public String getCF() {
@@ -97,7 +97,6 @@ public class Persona {
         this.squadra = squadra;
     }
 
-
     @Override
     public String toString() {
         return "Persona{" +
@@ -105,16 +104,11 @@ public class Persona {
                 ", cognome='" + cognome + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
-                ", data_nascita=" + data_nascita +
-                ", citta_residenza='" + citta_residenza + '\'' +
+                ", data_nascita='" + data_nascita + '\'' +
+                ", residenza='" + residenza + '\'' +
                 ", CF='" + CF + '\'' +
                 ", sport='" + sport + '\'' +
                 ", squadra='" + squadra + '\'' +
                 '}';
-    }
-
-    public String toString2(){
-        return  nome + "\n" + cognome + "\n" +"NATO A: "+ luogo_nascita + "\n" +"IL: " +
-                data_nascita + "\n" + "RESIDENTE A: " + citta_residenza + "\n" +"CF: "+ CF;
     }
 }

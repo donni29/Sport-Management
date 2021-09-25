@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PersonaTableModel extends AbstractTableModel {
 
-    private final String[] ColumnNames ={"Nome","Cognome","Tipo","Luogo di Nascita"," Data di Nascita","<html>Citt\u00E0 di Residenza","CF","Sport","squadra"};
+    private final String[] ColumnNames ={"Nome","Cognome","Tipo","Luogo di Nascita"," Data di Nascita","Residenza","CF","Sport","squadra"};
     private final List<Persona> personaList;
 
     public PersonaTableModel(List<Persona> personaList) {
@@ -30,7 +30,7 @@ public class PersonaTableModel extends AbstractTableModel {
             case 2 -> personaList.get(rowIndex).getTipo();
             case 3 -> personaList.get(rowIndex).getLuogo_nascita();
             case 4 -> personaList.get(rowIndex).getData_nascita();
-            case 5 -> personaList.get(rowIndex).getCitta_residenza();
+            case 5 -> personaList.get(rowIndex).getResidenza();
             case 6 -> personaList.get(rowIndex).getCF();
             case 7 -> personaList.get(rowIndex).getSport();
             case 8 -> personaList.get(rowIndex).getSquadra();
