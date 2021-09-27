@@ -10,7 +10,7 @@ public class Utils {
 
         public static String JDBC_Driver ="org.sqlite.JDBC";
         public static String JDBC_URL =String.format("jdbc:sqlite:%s",
-                Paths.get(Utils.examdir(), "exam.sqlite").toString());
+                Paths.get(Utils.examdir(), "exam.sqlite"));
         static Connection connection;
         public static String Intestazione = "Societ\u00E0/Associazione" + "\n" + "SPORTINSIEME A.S.D" + "\n" + "Via Don Reverberi,17/B" + "\n"+ "42014 Castellarano RE" +
             "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
