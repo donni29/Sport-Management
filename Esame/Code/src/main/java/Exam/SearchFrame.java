@@ -34,17 +34,17 @@ public class SearchFrame extends JFrame implements ActionListener {
 
         setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(1, 3));
+        JPanel panel = new JPanel(new GridLayout(1, 3,5,5));
         panel.setAlignmentY(Component.CENTER_ALIGNMENT);
         panel.add(new Label("Insert Cognome: "));
         panel.add(tfserach);
         panel.add(bsearch);
 
-        JPanel panel1 = new JPanel(new GridLayout(1, 2));
+        JPanel panel1 = new JPanel(new GridLayout(1, 2,5,5));
         panel1.add(tfcf);
         panel1.add(binsert);
 
-        JPanel panel2 = new JPanel(new BorderLayout());
+        JPanel panel2 = new JPanel(new BorderLayout(10,5));
         panel2.add(panel, BorderLayout.NORTH);
         panel2.add(panel1, BorderLayout.PAGE_END);
 
