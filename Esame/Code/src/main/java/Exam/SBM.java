@@ -27,6 +27,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
     private static JMenu Strutture;
+    private static JMenuItem CambiaPsw;
 
     DB_Model model;
 
@@ -42,6 +43,9 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         menuBar.add(Rimborso);
         Strutture.addMenuListener(this);
         menuBar.add(Strutture);
+        menuBar.add(Box.createHorizontalGlue());
+        JMenu Impostazioni = new JMenu("Impostazioni");
+        menuBar.add(Impostazioni);
 
 
         setContentPane(new DesktopTop());
@@ -53,7 +57,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
 
-        //parte codice menu Archivio//
+        //parte codice menu Archivio
 
         Atleti = new JMenuItem("Atleti");
         Atleti.addActionListener(this);
@@ -71,7 +75,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         close.addActionListener(this);
         Archivio.add(close);
 
-        //parte codice menu Rimborso//
+        //parte codice menu Rimborso
         Nuovo = new JMenuItem("Nuovo...");
         Nuovo.addActionListener(this);
         Rimborso.add(Nuovo);
@@ -80,7 +84,10 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         Open.addActionListener(this);
         Rimborso.add(Open);
 
-        textArea = new JTextArea("");
+        // parte di menù Impostazioni
+        CambiaPsw = new JMenuItem("Cambia Password");
+        CambiaPsw.addActionListener(this);
+        Impostazioni.add(CambiaPsw);
 
         setJMenuBar(menuBar);
 
@@ -173,6 +180,9 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 StrutturaPanel st = new StrutturaPanel();
                 setContentPane(st);
                 setVisible(true);
+            }
+            if (e.getSource() == this.CambiaPsw){
+
             }
         }
 

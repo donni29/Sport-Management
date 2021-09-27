@@ -16,7 +16,8 @@ public class Utils {
             "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
 
         public static String User = "Elisa";
-        public static String Password = "insieme";
+        public static String Passcode = "insieme";
+        public static StringBuffer Password = new StringBuffer(Passcode);
 
     public static String examdir() {
             String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),
