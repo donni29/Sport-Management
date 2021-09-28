@@ -18,7 +18,7 @@ public class Change_User_Password extends JFrame {
     public Change_User_Password(int c) {
 
         setBounds(200,200,550,400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(20,20));
         setLocationRelativeTo(null);
         setVisible(true);
