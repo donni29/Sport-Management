@@ -30,8 +30,14 @@ public class DB_Model {
             statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, citt\u00E0_residenza,CF, sport,squadra) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle','14/02/2001','Reggio Emilia','0764352086F','Nuoto','Piscina Reggio Emilia')");
             statement.executeUpdate("CREATE TABLE Users (" + " User VARCHAR (40)," + "Password VARCHAR(50))");
             statement.executeUpdate("INSERT INTO Users (User,Password) VALUES ('Elisa','insieme')");
+            statement.executeUpdate("INSERT INTO Users (User,Password) VALUE ('rossi','nico')");
+            statement.executeUpdate("CREATE TABLE Rimborsi ("+" CF VARCHAR(50) PRIMARY KEY," + "N_Rimborsi INTEGER," + "Soldi_Ricevuti INTEGER");
+            statement.executeUpdate("INSERT INTO Rimborsi (CF) VALUES SELECT CF FROM Persona");
+            statement.executeUpdate("UPDATE Rimborsi SET N_rimborsi = 0, Soldi_Ricevuti = 0");
+
         }
     }
+/**tutto questo sotto da eliminare prima dell'esame pechè per ora non serve a nulla**/
 
     public Persona getSelectedItem() {
         try {
