@@ -2,6 +2,8 @@ package Exam;
 
 //questo è il nostro progetto, madonne//
 
+import Exam.Utils.Utils;
+
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -27,15 +29,16 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
     private static JMenu Strutture;
-    private static JMenu Modifica_Login;
     private static JMenuItem CambiaPsw;
     private static JMenuItem NewUser;
+    private static JMenuItem add_del_Sport;
 
     DB_Model model;
 
     public SBM() {
         super("Sport Business Management ");
 
+        Utils.List_init();
 
         JMenuBar menuBar = new JMenuBar();
         JMenu Archivio = new JMenu("Archivio");
@@ -88,17 +91,21 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         // parte di menù Impostazioni
 
-        Modifica_Login = new JMenu("Modifica Login...");
-        Modifica_Login.addActionListener(this);
-        Impostazioni.add(Modifica_Login);
+        JMenu modifica_Login = new JMenu("Modifica Login...");
+        modifica_Login.addActionListener(this);
+        Impostazioni.add(modifica_Login);
 
         NewUser = new JMenuItem("Aggiungi User");
         NewUser.addActionListener(this);
-        Modifica_Login.add(NewUser);
+        modifica_Login.add(NewUser);
 
         CambiaPsw = new JMenuItem("Cambia Password");
         CambiaPsw.addActionListener(this);
-        Modifica_Login.add(CambiaPsw);
+        modifica_Login.add(CambiaPsw);
+
+        add_del_Sport = new JMenuItem("Aggiungi/Elimina Sport");
+        add_del_Sport.addActionListener(this);
+        Impostazioni.add(add_del_Sport);
 
         setJMenuBar(menuBar);
 
@@ -116,13 +123,13 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.close) {
+        if (e.getSource() == close) {
             DesktopTop desktopTop    = new DesktopTop();
             setContentPane(desktopTop);
             setVisible(true);
 
         } else {
-            if (e.getSource() == this.Open) {
+            if (e.getSource() == Open) {
                 JFileChooser openSource = new JFileChooser();
 
                 int option = openSource.showOpenDialog(this);
@@ -145,7 +152,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                     }
                 }
             }
-            if (e.getSource() == this.Atleti) {
+            if (e.getSource() == Atleti) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Atleta'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -158,7 +165,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
 
             }
-            if (e.getSource() == this.Allenatori) {
+            if (e.getSource() == Allenatori) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Allenatore'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -169,7 +176,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                     throwables.printStackTrace();
                 }
             }
-            if (e.getSource() == this.Dirigenti) {
+            if (e.getSource() == Dirigenti) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Dirigente'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -181,21 +188,24 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 }
 
             }
-            if (e.getSource() == this.Nuovo) {
+            if (e.getSource() == Nuovo) {
                 Rimborso rim = new Rimborso();
                 setContentPane(rim);
                 setVisible(true);
             }
-            if(e.getSource() == this.Strutture){
+            if(e.getSource() == Strutture){
                 StrutturaPanel st = new StrutturaPanel();
                 setContentPane(st);
                 setVisible(true);
             }
-            if (e.getSource() == this.NewUser){
-                Change_User_Password changeUserPassword = new Change_User_Password(0);
+            if (e.getSource() == NewUser){
+                new Change_User_Password_Sport(0);
             }
-            if (e.getSource() == this.CambiaPsw){
-                Change_User_Password changeUserPassword =new Change_User_Password(1);
+            if (e.getSource() == CambiaPsw){
+                new Change_User_Password_Sport(1);
+            }
+            if(e.getSource() == add_del_Sport){
+                new Change_User_Password_Sport(2);
             }
         }
     }
@@ -203,7 +213,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
     @Override
     public void menuSelected(MenuEvent e) {
-        if (e.getSource() == this.Strutture) {
+        if (e.getSource() == Strutture) {
             StrutturaPanel st = new StrutturaPanel();
             setContentPane(st);
             setVisible(true);

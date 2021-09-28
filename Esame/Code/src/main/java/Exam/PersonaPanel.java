@@ -24,14 +24,13 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JButton btnUpdate;
     private final JTextField tfNome;
     private final JTextField tfcognome;
-    private final JTextField tftipo;
     private final JTextField tfdatanascita;
     private final JTextField tfluogonascita;
     private final JTextField tfcittadiresidenza;
-    private final JTextField tfCF;
-    private final JTextField tfsport;
+    private final JTextField tfCF;;
     private final JTextField tfsquadra;
     private final JComboBox<String> cbtipo;
+    private final JComboBox<String> cbsport;
     private JTable table;
     private PersonaTableModel tableModel;
 
@@ -59,8 +58,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
         cbtipo =new JComboBox<>(options);
         cbtipo.addActionListener(this);
-        tftipo = new JTextField();
-        tftipo.addActionListener(this);
         tfNome = new JTextField();
         tfNome.addActionListener(this);
         tfcognome = new JTextField();
@@ -74,8 +71,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfCF = new JTextField();
         tfCF.addActionListener(this);
         tfCF.addKeyListener(this);
-        tfsport = new JTextField();
-        tfsport.addActionListener(this);
+        cbsport =new JComboBox(Utils.options.toArray());
+        cbsport.addActionListener(this);
         tfsquadra = new JTextField();
         tfsquadra.addActionListener(this);
 
@@ -97,7 +94,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(new JLabel("CF"));
         p1.add(tfCF);
         p1.add(new JLabel("Sport"));
-        p1.add(tfsport);
+        p1.add(cbsport);
         p1.add(new JLabel("Squadra"));
         p1.add(tfsquadra);
 
@@ -179,12 +176,12 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
         tfNome.setText(person.getNome());
         tfcognome.setText(person.getCognome());
-        tftipo.setText(person.getTipo());
-        tfdatanascita.setText(person.getData_nascita().toString());
+        cbtipo.setSelectedItem(person.getTipo());
+        tfdatanascita.setText(person.getData_nascita());
         tfluogonascita.setText(person.getLuogo_nascita());
         tfcittadiresidenza.setText(person.getCitta_residenza());
         tfCF.setText(person.getCF());
-        tfsport.setText(person.getSport());
+        cbsport.setSelectedItem(person.getSport());
         tfsquadra.setText(person.getSquadra());
 
     }
@@ -254,7 +251,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 tfdatanascita.getText(),
                 tfcittadiresidenza.getText(),
                 tfCF.getText().toUpperCase(),
-                tfsport.getText(),
+                cbsport.getSelectedItem(),
                 tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
@@ -279,7 +276,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     public void FilterPersona(String query1) throws SQLException{
         Statement statement = DBManager.getConnection().createStatement();
         String query =String.format(query1 + " WHERE sport like '%s'",// AND squadra like '%s'",
-                tfsport.getText());
+                cbsport.getSelectedItem());
                 //tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
@@ -299,7 +296,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                     tfluogonascita.getText(),
                     tfdatanascita.getText(),
                     tfcittadiresidenza.getText(),
-                    tfsport.getText(),
+                    cbsport.getSelectedItem(),
                     tfsquadra.getText(),
                     tfCF.getText());
             statement.executeUpdate(query);
@@ -314,7 +311,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfcognome.setText("");
         tfdatanascita.setText("");
         tfluogonascita.setText("");
-        tfsport.setText("");
+        cbsport.setSelectedItem(Utils.options.toArray());
         tfcittadiresidenza.setText("");
         tfsquadra.setText("");
         tfCF.setText("");

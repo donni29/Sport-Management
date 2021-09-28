@@ -1,6 +1,7 @@
 package Exam;
 
 import Exam.Utils.DBManager;
+import Exam.Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,14 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Change_User_Password extends JFrame {
+public class Change_User_Password_Sport extends JFrame {
 
     private  static JTextField txtUsername;
     private static JPasswordField txtPassword;
     private static JPasswordField txtPassword1;
     private static JPasswordField txtNewPassword;
+    private static JTextField txinsert;
+    private static JComboBox<String> cbdelete;
 
-    public Change_User_Password(int c) {
+    public Change_User_Password_Sport(int c) {
 
         setBounds(200,200,550,400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -25,6 +28,7 @@ public class Change_User_Password extends JFrame {
 
         switch (c) {
             case 0 -> {
+
                 JLabel lbname = new JLabel("ADD NEW USER");
                 lbname.setHorizontalAlignment(SwingConstants.CENTER);
                 lbname.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -145,7 +149,7 @@ public class Change_User_Password extends JFrame {
 
                 txtUsername = new JTextField();
                 txtUsername.setFont(new Font("Tahoma", Font.BOLD, 18));
-                txtUsername.setBounds(240, 100, 80, 20);
+                txtUsername.setBounds(240, 163, 80, 20);
                 panel.add(txtUsername);
 
                 JLabel lbpassword = new JLabel("Password:", SwingConstants.CENTER);
@@ -224,6 +228,59 @@ public class Change_User_Password extends JFrame {
                 });
                 getContentPane().add(btnchange, BorderLayout.PAGE_END);
 
+            }
+            case 2->{
+                setBounds(200,200,500,120);
+                setLocationRelativeTo(null);
+
+                JPanel panel1 = new JPanel(new GridLayout(1,3,10,20));
+                panel1.setBounds(30,30,330,180);
+
+                JLabel lbinsert = new JLabel("Inserisci Sport",SwingConstants.CENTER);
+                lbinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
+                lbinsert.setSize(90 , 60);
+                panel1.add(lbinsert);
+
+                txinsert = new JTextField("",SwingConstants.CENTER);
+                txinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
+                txinsert.setSize(90,60);
+                panel1.add(txinsert);
+
+                JButton btinsert = new JButton("Insert");
+                btinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
+                btinsert.setSize(90,60);
+                btinsert.addActionListener(e->{
+                    String sport = txinsert.getText();
+                    Utils.options.add(sport);
+                    dispose();
+                });
+                panel1.add(btinsert);
+
+                JPanel panel2 = new JPanel(new GridLayout(1,3,10,20));
+                panel2.setBounds(30,30,330,180);
+
+                JLabel lbdelete = new JLabel("Elimina Sport",SwingConstants.CENTER);
+                lbdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
+                lbdelete.setSize(90 , 60);
+                panel2.add(lbdelete);
+
+                cbdelete = new JComboBox(Utils.options.toArray());
+                cbdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
+                cbdelete.setSize(90,60);
+                panel2.add(cbdelete);
+
+                JButton btdelete = new JButton("Delete");
+                btdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
+                btdelete.setSize(90,60);
+                btdelete.addActionListener(e->{
+                   int index = cbdelete.getSelectedIndex();
+                   Utils.options.remove(index);
+                   dispose();
+                });
+                panel2.add(btdelete);
+
+                add(panel1,BorderLayout.NORTH);
+                add(panel2,BorderLayout.CENTER);
             }
         }
     }

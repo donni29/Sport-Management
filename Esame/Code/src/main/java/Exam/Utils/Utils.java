@@ -3,7 +3,7 @@ package Exam.Utils;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
-import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Utils {
@@ -11,13 +11,21 @@ public class Utils {
         public static String JDBC_Driver ="org.sqlite.JDBC";
         public static String JDBC_URL =String.format("jdbc:sqlite:%s",
                 Paths.get(Utils.examdir(), "exam.sqlite"));
-        static Connection connection;
         public static String Intestazione = "Societ\u00E0/Associazione" + "\n" + "SPORTINSIEME A.S.D" + "\n" + "Via Don Reverberi,17/B" + "\n"+ "42014 Castellarano RE" +
             "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
 
-        public static String User = "Elisa";
-        public static String Passcode = "insieme";
-        public static StringBuffer Password = new StringBuffer(Passcode);
+        public static ArrayList<String> options = new ArrayList<>();
+
+
+        public static void List_init(){
+            String s1 ="Ciclismo";
+            String s2 = "Podismo";
+            String s3 = "Calcio";
+            options.add(s1);
+            options.add(s2);
+            options.add(s3);
+        }
+
 
     public static String examdir() {
             String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),

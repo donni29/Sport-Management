@@ -33,7 +33,6 @@ import java.util.Properties;
 
 
 public  class Rimborso extends JPanel implements ActionListener, KeyListener {
-    public static String[] options = {"Ciclismo", "Podismo", "Calcio"};
     private final String[] columnNames ={"Data","Localit\u00E0","Campionato","Titolo Prestazione","Compenso"};
     public static Integer[] num ={8,6};
 
@@ -68,7 +67,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
         setLayout(new BorderLayout());
-        jc = new JComboBox(options);
+        jc = new JComboBox(Utils.options.toArray());
         JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
         p1.add(new JLabel("CF"),SwingConstants.CENTER);
         p1.add(tcf);

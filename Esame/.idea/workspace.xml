@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="Loginsql + impostazioni">
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="Loginsql + plus impostazioni + table Rimborsi +">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password_Sport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +148,7 @@
       <module name="Esame.Code.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Exam.*" />
+          <option name="PATTERN" value="Exam.Change_User_Password_Sport" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -205,13 +218,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00006" summary="prova2">
-      <created>1621946724429</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1621946724429</updated>
     </task>
     <task id="LOCAL-00007" summary="prova2">
       <created>1621951455551</created>
@@ -549,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632836179498</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Loginsql + impostazioni + table Rimborsi">
+      <created>1632838383229</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1632838383229</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,8 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="iooo20/07" />
-    <MESSAGE value="nooooooo" />
     <MESSAGE value="provaSQl" />
     <MESSAGE value="ArchivioRight" />
     <MESSAGE value="26/07" />
@@ -591,7 +602,9 @@
     <MESSAGE value="SearcheFrame final" />
     <MESSAGE value="Login" />
     <MESSAGE value="Loginsql + impostazioni" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loginsql + impostazioni" />
+    <MESSAGE value="Loginsql + impostazioni + table Rimborsi" />
+    <MESSAGE value="Loginsql + plus impostazioni + table Rimborsi +" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loginsql + plus impostazioni + table Rimborsi +" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
