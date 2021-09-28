@@ -194,10 +194,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
             document.add(new Paragraph(" "));
 
-            Chunk c1 =new Chunk("Nel corso dell'anno solare 2021 dichiaro inoltre di:\n" +
-                    "[ ] non aver percepito alla data odierna compensi della stessa natura.\n" +
-                    "[ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 10.000,00, ma inferiori a Euro 28.158,28\n" +
-                    "[ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28",FontFactory.getFont(FontFactory.HELVETICA,9));
+            Chunk c1 =new Chunk("""
+                    Nel corso dell'anno solare 2021 dichiaro inoltre di:
+                    [ ] non aver percepito alla data odierna compensi della stessa natura.
+                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 10.000,00, ma inferiori a Euro 28.158,28
+                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28""",FontFactory.getFont(FontFactory.HELVETICA,9));
             document.add(c1);
             document.add(new Paragraph(" "));
 
@@ -219,7 +220,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                     File myFile = new File(file_name);
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
-                    System.out.println(ex);
+                    ex.printStackTrace();
                 }
             }
 
@@ -250,10 +251,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             SearchFrame a = new SearchFrame();
             tcf.setText(SearchFrame.tfcf.getText());
             a.setVisible(true);
-            /**
-             * riga di debug
-             * System.out.println(tcf.getText());
-             * **/
         }
         else if (e.getSource()== this.check){
             try {
@@ -293,7 +290,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("tipo"),
                         rs.getString("luogo_nascita"),
                         rs.getString("data_nascita"),
-                        rs.getString("città_residenza"),
+                        rs.getString("citt\u00E0_residenza"),
                         rs.getString("CF"),
                         rs.getString("sport"),
                         rs.getString("squadra")
@@ -358,18 +355,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     }
 
     public JTable crtTable(){
-        /**
-         * System.out.println(numAll); riga debug nostro
-         **/
         table = new JTable();
         DefaultTableModel model =new DefaultTableModel(columnNames,0);
         dateList =new String[numAll];
         for (int i =0; i< numAll;i++) {
             dateList[i]=checkInDatePicker[i].getJFormattedTextField().getText();
-            /**
-             *    per nostro controllo
-             *    System.out.println(dateList[i]);
-             */
 
             model.addRow(new Object[]{dateList[i],"Castellarano",jc.getSelectedItem(),"Allenamento","30,00"});
             checkInDatePicker[i].getJFormattedTextField().setText("");
