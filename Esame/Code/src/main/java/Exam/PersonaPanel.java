@@ -135,7 +135,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                                 rs.getString("tipo"),
                                 rs.getString("luogo_nascita"),
                                 rs.getString("data_nascita"),
-                                rs.getString("città_residenza"),
+                                rs.getString("citt\u00E0_residenza"),
                                 rs.getString("CF"),
                                 rs.getString("sport"),
                                 rs.getString("squadra")
@@ -238,6 +238,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
             System.out.println(e);
+            e.printStackTrace();
         }
 
     }
@@ -245,7 +246,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     public void InsertPersona() throws SQLException {
 
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,città_residenza,CF,sport,squadra) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,citt\u00E0_residenza,CF,sport,squadra) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 tfNome.getText(),
                 tfcognome.getText(),
                 cbtipo.getSelectedItem(),
@@ -291,7 +292,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     public  void UpdatePersona() throws SQLException{
             Statement statement = DBManager.getConnection().createStatement();
-            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',città_residenza = '%s',sport ='%s',squadra ='%s' WHERE CF like '%s'",
+            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',citt\u00E0_residenza = '%s',sport ='%s',squadra ='%s' WHERE CF like '%s'",
                     tfNome.getText(),
                     tfcognome.getText(),
                     cbtipo.getSelectedItem(),

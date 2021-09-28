@@ -1,34 +1,34 @@
+Exam/StrutturaPanel.java
+ Exam.StrutturaPanel
 Exam/Utils/Persona.java
  Exam.Utils.Persona
-Exam/Utils/JTableUtilities.java
- Exam.Utils.JTableUtilities
-Exam/Utils/Struttura.java
- Exam.Utils.Struttura
-Exam/ExamTest.java
- Exam.ExamTest
-Exam/Utils/DBManager.java
- Exam.Utils.DBManager
-Exam/Utils/PersonaTableModel.java
- Exam.Utils.PersonaTableModel
-Exam/SearchFrame.java
- Exam.SearchFrame
- Exam.SearchFrame$1
 Exam/Utils/Utils.java
  Exam.Utils.Utils
 Exam/Rimborso.java
  Exam.Rimborso
  Exam.Rimborso$DateLabelFormatter
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
-Exam/ArchivioPanel.java
- Exam.ArchivioPanel
+Exam/Utils/DBManager.java
+ Exam.Utils.DBManager
+Exam/ExamTest.java
+ Exam.ExamTest
+Exam/DB_Model.java
+ Exam.DB_Model
+Exam/Utils/JTableUtilities.java
+ Exam.Utils.JTableUtilities
 Exam/PersonaPanel.java
  Exam.PersonaPanel
  Exam.PersonaPanel$1
-Exam/DB_Model.java
- Exam.DB_Model
+Exam/Utils/Struttura.java
+ Exam.Utils.Struttura
+Exam/SearchFrame.java
+ Exam.SearchFrame
+ Exam.SearchFrame$1
+Exam/Utils/PersonaTableModel.java
+ Exam.Utils.PersonaTableModel
 Exam/Login.java
  Exam.Login
+Exam/Change_User_Password.java
+ Exam.Change_User_Password
 Exam/SBM.java
  Exam.DesktopTop
  Exam.SBM

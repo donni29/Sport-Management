@@ -18,7 +18,7 @@ import java.util.Objects;
 public class SBM extends JFrame implements ActionListener, MenuListener {
     @Serial
     private static final long serialVersionUID = 1L;
-    public static JMenu openArchivio;
+    private static JMenu openArchivio;
     private static JMenuItem close;
     private static JMenuItem Atleti;
     private static JMenuItem Allenatori;
@@ -27,7 +27,9 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem Nuovo;
     private static JTextArea textArea;
     private static JMenu Strutture;
+    private static JMenu Modifica_Login;
     private static JMenuItem CambiaPsw;
+    private static JMenuItem NewUser;
 
     DB_Model model;
 
@@ -54,7 +56,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
-        openArchivio.addActionListener(this);
+        //openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
 
         //parte codice menu Archivio
@@ -85,12 +87,20 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         Rimborso.add(Open);
 
         // parte di menù Impostazioni
+
+        Modifica_Login = new JMenu("Modifica Login...");
+        Modifica_Login.addActionListener(this);
+        Impostazioni.add(Modifica_Login);
+
+        NewUser = new JMenuItem("Aggiungi User");
+        NewUser.addActionListener(this);
+        Modifica_Login.add(NewUser);
+
         CambiaPsw = new JMenuItem("Cambia Password");
         CambiaPsw.addActionListener(this);
-        Impostazioni.add(CambiaPsw);
+        Modifica_Login.add(CambiaPsw);
 
         setJMenuBar(menuBar);
-
 
         setSize(1000,600);
         setExtendedState(MAXIMIZED_BOTH);
@@ -100,7 +110,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         try {
             model = new DB_Model();
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
     }
@@ -181,12 +191,15 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 setContentPane(st);
                 setVisible(true);
             }
+            if (e.getSource() == this.NewUser){
+                Change_User_Password changeUserPassword = new Change_User_Password(0);
+            }
             if (e.getSource() == this.CambiaPsw){
-
+                Change_User_Password changeUserPassword =new Change_User_Password(1);
             }
         }
-
     }
+
 
     @Override
     public void menuSelected(MenuEvent e) {
