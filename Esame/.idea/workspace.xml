@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="tablesport2.0 + risolto problema primo login" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="tablesport2.0 + risolto problema primo login">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,13 +204,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Changes by nicor">
-      <created>1625065690044</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1625065690044</updated>
     </task>
     <task id="LOCAL-00011" summary="provo io2">
       <created>1625065699807</created>
@@ -546,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632930484378</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="tablesport2.0 + risolto problema primo login">
+      <created>1632930740066</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1632930740066</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
