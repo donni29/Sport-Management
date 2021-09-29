@@ -15,8 +15,13 @@ public class Utils {
         public static String JDBC_Driver ="org.sqlite.JDBC";
         public static String JDBC_URL =String.format("jdbc:sqlite:%s",
                 Paths.get(Utils.examdir(), "exam.sqlite"));
-        public static String Intestazione = "Societ\u00E0/Associazione" + "\n" + "SPORTINSIEME A.S.D" + "\n" + "Via Don Reverberi,17/B" + "\n"+ "42014 Castellarano RE" +
-            "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
+        public static String Intestazione = """
+                Societ\u00E0/Associazione
+                SPORTINSIEME A.S.D
+                Via Don Reverberi,17/B
+                42014 Castellarano RE
+                P.Iva: 02510550359
+                CF: 02510550359""";
 
         /**per la prima installazione in teoria
         public static String User= "insieme";

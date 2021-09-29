@@ -20,20 +20,17 @@ import java.util.Objects;
 public class SBM extends JFrame implements ActionListener, MenuListener {
     @Serial
     private static final long serialVersionUID = 1L;
-    private static JMenu openArchivio;
     private static JMenuItem close;
     private static JMenuItem Atleti;
     private static JMenuItem Allenatori;
     private static JMenuItem Dirigenti;
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
-    private static JTextArea textArea;
     private static JMenu Strutture;
     private static JMenuItem CambiaPsw;
     private static JMenuItem NewUser;
     private static JMenuItem add_del_Sport;
 
-    DB_Model model;
 
     public SBM() {
         super("Sport Business Management ");
@@ -62,7 +59,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         setVisible(true);
 
 
-        openArchivio = new JMenu("Open Archivio di ...");
+        JMenu openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
         //openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
@@ -134,6 +131,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
                 int option = openSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
+                    JTextArea textArea = new JTextArea();
                     textArea.setText("");
 
                     try {
