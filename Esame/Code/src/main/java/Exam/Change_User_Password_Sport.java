@@ -191,7 +191,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btnchange.addActionListener(e -> {
 
                     try{
-                        Login.testconnection();
+                        //Login.testconnection();
                         Statement statement = DBManager.getConnection().createStatement();
                         String query = String.format("SELECT * FROM Users WHERE User = '%s' AND Password = '%s'",
                                 txtUsername.getText(),
@@ -250,8 +250,15 @@ public class Change_User_Password_Sport extends JFrame {
                 btinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
                 btinsert.setSize(90,60);
                 btinsert.addActionListener(e->{
-                    String sport = txinsert.getText();
-                    Utils.options.add(sport);
+                        try {
+                            Statement statement = DBManager.getConnection().createStatement();
+                            String query = String.format("INSERT INTO Sport VALUES ('%s')",
+                                    txinsert.getText());
+                            statement.executeUpdate(query);
+                            statement.close();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
                     dispose();
                 });
                 panel1.add(btinsert);
@@ -273,9 +280,16 @@ public class Change_User_Password_Sport extends JFrame {
                 btdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
                 btdelete.setSize(90,60);
                 btdelete.addActionListener(e->{
-                   int index = cbdelete.getSelectedIndex();
-                   Utils.options.remove(index);
-                   dispose();
+                  try{
+                      Statement statement = DBManager.getConnection().createStatement();
+                      String query = String.format("DELETE FROM Sport WHERE Sport = '%s'",
+                              cbdelete.getSelectedItem());
+                      statement.executeUpdate(query);
+                      statement.close();
+                  } catch (SQLException throwables) {
+                      throwables.printStackTrace();
+                  }
+                    dispose();
                 });
                 panel2.add(btdelete);
 

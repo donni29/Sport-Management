@@ -11,6 +11,7 @@ import java.sql.Statement;
 public class DB_Model {
     ResultSet rs;
     Statement statement;
+    Statement statement1;
 
 
     public DB_Model() throws SQLException {
@@ -18,6 +19,7 @@ public class DB_Model {
                  Utils.JDBC_Driver,
                  Utils.JDBC_URL);
         statement = DBManager.getConnection().createStatement();
+        statement1 = DBManager.getConnection().createStatement();
 
         try {
             statement.executeQuery("SELECT * FROM Persona");
@@ -34,7 +36,12 @@ public class DB_Model {
             statement.executeUpdate("CREATE TABLE Rimborsi ("+" CF VARCHAR(50) PRIMARY KEY," + "N_Rimborsi INTEGER," + "Soldi_Ricevuti INTEGER");
             statement.executeUpdate("INSERT INTO Rimborsi (CF) VALUES SELECT CF FROM Persona");
             statement.executeUpdate("UPDATE Rimborsi SET N_rimborsi = 0, Soldi_Ricevuti = 0");
-
+        }
+        try{
+            statement1.executeQuery("SELECT * FROM Sport");
+        }catch (SQLException e ){
+            statement1.executeUpdate("CREATE TABLE Sport (" + " Sport VARCHAR(50))");
+            statement1.executeUpdate("INSERT INTO Sport VALUES ('Ciclismo'),('Podismo'),('Calcio')");
         }
     }
 /**tutto questo sotto da eliminare prima dell'esame pechè per ora non serve a nulla**/

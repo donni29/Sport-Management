@@ -59,7 +59,9 @@ select * from "Persona" ;
 drop table "Persona";
 
 select * from "Users";
-drop  table "Users";]]></console>
+drop  table "Users";
+
+select  * from Sport;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

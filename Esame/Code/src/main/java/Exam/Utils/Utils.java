@@ -3,7 +3,11 @@ package Exam.Utils;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Utils {
@@ -14,16 +18,29 @@ public class Utils {
         public static String Intestazione = "Societ\u00E0/Associazione" + "\n" + "SPORTINSIEME A.S.D" + "\n" + "Via Don Reverberi,17/B" + "\n"+ "42014 Castellarano RE" +
             "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
 
-        public static ArrayList<String> options = new ArrayList<>();
+        //public static String User= "Elisa";
+        //public static String Password = "insieme";
+        public static List<String> options;
 
+        public static void List_init() throws SQLException {
+            options =ListSport();
+        }
 
-        public static void List_init(){
-            String s1 ="Ciclismo";
-            String s2 = "Podismo";
-            String s3 = "Calcio";
-            options.add(s1);
-            options.add(s2);
-            options.add(s3);
+        public static ArrayList<String> ListSport() throws SQLException {
+            ArrayList<String> options = new ArrayList<>();
+            Statement statement =DBManager.getConnection().createStatement();
+            try{
+                ResultSet rs = statement.executeQuery("SELECT * FROM Sport");
+                while(rs.next()){
+                    options.add(
+                            rs.getString("Sport")
+                            );
+                }
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return options;
         }
 
 

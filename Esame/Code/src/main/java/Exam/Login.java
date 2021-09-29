@@ -63,26 +63,27 @@ public class Login {
         btnlogin.setFont(new Font("Tahoma",Font.BOLD,18));
 
         btnlogin.addActionListener(e -> {
-            /** primo metodo usato più base
-            /*String Password = String.valueOf(txtPassword.getPassword());
-            String Username = txtUsername.getText();
+                    /** primo metodo usato più base
+                    String Password = String.valueOf(txtPassword.getPassword());
+                    String Username = txtUsername.getText();
 
-            if (Password.contains(Utils.Password) && Username.contains(Utils.User)){
-                txtPassword.setText(null);
-                txtUsername.setText(null);
+                    if (Password.contains(Utils.Password) && Username.contains(Utils.User)) {
+                        txtPassword.setText(null);
+                        txtUsername.setText(null);
 
-                SBM sbm = new SBM();
-                sbm.setVisible(true);
-                frame.dispose();
-            }
+                        SBM sbm = new SBM();
+                        sbm.setVisible(true);
+                        frame.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
+                        txtPassword.setText(null);
+                        txtUsername.setText(null);
+                    }
+                });
 
-            else {
-                JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error",JOptionPane.ERROR_MESSAGE);
-                txtPassword.setText(null);
-                txtUsername.setText(null);
-            }**/
+    }**/
 
-            /**secondo metodo con tabella in sql**/
+            /**secondo metodo con tabella in sql*/
             try {
                 Check();
             } catch (SQLException throwables) {
@@ -92,7 +93,6 @@ public class Login {
         });
         btnlogin.setBounds(59,258,137,42);
         frame.getContentPane().add(btnlogin,BorderLayout.PAGE_END);
-
 
 
     }
@@ -126,6 +126,7 @@ public class Login {
                 txtPassword.setText(null);
                 txtUsername.setText(null);
             }
+            statement.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

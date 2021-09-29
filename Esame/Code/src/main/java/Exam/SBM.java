@@ -38,7 +38,19 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     public SBM() {
         super("Sport Business Management ");
 
-        Utils.List_init();
+        try {
+            model = new DB_Model();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Database Error!");
+        }
+
+        try {
+            Utils.List_init();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         JMenuBar menuBar = new JMenuBar();
         JMenu Archivio = new JMenu("Archivio");
@@ -114,12 +126,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-        try {
-            model = new DB_Model();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Database Error!");
-        }
+
     }
 
     public void actionPerformed(ActionEvent e) {
