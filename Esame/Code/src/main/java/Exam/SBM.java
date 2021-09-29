@@ -39,13 +39,6 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         super("Sport Business Management ");
 
         try {
-            model = new DB_Model();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Database Error!");
-        }
-
-        try {
             Utils.List_init();
         } catch (SQLException e) {
             e.printStackTrace();

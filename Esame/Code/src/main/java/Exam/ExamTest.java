@@ -6,7 +6,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 
-public class ExamTest  {
+public class ExamTest {
+
 
     public static void main(String[] args){
 
@@ -19,6 +20,7 @@ public class ExamTest  {
         SwingUtilities.invokeLater(SBM::new); **/
         EventQueue.invokeLater(() -> {
             try{
+                new DB_Model();
                 UIManager.setLookAndFeel(new FlatDarkLaf());
                 Login window = new Login();
                 window.frame.setVisible(true);

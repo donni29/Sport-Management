@@ -64,8 +64,7 @@ public class Login {
 
         btnlogin.addActionListener(e -> {
                     /** primo metodo usato più base
-                    String Password = String.valueOf(txtPassword.getPassword());
-                    String Username = txtUsername.getText();
+
 
                     if (Password.contains(Utils.Password) && Username.contains(Utils.User)) {
                         txtPassword.setText(null);
@@ -117,7 +116,8 @@ public class Login {
                 String.valueOf(txtPassword.getPassword()));
         try {
             ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
+            if (rs.next() //|| ((String.valueOf(txtPassword.getPassword())).contains(Utils.Password) && (txtUsername.getText()).contains(Utils.User ))
+             ){
                 SBM sbm = new SBM();
                 sbm.setVisible(true);
                 frame.dispose();

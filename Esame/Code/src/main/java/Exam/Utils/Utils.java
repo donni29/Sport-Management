@@ -18,8 +18,10 @@ public class Utils {
         public static String Intestazione = "Societ\u00E0/Associazione" + "\n" + "SPORTINSIEME A.S.D" + "\n" + "Via Don Reverberi,17/B" + "\n"+ "42014 Castellarano RE" +
             "\n" + "P.Iva: 02510550359" + "\n" + "CF: 02510550359";
 
-        //public static String User= "Elisa";
-        //public static String Password = "insieme";
+        /**per la prima installazione in teoria
+        public static String User= "insieme";
+        public static String Password = "1234";**/
+
         public static List<String> options;
 
         public static void List_init() throws SQLException {
