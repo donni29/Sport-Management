@@ -63,7 +63,7 @@ public class Login {
         btnlogin.setFont(new Font("Tahoma",Font.BOLD,18));
 
         btnlogin.addActionListener(e -> {
-                    /** primo metodo usato più base
+                    /* primo metodo usato più base
 
 
                     if (Password.contains(Utils.Password) && Username.contains(Utils.User)) {
@@ -80,9 +80,9 @@ public class Login {
                     }
                 });
 
-    }**/
+    }*/
 
-            /**secondo metodo con tabella in sql*/
+            /*secondo metodo con tabella in sql*/
             try {
                 Check();
             } catch (SQLException throwables) {

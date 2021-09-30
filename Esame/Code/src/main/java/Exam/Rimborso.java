@@ -260,7 +260,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                 }
 
             } catch (SQLException throwables) {
-                System.out.println(throwables);
+                throwables.printStackTrace();
             }
         }
         else if (e.getSource()== this.bcreate){

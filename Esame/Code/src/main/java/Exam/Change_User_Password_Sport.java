@@ -256,6 +256,7 @@ public class Change_User_Password_Sport extends JFrame {
                                     txinsert.getText());
                             statement.executeUpdate(query);
                             statement.close();
+                            Utils.List_init();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
@@ -286,6 +287,7 @@ public class Change_User_Password_Sport extends JFrame {
                               cbdelete.getSelectedItem());
                       statement.executeUpdate(query);
                       statement.close();
+                      Utils.List_init();
                   } catch (SQLException throwables) {
                       throwables.printStackTrace();
                   }
