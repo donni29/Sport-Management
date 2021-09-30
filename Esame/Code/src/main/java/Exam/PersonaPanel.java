@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PersonaPanel extends JPanel implements ActionListener, KeyListener {
 
@@ -252,7 +253,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 tfCF.getText().toUpperCase(),
                 cbsport.getSelectedItem(),
                 tfsquadra.getText());
+        String query1 =String.format("INSERT INTO Rimborsi  VALUES ('%s',0,0)",
+                tfCF.getText().toUpperCase(Locale.ROOT));
         statement.executeUpdate(query);
+        statement.executeUpdate(query1);
         statement.close();
         Svuotare();
         update();
@@ -262,9 +266,12 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     public void DeletePersona() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("DELETE FROM Persona WHERE cf like '%s'",
+        String query =String.format("DELETE FROM Persona WHERE CF like '%s'",
+                tfCF.getText());
+        String query1= String.format("DELETE FROM Rimborsi WHERE CF like '%s'",
                 tfCF.getText());
         statement.executeUpdate(query);
+        statement.executeUpdate(query1);
         statement.close();
         Svuotare();
         update();
