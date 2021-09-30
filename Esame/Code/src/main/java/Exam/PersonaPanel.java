@@ -27,7 +27,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JTextField tfdatanascita;
     private final JTextField tfluogonascita;
     private final JTextField tfcittadiresidenza;
-    private final JTextField tfCF;;
+    private final JTextField tfCF;
     private final JTextField tfsquadra;
     private final JComboBox<String> cbtipo;
     private final JComboBox<String> cbsport;
@@ -170,7 +170,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     }
 
 
-    public void SelectRow(MouseEvent evt){
+    public void SelectRow(){
         int selectedPersonaIndex = table.getSelectedRow();
         Persona person =listPersona.get(selectedPersonaIndex);
 
@@ -205,8 +205,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 UpdatePersona();
                 JOptionPane.showMessageDialog(this,"Update avvenuto con successo");
             }
-            else if (e.getSource() == this.btnSelezione){
-            }
+           /** else if (e.getSource() == this.btnSelezione){
+            }*/
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -229,12 +229,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             table.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    SelectRow(e);
+                    SelectRow();
                 }
             });
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
-            System.out.println(e);
             e.printStackTrace();
         }
 
@@ -273,6 +272,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
+    /**parte da implementare successivamente se ritengono necessaria
     public void FilterPersona(String query1) throws SQLException{
         Statement statement = DBManager.getConnection().createStatement();
         String query =String.format(query1 + " WHERE sport like '%s'",// AND squadra like '%s'",
@@ -285,7 +285,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         ShowItem();
         tableModel.fireTableDataChanged();
 
-    }
+    }*/
 
     public  void UpdatePersona() throws SQLException{
             Statement statement = DBManager.getConnection().createStatement();
