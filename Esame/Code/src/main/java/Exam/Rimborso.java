@@ -151,7 +151,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
             document.open();
-            Paragraph para = new Paragraph(person.toString2());
+            Paragraph para = new Paragraph(person.toString());
             Paragraph p = new Paragraph(Utils.Intestazione);
             p.setAlignment(Element.ALIGN_RIGHT);
 

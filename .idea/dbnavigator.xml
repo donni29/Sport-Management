@@ -77,7 +77,16 @@ values ("Poggio","via giovanni falcone 10 vignola,Modena","3483050565","8:30","1
 insert  into "Struttura" (nome,via,num_telefono,orario_mattina,orario_pomeriggio) 
 values ("Bosco saliceta","Modena","3341256354","8:30","16:30");
 
-select  * from "Struttura"]]></console>
+select  * from "Struttura"
+
+create  table Users(
+User varchar(50) primary  key ,
+Password  varchar(50))
+)
+
+insert  into "Users" (User,"Password") values ("rossi","nico");
+
+select * from "Users"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
