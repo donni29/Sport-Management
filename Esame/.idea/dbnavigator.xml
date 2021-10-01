@@ -56,7 +56,14 @@ squadra varchar (20)
 
 
 select * from "Persona" ;
-drop table "Persona";]]></console>
+drop table "Persona";
+
+select * from "Users";
+drop  table "Users";
+
+select  * from Sport;
+select * from Rimborsi;
+drop table Rimborsi]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

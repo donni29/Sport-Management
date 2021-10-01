@@ -2,6 +2,8 @@ package Exam;
 
 //questo è il nostro progetto, madonne//
 
+import Exam.Utils.Utils;
+
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -18,20 +20,26 @@ import java.util.Objects;
 public class SBM extends JFrame implements ActionListener, MenuListener {
     @Serial
     private static final long serialVersionUID = 1L;
-    public static JMenu openArchivio;
     private static JMenuItem close;
     private static JMenuItem Atleti;
     private static JMenuItem Allenatori;
     private static JMenuItem Dirigenti;
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
-    private static JTextArea textArea;
     private static JMenu Strutture;
+    private static JMenuItem CambiaPsw;
+    private static JMenuItem NewUser;
+    private static JMenuItem add_del_Sport;
 
-    DB_Model model;
 
     public SBM() {
         super("Sport Business Management ");
+
+        try {
+            Utils.List_init();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         JMenuBar menuBar = new JMenuBar();
@@ -42,18 +50,21 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         menuBar.add(Rimborso);
         Strutture.addMenuListener(this);
         menuBar.add(Strutture);
+        menuBar.add(Box.createHorizontalGlue());
+        JMenu Impostazioni = new JMenu("Impostazioni");
+        menuBar.add(Impostazioni);
 
 
         setContentPane(new DesktopTop());
         setVisible(true);
 
 
-        openArchivio = new JMenu("Open Archivio di ...");
+        JMenu openArchivio = new JMenu("Open Archivio di ...");
         openArchivio.addSeparator();
-        openArchivio.addActionListener(this);
+        //openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
 
-        //parte codice menu Archivio//
+        //parte codice menu Archivio
 
         Atleti = new JMenuItem("Atleti");
         Atleti.addActionListener(this);
@@ -71,7 +82,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         close.addActionListener(this);
         Archivio.add(close);
 
-        //parte codice menu Rimborso//
+        //parte codice menu Rimborso
         Nuovo = new JMenuItem("Nuovo...");
         Nuovo.addActionListener(this);
         Rimborso.add(Nuovo);
@@ -80,36 +91,47 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         Open.addActionListener(this);
         Rimborso.add(Open);
 
-        textArea = new JTextArea("");
+        // parte di menù Impostazioni
+
+        JMenu modifica_Login = new JMenu("Modifica Login...");
+        modifica_Login.addActionListener(this);
+        Impostazioni.add(modifica_Login);
+
+        NewUser = new JMenuItem("Aggiungi User");
+        NewUser.addActionListener(this);
+        modifica_Login.add(NewUser);
+
+        CambiaPsw = new JMenuItem("Cambia Password");
+        CambiaPsw.addActionListener(this);
+        modifica_Login.add(CambiaPsw);
+
+        add_del_Sport = new JMenuItem("Aggiungi/Elimina Sport");
+        add_del_Sport.addActionListener(this);
+        Impostazioni.add(add_del_Sport);
 
         setJMenuBar(menuBar);
-
 
         setSize(1000,600);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-        try {
-            model = new DB_Model();
-        } catch (SQLException e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(this, "Database Error!");
-        }
+
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.close) {
+        if (e.getSource() == close) {
             DesktopTop desktopTop    = new DesktopTop();
             setContentPane(desktopTop);
             setVisible(true);
 
         } else {
-            if (e.getSource() == this.Open) {
+            if (e.getSource() == Open) {
                 JFileChooser openSource = new JFileChooser();
 
                 int option = openSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
+                    JTextArea textArea = new JTextArea();
                     textArea.setText("");
 
                     try {
@@ -128,7 +150,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                     }
                 }
             }
-            if (e.getSource() == this.Atleti) {
+            if (e.getSource() == Atleti) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Atleta'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -141,7 +163,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
 
             }
-            if (e.getSource() == this.Allenatori) {
+            if (e.getSource() == Allenatori) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Allenatore'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -152,7 +174,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                     throwables.printStackTrace();
                 }
             }
-            if (e.getSource() == this.Dirigenti) {
+            if (e.getSource() == Dirigenti) {
                 try {
                     String query = "SELECT * FROM Persona WHERE tipo like 'Dirigente'";
                     PersonaPanel pp = new PersonaPanel(query);
@@ -164,23 +186,32 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 }
 
             }
-            if (e.getSource() == this.Nuovo) {
+            if (e.getSource() == Nuovo) {
                 Rimborso rim = new Rimborso();
                 setContentPane(rim);
                 setVisible(true);
             }
-            if(e.getSource() == this.Strutture){
-                    StrutturaPanel st = new StrutturaPanel();
+            if(e.getSource() == Strutture){
+                StrutturaPanel st = new StrutturaPanel();
                 setContentPane(st);
                 setVisible(true);
             }
+            if (e.getSource() == NewUser){
+                new Change_User_Password_Sport(0);
+            }
+            if (e.getSource() == CambiaPsw){
+                new Change_User_Password_Sport(1);
+            }
+            if(e.getSource() == add_del_Sport){
+                new Change_User_Password_Sport(2);
+            }
         }
-
     }
+
 
     @Override
     public void menuSelected(MenuEvent e) {
-        if (e.getSource() == this.Strutture) {
+        if (e.getSource() == Strutture) {
             StrutturaPanel st = new StrutturaPanel();
             setContentPane(st);
             setVisible(true);
