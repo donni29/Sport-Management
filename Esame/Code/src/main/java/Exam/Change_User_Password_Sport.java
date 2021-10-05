@@ -29,7 +29,7 @@ public class Change_User_Password_Sport extends JFrame {
         switch (c) {
             case 0 -> {
 
-                JLabel lbname = new JLabel("ADD NEW USER");
+                JLabel lbname = new JLabel("ADD/DELETE NEW USER");
                 lbname.setHorizontalAlignment(SwingConstants.CENTER);
                 lbname.setFont(new Font("Tahoma", Font.BOLD, 30));
                 lbname.setBounds(28, 10, 300, 66);
@@ -191,7 +191,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btnchange.addActionListener(e -> {
 
                     try{
-                        //Login.testconnection();
+                        Login.testconnection();
                         Statement statement = DBManager.getConnection().createStatement();
                         String query = String.format("SELECT * FROM Users WHERE User = '%s' AND Password = '%s'",
                                 txtUsername.getText(),

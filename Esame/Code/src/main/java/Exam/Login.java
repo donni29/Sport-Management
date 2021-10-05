@@ -20,6 +20,7 @@ public class Login {
     }
 
     private void initialize(){
+
         frame =new JFrame();
         frame.setBounds(200,200,500,300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +59,8 @@ public class Login {
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
 
+        JPanel btnpanel = new JPanel( new GridLayout(1,2,10,2));
+
         JButton btnlogin = new JButton("Login");
         btnlogin.setHorizontalAlignment(SwingConstants.CENTER);
         btnlogin.setFont(new Font("Tahoma",Font.BOLD,18));
@@ -91,9 +94,20 @@ public class Login {
 
         });
         btnlogin.setBounds(59,258,137,42);
-        frame.getContentPane().add(btnlogin,BorderLayout.PAGE_END);
+        btnpanel.add(btnlogin);
 
 
+        JButton btnFisrtLogin = new JButton("First Login");
+        btnFisrtLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        btnFisrtLogin.setFont(new Font("Tahoma",Font.BOLD,18));
+
+        btnFisrtLogin.addActionListener(e -> {
+            new Change_User_Password_Sport(0);
+        });
+        btnFisrtLogin.setBounds(59,258,137,42);
+        btnpanel.add(btnFisrtLogin);
+
+        frame.getContentPane().add(btnpanel,BorderLayout.PAGE_END);
     }
 
     public static void testconnection() throws SQLException {

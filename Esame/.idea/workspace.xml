@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI2.0">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SearchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SearchFrame.java" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="migliorie SearchFrame + problemi risolti Rimborso">
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password_Sport.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password_Sport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -215,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00018" summary="provaSQl">
-      <created>1627033373446</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1627033373446</updated>
     </task>
     <task id="LOCAL-00019" summary="ArchivioRight">
       <created>1627033846129</created>
@@ -559,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633016683077</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="migliorie SearchFrame + problemi risolti Rimborso">
+      <created>1633427299001</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1633427299001</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +566,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="insert +delete" />
     <MESSAGE value="insert +delete + filter" />
     <MESSAGE value="insert +delete + filter +svuotare" />
     <MESSAGE value="insert +delete + filter +svuotare+ rimb" />
@@ -601,7 +590,8 @@
     <MESSAGE value="tablesport3.0 + risolto problema primo login" />
     <MESSAGE value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI" />
     <MESSAGE value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI2.0" />
+    <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso" />
+    <option name="LAST_COMMIT_MESSAGE" value="migliorie SearchFrame + problemi risolti Rimborso" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
