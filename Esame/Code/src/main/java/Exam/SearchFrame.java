@@ -32,7 +32,7 @@ public class SearchFrame extends JFrame implements ActionListener {
         binsert.addActionListener(this);
         tfcf = new javax.swing.JTextField("");
 
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10,20));
 
         JPanel panel = new JPanel(new GridLayout(1, 3,5,5));
         panel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -52,6 +52,7 @@ public class SearchFrame extends JFrame implements ActionListener {
 
         setSize(1000, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -65,7 +66,6 @@ public class SearchFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == this.binsert) {
             Rimborso.tcf.setText(tfcf.getText());
-            System.out.println(tfcf.getText());
             dispose();
         }
     }

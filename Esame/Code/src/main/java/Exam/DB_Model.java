@@ -54,7 +54,7 @@ public class DB_Model {
     public Persona getSelectedItem() {
         try {
             return new Persona(rs.getString("nome"),rs.getString("cognome"),rs.getString("tipo"), rs.getString("luogo_nascita"),rs.getString("data_nascita"),
-                    rs.getString("città_residenza"), rs.getString("CF"),rs.getString("sport"),rs.getString("squadra"));
+                    rs.getString("citt\u00E0_residenza"), rs.getString("CF"),rs.getString("sport"),rs.getString("squadra"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

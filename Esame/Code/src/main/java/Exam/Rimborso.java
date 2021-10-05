@@ -79,7 +79,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         check.setSize(4,4);
         check.addActionListener(this);
         p1.add(check);
-        JPanel p2 = new JPanel(new GridLayout(1, 3,10,2));
+        JPanel p2 = new JPanel(new GridLayout(1, 3,5,2));
         p2.add(jc);
         p2.add(new JLabel("Giorno Allenamento:"));
         p2.add(days);
@@ -254,7 +254,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         else if (e.getSource()== this.check){
             try {
                 Persona atleta = checkCF();
-
                 if (atleta == null){
                     JOptionPane.showMessageDialog(this,"CF errato o atleta non presente");
                 }
@@ -295,12 +294,13 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("squadra")
                 );
                 jc.setSelectedItem(rs.getString("sport"));
-            }
 
-            if (jc.getSelectedItem()=="Podismo" || jc.getSelectedItem() == "Calcio"){
-                days.setText("Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica");
-            }else if (jc.getSelectedItem()=="Ciclismo"){
-                days.setText("Marted\u00EC, Gioved\u00EC, Sabato, Domenica");
+                if(person.getSport().equals("Podismo") || person.getSport().equals("Calcio")){
+                    days.setText("Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica");
+                }
+                else if (person.getSport().equals("Ciclismo")){
+                    days.setText("Marted\u00EC, Gioved\u00EC, Sabato, Domenica");
+                }
             }
 
         } catch (SQLException e) {
@@ -327,8 +327,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         tcf.setText(tcf.getText().toUpperCase());
         tcf.setCaretPosition(pos);
     }
-
-
 
 
     public static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
