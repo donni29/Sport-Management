@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PersonaPanel extends JPanel implements ActionListener, KeyListener {
 
@@ -24,14 +25,14 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JButton btnUpdate;
     private final JTextField tfNome;
     private final JTextField tfcognome;
-    private final JTextField tftipo;
     private final JTextField tfdatanascita;
     private final JTextField tfluogonascita;
-    private final JTextField tfresidenza;
+    private final JTextField tfcittadiresidenza;
     private final JTextField tfCF;
-    private final JTextField tfsport;
     private final JTextField tfsquadra;
+    private final JTextField tftelefono;
     private final JComboBox<String> cbtipo;
+    private final JComboBox<String> cbsport;
     private JTable table;
     private PersonaTableModel tableModel;
 
@@ -59,8 +60,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
         cbtipo =new JComboBox<>(options);
         cbtipo.addActionListener(this);
-        tftipo = new JTextField();
-        tftipo.addActionListener(this);
         tfNome = new JTextField();
         tfNome.addActionListener(this);
         tfcognome = new JTextField();
@@ -69,19 +68,21 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfdatanascita.addActionListener(this);
         tfluogonascita = new JTextField();
         tfluogonascita.addActionListener(this);
-        tfresidenza = new JTextField();
-        tfresidenza.addActionListener(this);
+        tfcittadiresidenza = new JTextField();
+        tfcittadiresidenza.addActionListener(this);
         tfCF = new JTextField();
         tfCF.addActionListener(this);
         tfCF.addKeyListener(this);
-        tfsport = new JTextField();
-        tfsport.addActionListener(this);
+        cbsport =new JComboBox(Utils.options.toArray());
+        cbsport.addActionListener(this);
         tfsquadra = new JTextField();
         tfsquadra.addActionListener(this);
+        tftelefono = new JTextField();
+        tftelefono.addActionListener(this);
 
 
         JPanel p1 = new JPanel();
-        p1.setLayout(new GridLayout(9, 2));
+        p1.setLayout(new GridLayout(10, 2));
         p1.add(new JLabel("Tipo"));
         p1.add(cbtipo);
         p1.add(new JLabel("Nome"));
@@ -92,14 +93,16 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(tfluogonascita);
         p1.add(new JLabel("Data di Nascita"));
         p1.add(tfdatanascita);
-        p1.add(new JLabel("Residenza"));
-        p1.add(tfresidenza);
+        p1.add(new JLabel("<html>Citt\u00E0 di Residenza"));
+        p1.add(tfcittadiresidenza);
         p1.add(new JLabel("CF"));
         p1.add(tfCF);
         p1.add(new JLabel("Sport"));
-        p1.add(tfsport);
+        p1.add(cbsport);
         p1.add(new JLabel("Squadra"));
         p1.add(tfsquadra);
+        p1.add(new JLabel("Telefono"));
+        p1.add(tftelefono);
 
         JPanel p2 = new JPanel();
         p2.setLayout(new GridLayout(4, 4));
@@ -108,10 +111,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p2.add(btnUpdate);
         p2.add(btnSelezione);
 
-
-
         ShowItem();
-
 
         add(p1, BorderLayout.PAGE_START);
         add(p2, BorderLayout.PAGE_END);
@@ -135,10 +135,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                                 rs.getString("tipo"),
                                 rs.getString("luogo_nascita"),
                                 rs.getString("data_nascita"),
-                                rs.getString("residenza"),
+                                rs.getString("citt\u00E0_residenza"),
                                 rs.getString("CF"),
                                 rs.getString("sport"),
-                                rs.getString("squadra")
+                                rs.getString("squadra"),
+                                rs.getString("telefono")
                         )
                 );
             }
@@ -173,19 +174,20 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     }
 
 
-    public void SelectRow(MouseEvent evt){
+    public void SelectRow(){
         int selectedPersonaIndex = table.getSelectedRow();
         Persona person =listPersona.get(selectedPersonaIndex);
 
         tfNome.setText(person.getNome());
         tfcognome.setText(person.getCognome());
-        tftipo.setText(person.getTipo());
-        tfdatanascita.setText(person.getData_nascita().toString());
+        cbtipo.setSelectedItem(person.getTipo());
+        tfdatanascita.setText(person.getData_nascita());
         tfluogonascita.setText(person.getLuogo_nascita());
-        tfresidenza.setText(person.getResidenza());
+        tfcittadiresidenza.setText(person.getCitta_residenza());
         tfCF.setText(person.getCF());
-        tfsport.setText(person.getSport());
+        cbsport.setSelectedItem(person.getSport());
         tfsquadra.setText(person.getSquadra());
+        tftelefono.setText(person.getTelefono());
 
     }
 
@@ -208,8 +210,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 UpdatePersona();
                 JOptionPane.showMessageDialog(this,"Update avvenuto con successo");
             }
-            else if (e.getSource() == this.btnSelezione){
-            }
+           /** else if (e.getSource() == this.btnSelezione){
+            }*/
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -232,12 +234,12 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             table.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    SelectRow(e);
+                    SelectRow();
                 }
             });
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error");
-            System.out.println(e);
+            e.printStackTrace();
         }
 
     }
@@ -245,17 +247,21 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     public void InsertPersona() throws SQLException {
 
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,residenza,CF,sport,squadra) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,citt\u00E0_residenza,CF,sport,squadra,telefono) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 tfNome.getText(),
                 tfcognome.getText(),
                 cbtipo.getSelectedItem(),
                 tfluogonascita.getText(),
                 tfdatanascita.getText(),
-                tfresidenza.getText(),
+                tfcittadiresidenza.getText(),
                 tfCF.getText().toUpperCase(),
-                tfsport.getText(),
-                tfsquadra.getText());
+                cbsport.getSelectedItem(),
+                tfsquadra.getText(),
+                tftelefono.getText());
+        String query1 =String.format("INSERT INTO Rimborsi  VALUES ('%s',0,0)",
+                tfCF.getText().toUpperCase(Locale.ROOT));
         statement.executeUpdate(query);
+        statement.executeUpdate(query1);
         statement.close();
         Svuotare();
         update();
@@ -265,9 +271,12 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     public void DeletePersona() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("DELETE FROM Persona WHERE cf like '%s'",
+        String query =String.format("DELETE FROM Persona WHERE CF like '%s'",
+                tfCF.getText());
+        String query1= String.format("DELETE FROM Rimborsi WHERE CF like '%s'",
                 tfCF.getText());
         statement.executeUpdate(query);
+        statement.executeUpdate(query1);
         statement.close();
         Svuotare();
         update();
@@ -275,10 +284,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
+    /**parte da implementare successivamente se ritengono necessaria
     public void FilterPersona(String query1) throws SQLException{
         Statement statement = DBManager.getConnection().createStatement();
         String query =String.format(query1 + " WHERE sport like '%s'",// AND squadra like '%s'",
-                tfsport.getText());
+                cbsport.getSelectedItem());
                 //tfsquadra.getText());
         statement.executeUpdate(query);
         statement.close();
@@ -287,19 +297,20 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         ShowItem();
         tableModel.fireTableDataChanged();
 
-    }
+    }*/
 
     public  void UpdatePersona() throws SQLException{
             Statement statement = DBManager.getConnection().createStatement();
-            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',residenza = '%s',sport ='%s',squadra ='%s' WHERE CF like '%s'",
+            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',citt\u00E0_residenza = '%s',sport ='%s',squadra ='%s',telefono= '%s' WHERE CF like '%s'",
                     tfNome.getText(),
                     tfcognome.getText(),
                     cbtipo.getSelectedItem(),
                     tfluogonascita.getText(),
                     tfdatanascita.getText(),
-                    tfresidenza.getText(),
-                    tfsport.getText(),
+                    tfcittadiresidenza.getText(),
+                    cbsport.getSelectedItem(),
                     tfsquadra.getText(),
+                    tftelefono.getText(),
                     tfCF.getText());
             statement.executeUpdate(query);
             statement.close();
@@ -313,9 +324,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfcognome.setText("");
         tfdatanascita.setText("");
         tfluogonascita.setText("");
-        tfsport.setText("");
-        tfresidenza.setText("");
+        cbsport.setSelectedItem(Utils.options.toArray());
+        tfcittadiresidenza.setText("");
         tfsquadra.setText("");
+        tftelefono.setText("");
         tfCF.setText("");
         cbtipo.setSelectedItem(options);
     }

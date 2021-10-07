@@ -8,21 +8,23 @@ public class Persona {
     String tipo;
     String luogo_nascita;
     String data_nascita;
-    String residenza;
+    String citta_residenza;
     String CF;
     String sport;
     String squadra;
+    String telefono;
 
-    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String residenza, String CF, String sport, String squadra) {
+    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String citta_residenza, String CF, String sport, String squadra, String telefono) {
         this.nome = nome;
         this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
         this.data_nascita =data_nascita;
-        this.residenza = residenza;
+        this.citta_residenza = citta_residenza;
         this.CF = CF;
         this.sport =sport;
         this.squadra=squadra;
+        this.telefono=telefono;
     }
 
     public String getNome() {
@@ -65,12 +67,12 @@ public class Persona {
         this.data_nascita = data_nascita;
     }
 
-    public String getResidenza() {
-        return residenza;
+    public String getCitta_residenza() {
+        return citta_residenza;
     }
 
-    public void setResidenza(String residenza) {
-        this.residenza = residenza;
+    public void setCitta_residenza(String citta_residenza) {
+        this.citta_residenza = citta_residenza;
     }
 
     public String getCF() {
@@ -81,9 +83,7 @@ public class Persona {
         this.CF = CF;
     }
 
-    public String getSport() {
-        return sport;
-    }
+    public String getSport() { return sport; }
 
     public void setSport(String sport) {
         this.sport = sport;
@@ -97,6 +97,11 @@ public class Persona {
         this.squadra = squadra;
     }
 
+
+    public String getTelefono() { return telefono; }
+
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
     @Override
     public String toString() {
         return "Persona{" +
@@ -104,11 +109,17 @@ public class Persona {
                 ", cognome='" + cognome + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
-                ", data_nascita='" + data_nascita + '\'' +
-                ", residenza='" + residenza + '\'' +
+                ", data_nascita=" + data_nascita +
+                ", citta_residenza='" + citta_residenza + '\'' +
                 ", CF='" + CF + '\'' +
                 ", sport='" + sport + '\'' +
                 ", squadra='" + squadra + '\'' +
+                ", telefono='" + telefono +'\''+
                 '}';
+    }
+
+    public String toString2(){
+        return  nome + "\n" + cognome + "\n" +"NATO A: "+ luogo_nascita + "\n" +"IL: " +
+                data_nascita + "\n" + "RESIDENTE A: " + citta_residenza + "\n" +"CF: "+ CF;
     }
 }

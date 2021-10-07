@@ -291,7 +291,8 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("citt\u00E0_residenza"),
                         rs.getString("CF"),
                         rs.getString("sport"),
-                        rs.getString("squadra")
+                        rs.getString("squadra"),
+                        rs.getString("telefono")
                 );
                 jc.setSelectedItem(rs.getString("sport"));
 

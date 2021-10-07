@@ -16,6 +16,7 @@ public class Change_User_Password_Sport extends JFrame {
     private static JPasswordField txtPassword1;
     private static JPasswordField txtNewPassword;
     private static JTextField txinsert;
+    private static JTextField dayinsert;
     private static JComboBox<String> cbdelete;
 
     public Change_User_Password_Sport(int c) {
@@ -260,6 +261,7 @@ public class Change_User_Password_Sport extends JFrame {
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
+
                     dispose();
                 });
                 panel1.add(btinsert);
@@ -298,6 +300,7 @@ public class Change_User_Password_Sport extends JFrame {
                 add(panel1,BorderLayout.NORTH);
                 add(panel2,BorderLayout.CENTER);
             }
+
         }
     }
 }
