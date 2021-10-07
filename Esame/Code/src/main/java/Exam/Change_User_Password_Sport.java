@@ -252,7 +252,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btinsert.addActionListener(e->{
                         try {
                             Statement statement = DBManager.getConnection().createStatement();
-                            String query = String.format("INSERT INTO Sport VALUES ('%s')",
+                            String query = String.format("INSERT INTO Sport (Sport) VALUES ('%s')",
                                     txinsert.getText());
                             statement.executeUpdate(query);
                             statement.close();

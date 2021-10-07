@@ -37,8 +37,8 @@ public class DB_Model {
         try{
             statement1.executeQuery("SELECT * FROM Sport");
         }catch (SQLException e ){
-            statement1.executeUpdate("CREATE TABLE Sport (" + " Sport VARCHAR(50))");
-            statement1.executeUpdate("INSERT INTO Sport VALUES ('Ciclismo'),('Podismo'),('Calcio')");
+            statement1.executeUpdate("CREATE TABLE Sport (" + " Sport VARCHAR(50)," +"Giorni_Allenamento VARCHAR(70))");
+            statement1.executeUpdate("INSERT INTO Sport VALUES ('Ciclismo','Marted\u00EC, Gioved\u00EC, Sabato, Domenica'),('Podismo','Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica'),('Calcio','Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica')");
         }
 
         try{

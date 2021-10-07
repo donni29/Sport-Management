@@ -295,17 +295,25 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                 );
                 jc.setSelectedItem(rs.getString("sport"));
 
-                if(person.getSport().equals("Podismo") || person.getSport().equals("Calcio")){
+                String querysport =String.format("SELECT * FROM Sport WHERE Sport like '%s'",
+                        jc.getSelectedItem());
+                rs = statement.executeQuery(querysport);
+                while (rs.next()){
+                    days.setText(rs.getString("Giorni_Allenamento"));
+                }
+                //vecchio metodo da eliminare
+                /*if(person.getSport().equals("Podismo") || person.getSport().equals("Calcio")){
                     days.setText("Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica");
                 }
                 else if (person.getSport().equals("Ciclismo")){
                     days.setText("Marted\u00EC, Gioved\u00EC, Sabato, Domenica");
-                }
+                }*/
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        statement.close();
         return  person;
 
     }
