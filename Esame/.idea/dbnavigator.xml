@@ -64,7 +64,8 @@ drop  table "Users";
 select  * from Sport;
 select * from Rimborsi;
 drop table Rimborsi
-drop table "Sport"]]></console>
+drop table "Sport"
+select * FROM "Sport"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

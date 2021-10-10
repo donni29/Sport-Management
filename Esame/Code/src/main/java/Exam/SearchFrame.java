@@ -50,7 +50,7 @@ public class SearchFrame extends JFrame implements ActionListener {
 
         add(panel2, BorderLayout.NORTH);
 
-        setSize(1000, 200);
+        setSize(1040, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);

@@ -40,7 +40,7 @@ public class Utils {
                 ResultSet rs = statement.executeQuery("SELECT * FROM Sport");
                 while(rs.next()){
                     options.add(
-                            rs.getString("Sport")
+                            rs.getString("Name")
                             );
                 }
                 statement.close();

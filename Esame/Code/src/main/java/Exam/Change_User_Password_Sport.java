@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static javax.swing.SwingConstants.CENTER;
+
 public class Change_User_Password_Sport extends JFrame {
 
     private  static JTextField txtUsername;
@@ -31,13 +33,13 @@ public class Change_User_Password_Sport extends JFrame {
             case 0 -> {
 
                 JLabel lbname = new JLabel("ADD/DELETE NEW USER");
-                lbname.setHorizontalAlignment(SwingConstants.CENTER);
+                lbname.setHorizontalAlignment(CENTER);
                 lbname.setFont(new Font("Tahoma", Font.BOLD, 30));
                 lbname.setBounds(28, 10, 300, 66);
                 getContentPane().add(lbname, BorderLayout.NORTH);
 
                 JPanel panel = new JPanel(new GridLayout(3, 2, 10, 80));
-                JLabel lbusername = new JLabel("Username:", SwingConstants.CENTER);
+                JLabel lbusername = new JLabel("Username:", CENTER);
                 lbusername.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbusername.setBounds(59, 104, 160, 36);
                 panel.add(lbusername);
@@ -47,7 +49,7 @@ public class Change_User_Password_Sport extends JFrame {
                 txtUsername.setBounds(240, 100, 80, 20);
                 panel.add(txtUsername);
 
-                JLabel lbpassword = new JLabel("Password:", SwingConstants.CENTER);
+                JLabel lbpassword = new JLabel("Password:", CENTER);
                 lbpassword.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbpassword.setBounds(59, 104, 160, 36);
                 panel.add(lbpassword);
@@ -57,7 +59,7 @@ public class Change_User_Password_Sport extends JFrame {
                 txtPassword.setBounds(240, 163, 80, 20);
                 panel.add(txtPassword);
 
-                JLabel lbpassword1 = new JLabel("Conferma Password:", SwingConstants.CENTER);
+                JLabel lbpassword1 = new JLabel("Conferma Password:", CENTER);
                 lbpassword1.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbpassword1.setBounds(59, 104, 160, 36);
                 panel.add(lbpassword1);
@@ -71,7 +73,7 @@ public class Change_User_Password_Sport extends JFrame {
                 JPanel btnpanel = new JPanel(new GridLayout(1,2,5,5));
 
                 JButton btninsert = new JButton("Inserisci User");
-                btninsert.setHorizontalAlignment(SwingConstants.CENTER);
+                btninsert.setHorizontalAlignment(CENTER);
                 btninsert.setFont(new Font("Tahoma",Font.BOLD,18));
                 btninsert.setBounds(59,258,137,42);
                 btninsert.addActionListener(e->{
@@ -94,7 +96,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btnpanel.add(btninsert);
 
                 JButton btndelete = new JButton("Delete User");
-                btndelete.setHorizontalAlignment(SwingConstants.CENTER);
+                btndelete.setHorizontalAlignment(CENTER);
                 btndelete.setFont(new Font("Tahoma",Font.BOLD,18));
                 btndelete.setBounds(59,258,137,42);
 
@@ -137,13 +139,13 @@ public class Change_User_Password_Sport extends JFrame {
             case 1 ->{
 
                 JLabel lbname = new JLabel("CHANGE USER'S PASSWORD");
-                lbname.setHorizontalAlignment(SwingConstants.CENTER);
+                lbname.setHorizontalAlignment(CENTER);
                 lbname.setFont(new Font("Tahoma", Font.BOLD, 30));
                 lbname.setBounds(28, 10, 500, 150);
                 getContentPane().add(lbname, BorderLayout.NORTH);
 
                 JPanel panel = new JPanel(new GridLayout(4, 2, 10, 40));
-                JLabel lbusername = new JLabel("Username:", SwingConstants.CENTER);
+                JLabel lbusername = new JLabel("Username:", CENTER);
                 lbusername.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbusername.setBounds(59, 104, 160, 36);
                 panel.add(lbusername);
@@ -153,7 +155,7 @@ public class Change_User_Password_Sport extends JFrame {
                 txtUsername.setBounds(240, 163, 80, 20);
                 panel.add(txtUsername);
 
-                JLabel lbpassword = new JLabel("Password:", SwingConstants.CENTER);
+                JLabel lbpassword = new JLabel("Password:", CENTER);
                 lbpassword.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbpassword.setBounds(59, 104, 160, 36);
                 panel.add(lbpassword);
@@ -163,7 +165,7 @@ public class Change_User_Password_Sport extends JFrame {
                 txtPassword.setBounds(240, 163, 80, 20);
                 panel.add(txtPassword);
 
-                JLabel lbNewpassword = new JLabel("Nuova Password:", SwingConstants.CENTER);
+                JLabel lbNewpassword = new JLabel("Nuova Password:", CENTER);
                 lbNewpassword.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbNewpassword.setBounds(59, 104, 160, 36);
                 panel.add(lbNewpassword);
@@ -173,7 +175,7 @@ public class Change_User_Password_Sport extends JFrame {
                 txtNewPassword.setBounds(240, 163, 80, 20);
                 panel.add(txtNewPassword);
 
-                JLabel lbpassword1 = new JLabel("Conferma Nuova Password:", SwingConstants.CENTER);
+                JLabel lbpassword1 = new JLabel("Conferma Nuova Password:", CENTER);
                 lbpassword1.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbpassword1.setBounds(59, 104, 160, 36);
                 panel.add(lbpassword1);
@@ -186,7 +188,7 @@ public class Change_User_Password_Sport extends JFrame {
                 add(panel, BorderLayout.CENTER);
 
                 JButton btnchange = new JButton("Change Password");
-                btnchange.setHorizontalAlignment(SwingConstants.CENTER);
+                btnchange.setHorizontalAlignment(CENTER);
                 btnchange.setFont(new Font("Tahoma",Font.BOLD,18));
                 btnchange.setBounds(59,258,137,42);
                 btnchange.addActionListener(e -> {
@@ -231,18 +233,18 @@ public class Change_User_Password_Sport extends JFrame {
 
             }
             case 2->{
-                setBounds(200,200,500,120);
-                setLocationRelativeTo(null);
+                setBounds(100,100,800,120);
+                //setLocationRelativeTo(null);
 
-                JPanel panel1 = new JPanel(new GridLayout(1,3,10,20));
+                JPanel panel1 = new JPanel(new GridLayout(1,4,10,20));
                 panel1.setBounds(30,30,330,180);
 
-                JLabel lbinsert = new JLabel("Inserisci Sport",SwingConstants.CENTER);
+                JLabel lbinsert = new JLabel("Inserisci Sport", CENTER);
                 lbinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbinsert.setSize(90 , 60);
                 panel1.add(lbinsert);
 
-                txinsert = new JTextField("",SwingConstants.CENTER);
+                txinsert = new JTextField("", CENTER);
                 txinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
                 txinsert.setSize(90,60);
                 panel1.add(txinsert);
@@ -253,7 +255,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btinsert.addActionListener(e->{
                         try {
                             Statement statement = DBManager.getConnection().createStatement();
-                            String query = String.format("INSERT INTO Sport (Sport) VALUES ('%s')",
+                            String query = String.format("INSERT INTO Sport (Name) VALUES ('%s')",
                                     txinsert.getText());
                             statement.executeUpdate(query);
                             statement.close();
@@ -262,14 +264,22 @@ public class Change_User_Password_Sport extends JFrame {
                             throwables.printStackTrace();
                         }
 
-                    dispose();
+                    //dispose();
                 });
                 panel1.add(btinsert);
+
+                JButton btnmod = new JButton("Change Days");
+                btnmod.setFont(new Font("Tahoma", Font.BOLD, 18));
+                btnmod.setSize(90,60);
+                btnmod.addActionListener(e->{
+                    new Change_User_Password_Sport(3);
+                });
+                panel1.add(btnmod);
 
                 JPanel panel2 = new JPanel(new GridLayout(1,3,10,20));
                 panel2.setBounds(30,30,330,180);
 
-                JLabel lbdelete = new JLabel("Elimina Sport",SwingConstants.CENTER);
+                JLabel lbdelete = new JLabel("Elimina Sport", CENTER);
                 lbdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lbdelete.setSize(90 , 60);
                 panel2.add(lbdelete);
@@ -285,7 +295,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btdelete.addActionListener(e->{
                   try{
                       Statement statement = DBManager.getConnection().createStatement();
-                      String query = String.format("DELETE FROM Sport WHERE Sport = '%s'",
+                      String query = String.format("DELETE FROM Sport WHERE Name = '%s'",
                               cbdelete.getSelectedItem());
                       statement.executeUpdate(query);
                       statement.close();
@@ -299,6 +309,54 @@ public class Change_User_Password_Sport extends JFrame {
 
                 add(panel1,BorderLayout.NORTH);
                 add(panel2,BorderLayout.CENTER);
+            }
+
+            case 3->{
+                setBounds(300,300,800,150);
+                setLocationRelativeTo(null);
+
+                JPanel panel = new JPanel(new GridLayout(2,2,5,5));
+                panel.setBounds(30,30,330,180);
+
+                JLabel settimanali = new JLabel("Selezione Sport", CENTER);
+                settimanali.setFont(new Font("Tahoma", Font.BOLD, 18));
+                settimanali.setSize(90 , 60);
+                panel.add(settimanali);
+
+                cbdelete = new JComboBox(Utils.options.toArray());
+                cbdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
+                cbdelete.setSize(90,60);
+                panel.add(cbdelete);
+
+                JLabel ilabel = new JLabel("Inserisci Giorni Settimanali", CENTER);
+                ilabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+                ilabel.setSize(90 , 60);
+                panel.add(ilabel);
+
+                dayinsert =new JTextField("");
+                dayinsert.setFont(new Font("Tahoma", Font.BOLD, 18));
+                dayinsert.setSize(90,60);
+                panel.add(dayinsert);
+
+                JButton btn =new JButton("INSERT/MODIFICATION");
+                btn.setFont(new Font("Tahoma", Font.BOLD, 18));
+                btn.setSize(90,60);
+                btn.addActionListener(e->{
+                    try {
+                        Statement statement = DBManager.getConnection().createStatement();
+                        String query = String.format("UPDATE Sport SET Giorni_Allenamento = '%s' WHERE Name = '%s'",
+                                dayinsert.getText(),
+                                cbdelete.getSelectedItem()
+                                );
+                        statement.executeUpdate(query);
+
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    dispose();
+                });
+                add(panel,BorderLayout.CENTER);
+                add(btn,BorderLayout.PAGE_END,CENTER);
             }
 
         }

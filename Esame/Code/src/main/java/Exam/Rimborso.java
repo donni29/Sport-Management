@@ -296,7 +296,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                 );
                 jc.setSelectedItem(rs.getString("sport"));
 
-                String querysport =String.format("SELECT * FROM Sport WHERE Sport like '%s'",
+                String querysport =String.format("SELECT * FROM Sport WHERE Name like '%s'",
                         jc.getSelectedItem());
                 rs = statement.executeQuery(querysport);
                 while (rs.next()){

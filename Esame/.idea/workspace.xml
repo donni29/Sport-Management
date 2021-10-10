@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table">
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel">
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
@@ -12,14 +12,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password_Sport.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Change_User_Password_Sport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/PersonaTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/PersonaTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -218,13 +219,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00021" summary="26/07">
-      <created>1627311824118</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1627311824118</updated>
     </task>
     <task id="LOCAL-00022" summary="openFile">
       <created>1628525587798</created>
@@ -562,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633619746115</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel">
+      <created>1633621811866</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1633621811866</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -579,7 +580,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="insert +delete + filter +svuotare+ rimb" />
     <MESSAGE value="insert +delete + filter +svuotare+ rimb ver2.0" />
     <MESSAGE value="jdatepicker" />
     <MESSAGE value="aggiustato dispose e image!&#10;Ora migliorato!!" />
@@ -604,7 +604,8 @@
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table" />
-    <option name="LAST_COMMIT_MESSAGE" value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table" />
+    <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel" />
+    <option name="LAST_COMMIT_MESSAGE" value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

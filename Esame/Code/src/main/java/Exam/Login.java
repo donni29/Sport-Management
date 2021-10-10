@@ -96,7 +96,7 @@ public class Login {
         btnlogin.setBounds(59,258,137,42);
         btnpanel.add(btnlogin);
 
-
+        //da decidere perchè non mi convince molto
         JButton btnFisrtLogin = new JButton("First Login");
         btnFisrtLogin.setHorizontalAlignment(SwingConstants.CENTER);
         btnFisrtLogin.setFont(new Font("Tahoma",Font.BOLD,18));
