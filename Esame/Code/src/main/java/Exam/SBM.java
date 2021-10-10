@@ -111,7 +111,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         setJMenuBar(menuBar);
 
-        setSize(1000,600);
+        setSize(1040,600);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
