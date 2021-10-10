@@ -21,7 +21,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     private final JButton btnRemove;
     private final JButton btnInsert;
-    private final JButton btnSelezione;
     private final JButton btnUpdate;
     private final JTextField tfNome;
     private final JTextField tfcognome;
@@ -50,7 +49,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         btnRemove.addActionListener(this);
         btnInsert = new JButton("Insert");
         btnInsert.addActionListener(this);
-        btnSelezione =new JButton("Filter");
+        JButton btnSelezione = new JButton("Filter");
         btnSelezione.addActionListener(this);
         btnUpdate =new JButton("Update");
         btnUpdate.addActionListener(this);
@@ -320,6 +319,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     }
 
     public void Svuotare() {
+        cbtipo.setSelectedItem(options);
         tfNome.setText("");
         tfcognome.setText("");
         tfdatanascita.setText("");
@@ -329,7 +329,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfsquadra.setText("");
         tftelefono.setText("");
         tfCF.setText("");
-        cbtipo.setSelectedItem(options);
     }
 
     @Override
