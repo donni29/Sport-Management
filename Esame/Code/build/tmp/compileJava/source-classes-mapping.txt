@@ -2,8 +2,8 @@ Exam/Utils/Struttura.java
  Exam.Utils.Struttura
 Exam/Utils/Utils.java
  Exam.Utils.Utils
-Exam/Change_User_Password_Sport.java
- Exam.Change_User_Password_Sport
+Exam/StrutturaPanel.java
+ Exam.StrutturaPanel
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
 Exam/Utils/JTableUtilities.java
@@ -18,11 +18,11 @@ Exam/Utils/PersonaTableModel.java
  Exam.Utils.PersonaTableModel
 Exam/ExamTest.java
  Exam.ExamTest
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
 Exam/PersonaPanel.java
  Exam.PersonaPanel
  Exam.PersonaPanel$1
+Exam/Change_User_Password_Sport.java
+ Exam.Change_User_Password_Sport
 Exam/Rimborso.java
  Exam.Rimborso
  Exam.Rimborso$DateLabelFormatter

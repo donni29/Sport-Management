@@ -33,8 +33,8 @@ import java.util.Properties;
 
 
 public  class Rimborso extends JPanel implements ActionListener, KeyListener {
-    private final String[] columnNames ={"Data","Localit\u00E0","Campionato","Titolo Prestazione","Compenso"};
-    public static Integer[] num ={8,6};
+    private final String[] columnNames = {"Data", "Localit\u00E0", "Campionato", "Titolo Prestazione", "Compenso"};
+    public static Integer[] num = {8, 6};
 
     public JPanel p4;
 
@@ -48,67 +48,67 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     private final JComboBox<Integer> cbn;
     public static JTextField tcf;
     private final JComboBox<String> jc;
-
+    public final int numRim=0;
+    public int soldi;
+    public int getNumRim;
     private final JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
-
 
     int numAll;
     String[] dateList;
     JTable table;
-
+    Persona person;
 
     public Rimborso() {
 
         days = new JTextField("");
         tcf = new javax.swing.JTextField("");
         tcf.addKeyListener(this);
-        tfdate =new JTextField("");
-
+        tfdate = new JTextField("");
 
 
         setLayout(new BorderLayout());
         jc = new JComboBox(Utils.options.toArray());
-        JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
-        p1.add(new JLabel(("CF: "),SwingConstants.CENTER));
+        JPanel p1 = new JPanel(new GridLayout(1, 3, 10, 2));
+        p1.add(new JLabel(("CF: "), SwingConstants.CENTER));
         p1.add(tcf);
-        srcat =new JButton("Search");
-        srcat.setSize(4,4);
+        srcat = new JButton("Search");
+        srcat.setSize(4, 4);
         srcat.addActionListener(this);
         p1.add(srcat);
-        check =new JButton("check");
-        check.setSize(4,4);
+        check = new JButton("check");
+        check.setSize(4, 4);
         check.addActionListener(this);
         p1.add(check);
-        JPanel p2 = new JPanel(new GridLayout(1, 3,5,2));
+        JPanel p2 = new JPanel(new GridLayout(1, 3, 5, 2));
         p2.add(jc);
         p2.add(new JLabel("Giorno Allenamento:"));
         p2.add(days);
 
 
-        JPanel p3 = new JPanel(new BorderLayout(10,10));
+        JPanel p3 = new JPanel(new BorderLayout(10, 10));
         p3.add(p1, BorderLayout.PAGE_START);
         p3.add(p2, BorderLayout.PAGE_END);
 
-        p4 = new JPanel(new BorderLayout(3,3));
+        p4 = new JPanel(new BorderLayout(3, 3));
 
-        JPanel p5 =new JPanel(new FlowLayout());
+        JPanel p5 = new JPanel(new FlowLayout());
         Font font = new Font("Helvetica", Font.BOLD, 30);
         JLabel titolo = new JLabel("Selezionare le date degli allenamenti:");
         titolo.setFont(font);
-        JLabel titolonum =new JLabel("Selezionare numero allenamenti:",SwingConstants.CENTER);
-        titolonum.setFont(new Font("Helvetica",Font.PLAIN,15));
-        cbn =new JComboBox<>(num);
+        JLabel titolonum = new JLabel("Selezionare numero allenamenti:", SwingConstants.CENTER);
+        titolonum.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        cbn = new JComboBox<>(num);
         cbn.addActionListener(this);
         p5.add(titolo);
         p5.add(titolonum);
         p5.add(cbn);
 
-        p4.add(p5,BorderLayout.NORTH);
+        p4.add(p5, BorderLayout.NORTH);
 
 
         Container pane = new Container();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        for(int i =0; i< 8; i++) {
+        for (int i = 0; i < 8; i++) {
             UtilDateModel model = new UtilDateModel();
             Properties properties = new Properties();
             properties.put("text.today", "Today");
@@ -118,41 +118,40 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             checkInDatePicker[i] = new JDatePickerImpl(datePanel, new DateLabelFormatter());
             pane.add(checkInDatePicker[i]);
         }
-        p4.add(pane,BorderLayout.WEST);
+        p4.add(pane, BorderLayout.WEST);
 
-        JPanel pbutton =new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
-        bcreate= new JButton ("Crea Tabella");
-        bcreate.setPreferredSize(new Dimension(120,30));
+        JPanel pbutton = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        bcreate = new JButton("Crea Tabella");
+        bcreate.setPreferredSize(new Dimension(120, 30));
         bcreate.addActionListener(this);
         pbutton.add(bcreate);
         delete = new JButton("Ripulisci Tabella");
-        delete.setPreferredSize(new Dimension(120,30));
+        delete.setPreferredSize(new Dimension(120, 30));
         delete.addActionListener(this);
         pbutton.add(delete);
-        JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
+        JLabel label = new JLabel("Data Pagamento:", SwingConstants.CENTER);
         pbutton.add(label);
         //JDatePickerImpl dataCheck = new JDatePickerImpl(datePanel,new DateLabelFormatter());
         //dataCheck.setPreferredSize(new Dimension(120,30));
         //pbutton.add(dataCheck);
-        tfdate.setPreferredSize(new Dimension(120,30));
+        tfdate.setPreferredSize(new Dimension(120, 30));
         pbutton.add(tfdate);
-        bPdf =new JButton("Genera Pdf");
-        bPdf.setPreferredSize(new Dimension(120,30));
+        bPdf = new JButton("Genera Pdf");
+        bPdf.setPreferredSize(new Dimension(120, 30));
         bPdf.addActionListener(this);
         pbutton.add(bPdf);
 
-        p4.add(pbutton,BorderLayout.PAGE_END);
+        p4.add(pbutton, BorderLayout.PAGE_END);
 
         add(p3, BorderLayout.PAGE_START);
         add(p4, BorderLayout.CENTER);
-
 
 
     }
 
     public void Generate_PDF(Persona person) {
         try {
-            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\"+ person.getCognome()+".pdf";
+            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\" + person.getCognome() + ".pdf";
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.setPageSize(PageSize.A4);
@@ -166,21 +165,21 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             document.add(p);
             document.add(para);
 
-            for (int i =0; i< 3; i++){
+            for (int i = 0; i < 3; i++) {
                 document.add(new Paragraph(" "));
             }
 
-            PdfPTable pdfPTable =new PdfPTable(table.getColumnCount());
-            for (int t =0; t<table.getColumnCount(); t++ ){
+            PdfPTable pdfPTable = new PdfPTable(table.getColumnCount());
+            for (int t = 0; t < table.getColumnCount(); t++) {
                 pdfPTable.addCell(table.getColumnName(t));
             }
-            for (int rows =0; rows< table.getRowCount(); rows ++){
-                for (int cols =0; cols< table.getColumnCount(); cols ++){
-                    pdfPTable.addCell(table.getModel().getValueAt(rows,cols).toString());
+            for (int rows = 0; rows < table.getRowCount(); rows++) {
+                for (int cols = 0; cols < table.getColumnCount(); cols++) {
+                    pdfPTable.addCell(table.getModel().getValueAt(rows, cols).toString());
                 }
             }
 
-            pdfPTable.setTotalWidth(PageSize.A4.getWidth()-30);
+            pdfPTable.setTotalWidth(PageSize.A4.getWidth() - 30);
             pdfPTable.setLockedWidth(true);
             JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER); //non funziona secondo me, da controllare
             document.add(pdfPTable);
@@ -193,34 +192,34 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             document.add(new Paragraph(" "));
 
 
-            Chunk c =new Chunk("Dichiaro di ricevere da SPORTINSIEME A.S.D. per i titoli riportati e relativi al periodo " + dateList[0] + "-" + dateList[numAll-1] + " e comunque riferentesi "+
-                    "ad attivit\u00E0 sportiva dilettantistica (Leggi n.342/2000 e 289/2002) le somme indicate in calce", FontFactory.getFont(FontFactory.HELVETICA,8));
+            Chunk c = new Chunk("Dichiaro di ricevere da SPORTINSIEME A.S.D. per i titoli riportati e relativi al periodo " + dateList[0] + "-" + dateList[numAll - 1] + " e comunque riferentesi " +
+                    "ad attivit\u00E0 sportiva dilettantistica (Leggi n.342/2000 e 289/2002) le somme indicate in calce", FontFactory.getFont(FontFactory.HELVETICA, 8));
             Paragraph p2 = new Paragraph(c);
             p2.setAlignment(Element.ALIGN_CENTER);
             document.add(p2);
 
             document.add(new Paragraph(" "));
 
-            Chunk c1 =new Chunk("""
+            Chunk c1 = new Chunk("""
                     Nel corso dell'anno solare 2021 dichiaro inoltre di:
                     [ ] non aver percepito alla data odierna compensi della stessa natura.
                     [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 10.000,00, ma inferiori a Euro 28.158,28
-                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28""",FontFactory.getFont(FontFactory.HELVETICA,9));
+                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28""", FontFactory.getFont(FontFactory.HELVETICA, 9));
             document.add(c1);
             document.add(new Paragraph(" "));
 
-            Chunk date= new Chunk("Pagato il: "+ tfdate.getText(), FontFactory.getFont(FontFactory.HELVETICA,10));
+            Chunk date = new Chunk("Pagato il: " + tfdate.getText(), FontFactory.getFont(FontFactory.HELVETICA, 10));
             document.add(date);
 
 
-            Paragraph firma =new Paragraph("FIRMA");
+            Paragraph firma = new Paragraph("FIRMA");
             firma.setAlignment(Element.ALIGN_RIGHT);
             document.add(firma);
 
             document.close();
 
 
-            JOptionPane.showMessageDialog(this,"Creazione PDF avvenuta con successo!");
+            JOptionPane.showMessageDialog(this, "Creazione PDF avvenuta con successo!");
 
             if (Desktop.isDesktopSupported()) {
                 try {
@@ -233,60 +232,56 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this,"Errore nella creazione del PDF" + e);
+            JOptionPane.showMessageDialog(this, "Errore nella creazione del PDF" + e);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==this.bPdf) {
+        if (e.getSource() == this.bPdf) {
             try {
                 Persona atleta = checkCF();
+
                 Generate_PDF(atleta);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
-        else if (e.getSource()==this.cbn){
+        } else if (e.getSource() == this.cbn) {
             numAll = (int) cbn.getSelectedItem();
-            dateList =new String[numAll];
+            dateList = new String[numAll];
 
-        }
-        else if (e.getSource() == this.srcat){
+        } else if (e.getSource() == this.srcat) {
             SearchFrame a = new SearchFrame();
             tcf.setText(SearchFrame.tfcf.getText());
             a.setVisible(true);
-        }
-        else if (e.getSource()== this.check){
+        } else if (e.getSource() == this.check) {
             try {
                 Persona atleta = checkCF();
-                if (atleta == null){
-                    JOptionPane.showMessageDialog(this,"CF errato o atleta non presente");
+                SoldiCheck(atleta);
+                if (atleta == null) {
+                    JOptionPane.showMessageDialog(this, "CF errato o atleta non presente");
                 }
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
-        else if (e.getSource()== this.bcreate){
-            p4.add(new JScrollPane(crtTable()),BorderLayout.CENTER);
+        } else if (e.getSource() == this.bcreate) {
+            p4.add(new JScrollPane(crtTable()), BorderLayout.CENTER);
             setVisible(true);
-        }
-        else if (e.getSource() ==this.delete){
+        } else if (e.getSource() == this.delete) {
             p4.remove(3);
             JOptionPane.showMessageDialog(this, "TABELLA ELIMINATA");
         }
     }
 
 
-
     public Persona checkCF() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        Persona person = null;
-        try{
+        person = null;
+        try {
             String query1 = String.format("SELECT * FROM Persona WHERE CF like '%s'",
                     tcf.getText());
-            ResultSet rs =statement.executeQuery(query1);
+            ResultSet rs = statement.executeQuery(query1);
 
             while (rs.next()) {
                 person = new Persona(rs.getString("nome"),
@@ -302,10 +297,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                 );
                 jc.setSelectedItem(rs.getString("sport"));
 
-                String querysport =String.format("SELECT * FROM Sport WHERE Name like '%s'",
+                String querysport = String.format("SELECT * FROM Sport WHERE Name like '%s'",
                         jc.getSelectedItem());
                 rs = statement.executeQuery(querysport);
-                while (rs.next()){
+                while (rs.next()) {
                     days.setText(rs.getString("Giorni_Allenamento"));
                 }
             }
@@ -314,8 +309,39 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             e.printStackTrace();
         }
         statement.close();
-        return  person;
+        return person;
 
+    }
+
+    public int SoldiCheck(Persona atleta){
+        int soldi = 0;
+
+        try{
+            Statement statement = DBManager.getConnection().createStatement();
+            String query =String.format("SELECT Soldi_Ricevuti FROM Rimborsi WHERE CF = '%s'",
+                    atleta.getCF()
+                    );
+            soldi = statement.executeUpdate(query);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  soldi;
+    }
+
+    public int NumRimb(){
+        getNumRim =0;
+        try{
+            Statement statement = DBManager.getConnection().createStatement();
+            String query =String.format("SELECT N_Rimborsi FROM Rimborsi WHERE CF = '%s'",
+                    person.getCF()
+            );
+            getNumRim = statement.executeUpdate(query);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return getNumRim;
     }
 
 
@@ -334,6 +360,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         tcf.setText(tcf.getText().toUpperCase());
         tcf.setCaretPosition(pos);
     }
+
 
 
     public static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
