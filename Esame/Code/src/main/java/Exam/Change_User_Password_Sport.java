@@ -70,7 +70,7 @@ public class Change_User_Password_Sport extends JFrame {
                 panel.add(txtPassword1);
                 add(panel, BorderLayout.CENTER);
 
-                JPanel btnpanel = new JPanel(new FlowLayout(1,5,5));
+                JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
 
                 JButton btninsert = new JButton("Inserisci User");
                 btninsert.setPreferredSize(new Dimension(200,30));
@@ -189,7 +189,7 @@ public class Change_User_Password_Sport extends JFrame {
 
                 add(panel, BorderLayout.CENTER);
 
-                JPanel btnpanel = new JPanel(new FlowLayout(1,5,5));
+                JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
                 JButton btnchange = new JButton("Change Password");
                 btnchange.setPreferredSize(new Dimension(230,30));
                 btnchange.setHorizontalAlignment(CENTER);

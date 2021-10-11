@@ -95,7 +95,8 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         Font font = new Font("Helvetica", Font.BOLD, 30);
         JLabel titolo = new JLabel("Selezionare le date degli allenamenti:");
         titolo.setFont(font);
-        JLabel titolonum =new JLabel("Selezionare numero allenamenti:");
+        JLabel titolonum =new JLabel("Selezionare numero allenamenti:",SwingConstants.CENTER);
+        titolonum.setFont(new Font("Helvetica",Font.PLAIN,15));
         cbn =new JComboBox<>(num);
         cbn.addActionListener(this);
         p5.add(titolo);
@@ -119,7 +120,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
         p4.add(pane,BorderLayout.WEST);
 
-        JPanel pbutton =new JPanel(new FlowLayout(1,5,5));
+        JPanel pbutton =new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
         bcreate= new JButton ("Crea Tabella");
         bcreate.setPreferredSize(new Dimension(120,30));
         bcreate.addActionListener(this);
@@ -130,6 +131,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         pbutton.add(delete);
         JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
         pbutton.add(label);
+        //JDatePickerImpl dataCheck = new JDatePickerImpl(datePanel,new DateLabelFormatter());
+        //dataCheck.setPreferredSize(new Dimension(120,30));
+        //pbutton.add(dataCheck);
         tfdate.setPreferredSize(new Dimension(120,30));
         pbutton.add(tfdate);
         bPdf =new JButton("Genera Pdf");
@@ -239,11 +243,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             try {
                 Persona atleta = checkCF();
                 Generate_PDF(atleta);
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
         else if (e.getSource()==this.cbn){
             numAll = (int) cbn.getSelectedItem();

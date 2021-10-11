@@ -103,7 +103,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(new JLabel("Telefono"));
         p1.add(tftelefono);
 
-        JPanel p2 = new JPanel(new FlowLayout(1,5,5));
+        JPanel p2 = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
         p2.add(btnInsert);
         p2.add(btnRemove);
         p2.add(btnUpdate);
@@ -143,7 +143,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             }
             statement.close();
         }catch (SQLException e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         return personas;
 
@@ -338,7 +338,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     public void keyPressed(KeyEvent e) {
     }
 
-    public void keyReleased(KeyEvent e) {
+    public  void keyReleased(KeyEvent e) {
         int pos = tfCF.getCaretPosition();
         tfCF.setText(tfCF.getText().toUpperCase());
         tfCF.setCaretPosition(pos);
