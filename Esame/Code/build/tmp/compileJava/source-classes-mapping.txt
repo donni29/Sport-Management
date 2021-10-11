@@ -19,10 +19,10 @@ Exam/Rimborso.java
  Exam.Rimborso$DateLabelFormatter
 Exam/ExamTest.java
  Exam.ExamTest
-Exam/Login.java
- Exam.Login
 Exam/DB_Model.java
  Exam.DB_Model
+Exam/Login.java
+ Exam.Login
 Exam/SearchFrame.java
  Exam.SearchFrame
  Exam.SearchFrame$1
