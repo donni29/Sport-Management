@@ -5,11 +5,13 @@ import Exam.Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Login {
+public class Login implements KeyListener {
 
     public JFrame frame;
     private JTextField txtUsername;
@@ -55,6 +57,7 @@ public class Login {
         txtPassword = new JPasswordField();
         txtPassword.setFont(new Font("Tahoma",Font.BOLD,18));
         txtPassword.setBounds(240,163,80,20);
+        txtPassword.addKeyListener(this);
         panel.add(txtPassword);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -101,9 +104,7 @@ public class Login {
         btnFisrtLogin.setHorizontalAlignment(SwingConstants.CENTER);
         btnFisrtLogin.setFont(new Font("Tahoma",Font.BOLD,18));
 
-        btnFisrtLogin.addActionListener(e -> {
-            new Change_User_Password_Sport(0);
-        });
+        btnFisrtLogin.addActionListener(e -> new Change_User_Password_Sport(0));
         btnFisrtLogin.setBounds(59,258,137,42);
         btnpanel.add(btnFisrtLogin);
 
@@ -144,5 +145,22 @@ public class Login {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                try {
+                    Check();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }

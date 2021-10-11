@@ -303,7 +303,7 @@ public class Change_User_Password_Sport extends JFrame {
                   } catch (SQLException throwables) {
                       throwables.printStackTrace();
                   }
-                    dispose();
+                    //dispose();
                 });
                 panel2.add(btdelete);
 
