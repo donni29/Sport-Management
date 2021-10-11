@@ -1,12 +1,10 @@
 package Exam;
 
 import Exam.Utils.DBManager;
-import Exam.Utils.Persona;
 import Exam.Utils.Struttura;
 import Exam.Utils.Utils;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +12,6 @@ import java.io.Serial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 
 public class StrutturaPanel extends JPanel  implements ActionListener {

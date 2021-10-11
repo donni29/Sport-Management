@@ -92,7 +92,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(tfluogonascita);
         p1.add(new JLabel("Data di Nascita"));
         p1.add(tfdatanascita);
-        p1.add(new JLabel("<html>Citt\u00E0 di Residenza"));
+        p1.add(new JLabel("Residenza"));
         p1.add(tfcittadiresidenza);
         p1.add(new JLabel("CF"));
         p1.add(tfCF);
@@ -103,8 +103,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         p1.add(new JLabel("Telefono"));
         p1.add(tftelefono);
 
-        JPanel p2 = new JPanel();
-        p2.setLayout(new GridLayout(4, 4));
+        JPanel p2 = new JPanel(new FlowLayout(1,5,5));
         p2.add(btnInsert);
         p2.add(btnRemove);
         p2.add(btnUpdate);
@@ -134,7 +133,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                                 rs.getString("tipo"),
                                 rs.getString("luogo_nascita"),
                                 rs.getString("data_nascita"),
-                                rs.getString("citt\u00E0_residenza"),
+                                rs.getString("residenza"),
                                 rs.getString("CF"),
                                 rs.getString("sport"),
                                 rs.getString("squadra"),
@@ -182,7 +181,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         cbtipo.setSelectedItem(person.getTipo());
         tfdatanascita.setText(person.getData_nascita());
         tfluogonascita.setText(person.getLuogo_nascita());
-        tfcittadiresidenza.setText(person.getCitta_residenza());
+        tfcittadiresidenza.setText(person.getresidenza());
         tfCF.setText(person.getCF());
         cbsport.setSelectedItem(person.getSport());
         tfsquadra.setText(person.getSquadra());
@@ -246,7 +245,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     public void InsertPersona() throws SQLException {
 
         Statement statement = DBManager.getConnection().createStatement();
-        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,citt\u00E0_residenza,CF,sport,squadra,telefono) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+        String query =String.format("INSERT INTO Persona (nome,cognome,tipo,luogo_nascita,data_nascita,residenza,CF,sport,squadra,telefono) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                 tfNome.getText(),
                 tfcognome.getText(),
                 cbtipo.getSelectedItem(),
@@ -300,7 +299,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     public  void UpdatePersona() throws SQLException{
             Statement statement = DBManager.getConnection().createStatement();
-            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',citt\u00E0_residenza = '%s',sport ='%s',squadra ='%s',telefono= '%s' WHERE CF like '%s'",
+            String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',residenza = '%s',sport ='%s',squadra ='%s',telefono= '%s' WHERE CF like '%s'",
                     tfNome.getText(),
                     tfcognome.getText(),
                     cbtipo.getSelectedItem(),

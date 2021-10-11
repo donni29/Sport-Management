@@ -8,19 +8,19 @@ public class Persona {
     String tipo;
     String luogo_nascita;
     String data_nascita;
-    String citta_residenza;
+    String residenza;
     String CF;
     String sport;
     String squadra;
     String telefono;
 
-    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String citta_residenza, String CF, String sport, String squadra, String telefono) {
+    public Persona(String nome, String cognome, String tipo,  String luogo_nascita, String data_nascita,String residenza, String CF, String sport, String squadra, String telefono) {
         this.nome = nome;
         this.cognome = cognome;
         this.tipo = tipo;
         this.luogo_nascita = luogo_nascita;
         this.data_nascita =data_nascita;
-        this.citta_residenza = citta_residenza;
+        this.residenza =residenza;
         this.CF = CF;
         this.sport =sport;
         this.squadra=squadra;
@@ -67,12 +67,12 @@ public class Persona {
         this.data_nascita = data_nascita;
     }
 
-    public String getCitta_residenza() {
-        return citta_residenza;
+    public String getresidenza() {
+        return residenza;
     }
 
-    public void setCitta_residenza(String citta_residenza) {
-        this.citta_residenza = citta_residenza;
+    public void setresidenza(String residenza) {
+        this.residenza = residenza;
     }
 
     public String getCF() {
@@ -110,7 +110,7 @@ public class Persona {
                 ", tipo='" + tipo + '\'' +
                 ", luogo_nascita='" + luogo_nascita + '\'' +
                 ", data_nascita=" + data_nascita +
-                ", citta_residenza='" + citta_residenza + '\'' +
+                ", residenza='" + residenza + '\'' +
                 ", CF='" + CF + '\'' +
                 ", sport='" + sport + '\'' +
                 ", squadra='" + squadra + '\'' +
@@ -120,6 +120,6 @@ public class Persona {
 
     public String toString2(){
         return  nome + "\n" + cognome + "\n" +"NATO A: "+ luogo_nascita + "\n" +"IL: " +
-                data_nascita + "\n" + "RESIDENTE A: " + citta_residenza + "\n" +"CF: "+ CF;
+                data_nascita + "\n" + "RESIDENTE A: " + residenza + "\n" +"CF: "+ CF;
     }
 }

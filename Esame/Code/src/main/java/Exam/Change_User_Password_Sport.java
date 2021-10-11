@@ -70,9 +70,10 @@ public class Change_User_Password_Sport extends JFrame {
                 panel.add(txtPassword1);
                 add(panel, BorderLayout.CENTER);
 
-                JPanel btnpanel = new JPanel(new GridLayout(1,2,5,5));
+                JPanel btnpanel = new JPanel(new FlowLayout(1,5,5));
 
                 JButton btninsert = new JButton("Inserisci User");
+                btninsert.setPreferredSize(new Dimension(200,30));
                 btninsert.setHorizontalAlignment(CENTER);
                 btninsert.setFont(new Font("Tahoma",Font.BOLD,18));
                 btninsert.setBounds(59,258,137,42);
@@ -96,6 +97,7 @@ public class Change_User_Password_Sport extends JFrame {
                 btnpanel.add(btninsert);
 
                 JButton btndelete = new JButton("Delete User");
+                btndelete.setPreferredSize(new Dimension(230,30));
                 btndelete.setHorizontalAlignment(CENTER);
                 btndelete.setFont(new Font("Tahoma",Font.BOLD,18));
                 btndelete.setBounds(59,258,137,42);
@@ -187,7 +189,9 @@ public class Change_User_Password_Sport extends JFrame {
 
                 add(panel, BorderLayout.CENTER);
 
+                JPanel btnpanel = new JPanel(new FlowLayout(1,5,5));
                 JButton btnchange = new JButton("Change Password");
+                btnchange.setPreferredSize(new Dimension(230,30));
                 btnchange.setHorizontalAlignment(CENTER);
                 btnchange.setFont(new Font("Tahoma",Font.BOLD,18));
                 btnchange.setBounds(59,258,137,42);
@@ -229,7 +233,8 @@ public class Change_User_Password_Sport extends JFrame {
                         throwables.printStackTrace();
                     }
                 });
-                getContentPane().add(btnchange, BorderLayout.PAGE_END);
+                btnpanel.add(btnchange);
+                getContentPane().add(btnpanel, BorderLayout.PAGE_END);
 
             }
             case 2->{

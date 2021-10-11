@@ -69,7 +69,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         setLayout(new BorderLayout());
         jc = new JComboBox(Utils.options.toArray());
         JPanel p1 = new JPanel(new GridLayout(1, 3,10,2));
-        p1.add(new JLabel("CF"),SwingConstants.CENTER);
+        p1.add(new JLabel(("CF: "),SwingConstants.CENTER));
         p1.add(tcf);
         srcat =new JButton("Search");
         srcat.setSize(4,4);
@@ -119,17 +119,21 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
         p4.add(pane,BorderLayout.WEST);
 
-        JPanel pbutton =new JPanel(new GridLayout(3,2));
+        JPanel pbutton =new JPanel(new FlowLayout(1,5,5));
         bcreate= new JButton ("Crea Tabella");
+        bcreate.setPreferredSize(new Dimension(120,30));
         bcreate.addActionListener(this);
         pbutton.add(bcreate);
         delete = new JButton("Ripulisci Tabella");
+        delete.setPreferredSize(new Dimension(120,30));
         delete.addActionListener(this);
         pbutton.add(delete);
         JLabel label = new JLabel("Data Pagamento:",SwingConstants.CENTER);
         pbutton.add(label);
+        tfdate.setPreferredSize(new Dimension(120,30));
         pbutton.add(tfdate);
         bPdf =new JButton("Genera Pdf");
+        bPdf.setPreferredSize(new Dimension(120,30));
         bPdf.addActionListener(this);
         pbutton.add(bPdf);
 
@@ -151,7 +155,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
             document.open();
-            Paragraph para = new Paragraph(person.toString());
+            Paragraph para = new Paragraph(person.toString2());
             Paragraph p = new Paragraph(Utils.Intestazione);
             p.setAlignment(Element.ALIGN_RIGHT);
 
@@ -288,7 +292,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                         rs.getString("tipo"),
                         rs.getString("luogo_nascita"),
                         rs.getString("data_nascita"),
-                        rs.getString("citt\u00E0_residenza"),
+                        rs.getString("residenza"),
                         rs.getString("CF"),
                         rs.getString("sport"),
                         rs.getString("squadra"),
@@ -302,13 +306,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
                 while (rs.next()){
                     days.setText(rs.getString("Giorni_Allenamento"));
                 }
-                //vecchio metodo da eliminare
-                /*if(person.getSport().equals("Podismo") || person.getSport().equals("Calcio")){
-                    days.setText("Luned\u00EC, Mercoled\u00EC, Venerd\u00EC, Domenica");
-                }
-                else if (person.getSport().equals("Ciclismo")){
-                    days.setText("Marted\u00EC, Gioved\u00EC, Sabato, Domenica");
-                }*/
             }
 
         } catch (SQLException e) {
@@ -322,13 +319,12 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {

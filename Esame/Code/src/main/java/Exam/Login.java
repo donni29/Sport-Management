@@ -62,12 +62,12 @@ public class Login implements KeyListener {
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
 
-        JPanel btnpanel = new JPanel( new GridLayout(1,2,10,2));
+        JPanel btnpanel = new JPanel( new FlowLayout());
 
         JButton btnlogin = new JButton("Login");
+        btnlogin.setPreferredSize(new Dimension(90,30));
         btnlogin.setHorizontalAlignment(SwingConstants.CENTER);
         btnlogin.setFont(new Font("Tahoma",Font.BOLD,18));
-
         btnlogin.addActionListener(e -> {
                     /* primo metodo usato più base
 
@@ -98,15 +98,6 @@ public class Login implements KeyListener {
         });
         btnlogin.setBounds(59,258,137,42);
         btnpanel.add(btnlogin);
-
-        //da decidere perchè non mi convince molto
-        JButton btnFisrtLogin = new JButton("First Login");
-        btnFisrtLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        btnFisrtLogin.setFont(new Font("Tahoma",Font.BOLD,18));
-
-        btnFisrtLogin.addActionListener(e -> new Change_User_Password_Sport(0));
-        btnFisrtLogin.setBounds(59,258,137,42);
-        btnpanel.add(btnFisrtLogin);
 
         frame.getContentPane().add(btnpanel,BorderLayout.PAGE_END);
     }
