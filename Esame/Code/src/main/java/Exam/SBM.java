@@ -192,7 +192,14 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 setVisible(true);
             }
             if(e.getSource() == Strutture){
-                StrutturaPanel st = new StrutturaPanel();
+                StrutturaPanel st = null;
+                try {
+                    st = new StrutturaPanel();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
                 setContentPane(st);
                 setVisible(true);
             }
@@ -212,7 +219,14 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     @Override
     public void menuSelected(MenuEvent e) {
         if (e.getSource() == Strutture) {
-            StrutturaPanel st = new StrutturaPanel();
+            StrutturaPanel st = null;
+            try {
+                st = new StrutturaPanel();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException classNotFoundException) {
+                classNotFoundException.printStackTrace();
+            }
             setContentPane(st);
             setVisible(true);
         }

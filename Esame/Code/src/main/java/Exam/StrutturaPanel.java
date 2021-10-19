@@ -3,6 +3,7 @@ package Exam;
 import Exam.Utils.DBManager;
 import Exam.Utils.Struttura;
 import Exam.Utils.Utils;
+import com.mindfusion.scheduling.Calendar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +20,17 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     public static  String[] Posti = {"Poggio","Tazio Nuvolari","Bosco saliceta"};
-    private JPanel Strutture;
-    JComboBox<String> jc;
+    public JComboBox<String> jc;
     private JTextArea tel;
     private  JTextArea Ind;
     private  JTextArea Ora_ap;
     private  JTextArea Ora_ch;
     private  JTextArea nome;
+    private JButton insert;
+    private  JButton delete;
+    private JPanel p2;
 
-    public StrutturaPanel() {
+    public StrutturaPanel() throws SQLException, ClassNotFoundException {
         setLayout(new BorderLayout(10,10));
         jc = new JComboBox(Posti);
         jc.setEditable(true);
@@ -42,7 +45,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         titolo.setFont(font);
         p1.add(titolo);
         p1.add(jc);
-        JPanel p2 = new JPanel();
+         p2 = new JPanel(new BorderLayout(2,2));
         JPanel p3 = new JPanel( new GridLayout(5,2,10,2));
 
 
@@ -71,23 +74,32 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         p3.add(l4);
         p3.add(Ora_ch);
 
-        p2.add(p3);
+        p2.add(p3, BorderLayout.NORTH);
+
+        JPanel p4 = new JPanel(new GridLayout(1,2,10,2));
+        insert = new JButton("Inserisci prenotazione");
+        insert.addActionListener(this);
+        p4.add(insert);
+        delete = new JButton("elimina prenotazione");
+        delete.addActionListener(this);
+        p4.add(delete);
 
 
+        p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
 
         add(p1,BorderLayout.NORTH);
         add(p2,BorderLayout.CENTER);
+        add(p4, BorderLayout.PAGE_END);
         //setBackground();
         setVisible(true);
 
     }
-
     private void testconnection() throws SQLException {
         DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
         Statement statement = DBManager.getConnection().createStatement();
 
         try {
-            statement.executeQuery("SELECT * FROM Persona");
+            statement.executeQuery("SELECT * FROM Struttura");
         } catch (SQLException e) {
             System.out.println("non funziona");
         }
@@ -132,11 +144,15 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
             if (e.getSource() == this.jc){
                 Struttura Posti = Cerca();
 
+                p2.remove(1);
+
+                p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
+
                 if(Posti == null){
                     JOptionPane.showMessageDialog(this," struttura errata oppure non presente");
                 }
             }
-        } catch (SQLException throwables){
+        } catch (SQLException | ClassNotFoundException throwables){
             System.out.println(throwables);
         }
     }
