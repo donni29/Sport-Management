@@ -8,6 +8,7 @@ import Exam.Utils.Utils;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -48,7 +49,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     private final JComboBox<Integer> cbn;
     public static JTextField tcf;
     private final JComboBox<String> jc;
-    public final int numRim=0;
     public int soldi;
     public int getNumRim;
     private final JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
@@ -151,18 +151,27 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     public void Generate_PDF(Persona person) {
         try {
-            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\" + person.getCognome() + ".pdf";
+            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\"  + person.getCognome() + "_" + getNumRim + ".pdf";
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.setPageSize(PageSize.A4);
 
 
             document.open();
-            Paragraph para = new Paragraph(person.toString2());
+
+            Chunk glue =new Chunk(new VerticalPositionMark());
+            Paragraph pnum = new Paragraph(String.valueOf(getNumRim));
+            pnum.add(new Chunk(glue));
             Paragraph p = new Paragraph(Utils.Intestazione);
             p.setAlignment(Element.ALIGN_RIGHT);
+            pnum.add(p);
+            document.add(pnum);
 
-            document.add(p);
+            //Paragraph p = new Paragraph(Utils.Intestazione);
+            //p.setAlignment(Element.ALIGN_RIGHT);
+
+            //document.add(p);
+            Paragraph para = new Paragraph(person.toString2());
             document.add(para);
 
             for (int i = 0; i < 3; i++) {
@@ -242,14 +251,12 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.bPdf) {
-            try {
-                soldi += 30*numAll;
-                UpdateSoldi();
-                Persona atleta = checkCF();
-                Generate_PDF(atleta);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            soldi += (30*numAll);
+            UpdateSoldi();
+            getNumRim +=1;
+            UpdateNum();
+            //Persona atleta = checkCF();
+            Generate_PDF(person);
         } else if (e.getSource() == this.cbn) {
             numAll = (int) cbn.getSelectedItem();
             dateList = new String[numAll];
@@ -260,11 +267,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             a.setVisible(true);
         } else if (e.getSource() == this.check) {
             try {
-                Persona atleta = checkCF();
-                if (atleta == null) {
+                person = checkCF();
+                if (person  == null) {
                     JOptionPane.showMessageDialog(this, "CF errato o atleta non presente");
                 } else {
-                    SoldiCheck(atleta);
+                    SoldiCheck();
                     NumRimb();
                 }
             } catch (SQLException throwables) {
@@ -318,13 +325,13 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    public void SoldiCheck(Persona atleta){
+    public void SoldiCheck(){
          soldi = 0;
 
         try{
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("SELECT Soldi_Ricevuti FROM Rimborsi WHERE CF = '%s'",
-                    atleta.getCF()
+                    person.getCF()
                     );
             ResultSet set =statement.executeQuery(query);
             soldi= ((Number) set.getObject(1)).intValue();
@@ -336,6 +343,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     public void NumRimb(){
         getNumRim =0;
+
         try{
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("SELECT N_Rimborsi FROM Rimborsi WHERE CF = '%s'",
@@ -349,7 +357,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -357,7 +364,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -395,6 +401,20 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             Statement statement = DBManager.getConnection().createStatement();
             String query = String.format("UPDATE Rimborsi SET Soldi_Ricevuti = '%s' WHERE CF like '%s'",
                     soldi,
+                    person.getCF());
+            statement.executeUpdate(query);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void UpdateNum(){
+        try {
+            Statement statement = DBManager.getConnection().createStatement();
+            String query = String.format("UPDATE Rimborsi SET N_Rimborsi = '%s' WHERE CF like '%s'",
+                    getNumRim,
                     person.getCF());
             statement.executeUpdate(query);
             statement.close();

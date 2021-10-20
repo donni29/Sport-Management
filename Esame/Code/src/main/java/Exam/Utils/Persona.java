@@ -119,7 +119,7 @@ public class Persona {
     }
 
     public String toString2(){
-        return  nome + "\n" + cognome + "\n" +"NATO A: "+ luogo_nascita + "\n" +"IL: " +
+        return  cognome + " " + nome + "\n" +"NATO A: "+ luogo_nascita + "\n" +"IL: " +
                 data_nascita + "\n" + "RESIDENTE A: " + residenza + "\n" +"CF: "+ CF;
     }
 }
