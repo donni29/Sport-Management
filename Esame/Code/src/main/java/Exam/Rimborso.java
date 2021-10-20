@@ -153,7 +153,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     public void Generate_PDF(Persona person) {
         try {
 
-            String foldername =  "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi";
+            String foldername =  "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi"; //probabilmente tirare via SportManagement e metterlo direttamente del desktop
             File folder = new File(foldername);
             if (!folder.isDirectory()){
                 folder.mkdir();
