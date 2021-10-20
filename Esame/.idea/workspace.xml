@@ -4,22 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="miglioramento rimborso">
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="miglioramento rimborso + pdf 2.0">
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Rimborso$DateLabelFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Rimborso$DateLabelFormatter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Rimborso.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Rimborso.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
     </list>
@@ -222,13 +218,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00031" summary="insert +delete + filter">
-      <created>1629383729593</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1629383729593</updated>
     </task>
     <task id="LOCAL-00032" summary="insert +delete + filter +svuotare">
       <created>1629384940879</created>
@@ -566,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634733983595</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="miglioramento rimborso + pdf 2.0">
+      <created>1634737689053</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1634737689054</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -583,7 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="finito Rimborso + menù" />
     <MESSAGE value="SearcheFrame1.0" />
     <MESSAGE value="SearcheFrame final" />
     <MESSAGE value="Login" />
@@ -608,7 +603,8 @@
     <MESSAGE value="invio + residenza + bottoni 2.0" />
     <MESSAGE value="invio + residenza + bottoni 2.0 + soldi/rimborsi" />
     <MESSAGE value="miglioramento rimborso" />
-    <option name="LAST_COMMIT_MESSAGE" value="miglioramento rimborso" />
+    <MESSAGE value="miglioramento rimborso + pdf 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="miglioramento rimborso + pdf 2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

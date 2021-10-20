@@ -131,9 +131,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         pbutton.add(delete);
         JLabel label = new JLabel("Data Pagamento:", SwingConstants.CENTER);
         pbutton.add(label);
-        //JDatePickerImpl dataCheck = new JDatePickerImpl(datePanel,new DateLabelFormatter());
-        //dataCheck.setPreferredSize(new Dimension(120,30));
-        //pbutton.add(dataCheck);
+        /*JDatePickerImpl dataCheck = new JDatePickerImpl(datePanel,new DateLabelFormatter());
+        dataCheck.setPreferredSize(new Dimension(120,30));
+        pbutton.add(dataCheck);*/
         tfdate.setPreferredSize(new Dimension(120, 30));
         pbutton.add(tfdate);
         bPdf = new JButton("Genera Pdf");
@@ -151,7 +151,19 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     public void Generate_PDF(Persona person) {
         try {
-            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\"  + person.getCognome() + "_" + getNumRim + ".pdf";
+
+            String foldername =  "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi";
+            File folder = new File(foldername);
+            if (!folder.isDirectory()){
+                folder.mkdir();
+            }
+            String foldername1 = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome();
+            File folder1 = new File(foldername1);
+            if (!folder1.isDirectory()){
+                folder1.mkdir();
+            }
+
+            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome() + "\\" + person.getCognome() + "_" + getNumRim + ".pdf";
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.setPageSize(PageSize.A4);
@@ -167,10 +179,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             pnum.add(p);
             document.add(pnum);
 
-            //Paragraph p = new Paragraph(Utils.Intestazione);
-            //p.setAlignment(Element.ALIGN_RIGHT);
-
-            //document.add(p);
             Paragraph para = new Paragraph(person.toString2());
             document.add(para);
 
@@ -441,6 +449,5 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         setVisible(false);
         return table;
     }
-
 }
 
