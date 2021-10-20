@@ -203,8 +203,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             Chunk c1 = new Chunk("""
                     Nel corso dell'anno solare 2021 dichiaro inoltre di:
                     [ ] non aver percepito alla data odierna compensi della stessa natura.
+                    [ ] aver percepito alla data odierna compensi della stessa natura, incluso il presente, per la somma di Euro\040"""+ soldi +  """
+                    
                     [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 10.000,00, ma inferiori a Euro 28.158,28
-                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28""", FontFactory.getFont(FontFactory.HELVETICA, 9));
+                    [ ] avere riscosso alla data odierna compensi della stessa natura superiori a Euro 28.158,28""",
+                    FontFactory.getFont(FontFactory.HELVETICA, 9));
             document.add(c1);
             document.add(new Paragraph(" "));
 
@@ -240,8 +243,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.bPdf) {
             try {
+                soldi += 30*numAll;
+                UpdateSoldi();
                 Persona atleta = checkCF();
-
                 Generate_PDF(atleta);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -257,11 +261,12 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         } else if (e.getSource() == this.check) {
             try {
                 Persona atleta = checkCF();
-                SoldiCheck(atleta);
                 if (atleta == null) {
                     JOptionPane.showMessageDialog(this, "CF errato o atleta non presente");
+                } else {
+                    SoldiCheck(atleta);
+                    NumRimb();
                 }
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -269,7 +274,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             p4.add(new JScrollPane(crtTable()), BorderLayout.CENTER);
             setVisible(true);
         } else if (e.getSource() == this.delete) {
-            p4.remove(3);
+            (((BorderLayout) p4.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(false);
             JOptionPane.showMessageDialog(this, "TABELLA ELIMINATA");
         }
     }
@@ -313,35 +318,35 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    public int SoldiCheck(Persona atleta){
-        int soldi = 0;
+    public void SoldiCheck(Persona atleta){
+         soldi = 0;
 
         try{
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("SELECT Soldi_Ricevuti FROM Rimborsi WHERE CF = '%s'",
                     atleta.getCF()
                     );
-            soldi = statement.executeUpdate(query);
+            ResultSet set =statement.executeQuery(query);
+            soldi= ((Number) set.getObject(1)).intValue();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  soldi;
     }
 
-    public int NumRimb(){
+    public void NumRimb(){
         getNumRim =0;
         try{
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("SELECT N_Rimborsi FROM Rimborsi WHERE CF = '%s'",
                     person.getCF()
             );
-            getNumRim = statement.executeUpdate(query);
+            ResultSet rs =statement.executeQuery(query);
+            getNumRim = ((Number) rs.getObject(1)).intValue();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return getNumRim;
     }
 
 
@@ -385,6 +390,20 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
+    public void UpdateSoldi(){
+        try {
+            Statement statement = DBManager.getConnection().createStatement();
+            String query = String.format("UPDATE Rimborsi SET Soldi_Ricevuti = '%s' WHERE CF like '%s'",
+                    soldi,
+                    person.getCF());
+            statement.executeUpdate(query);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public JTable crtTable(){
         table = new JTable();
         DefaultTableModel model =new DefaultTableModel(columnNames,0);
@@ -400,7 +419,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         JOptionPane.showMessageDialog(this,"CREATA LA TABELLA");
         JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
         setVisible(false);
-
         return table;
     }
 
