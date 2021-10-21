@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="f05d7464-032e-4be7-8ce0-cd081db62c2a">
-        <schema name="main" object-types="table, view" />
+        <schema name="main" object-types="table, view, column" />
       </connection>
     </loaded-nodes>
   </component>
@@ -69,7 +69,9 @@ select * FROM "Sport"
 select  * from "Struttura"
 select  * from "Calendario"
 drop  table  "Struttura"
-drop table "Calendario"]]></console>
+drop table "Calendario"
+
+insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Poggio","Calcio a 5","2021-10-18 09:30:00 ","2021-10-18 10:30:00 ")]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

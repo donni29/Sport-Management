@@ -3,7 +3,6 @@ package Exam;
 import Exam.Utils.Calendario;
 import Exam.Utils.DBManager;
 import com.mindfusion.common.DateTime;
-import com.mindfusion.common.DayOfWeek;
 import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
@@ -59,13 +58,11 @@ public class  CreateCalendar extends JPanel {
         calendar.addCalendarListener(new CalendarAdapter(){
             private void showForm(Item item){
                 AppointmentForm form = new AppointmentForm(calendar.getSchedule());
-                form.setAppointment((Appointment)item );
+                form.setAppointment((Appointment)item);
 
                 form.setVisible(true);
                 form.addWindowListener(new WindowAdapter()
                 {
-
-
                     @Override
                     public void windowClosed(WindowEvent we)
                     {
@@ -118,10 +115,12 @@ public class  CreateCalendar extends JPanel {
                 showForm(e.getItem());
             }
         });
+
         try {
             Calendario PC  =  establishConnection(nome_struttura);
             if (PC == null) {
-                JOptionPane.showMessageDialog(this," errore nel database ! ");
+                JOptionPane.showMessageDialog(this," Nessuna Prenotazione Effettuata ancora");
+
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -131,11 +130,11 @@ public class  CreateCalendar extends JPanel {
         setVisible(true);
     }
 
-    private Calendario establishConnection(Object nome_struttura) throws ClassNotFoundException, SQLException {
+    private Calendario establishConnection(Object nome_struttura) throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
         Calendario Cal = null;
         try {
-            String query = String.format("SELECT * FROM CALENDARIO WHERE NOME_STRUTTURA LIKE '%s' ",nome_struttura);
+            String query = String.format("SELECT * FROM Calendario WHERE nome_struttura LIKE '%s' ",nome_struttura);
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 System.out.println(rs.getString("nome_struttura"));
@@ -184,8 +183,6 @@ public class  CreateCalendar extends JPanel {
                     recurrence.setRecurrenceEnd(RecurrenceEnd.NumOccurrences);
                     a.setRecurrence(recurrence);
                 }
-
-
                 calen_f = null;
                 calen_i = null;
                 calendar.getSchedule().getItems().add(a);
@@ -221,12 +218,9 @@ public class  CreateCalendar extends JPanel {
             try {
                 if (calen_i == null) {
                     calen_i = new GregorianCalendar();
-
                     calen_i.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date));
-
                 } else {
                     calen_f = new GregorianCalendar();
-
                     calen_f.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date));
                 }
             } catch (ParseException e) {
