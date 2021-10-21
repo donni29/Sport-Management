@@ -6,8 +6,8 @@ Exam/StrutturaPanel.java
  Exam.StrutturaPanel
 Exam/Utils/DBManager.java
  Exam.Utils.DBManager
-Exam/ExamTest.java
- Exam.ExamTest
+Exam/Utils/PersonaTableModel.java
+ Exam.Utils.PersonaTableModel
 Exam/CreateCalendar.java
  Exam.CreateCalendar
  Exam.CreateCalendar$1
@@ -26,10 +26,6 @@ Exam/Utils/Persona.java
 Exam/PersonaPanel.java
  Exam.PersonaPanel
  Exam.PersonaPanel$1
-Exam/Utils/PersonaTableModel.java
- Exam.Utils.PersonaTableModel
-Exam/DB_Model.java
- Exam.DB_Model
 Exam/Rimborso.java
  Exam.Rimborso
  Exam.Rimborso$DateLabelFormatter
@@ -39,3 +35,7 @@ Exam/SearchFrame.java
 Exam/SBM.java
  Exam.DesktopTop
  Exam.SBM
+Exam/ExamTest.java
+ Exam.ExamTest
+Exam/DB_Model.java
+ Exam.DB_Model

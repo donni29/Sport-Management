@@ -57,7 +57,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     String[] dateList;
     JTable table;
     Persona person;
-    JDatePanelImpl datePanel;
+
 
     public Rimborso() {
 
@@ -158,7 +158,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             if (!folder.isDirectory()){
                 folder.mkdir();
             }
-            String foldername1 = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome();
+            String foldername1 = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome() + "_" + person.getNome();
             File folder1 = new File(foldername1);
             if (!folder1.isDirectory()){
                 folder1.mkdir();
@@ -264,7 +264,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             UpdateSoldi();
             getNumRim +=1;
             UpdateNum();
-            //Persona atleta = checkCF();
             Generate_PDF(person);
         } else if (e.getSource() == this.cbn) {
             numAll = (int) cbn.getSelectedItem();

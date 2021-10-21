@@ -26,9 +26,9 @@ public class DB_Model {
         } catch (SQLException e) {
             statement.executeUpdate("DROP TABLE IF EXISTS Persona");
             statement.executeUpdate("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita VARCHAR(10)," + "residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50)," + "Telefono VARCHAR(20))");
-            statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra,telefono) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli','17/12/1950','Via Puccini 12,Modena','0764352056C','Tennis','Circolo Modena','340 2944234')");
-            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza, CF, sport,squadra,telefono) VALUES ('Cavoli', 'Racho','Dirigente','Rodi','17/11/1991','Via Toti 12, Sassuolo','0764357052C','Calcio','Valsa Calcio','333 2938456')");
-            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza,CF, sport,squadra,telefono) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle','14/02/2001','Via Roma 1, Reggio Emilia','0764352086F','Nuoto','Piscina Reggio Emilia', '329 6621908')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra,telefono) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli','17/12/1950','Via Puccini 12,Modena','0764352056C','Tennis','Circolo Modena','340-2944234')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza, CF, sport,squadra,telefono) VALUES ('Cavoli', 'Racho','Dirigente','Rodi','17/11/1991','Via Toti 12, Sassuolo','0764357052C','Calcio','Valsa Calcio','333-2938456')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza,CF, sport,squadra,telefono) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle','14/02/2001','Via Roma 1, Reggio Emilia','0764352086F','Nuoto','Piscina Reggio Emilia', '329-6621908')");
         }
 
         try{
@@ -52,6 +52,22 @@ public class DB_Model {
             statement.executeUpdate("CREATE TABLE Rimborsi (" + " CF VARCHAR(50) PRIMARY KEY," + "N_Rimborsi INTEGER," + "Soldi_Ricevuti INTEGER)");
             statement.executeUpdate("INSERT INTO Rimborsi (CF) SELECT CF FROM Persona");
             statement.executeUpdate("UPDATE Rimborsi SET N_Rimborsi = 0, Soldi_Ricevuti = 0");
+        }
+
+        try {
+            statement1.executeQuery("SELECT * FROM Calendario");
+        }catch(SQLException e){
+            statement1.executeUpdate("CREATE TABLE Calendario ("+"nome_struttura VARCHAR(50),"+ "info_prenotazione VARCHAR(50),"+"inizio_prenotazione VARCHAR(50),"+ "fine_prenotazione VARCHAR(50),"+ "PRIMARY KEY (nome_struttura,info_prenotazione,inizio_prenotazione))");
+            statement1.executeUpdate("INSERT INTO Calendario VALUES ('Poggio','Calcio a 5 Femminile','2021-10-23 20:00:00','2021-10-23 22:00:00')");
+        }
+
+        try{
+            statement1.executeQuery("SELECT * FROM Struttura");
+        }catch (SQLException e){
+            statement1.executeUpdate("CREATE TABLE Struttura ("+ "nome VARCHAR (50) PRIMARY KEY," +"via VARCHAR (50),"+" num_telefono VARCHAR (50)," + "orario_mattina VARCHAR(50)," + "orario_pomeriggio VARCHAR(50))");
+            statement1.executeUpdate("INSERT INTO Struttura VALUES ('Tazio Nuvolari','Via fratelli Cervi 5,Savignano Sul Panaro','346-8523354','8:30','23:30')");
+            statement1.executeUpdate("INSERT INTO Struttura VALUES ('Poggio','Via Giovanni Falcone 10, Vignola (MO)','348-3050565','8:30','23:30')");
+            statement1.executeUpdate("INSERT INTO Struttura VALUES ('Bosco Saliceta','Via Vignolese 33, Modena','334-1256354','8:30','23:00')");
         }
     }
 /**tutto questo sotto da eliminare prima dell'esame pechè per ora non serve a nulla**/
