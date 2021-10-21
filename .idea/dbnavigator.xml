@@ -24,7 +24,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="95a9691f-7331-4876-9672-d0ac77318f80">
+        <schema name="main" object-types="table, view, column" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0754a19a-0892-4c86-97a0-289847e8fcee">
@@ -88,7 +92,8 @@ create table Calendario(
 nome_struttura varchar(50),
 info_prenotazione varchar(50),
 inizio_prenotazione varchar(50),
-fine_prenotazione varchar(50), 
+fine_prenotazione varchar(50),
+numero_ricursioni int default 1,
 primary key(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione)
 )
 drop table "Calendario"

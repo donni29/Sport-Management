@@ -10,12 +10,14 @@ public class Calendario {
     String info_struttura;
     DateTime inizio_prenotazione;
     DateTime fine_prenotazione;
+    int numero_ricursioni;
 
-    public Calendario(String nome_struttura, String info_prenotazione, DateTime inizio_prenotazione, DateTime fine_prenotazione) {
+    public Calendario(String nome_struttura, String info_struttura, DateTime inizio_prenotazione, DateTime fine_prenotazione, int numero_ricursioni) {
         this.nome_struttura = nome_struttura;
-        this.info_struttura = info_prenotazione;
+        this.info_struttura = info_struttura;
         this.inizio_prenotazione = inizio_prenotazione;
         this.fine_prenotazione = fine_prenotazione;
+        this.numero_ricursioni = numero_ricursioni;
     }
 
     public String getNome_struttura() {
@@ -50,6 +52,14 @@ public class Calendario {
         this.fine_prenotazione = fine_prenotazione;
     }
 
+    public int getNumero_ricursioni() {
+        return numero_ricursioni;
+    }
+
+    public void setNumero_ricursioni(int numero_ricursioni) {
+        this.numero_ricursioni = numero_ricursioni;
+    }
+
     @Override
     public String toString() {
         return "Calendario{" +
@@ -57,6 +67,7 @@ public class Calendario {
                 ", info_struttura='" + info_struttura + '\'' +
                 ", inizio_prenotazione=" + inizio_prenotazione +
                 ", fine_prenotazione=" + fine_prenotazione +
+                ", numero_ricursioni=" + numero_ricursioni +
                 '}';
     }
 }

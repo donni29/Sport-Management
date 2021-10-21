@@ -3,6 +3,7 @@ package Exam;
 import Exam.Utils.Calendario;
 import Exam.Utils.DBManager;
 import com.mindfusion.common.DateTime;
+import com.mindfusion.common.DayOfWeek;
 import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
@@ -57,18 +58,13 @@ public class  CreateCalendar extends JPanel {
 
         calendar.addCalendarListener(new CalendarAdapter(){
             private void showForm(Item item){
-                if (item.getVisible() == false )
-                    Stato = false;
                 AppointmentForm form = new AppointmentForm(calendar.getSchedule());
                 form.setAppointment((Appointment)item );
 
                 form.setVisible(true);
                 form.addWindowListener(new WindowAdapter()
                 {
-                    @Override
-                    public void windowStateChanged(WindowEvent e) {
-                        super.windowStateChanged(e);
-                    }
+
 
                     @Override
                     public void windowClosed(WindowEvent we)
@@ -88,17 +84,13 @@ public class  CreateCalendar extends JPanel {
                                 e.printStackTrace();
                             }
                         }else{
-                        try {
-                            if (Stato == false)
+                            try {
                                 InsertEvento(item, nome_struttura);
-                            else{
-                                DeleteEvento(item, nome_struttura);
-                                InsertEvento(item, nome_struttura);
+
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
                             }
-                        } catch (SQLException throwables) {
-                            throwables.printStackTrace();
                         }
-                    }
                     }
                 });
 
@@ -166,11 +158,12 @@ public class  CreateCalendar extends JPanel {
                                 calen_i.get(java.util.Calendar.MINUTE),
                                 calen_i.get(java.util.Calendar.SECOND)),
                         new DateTime(calen_f.get(java.util.Calendar.YEAR),
-                                calen_f.get(java.util.Calendar.MONTH)+1,
+                                calen_f.get(java.util.Calendar.MONTH) + 1,
                                 calen_f.get(java.util.Calendar.DAY_OF_MONTH),
                                 calen_f.get(java.util.Calendar.HOUR_OF_DAY),
                                 calen_f.get(java.util.Calendar.MINUTE),
-                                calen_f.get(java.util.Calendar.SECOND)));
+                                calen_f.get(java.util.Calendar.SECOND)),
+                        rs.getInt("numero_ricursioni"));
 
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
@@ -181,16 +174,18 @@ public class  CreateCalendar extends JPanel {
                 //a.setRecurrence(new Recurrence().setInterval(new Duration()));
                 a.setAllowChangeEnd(true);
                 a.setAllowChangeStart(true);
+                if (Cal.getNumero_ricursioni() > 1){
+                    int DayIndex = calen_i.get(java.util.Calendar.DAY_OF_WEEK);
+                    Recurrence recurrence = new Recurrence();
+                    //recurrence.setPattern(RecurrencePattern.Weekly);
+                    recurrence.setDay(getDayOfWeek(DayIndex));
+                    recurrence.setStartDate(Cal.getInizio_prenotazione());
+                    recurrence.setNumOccurrences(Cal.getNumero_ricursioni());
+                    recurrence.setRecurrenceEnd(RecurrenceEnd.NumOccurrences);
+                    a.setRecurrence(recurrence);
+                }
 
-                /*DateStyle dStyle = new DateStyle();
-                dStyle.setFrom(new DateTime(Cal.getInizio_prenotazione()));
-                dStyle.setTo(new DateTime(Cal.getInizio_prenotazione()));
-                Style style = new Style();
-                style.setBrush(new SolidBrush(Color.green));
-                dStyle.setStyle(style);
 
-                calendar.getDayStyles().add(dStyle);
-                */
                 calen_f = null;
                 calen_i = null;
                 calendar.getSchedule().getItems().add(a);
@@ -201,9 +196,24 @@ public class  CreateCalendar extends JPanel {
         return Cal;
     }
 
-    /*private java.util.Calendar Swap(String date) {
+    private DayOfWeekType getDayOfWeek(int i) {
+        switch (i) {
+            case 1:
+                return DayOfWeekType.Monday;
+            case 2:
+                return DayOfWeekType.Tuesday;
+            case 3:
+                return DayOfWeekType.Wednesday;
+            case 4:
+                return DayOfWeekType.Thursday;
+            case 5:
+                return DayOfWeekType.Friday;
+            case 6:
+                return DayOfWeekType.Saturday;
+        }
 
-    } */
+        return DayOfWeekType.Sunday;
+    }
 
 
     public class Swap extends java.util.Calendar {
@@ -265,14 +275,32 @@ public class  CreateCalendar extends JPanel {
         }
     }
     public void InsertEvento(Item item, Object nome_struttura) throws SQLException {
-        Statement statement = DBManager.getConnection().createStatement();
-        String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ('%s','%s','%s','%s')",
-                nome_struttura,
-                item.getHeaderText(),
-                item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
-                item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"));
-        statement.executeUpdate(query);
-        statement.close();
+        if(item.getRecurrenceState() == RecurrenceState.Master || item.getRecurrenceState() == RecurrenceState.Occurrence ||
+                item.getRecurrenceState() == RecurrenceState.Exception ){
+            System.out.println(item.getRecurrence().getNumOccurrences());
+            int i = 1;
+            while (item.getRecurrence().getNumOccurrences() > i){
+                Statement statement = DBManager.getConnection().createStatement();
+                String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%d')",
+                        nome_struttura,
+                        item.getRecurrence().getOccurrence(i).getHeaderText(),
+                        item.getRecurrence().getOccurrence(i ).getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
+                        item.getRecurrence().getOccurrence(i).getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
+                        item.getRecurrence().getNumOccurrences());
+                statement.executeUpdate(query);
+                statement.close();
+                i++;
+            }
+        }else {
+            Statement statement = DBManager.getConnection().createStatement();
+            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ('%s','%s','%s','%s')",
+                    nome_struttura,
+                    item.getHeaderText(),
+                    item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
+                    item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"));
+            statement.executeUpdate(query);
+            statement.close();
+        }
     }
     public void DeleteEvento(Item item, Object nome_struttura) throws SQLException{
         Statement statement =  DBManager.getConnection().createStatement();
@@ -280,7 +308,7 @@ public class  CreateCalendar extends JPanel {
                 item.getHeaderText(),
                 nome_struttura,
                 item.getStartTime().toString("yyyy-MM-dd HH:mm:ss")
-                );
+        );
         statement.executeUpdate(query);
         statement.close();
     }
@@ -294,5 +322,5 @@ public class  CreateCalendar extends JPanel {
         statement.executeUpdate(query);
         statement.close();
     }
-    }
+}
 
