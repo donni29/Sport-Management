@@ -13,7 +13,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serial;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -23,7 +25,6 @@ public class  CreateCalendar extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private Calendar calendar;
-    private Boolean Stato;
     public static java.util.Calendar calen_i = null;
     public static java.util.Calendar calen_f = null;
 
@@ -34,10 +35,11 @@ public class  CreateCalendar extends JPanel {
 
         calendar = new Calendar();
 
+
         calendar.beginInit();
         calendar.setCurrentView(CalendarView.Timetable);
         calendar.getTimetableSettings().setTwelveHourFormat(false);
-        calendar.setTheme(ThemeType.Windows2003);
+        calendar.setTheme(ThemeType.Vista);
 
         for (int i= 1 ; i < 7; i++){
             calendar.getTimetableSettings().getDates().add(DateTime.today().addDays(i));
@@ -53,7 +55,6 @@ public class  CreateCalendar extends JPanel {
         calendar.getTimetableSettings().setCellSize(32);
         calendar.setEnableDragCreate(true);
 
-        calendar.endInit();
 
         calendar.addCalendarListener(new CalendarAdapter(){
             private void showForm(Item item){
@@ -117,26 +118,24 @@ public class  CreateCalendar extends JPanel {
         });
 
         try {
-            Calendario PC  =  establishConnection(nome_struttura);
-            if (PC == null) {
-                JOptionPane.showMessageDialog(this," Nessuna Prenotazione Effettuata ancora");
-
-            }
+            establishConnection(nome_struttura);
         } catch (SQLException e) {
             System.out.println(e);
         }
+
+        calendar.endInit();
 
         add(calendar,BorderLayout.CENTER);
         setVisible(true);
     }
 
-    private Calendario establishConnection(Object nome_struttura) throws SQLException {
+    private void establishConnection(Object nome_struttura) throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        Calendario Cal = null;
+        Calendario Cal =null;
         try {
             String query = String.format("SELECT * FROM Calendario WHERE nome_struttura LIKE '%s' ",nome_struttura);
             ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
+            while(rs.next()) {
                 System.out.println(rs.getString("nome_struttura"));
                 System.out.println(rs.getString("inizio_prenotazione"));
                 System.out.println(rs.getString("fine_prenotazione"));
@@ -148,7 +147,7 @@ public class  CreateCalendar extends JPanel {
                 System.out.println(calen_i.get(java.util.Calendar.DAY_OF_MONTH));
                 new Swap(rs.getString("fine_prenotazione"));
 
-                Cal = new Calendario(rs.getString("nome_struttura"),
+                Cal= new Calendario(rs.getString("nome_struttura"),
                         rs.getString("info_prenotazione"),
                         new DateTime( calen_i.get(java.util.Calendar.YEAR),
                                 calen_i.get(java.util.Calendar.MONTH) + 1,
@@ -162,7 +161,8 @@ public class  CreateCalendar extends JPanel {
                                 calen_f.get(java.util.Calendar.HOUR_OF_DAY),
                                 calen_f.get(java.util.Calendar.MINUTE),
                                 calen_f.get(java.util.Calendar.SECOND)),
-                        rs.getInt("numero_ricursioni"));
+                        rs.getInt("numero_ricursioni")
+                );
 
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
@@ -190,8 +190,9 @@ public class  CreateCalendar extends JPanel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Cal;
     }
+
+
 
     private DayOfWeekType getDayOfWeek(int i) {
         switch (i) {
@@ -213,7 +214,7 @@ public class  CreateCalendar extends JPanel {
     }
 
 
-    public class Swap extends java.util.Calendar {
+    public static class Swap extends java.util.Calendar {
         public Swap(String date) {
             try {
                 if (calen_i == null) {

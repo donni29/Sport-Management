@@ -15,9 +15,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class StrutturaPanel extends JPanel  implements ActionListener {
+public class StrutturaPanel extends JPanel implements ActionListener {
     @Serial
     private static final long serialVersionUID = 1L;
+    private Calendar calendar;
+    public static java.util.Calendar calen_i = null;
+    public static java.util.Calendar calen_f = null;
 
     public static  String[] Posti = {"Poggio","Tazio Nuvolari","Bosco saliceta"};
     public JComboBox<String> jc;
@@ -45,7 +48,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         titolo.setFont(font);
         p1.add(titolo);
         p1.add(jc);
-         p2 = new JPanel(new BorderLayout(2,2));
+        p2 = new JPanel(new BorderLayout(2,2));
         JPanel p3 = new JPanel( new GridLayout(5,2,10,2));
 
 
@@ -64,12 +67,12 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         p3.add(l2);
         p3.add(Ind);
 
-        JLabel l3 = new JLabel("Orario Mattina");
-         Ora_ap = new JTextArea();
+        JLabel l3 = new JLabel("Orario Apertura");
+        Ora_ap = new JTextArea();
         p3.add(l3);
         p3.add(Ora_ap);
 
-        JLabel l4 = new JLabel("Orario Pomeriggio");
+        JLabel l4 = new JLabel("Orario Chiusura");
         Ora_ch = new JTextArea();
         p3.add(l4);
         p3.add(Ora_ch);
@@ -85,7 +88,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
         p4.add(delete);
 
 
-        p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
+        //p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
 
         add(p1,BorderLayout.NORTH);
         add(p2,BorderLayout.CENTER);
@@ -137,19 +140,19 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
     } */
 
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
             if (e.getSource() == this.jc){
                 Struttura Posti = Cerca();
 
-                p2.remove(1);
-
+                if (((BorderLayout) p2.getLayout()).getLayoutComponent(BorderLayout.CENTER) != null){
+                (((BorderLayout) p2.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(false);}
                 p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
-
+                setVisible(true);
+                //(((BorderLayout) p2.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(true);
                 if(Posti == null){
-                    JOptionPane.showMessageDialog(this," struttura errata oppure non presente");
+                    JOptionPane.showMessageDialog(this,"struttura errata oppure non presente");
                 }
             }
         } catch (SQLException | ClassNotFoundException throwables){
@@ -183,5 +186,7 @@ public class StrutturaPanel extends JPanel  implements ActionListener {
 
         return Posto;
     }
+
+
 }
 

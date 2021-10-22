@@ -57,7 +57,7 @@ public class DB_Model {
         try {
             statement1.executeQuery("SELECT * FROM Calendario");
         }catch(SQLException e){
-            statement1.executeUpdate("CREATE TABLE Calendario ("+"nome_struttura VARCHAR(50),"+ "info_prenotazione VARCHAR(50),"+"inizio_prenotazione VARCHAR(50),"+ "fine_prenotazione VARCHAR(50),"+ "numero_ricursioni INTEGER DEFAULT 1," + "PRIMARY KEY (nome_struttura,info_prenotazione,inizio_prenotazione))");
+            statement1.executeUpdate("CREATE TABLE Calendario ("+"nome_struttura VARCHAR(50),"+ "info_prenotazione VARCHAR(50),"+"inizio_prenotazione VARCHAR(50),"+ "fine_prenotazione VARCHAR(50),"+ "numero_ricorsioni INTEGER DEFAULT 1," + "PRIMARY KEY (nome_struttura,info_prenotazione,inizio_prenotazione))");
             statement1.executeUpdate("INSERT INTO Calendario VALUES ('Poggio','Calcio a 5 Femminile','2021-10-23 20:00:00','2021-10-23 22:00:00', 1)");
         }
 
