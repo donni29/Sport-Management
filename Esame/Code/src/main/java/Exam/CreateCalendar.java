@@ -73,11 +73,10 @@ public class  CreateCalendar extends JPanel {
                                 if (item.getRecurrenceState() == RecurrenceState.Occurrence ||
                                         item.getRecurrenceState() == RecurrenceState.Exception) {
                                     item.getRecurrence().markException(item, true);
-                                    DeleteEvento(item,nome_struttura);
                                 } else {
                                     calendar.getSchedule().getItems().remove(item);
-                                    DeleteEvento(item, nome_struttura);
                                 }
+                                DeleteEvento(item,nome_struttura);
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
