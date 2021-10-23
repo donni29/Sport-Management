@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="miglioramento rimborso + pdf 3.0 + stru/Cal dbmodel 2.0">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="problema risolto del calendario!!!!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/StrutturaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/StrutturaPanel.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -223,13 +207,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00039" summary="aggiustato tutto anche dispose&#10;Ora migliorato!!">
-      <created>1630166993417</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1630166993417</updated>
     </task>
     <task id="LOCAL-00040" summary="aggiustato tutto anche dispose&#10;Ora migliorato!!">
       <created>1630167017926</created>
@@ -567,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634808255528</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="problema risolto del calendario!!!!!!">
+      <created>1634929776424</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1634929776425</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -584,7 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Loginsql + impostazioni" />
     <MESSAGE value="Loginsql + impostazioni + table Rimborsi" />
     <MESSAGE value="Loginsql + plus impostazioni + table Rimborsi +" />
     <MESSAGE value="tablesport" />
@@ -609,7 +592,8 @@
     <MESSAGE value="miglioramento rimborso + pdf 3.0" />
     <MESSAGE value="miglioramento rimborso + pdf 3.0 + stru/Cal dbmodel" />
     <MESSAGE value="miglioramento rimborso + pdf 3.0 + stru/Cal dbmodel 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="miglioramento rimborso + pdf 3.0 + stru/Cal dbmodel 2.0" />
+    <MESSAGE value="problema risolto del calendario!!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="problema risolto del calendario!!!!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -24,7 +24,7 @@ public class  CreateCalendar extends JPanel {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Calendar calendar;
+    private final Calendar calendar;
     public static java.util.Calendar calen_i = null;
     public static java.util.Calendar calen_f = null;
 
@@ -120,7 +120,7 @@ public class  CreateCalendar extends JPanel {
         try {
             establishConnection(nome_struttura);
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         calendar.endInit();
@@ -131,7 +131,7 @@ public class  CreateCalendar extends JPanel {
 
     private void establishConnection(Object nome_struttura) throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        Calendario Cal =null;
+        Calendario Cal;
         try {
             String query = String.format("SELECT * FROM Calendario WHERE nome_struttura LIKE '%s' ",nome_struttura);
             ResultSet rs = statement.executeQuery(query);
@@ -195,22 +195,16 @@ public class  CreateCalendar extends JPanel {
 
 
     private DayOfWeekType getDayOfWeek(int i) {
-        switch (i) {
-            case 1:
-                return DayOfWeekType.Monday;
-            case 2:
-                return DayOfWeekType.Tuesday;
-            case 3:
-                return DayOfWeekType.Wednesday;
-            case 4:
-                return DayOfWeekType.Thursday;
-            case 5:
-                return DayOfWeekType.Friday;
-            case 6:
-                return DayOfWeekType.Saturday;
-        }
+        return switch (i) {
+            case 1 -> DayOfWeekType.Monday;
+            case 2 -> DayOfWeekType.Tuesday;
+            case 3 -> DayOfWeekType.Wednesday;
+            case 4 -> DayOfWeekType.Thursday;
+            case 5 -> DayOfWeekType.Friday;
+            case 6 -> DayOfWeekType.Saturday;
+            default -> DayOfWeekType.Sunday;
+        };
 
-        return DayOfWeekType.Sunday;
     }
 
 
