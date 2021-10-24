@@ -208,15 +208,14 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                 UpdatePersona();
                 JOptionPane.showMessageDialog(this,"Update avvenuto con successo");
             }
-           /** else if (e.getSource() == this.btnSelezione){
+            /* eventuale implementazione successiva
+            else if (e.getSource() == this.btnSelezione){
             }*/
 
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
-
-
 
     public void ShowItem(){
         try {
