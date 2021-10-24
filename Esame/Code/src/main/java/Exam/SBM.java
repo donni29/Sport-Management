@@ -1,7 +1,5 @@
 package Exam;
 
-//questo è il nostro progetto, madonne//
-
 import Exam.Utils.Utils;
 
 import javax.swing.*;
@@ -195,10 +193,8 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 StrutturaPanel st = null;
                 try {
                     st = new StrutturaPanel();
-                } catch (SQLException throwables) {
+                } catch (SQLException | ClassNotFoundException throwables) {
                     throwables.printStackTrace();
-                } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
                 }
                 setContentPane(st);
                 setVisible(true);
@@ -222,10 +218,8 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             StrutturaPanel st = null;
             try {
                 st = new StrutturaPanel();
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException classNotFoundException) {
-                classNotFoundException.printStackTrace();
             }
             setContentPane(st);
             setVisible(true);
@@ -244,16 +238,18 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 class DesktopTop extends JPanel {
 
     public DesktopTop() {
+        setLayout(new BorderLayout());
         ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         Image image = sportIcon.getImage();
         Image newing = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
         sportIcon = new ImageIcon(newing);
         JLabel jLabelObject = new JLabel();
-        jLabelObject.setText("<html>Welcome to <br> SPORTINSIEME's <br> Sport Management");
+        jLabelObject.setText("<html>Welcome to  SPORTINSIEME's  Sport Management <br/> Created and Managed By Students: <br/> Rossi Nicol\u00F2 & Delsante Laura");
         jLabelObject.setIcon(sportIcon);
         Font font = new Font("Helvetica", Font.BOLD, 30);
         jLabelObject.setFont(font);
-        add(jLabelObject);
+        jLabelObject.setHorizontalAlignment(JLabel.CENTER);
+        add(jLabelObject,BorderLayout.CENTER);
         setSize(900, 600);
         setVisible(true);
     }
