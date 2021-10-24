@@ -28,6 +28,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem CambiaPsw;
     private static JMenuItem NewUser;
     private static JMenuItem add_del_Sport;
+    private static JMenuItem add_strutture;
 
 
     public SBM() {
@@ -56,13 +57,10 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         setContentPane(new DesktopTop());
         setVisible(true);
 
-
         JMenu openArchivio = new JMenu("Open Archivio di ...");
-        openArchivio.addSeparator();
-        //openArchivio.addActionListener(this);
         Archivio.add(openArchivio);
 
-        //parte codice menu Archivio
+        /* parte di codice che implementa il menu */
 
         Atleti = new JMenuItem("Atleti");
         Atleti.addActionListener(this);
@@ -106,6 +104,10 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         add_del_Sport = new JMenuItem("Aggiungi/Elimina Sport");
         add_del_Sport.addActionListener(this);
         Impostazioni.add(add_del_Sport);
+
+        add_strutture = new JMenuItem("Aggiungi/Elimina Struttura");
+        add_strutture.addActionListener(this);
+        Impostazioni.add(add_strutture);
 
         setJMenuBar(menuBar);
 
@@ -207,6 +209,9 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             }
             if(e.getSource() == add_del_Sport){
                 new Change_User_Password_Sport(2);
+            }
+            if (e.getSource() == add_strutture){
+                
             }
         }
     }

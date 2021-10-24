@@ -239,7 +239,7 @@ public class Change_User_Password_Sport extends JFrame {
             }
             case 2->{
                 setBounds(100,100,800,120);
-                //setLocationRelativeTo(null);
+                setLocationRelativeTo(null);
 
                 JPanel panel1 = new JPanel(new GridLayout(1,4,10,20));
                 panel1.setBounds(30,30,330,180);

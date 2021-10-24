@@ -281,8 +281,8 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
-    /**parte da implementare successivamente se ritengono necessaria
-    public void FilterPersona(String query1) throws SQLException{
+    /*parte da implementare successivamente se ritengono necessaria
+     public void FilterPersona(String query1) throws SQLException{
         Statement statement = DBManager.getConnection().createStatement();
         String query =String.format(query1 + " WHERE sport like '%s'",// AND squadra like '%s'",
                 cbsport.getSelectedItem());
