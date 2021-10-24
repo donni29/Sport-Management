@@ -22,16 +22,14 @@ public class StrutturaPanel extends JPanel implements ActionListener {
     public static java.util.Calendar calen_i = null;
     public static java.util.Calendar calen_f = null;
 
-    public static  String[] Posti = {"Poggio","Tazio Nuvolari","Bosco saliceta"};
+    public static  String[] Posti = {"Poggio","Bosco saliceta","Tazio Nuvolari"};
     public JComboBox<String> jc;
     private JTextArea tel;
     private  JTextArea Ind;
     private  JTextArea Ora_ap;
     private  JTextArea Ora_ch;
     private  JTextArea nome;
-    private JButton insert;
-    private  JButton delete;
-    private JPanel p2;
+    public static JPanel p2;
 
     public StrutturaPanel() throws SQLException, ClassNotFoundException {
         setLayout(new BorderLayout(10,10));
@@ -79,20 +77,13 @@ public class StrutturaPanel extends JPanel implements ActionListener {
 
         p2.add(p3, BorderLayout.NORTH);
 
-        JPanel p4 = new JPanel(new GridLayout(1,2,10,2));
-        insert = new JButton("Inserisci prenotazione");
-        insert.addActionListener(this);
-        p4.add(insert);
-        delete = new JButton("elimina prenotazione");
-        delete.addActionListener(this);
-        p4.add(delete);
+
 
 
         //p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
 
         add(p1,BorderLayout.NORTH);
         add(p2,BorderLayout.CENTER);
-        add(p4, BorderLayout.PAGE_END);
         //setBackground();
         setVisible(true);
 
