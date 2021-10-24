@@ -3,7 +3,6 @@ package Exam;
 import Exam.Utils.Calendario;
 import Exam.Utils.DBManager;
 import com.mindfusion.common.DateTime;
-import com.mindfusion.common.DayOfWeek;
 import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
@@ -14,7 +13,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serial;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -24,7 +25,6 @@ public class  CreateCalendar extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public Calendar calendar;
-    private Boolean Stato;
     public static java.util.Calendar calen_i = null;
     public static java.util.Calendar calen_f = null;
 

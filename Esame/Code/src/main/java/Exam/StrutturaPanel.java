@@ -141,7 +141,6 @@ public class StrutturaPanel extends JPanel implements ActionListener {
                 (((BorderLayout) p2.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(false);}
                 p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
                 setVisible(true);
-                //(((BorderLayout) p2.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(true);
                 if(Posti == null){
                     JOptionPane.showMessageDialog(this,"struttura errata oppure non presente");
                 }
