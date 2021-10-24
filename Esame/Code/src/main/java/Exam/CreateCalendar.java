@@ -138,26 +138,20 @@ public class  CreateCalendar extends JPanel {
     }
 
     private DayOfWeekType getDayOfWeek(int i) {
-        switch (i) {
-            case 1:
-                return DayOfWeekType.Monday;
-            case 2:
-                return DayOfWeekType.Tuesday;
-            case 3:
-                return DayOfWeekType.Wednesday;
-            case 4:
-                return DayOfWeekType.Thursday;
-            case 5:
-                return DayOfWeekType.Friday;
-            case 6:
-                return DayOfWeekType.Saturday;
-        }
+        return switch (i) {
+            case 1 -> DayOfWeekType.Monday;
+            case 2 -> DayOfWeekType.Tuesday;
+            case 3 -> DayOfWeekType.Wednesday;
+            case 4 -> DayOfWeekType.Thursday;
+            case 5 -> DayOfWeekType.Friday;
+            case 6 -> DayOfWeekType.Saturday;
+            default -> DayOfWeekType.Sunday;
+        };
 
-        return DayOfWeekType.Sunday;
     }
 
 
-    public class Swap extends java.util.Calendar {
+    public static class Swap extends java.util.Calendar {
         public Swap(String date) {
             try {
                 if (calen_i == null) {
