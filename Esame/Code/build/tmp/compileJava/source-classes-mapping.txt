@@ -39,6 +39,7 @@ Exam/SearchFrame.java
  Exam.SearchFrame$1
 Exam/Impostazioni_Frame.java
  Exam.Impostazioni_Frame
+ Exam.Impostazioni_Frame$1
  Exam.Leaf
  Exam.LeafRenderer
 Exam/SBM.java
