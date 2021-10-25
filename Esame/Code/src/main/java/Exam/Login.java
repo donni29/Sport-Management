@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class Login implements KeyListener {
 
@@ -29,6 +30,9 @@ public class Login implements KeyListener {
         frame.setLayout(new BorderLayout(20,20));
         frame.setLocationRelativeTo(null);
 
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image image = kit.createImage(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
+        frame.setIconImage(image);
 
         JLabel lbname = new JLabel("Login System SBM");
         lbname.setHorizontalAlignment(SwingConstants.CENTER);

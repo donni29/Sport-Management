@@ -10,14 +10,6 @@ public class ExamTest {
 
 
     public static void main(String[] args){
-
-        /**try {
-         * come il professore
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        SwingUtilities.invokeLater(SBM::new); **/
         EventQueue.invokeLater(() -> {
             try{
                 new DB_Model();

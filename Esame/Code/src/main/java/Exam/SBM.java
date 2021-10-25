@@ -41,6 +41,10 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         }
 
 
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image image = kit.createImage(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
+        setIconImage(image);
+
         JMenuBar menuBar = new JMenuBar();
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
