@@ -25,6 +25,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem Open;
     private static JMenuItem Nuovo;
     private static JMenu Strutture;
+    private static JMenu Impostazioni;
     private static JMenuItem CambiaPsw;
     private static JMenuItem NewUser;
     private static JMenuItem add_del_Sport;
@@ -40,7 +41,6 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             e.printStackTrace();
         }
 
-
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image image = kit.createImage(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         setIconImage(image);
@@ -49,12 +49,13 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         JMenu Archivio = new JMenu("Archivio");
         menuBar.add(Archivio);
         JMenu Rimborso = new JMenu("Rimborso");
-        Strutture = new JMenu("Strutture");
         menuBar.add(Rimborso);
+        Strutture = new JMenu("Strutture");
         Strutture.addMenuListener(this);
         menuBar.add(Strutture);
         menuBar.add(Box.createHorizontalGlue());
-        JMenu Impostazioni = new JMenu("Impostazioni");
+        Impostazioni = new JMenu("Impostazioni");
+        Impostazioni.addMenuListener(this);
         menuBar.add(Impostazioni);
 
 
@@ -93,7 +94,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         // parte di menù Impostazioni
 
-        JMenu modifica_Login = new JMenu("Modifica Login...");
+        /*JMenu modifica_Login = new JMenu("Modifica Login...");
         modifica_Login.addActionListener(this);
         Impostazioni.add(modifica_Login);
 
@@ -111,7 +112,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         add_strutture = new JMenuItem("Aggiungi/Elimina Struttura");
         add_strutture.addActionListener(this);
-        Impostazioni.add(add_strutture);
+        Impostazioni.add(add_strutture);*/
 
         setJMenuBar(menuBar);
 
@@ -195,17 +196,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 setContentPane(rim);
                 setVisible(true);
             }
-            if(e.getSource() == Strutture){
-                StrutturaPanel st = null;
-                try {
-                    st = new StrutturaPanel();
-                } catch (SQLException | ClassNotFoundException throwables) {
-                    throwables.printStackTrace();
-                }
-                setContentPane(st);
-                setVisible(true);
-            }
-            if (e.getSource() == NewUser){
+            /*if (e.getSource() == NewUser){
                 new Change_User_Password_Sport(0);
             }
             if (e.getSource() == CambiaPsw){
@@ -216,7 +207,8 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             }
             if (e.getSource() == add_strutture){
                 
-            }
+            }*/
+
         }
     }
 
@@ -232,6 +224,9 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             }
             setContentPane(st);
             setVisible(true);
+        }
+        if (e.getSource() == Impostazioni){
+            new Impostazioni_Frame();
         }
     }
     //questi due metodi implementano la classe per non far diventare la classe abstract
