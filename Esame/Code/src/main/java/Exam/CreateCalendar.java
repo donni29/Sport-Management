@@ -59,9 +59,6 @@ public class  CreateCalendar extends JPanel {
         calendar.addCalendarListener(new Listener(calendar,nome_struttura));
         try {
             Calendario PC  =  establishConnection(nome_struttura);
-            if (PC == null) {
-                JOptionPane.showMessageDialog(this," errore nel database ! ");
-            }
         } catch (SQLException e) {
             System.out.println(e);
         }
