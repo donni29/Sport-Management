@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="problema risolto del calendario 2.0 + miglioramento start">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DesktopTop.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DesktopTop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Change_User_Password_Sport.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Change_User_Password_Sport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/PersonaPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +94,6 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="MIXED" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -133,7 +123,7 @@
     <property name="ToolWindowDependency Viewer.ShowToolbar" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Code/Lib/commons-dbutils-1.7.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../università/ooprogramming" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.60471207" />
@@ -220,13 +210,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00048" summary="finito Rimborso + menù">
-      <created>1631181919394</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1631181919394</updated>
     </task>
     <task id="LOCAL-00049" summary="SearcheFrame1.0">
       <created>1632489941090</created>
@@ -564,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635086670947</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="problema risolto del calendario 2.0 + miglioramento start">
+      <created>1635088101234</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1635088101234</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
