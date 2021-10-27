@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="95a9691f-7331-4876-9672-d0ac77318f80">
-        <schema name="main" object-types="table, column" />
+        <schema name="main" object-types="table, view, column" />
       </connection>
     </loaded-nodes>
   </component>
@@ -109,9 +109,7 @@ insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,f
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="95a9691f-7331-4876-9672-d0ac77318f80" object-ref="consoles/exam_db" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="0754a19a-0892-4c86-97a0-289847e8fcee" />

@@ -3,6 +3,7 @@ package Exam;
 import Exam.Utils.Calendario;
 import Exam.Utils.DBManager;
 import com.mindfusion.common.DateTime;
+import com.mindfusion.common.Duration;
 import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
@@ -19,6 +20,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class  CreateCalendar extends JPanel {
     @Serial
@@ -36,8 +38,11 @@ public class  CreateCalendar extends JPanel {
         calendar = new Calendar();
 
         calendar.beginInit();
-        calendar.setCurrentView(CalendarView.Timetable);
         calendar.getTimetableSettings().setTwelveHourFormat(false);
+        calendar.getTimetableSettings().setShowAM(false);
+        calendar.setCurrentView(CalendarView.Timetable);
+        calendar.setDateTimeFormat(new DateTimeInfo(calendar,new Locale.Builder().setLanguage("it").setRegion("IT").build()));
+        calendar.getTimetableSettings().setShowCurrentTime(true);
         calendar.setTheme(ThemeType.Windows2003);
 
         for (int i= 1 ; i < 7; i++){
@@ -47,11 +52,13 @@ public class  CreateCalendar extends JPanel {
         //calendar.getTimetableSettings().setShowItemSpans(false);
         //calendar.getTimetableSettings().setSnapInterval(Duration.fromMinutes(1));
         calendar.getTimetableSettings().setStartTime(510);
-        calendar.getTimetableSettings().setEndTime(2850);
+        calendar.getTimetableSettings().setCellTime(Duration.fromHours(1));
+        //calendar.getTimetableSettings().setEndTime(2850);
         calendar.getTimetableSettings().setVisibleColumns(8);
+        calendar.getTimetableSettings().getStyle().setBorderLeftWidth(5);
         calendar.getTimetableSettings().setShowNavigationButtons(true);
         calendar.getTimetableSettings().setScrollStep(7);
-        calendar.getTimetableSettings().setCellSize(32);
+        calendar.getTimetableSettings().setCellSize(35);
         calendar.setEnableDragCreate(true);
 
         calendar.endInit();
@@ -100,7 +107,7 @@ public class  CreateCalendar extends JPanel {
                                 calen_f.get(java.util.Calendar.HOUR_OF_DAY),
                                 calen_f.get(java.util.Calendar.MINUTE),
                                 calen_f.get(java.util.Calendar.SECOND)),
-                        rs.getInt("numero_ricursioni"));
+                        rs.getInt("numero_ricorsioni"));
 
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
@@ -111,6 +118,10 @@ public class  CreateCalendar extends JPanel {
                 //a.setRecurrence(new Recurrence().setInterval(new Duration()));
                 a.setAllowChangeEnd(true);
                 a.setAllowChangeStart(true);
+                if(a.getEndTime().isLessThan(DateTime.now()))
+                    a.getStyle().setBorderLeftColor(new Color(0xB81104));
+                else
+                    a.getStyle().setBorderLeftColor(new Color(0x2E8402));
                 /*
                 if (Cal.getNumero_ricursioni() > 1){
                     int DayIndex = calen_i.get(java.util.Calendar.DAY_OF_WEEK);
@@ -207,20 +218,28 @@ public class  CreateCalendar extends JPanel {
         }
     }
     public void InsertEvento(Item item, Object nome_struttura) throws SQLException {
-        if(item.getRecurrenceState() == RecurrenceState.Master || item.getRecurrenceState() == RecurrenceState.Occurrence ||
-                item.getRecurrenceState() == RecurrenceState.Exception ){
+        if(item.getRecurrenceState() == RecurrenceState.Master){
             System.out.println(item.getRecurrence().getNumOccurrences());
+            Statement statement = DBManager.getConnection().createStatement();
+            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%d')",
+                    nome_struttura,
+                    item.getHeaderText(),
+                    item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
+                    item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
+                    item.getRecurrence().getNumOccurrences());
+            statement.executeUpdate(query);
+            statement.close();
             int i = 1;
             while (item.getRecurrence().getNumOccurrences() > i){
-                Statement statement = DBManager.getConnection().createStatement();
-                String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%d')",
+                Statement statement1 = DBManager.getConnection().createStatement();
+                String query1 = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%d')",
                         nome_struttura,
                         item.getRecurrence().getOccurrence(i).getHeaderText(),
                         item.getRecurrence().getOccurrence(i ).getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
                         item.getRecurrence().getOccurrence(i).getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
-                        item.getRecurrence().getNumOccurrences());
-                statement.executeUpdate(query);
-                statement.close();
+                        item.getRecurrence().getNumOccurrences() - item.getRecurrence().getOccurrence(i).getOccurrenceIndex());
+                statement1.executeUpdate(query1);
+                statement1.close();
                 i++;
             }
         }else {
@@ -262,6 +281,7 @@ public class  CreateCalendar extends JPanel {
                 public void showForm(Item item){
                     AppointmentForm form = new AppointmentForm(calendar.getSchedule());
                     form.setAppointment((Appointment)item );
+                    form.setTimeFormat("HH:mm:ss");
 
                     form.setVisible(true);
                     form.addWindowListener(new WindowAdapter()
@@ -309,7 +329,8 @@ public class  CreateCalendar extends JPanel {
 
                 @Override
                 public void itemClick(ItemMouseEvent e) {
-                    showForm(e.getItem());
+                    if(e.getClicks() == 2)
+                        showForm(e.getItem());
                 }
 
                 @Override
