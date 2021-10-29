@@ -91,6 +91,7 @@ select * from "Users"
 create table Calendario(
 nome_struttura varchar(50),
 info_prenotazione varchar(50),
+descrizione_prenotazione varchar(500),
 inizio_prenotazione varchar(50),
 fine_prenotazione varchar(50),
 numero_ricursioni int default 1,
@@ -109,7 +110,9 @@ insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,f
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="95a9691f-7331-4876-9672-d0ac77318f80" object-ref="consoles/exam_db" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="0754a19a-0892-4c86-97a0-289847e8fcee" />

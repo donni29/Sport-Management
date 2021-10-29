@@ -95,6 +95,7 @@ public class  CreateCalendar extends JPanel {
 
                 Cal = new Calendario(rs.getString("nome_struttura"),
                         rs.getString("info_prenotazione"),
+                        rs.getString("descrizione_prenotazione"),
                         new DateTime( calen_i.get(java.util.Calendar.YEAR),
                                 calen_i.get(java.util.Calendar.MONTH) + 1,
                                 calen_i.get(java.util.Calendar.DAY_OF_MONTH),
@@ -107,12 +108,12 @@ public class  CreateCalendar extends JPanel {
                                 calen_f.get(java.util.Calendar.HOUR_OF_DAY),
                                 calen_f.get(java.util.Calendar.MINUTE),
                                 calen_f.get(java.util.Calendar.SECOND)),
-                        rs.getInt("numero_ricorsioni"));
+                        rs.getInt("numero_ricursioni"));
 
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
                 a.setHeaderText(Cal.getInfo_struttura());
-                //a.setDescriptionText(Cal.getInfo_struttura());
+                a.setDescriptionText(Cal.getDescrizione_prenotazione());
                 a.setStartTime(Cal.getInizio_prenotazione());
                 a.setEndTime(Cal.getFine_prenotazione());
                 //a.setRecurrence(new Recurrence().setInterval(new Duration()));
@@ -221,9 +222,10 @@ public class  CreateCalendar extends JPanel {
         if(item.getRecurrenceState() == RecurrenceState.Master){
             System.out.println(item.getRecurrence().getNumOccurrences());
             Statement statement = DBManager.getConnection().createStatement();
-            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%d')",
+            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%s','%d')",
                     nome_struttura,
                     item.getHeaderText(),
+                    item.getDescriptionText(),
                     item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
                     item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
                     item.getRecurrence().getNumOccurrences());
@@ -232,9 +234,10 @@ public class  CreateCalendar extends JPanel {
             int i = 1;
             while (item.getRecurrence().getNumOccurrences() > i){
                 Statement statement1 = DBManager.getConnection().createStatement();
-                String query1 = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%d')",
+                String query1 = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%s','%d')",
                         nome_struttura,
                         item.getRecurrence().getOccurrence(i).getHeaderText(),
+                        item.getRecurrence().getOccurrence(i).getDescriptionText(),
                         item.getRecurrence().getOccurrence(i ).getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
                         item.getRecurrence().getOccurrence(i).getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
                         item.getRecurrence().getNumOccurrences() - item.getRecurrence().getOccurrence(i).getOccurrenceIndex());
@@ -244,9 +247,10 @@ public class  CreateCalendar extends JPanel {
             }
         }else {
             Statement statement = DBManager.getConnection().createStatement();
-            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ('%s','%s','%s','%s')",
+            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione) values ('%s','%s','%s','%s','%s')",
                     nome_struttura,
                     item.getHeaderText(),
+                    item.getDescriptionText(),
                     item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
                     item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"));
             statement.executeUpdate(query);
@@ -265,7 +269,8 @@ public class  CreateCalendar extends JPanel {
     }
     public void UpdateEvento(ItemModifiedEvent itemModifiedEvent, Object nome_struttura)  throws  SQLException{
         Statement statement =  DBManager.getConnection().createStatement();
-        String query = String.format("UPDATE CALENDARIO SET inizio_prenotazione = '%s' ,fine_prenotazione = '%s'  WHERE nome_struttura LIKE '%s' and inizio_prenotazione like '%s'",
+        String query = String.format("UPDATE CALENDARIO SET descrizione_prenotazione = '%s' ,inizio_prenotazione = '%s' ,fine_prenotazione = '%s'  WHERE nome_struttura LIKE '%s' and inizio_prenotazione like '%s'",
+                itemModifiedEvent.getItem().getDescriptionText(),
                 itemModifiedEvent.getItem().getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
                 itemModifiedEvent.getItem().getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
                 nome_struttura,

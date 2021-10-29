@@ -8,13 +8,15 @@ import java.sql.Date;
 public class Calendario {
     String nome_struttura;
     String info_struttura;
+    String descrizione_prenotazione;
     DateTime inizio_prenotazione;
     DateTime fine_prenotazione;
     int numero_ricursioni;
 
-    public Calendario(String nome_struttura, String info_struttura, DateTime inizio_prenotazione, DateTime fine_prenotazione, int numero_ricursioni) {
+    public Calendario(String nome_struttura, String info_struttura, String descrizione_prenotazione, DateTime inizio_prenotazione, DateTime fine_prenotazione, int numero_ricursioni) {
         this.nome_struttura = nome_struttura;
         this.info_struttura = info_struttura;
+        this.descrizione_prenotazione = descrizione_prenotazione;
         this.inizio_prenotazione = inizio_prenotazione;
         this.fine_prenotazione = fine_prenotazione;
         this.numero_ricursioni = numero_ricursioni;
@@ -34,6 +36,14 @@ public class Calendario {
 
     public void setInfo_struttura(String info_struttura) {
         this.info_struttura = info_struttura;
+    }
+
+    public String getDescrizione_prenotazione() {
+        return descrizione_prenotazione;
+    }
+
+    public void setDescrizione_prenotazione(String descrizione_prenotazione) {
+        this.descrizione_prenotazione = descrizione_prenotazione;
     }
 
     public DateTime getInizio_prenotazione() {
@@ -65,6 +75,7 @@ public class Calendario {
         return "Calendario{" +
                 "nome_struttura='" + nome_struttura + '\'' +
                 ", info_struttura='" + info_struttura + '\'' +
+                ", descrizione_prenotazione='" + descrizione_prenotazione + '\'' +
                 ", inizio_prenotazione=" + inizio_prenotazione +
                 ", fine_prenotazione=" + fine_prenotazione +
                 ", numero_ricursioni=" + numero_ricursioni +
