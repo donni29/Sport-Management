@@ -22,7 +22,6 @@ public class StrutturaPanel extends JPanel implements ActionListener {
     public static java.util.Calendar calen_i = null;
     public static java.util.Calendar calen_f = null;
 
-    public static  String[] Posti = {"Poggio","Bosco saliceta","Tazio Nuvolari"};
     public JComboBox<String> jc;
     private JTextArea tel;
     private  JTextArea Ind;
@@ -33,7 +32,7 @@ public class StrutturaPanel extends JPanel implements ActionListener {
 
     public StrutturaPanel() throws SQLException, ClassNotFoundException {
         setLayout(new BorderLayout(10,10));
-        jc = new JComboBox(Posti);
+        jc = new JComboBox(Utils.places.toArray());
         jc.setEditable(true);
         jc.addActionListener(this);
         jc.setSize(1,1);
@@ -76,9 +75,6 @@ public class StrutturaPanel extends JPanel implements ActionListener {
         p3.add(Ora_ch);
 
         p2.add(p3, BorderLayout.NORTH);
-
-
-
 
         //p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
 

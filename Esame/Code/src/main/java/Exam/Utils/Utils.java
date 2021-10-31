@@ -32,11 +32,13 @@ public class Utils {
         public static String Password = "1234";**/
 
         public static List<String> options;
+        public static List<String> places;
     /**
-     * Method for the Initialization of Sports' List played in the club
+     * Method for the Initialization of Sports and Facilities' List played/used in the club
      */
         public static void List_init() throws SQLException {
             options =ListSport();
+            places = ListPlaces();
         }
 
     /**
@@ -61,6 +63,23 @@ public class Utils {
             }
             return options;
         }
+
+    public static ArrayList<String> ListPlaces() throws SQLException {
+        ArrayList<String> options = new ArrayList<>();
+        Statement statement =DBManager.getConnection().createStatement();
+        try{
+            ResultSet rs = statement.executeQuery("SELECT * FROM Struttura");
+            while(rs.next()){
+                options.add(
+                        rs.getString("nome")
+                );
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return options;
+    }
 
 
     public static String examdir() {
