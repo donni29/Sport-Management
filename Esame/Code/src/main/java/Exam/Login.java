@@ -1,5 +1,12 @@
 package Exam;
 
+
+/**
+ * Class to allow users to Login in the Application
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import Exam.Utils.DBManager;
 import Exam.Utils.Utils;
 
@@ -73,26 +80,6 @@ public class Login implements KeyListener {
         btnlogin.setHorizontalAlignment(SwingConstants.CENTER);
         btnlogin.setFont(new Font("Tahoma",Font.BOLD,18));
         btnlogin.addActionListener(e -> {
-                    /* primo metodo usato più base
-
-
-                    if (Password.contains(Utils.Password) && Username.contains(Utils.User)) {
-                        txtPassword.setText(null);
-                        txtUsername.setText(null);
-
-                        SBM sbm = new SBM();
-                        sbm.setVisible(true);
-                        frame.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
-                        txtPassword.setText(null);
-                        txtUsername.setText(null);
-                    }
-                });
-
-    }*/
-
-            /*secondo metodo con tabella in sql*/
             try {
                 Check();
             } catch (SQLException throwables) {
@@ -105,11 +92,14 @@ public class Login implements KeyListener {
 
         frame.getContentPane().add(btnpanel,BorderLayout.PAGE_END);
     }
+    /**
+     *Method to test our JDBC Connection
+     * @throws SQLException - if there is no Table Users or no Entry in it
+     */
 
     public static void testconnection() throws SQLException {
         DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
         Statement statement = DBManager.getConnection().createStatement();
-
         try {
             statement.executeQuery("SELECT * FROM Users");
         } catch (SQLException e1) {
@@ -118,6 +108,10 @@ public class Login implements KeyListener {
         }
     }
 
+    /**
+     * Method to check Values inserted by users and to allow Login or not to them
+     * @throws SQLException - if there is no entry with these values
+     */
     public void Check() throws SQLException {
         testconnection();
         Statement statement = DBManager.getConnection().createStatement();
@@ -126,8 +120,7 @@ public class Login implements KeyListener {
                 String.valueOf(txtPassword.getPassword()));
         try {
             ResultSet rs = statement.executeQuery(query);
-            if (rs.next() //|| ((String.valueOf(txtPassword.getPassword())).contains(Utils.Password) && (txtUsername.getText()).contains(Utils.User ))
-             ){
+            if (rs.next()){
                 SBM sbm = new SBM();
                 sbm.setVisible(true);
                 frame.dispose();

@@ -1,5 +1,11 @@
 package Exam;
 
+/**
+ *The Class implements a JPanel to store and manage the Clus's Members' Dates.
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import Exam.Utils.*;
 
 import javax.swing.*;
@@ -40,6 +46,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private List<Persona> listPersona;
     String query;
 
+
+    /**
+     *The Constructor receives a String query representing what type of people's group it's requested by the users
+     *@param query - type of people's group it's requested by the users
+     */
     public PersonaPanel(String query) throws SQLException {
 
 
@@ -119,7 +130,12 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
-
+    /**
+     * Method to Create a List of a People's Requested Type from a SQLite Database.
+     * @param query -Type people needed
+     * @return the List created
+     * @throws SQLException - if there is no Table or no entries in it
+     */
     public List<Persona> getListPersona(String query) throws SQLException {
         ArrayList<Persona> personas = new ArrayList<>();
         Statement statement = DBManager.getConnection().createStatement();
@@ -149,6 +165,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
 
     }
 
+    /**
+     *Method to test our JDBC Connection
+     * @throws SQLException - if there is no Table Persona or no Entry in it
+     */
+
     private void testconnection() throws SQLException {
         DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
         Statement statement = DBManager.getConnection().createStatement();
@@ -161,6 +182,9 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         }
     }
 
+    /**
+     * Update our List created in method getListPersona every time it's called
+     */
     private void update() {
         try{
             listPersona.clear();
@@ -170,7 +194,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
 
     public void SelectRow(){
         int selectedPersonaIndex = table.getSelectedRow();
@@ -217,6 +240,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         }
     }
 
+    /**
+     * Method to show the selection's results into the corresponding JPanel's JTextFields related of every column
+     */
+
     public void ShowItem(){
         try {
             testconnection();
@@ -240,6 +267,11 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         }
 
     }
+
+    /**
+     * to Insert a new Entry in our DB
+     * @throws SQLException - if query has a problem to be executed (es: no table)
+     */
 
     public void InsertPersona() throws SQLException {
 
@@ -265,6 +297,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tableModel.fireTableDataChanged();
 
     }
+    /**
+     * to Delete an Entry in our DB from table Persona and Table Rimborsi
+     * @throws SQLException - if queries have problem to be executed
+     */
 
     public void DeletePersona() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
@@ -295,7 +331,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tableModel.fireTableDataChanged();
 
     }*/
-
+    /**
+     * to Update dates of an Entry in our DB
+     * @throws SQLException - if the query has a problem in its execution
+     */
     public  void UpdatePersona() throws SQLException{
             Statement statement = DBManager.getConnection().createStatement();
             String query =String.format("UPDATE Persona SET nome = '%s',cognome = '%s',tipo ='%s',luogo_nascita = '%s',data_nascita = '%s',residenza = '%s',sport ='%s',squadra ='%s',telefono= '%s' WHERE CF like '%s'",
@@ -315,6 +354,10 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
             update();
             tableModel.fireTableDataChanged();
     }
+
+    /**
+     * to Clear all the JTextField box of our JPanel
+     */
 
     public void Svuotare() {
         cbtipo.setSelectedItem(options);

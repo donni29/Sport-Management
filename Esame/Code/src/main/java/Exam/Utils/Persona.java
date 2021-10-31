@@ -1,5 +1,16 @@
 package Exam.Utils;
 
+/**
+ * Class to describe a single Member of the Club
+ *<p>
+ *The Constructor Persona - Setting nome, cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra, telefono
+ *<p>
+ *The class have also to implement the following methods:
+ *getters for nome, cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra, telefono
+ *toString() and toString2() for printing nome, cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra, telefono in two different version
+ *<p>
+ * @authors Rossi Nicolò Delsante Laura
+ */
 
 public class Persona {
 
@@ -27,80 +38,42 @@ public class Persona {
         this.telefono=telefono;
     }
 
+
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCognome() {
         return cognome;
     }
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getLuogo_nascita() {
         return luogo_nascita;
     }
 
-    public void setLuogo_nascita(String luogo_nascita) {
-        this.luogo_nascita = luogo_nascita;
-    }
-
     public String getData_nascita() {
         return data_nascita;
-    }
-
-    public void setData_nascita(String data_nascita) {
-        this.data_nascita = data_nascita;
     }
 
     public String getresidenza() {
         return residenza;
     }
 
-    public void setresidenza(String residenza) {
-        this.residenza = residenza;
-    }
-
     public String getCF() {
         return CF;
     }
 
-    public void setCF(String CF) {
-        this.CF = CF;
-    }
-
     public String getSport() { return sport; }
-
-    public void setSport(String sport) {
-        this.sport = sport;
-    }
 
     public String getSquadra() {
         return squadra;
     }
 
-    public void setSquadra(String squadra) {
-        this.squadra = squadra;
-    }
-
-
     public String getTelefono() { return telefono; }
-
-    public void setTelefono(String telefono) { this.telefono = telefono; }
 
     @Override
     public String toString() {

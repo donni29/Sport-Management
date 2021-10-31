@@ -1,10 +1,14 @@
 package Exam.Utils;
 
-
+/**
+ * Class for managing DB connections making use of the singleton pattern.
+ * Supports any JDBC Connection as long as the proper driver and connection
+ * string are provided.
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
 
 import java.sql.*;
-
-/*  DMManager Class for managing DB connections  */
 public class DBManager {
 
         public static String JDBC_Driver = null ;

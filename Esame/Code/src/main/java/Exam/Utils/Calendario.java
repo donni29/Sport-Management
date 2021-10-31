@@ -1,9 +1,18 @@
 package Exam.Utils;
 
+/**
+ * Class to describe a Calendar for every Facility of the Club
+ *<p>
+ *The Constructor Calendario - Setting nome_struttura, info_struttura, inizio_prenotazione, fine_prenotazione, numero_ricursioni
+ *<p>
+ *The class have also to implement the following methods:
+ *getters for Setting nome_struttura, info_struttura, inizio_prenotazione, fine_prenotazione, numero_ricursioni
+ *toString() for printing Setting nome_struttura, info_struttura, inizio_prenotazione, fine_prenotazione, numero_ricursioni
+ *<p>
+ * @authors Rossi Nicolò Delsante Laura
+ */
 
 import com.mindfusion.common.DateTime;
-
-import java.sql.Date;
 
 public class Calendario {
     String nome_struttura;

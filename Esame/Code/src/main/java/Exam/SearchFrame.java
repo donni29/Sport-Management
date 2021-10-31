@@ -1,5 +1,11 @@
 package Exam;
 
+/**
+ *Class for creating a Search Frame
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import Exam.Utils.Persona;
 import Exam.Utils.PersonaTableModel;
 
@@ -70,10 +76,12 @@ public class SearchFrame extends JFrame implements ActionListener {
         }
     }
 
-
+    /**
+     * Create a table with the dates we got from the execution of the query in which we search a determined person through his surname
+     */
     public void Table() {
         String query = String.format("SELECT * FROM Persona WHERE cognome like '%s'", tfserach.getText());
-        PersonaPanel pp = null;
+        PersonaPanel pp;
         try {
             pp = new PersonaPanel(query);
             personas = pp.getListPersona(query);

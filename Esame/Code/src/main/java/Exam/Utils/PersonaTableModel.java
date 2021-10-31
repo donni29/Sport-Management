@@ -1,4 +1,9 @@
 package Exam.Utils;
+/**
+ * Class for build our own Table Model
+ *
+ *@authors Rossi Nicolò Delsante Laura
+ */
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -8,6 +13,10 @@ public class PersonaTableModel extends AbstractTableModel {
     private final String[] ColumnNames ={"Nome","Cognome","Tipo","Luogo di Nascita"," Data di Nascita","Residenza","CF","Sport","squadra","Telefono"};
     private final List<Persona> personaList;
 
+    /**
+     * Constructor to shape our TableModel
+     * @param personaList - List<Person> passed to
+     */
     public PersonaTableModel(List<Persona> personaList) {
         this.personaList = personaList;
     }
@@ -39,6 +48,11 @@ public class PersonaTableModel extends AbstractTableModel {
         };
     }
 
+    /**
+     * To get the column's name
+     * @param column - index of column
+     * @return - String provides the column's name
+     */
     public String getColumnName(int column){
         return  ColumnNames[column];
     }

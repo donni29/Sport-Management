@@ -1,5 +1,16 @@
 package Exam;
 
+
+/**
+ *Implement a SBM class representing the core JFrame of this Desktop Application.
+ *<p>
+ *The class extends a JFrame with one constructor:
+ *SBM() - Setting all the components of the JFrame.
+ *
+ *<p>
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import Exam.Utils.Utils;
 
 import javax.swing.*;
@@ -124,6 +135,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
     }
 
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == close) {
             DesktopTop desktopTop    = new DesktopTop();
@@ -231,13 +243,16 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     }
     //questi due metodi implementano la classe per non far diventare la classe abstract
     @Override
-    public void menuDeselected(MenuEvent e) {
-    }
-
+    public void menuDeselected(MenuEvent e) {}
     @Override
-    public void menuCanceled(MenuEvent e) {
-    }
+    public void menuCanceled(MenuEvent e) {}
 }
+
+/**
+ * This Inner Class implements a JPanel to create the home screen of the application.
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
 
 class DesktopTop extends JPanel {
 

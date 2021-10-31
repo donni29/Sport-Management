@@ -1,5 +1,13 @@
 package Exam;
 
+/**
+ * Class for modeling DB connections making use of the singleton pattern.
+ * Supports any JDBC Connection as long as the proper driver and connection
+ * string are provided.
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import Exam.Utils.DBManager;
 import Exam.Utils.Persona;
 import Exam.Utils.Utils;

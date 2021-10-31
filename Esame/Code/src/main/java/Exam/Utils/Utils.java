@@ -1,14 +1,18 @@
 package Exam.Utils;
 
+/**
+ * Class with Method and Param use in classes all around the package
+ *
+ * @authors Rossi Nicolò Delsante Laura
+ */
+
 import java.io.File;
-import java.nio.ByteBuffer;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Utils {
 
@@ -23,17 +27,25 @@ public class Utils {
                 P.Iva: 02510550359
                 CF: 02510550359""";
 
-        /**per la prima installazione in teoria
+        /**per la prima installazione
         public static String User= "insieme";
         public static String Password = "1234";**/
 
         public static List<String> options;
-
+    /**
+     * Method for the Initialization of Sports' List played in the club
+     */
         public static void List_init() throws SQLException {
             options =ListSport();
         }
 
-        public static ArrayList<String> ListSport() throws SQLException {
+    /**
+     * Create List of Sports in the club
+     * @return - List Sports played
+     * @throws SQLException - if there is no table Sport or no entry in it
+     */
+
+    public static ArrayList<String> ListSport() throws SQLException {
             ArrayList<String> options = new ArrayList<>();
             Statement statement =DBManager.getConnection().createStatement();
             try{
@@ -56,22 +68,6 @@ public class Utils {
                     "Desktop", System.getProperty("file.separator"), "Exam");
             new File(path).mkdirs();
             return path;
-        }
-
-        // eliminare tutto questo sotto prima dell'esame perchè non serve a nulla
-
-        public static UUID asUUID(byte[] bytes) {
-            ByteBuffer bb = ByteBuffer.wrap(bytes);
-            long firstLong = bb.getLong();
-            long secondLong = bb.getLong();
-            return new UUID(firstLong, secondLong);
-        }
-
-        public static byte[] asBytes(UUID uuid) {
-            ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
-            bb.putLong(uuid.getMostSignificantBits());
-            bb.putLong(uuid.getLeastSignificantBits());
-            return bb.array();
         }
 }
 

@@ -1,5 +1,15 @@
 package Exam.Utils;
 
+/**
+ * Class to describe a single Facility owned by the Club
+ *<p>
+ *The Constructor Struttura - Setting nome, via, num_telefono, orario_mattina, orario_pomeriggio
+ *<p>
+ *The class have also to implement the following methods:
+ *getters and setters for  Setting nome, via, num_telefono, orario_mattina, orario_pomeriggio
+ *toString() for printing Setting nome, via, num_telefono, orario_mattina, orario_pomeriggio
+ *@authors Rossi Nicolò Delsante Laura
+ */
 public class Struttura {
 
     String nome;
