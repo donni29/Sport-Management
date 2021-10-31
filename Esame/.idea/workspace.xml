@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="risolto icon ma un casino il resto+ javadoc">
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/StrutturaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/StrutturaPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="risolto icon ma un casino il resto+ javadoc + cambio Places">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +119,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../università/ooprogramming" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.60471207" />
     <property name="settings.editor.selected.configurable" value="com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable" />
@@ -206,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Loginsql + plus impostazioni + table Rimborsi +">
-      <created>1632842829723</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1632842829723</updated>
     </task>
     <task id="LOCAL-00057" summary="tablesport2.0">
       <created>1632928135999</created>
@@ -550,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635704291355</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="risolto icon ma un casino il resto+ javadoc + cambio Places">
+      <created>1635704635057</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1635704635057</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,7 +566,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI" />
     <MESSAGE value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI2.0" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login" />
@@ -592,7 +590,8 @@
     <MESSAGE value="Icon2.0" />
     <MESSAGE value="risolto icon ma un casino il resto" />
     <MESSAGE value="risolto icon ma un casino il resto+ javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="risolto icon ma un casino il resto+ javadoc" />
+    <MESSAGE value="risolto icon ma un casino il resto+ javadoc + cambio Places" />
+    <option name="LAST_COMMIT_MESSAGE" value="risolto icon ma un casino il resto+ javadoc + cambio Places" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
