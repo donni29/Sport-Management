@@ -2,9 +2,9 @@ package Exam;
 
 
 /**
- * Class to create the Jframe for managing different aspects of our SBM
- *
- * @authors Rossi Nicolò Delsante Laura
+  Class to create the Jframe for managing different aspects of our SBM
+
+  @authors Rossi Nicolò Delsante Laura
  */
 
 import Exam.Utils.DBManager;
@@ -381,7 +381,7 @@ public class Impostazioni_Frame extends JFrame  {
                 lbdelete.setSize(90 , 60);
                 panel3.add(lbdelete);
 
-                JComboBox cbdelete1 = new JComboBox<>(Utils.options.toArray());
+                JComboBox<Object> cbdelete1 = new JComboBox<>(Utils.options.toArray());
                 cbdelete1.setFont(new Font("Tahoma", Font.BOLD, 18));
                 cbdelete1.setSize(90,60);
                 panel3.add(cbdelete1);
@@ -397,7 +397,8 @@ public class Impostazioni_Frame extends JFrame  {
                         statement.executeUpdate(query);
                         statement.close();
                         Utils.List_init();
-                        cbdelete1.setSelectedIndex(0);
+                        cbdelete1.setModel(new DefaultComboBoxModel<>(Utils.options.toArray()));
+                        cbdelete2.setModel(new DefaultComboBoxModel<>(Utils.options.toArray()));
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -469,8 +470,20 @@ public class Impostazioni_Frame extends JFrame  {
                 lbname.setBounds(28, 10, 500, 150);
                 jpanel.add(lbname, BorderLayout.NORTH);
 
-                JPanel panel = new JPanel(new GridLayout(5, 2, 10, 40));
-                JLabel lname = new JLabel("Nome Palestra:", CENTER);
+                JPanel panel = new JPanel(new GridLayout(6, 2, 10, 40));
+
+                JLabel lname1 = new JLabel("Nome Palestra Utilizzata:", CENTER);
+                lname1.setFont(new Font("Tahoma", Font.BOLD, 18));
+                lname1.setBounds(59, 104, 160, 36);
+                panel.add(lname1);
+
+                JComboBox<Object> comboBox = new JComboBox<>(Utils.places.toArray());
+                comboBox.setFont(new Font("Tahoma", Font.BOLD, 18));
+                comboBox.setSize(90,60);
+                panel.add(comboBox);
+
+
+                JLabel lname = new JLabel("Nome Nuova Palestra:", CENTER);
                 lname.setFont(new Font("Tahoma", Font.BOLD, 18));
                 lname.setBounds(59, 104, 160, 36);
                 panel.add(lname);
@@ -540,8 +553,9 @@ public class Impostazioni_Frame extends JFrame  {
                                 txtend.getText());
                         statement.executeUpdate(query);
                         statement.close();
+                        Utils.List_init();
+                        comboBox.setModel(new DefaultComboBoxModel<>(Utils.places.toArray()));
                         JOptionPane.showMessageDialog(this,"Inserimento Nuovo Struttura Avvenuto con successo!!");
-                        dispose();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -560,25 +574,51 @@ public class Impostazioni_Frame extends JFrame  {
                         try{
                             Statement statement = DBManager.getConnection().createStatement();
                             String query = String.format("DELETE FROM Struttura WHERE nome = '%s'",
-                                    txtname.getText());
+                                    comboBox.getSelectedItem());
                             int rs = statement.executeUpdate(query);
                             if (rs !=0) {
                                 statement.close();
+                                Utils.List_init();
+                                comboBox.setModel(new DefaultComboBoxModel<>(Utils.places.toArray()));
                                 JOptionPane.showMessageDialog(this, "Eliminazione avvenuta con successo!");
-                                dispose();
                             }else {
                                 JOptionPane.showMessageDialog(this,"Struttura non trovata");
                             }
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
+
                     }
                     else if (result == JOptionPane.NO_OPTION){
                         JOptionPane.showMessageDialog(this, "Eliminazione non confermata");
                     }
                 });
+
+                JButton btnupdate = new JButton("Update Struttura");
+                btnupdate.setPreferredSize(new Dimension(230,30));
+                btnupdate.setHorizontalAlignment(CENTER);
+                btnupdate.setFont(new Font("Tahoma",Font.BOLD,18));
+                btnupdate.setBounds(59,258,137,42);
+                btnupdate.addActionListener(e -> {
+                    try {
+                        Statement statement = DBManager.getConnection().createStatement();
+                        String query = String.format("UPDATE Struttura SET nome ='%s',via ='%s',num_telefono = '%s',orario_mattina ='%s', orario_pomeriggio ='%s'",
+                                txtname.getText(),
+                                txtvia.getText(),
+                                txtelefono.getText(),
+                                txtstart.getText(),
+                                txtend.getText());
+                        statement.executeUpdate(query);
+                        statement.close();
+                        JOptionPane.showMessageDialog(this,"Aggiornammento Struttura Avvenuto con successo!!");
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                });
+
                 btnpanel.add(btnchange);
                 btnpanel.add(btndelete);
+                btnpanel.add(btnupdate);
                 jpanel.add(btnpanel, BorderLayout.PAGE_END);
             }
         }

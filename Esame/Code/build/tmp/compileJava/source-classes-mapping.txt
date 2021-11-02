@@ -21,11 +21,8 @@ Exam/Utils/Struttura.java
 Exam/SearchFrame.java
  Exam.SearchFrame
  Exam.SearchFrame$1
-Exam/Impostazioni_Frame.java
- Exam.Impostazioni_Frame
- Exam.Impostazioni_Frame$1
- Exam.Leaf
- Exam.LeafRenderer
+Exam/StrutturaPanel.java
+ Exam.StrutturaPanel
 Exam/Utils/Utils.java
  Exam.Utils.Utils
 Exam/Rimborso.java
@@ -33,13 +30,16 @@ Exam/Rimborso.java
  Exam.Rimborso
 Exam/Login.java
  Exam.Login
-Exam/SBM.java
- Exam.DesktopTop
- Exam.SBM
-Exam/DB_Model.java
- Exam.DB_Model
 Exam/PersonaPanel.java
  Exam.PersonaPanel
  Exam.PersonaPanel$1
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
+Exam/DB_Model.java
+ Exam.DB_Model
+Exam/Impostazioni_Frame.java
+ Exam.Impostazioni_Frame
+ Exam.Impostazioni_Frame$1
+ Exam.Leaf
+ Exam.LeafRenderer
+Exam/SBM.java
+ Exam.DesktopTop
+ Exam.SBM
