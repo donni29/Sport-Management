@@ -152,19 +152,17 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     public void Generate_PDF(Persona person) {
         try {
-
-            String foldername =  "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi"; //probabilmente tirare via SportManagement e metterlo direttamente del desktop
+            String foldername =  "C:\\Users\\Utente\\Desktop\\Rimborsi";
             File folder = new File(foldername);
             if (!folder.isDirectory()){
                 folder.mkdir();
             }
-            String foldername1 = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome() + "_" + person.getNome();
+            String foldername1 =new String(foldername + "\\" +  person.getCognome() + "_" + person.getNome());
             File folder1 = new File(foldername1);
             if (!folder1.isDirectory()){
                 folder1.mkdir();
             }
-
-            String file_name = "C:\\Users\\Utente\\Desktop\\Sport-Management\\Rimborsi\\" + person.getCognome() + "\\" + person.getCognome() + "_" + getNumRim + ".pdf";
+            String file_name = new String(foldername1 + "\\" + person.getCognome()+"_"+ getNumRim +".pdf");
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.setPageSize(PageSize.A4);

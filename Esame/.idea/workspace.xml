@@ -4,8 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="risolto icon ma un casino il resto+ javadoc + cambio Places">
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="risolto icon ma un casino il resto+ javadoc + cambio Places + inizio pulizia">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/StrutturaPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Calendario.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Calendario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/JTableUtilities.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/JTableUtilities.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Persona.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/PersonaTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/PersonaTableModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Struttura.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Struttura.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -205,13 +228,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00057" summary="tablesport2.0">
-      <created>1632928135999</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1632928135999</updated>
     </task>
     <task id="LOCAL-00058" summary="tablesport2.0 + risolto problema primo login">
       <created>1632930484378</created>
@@ -549,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635704635057</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="risolto icon ma un casino il resto+ javadoc + cambio Places + inizio pulizia">
+      <created>1635704757073</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1635704757073</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="tablesport3.0 + risolto problema primo login + RISOLTO PROBLEMA RIMBORSI2.0" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table" />
@@ -591,7 +613,8 @@
     <MESSAGE value="risolto icon ma un casino il resto" />
     <MESSAGE value="risolto icon ma un casino il resto+ javadoc" />
     <MESSAGE value="risolto icon ma un casino il resto+ javadoc + cambio Places" />
-    <option name="LAST_COMMIT_MESSAGE" value="risolto icon ma un casino il resto+ javadoc + cambio Places" />
+    <MESSAGE value="risolto icon ma un casino il resto+ javadoc + cambio Places + inizio pulizia" />
+    <option name="LAST_COMMIT_MESSAGE" value="risolto icon ma un casino il resto+ javadoc + cambio Places + inizio pulizia" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

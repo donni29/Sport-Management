@@ -64,6 +64,12 @@ public class Utils {
             return options;
         }
 
+    /**
+     * Create List of Facilities owned by the club
+     * @return - List Facilities used
+     * @throws SQLException - if there is no table Struttura or no entry in it
+     */
+
     public static ArrayList<String> ListPlaces() throws SQLException {
         ArrayList<String> options = new ArrayList<>();
         Statement statement =DBManager.getConnection().createStatement();

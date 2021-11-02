@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Locale.Builder;
 
 public class  CreateCalendar extends JPanel {
     @Serial
@@ -41,9 +42,9 @@ public class  CreateCalendar extends JPanel {
         calendar.getTimetableSettings().setTwelveHourFormat(false);
         calendar.getTimetableSettings().setShowAM(false);
         calendar.setCurrentView(CalendarView.Timetable);
-        calendar.setDateTimeFormat(new DateTimeInfo(calendar,new Locale.Builder().setLanguage("it").setRegion("IT").build()));
+        calendar.setDateTimeFormat(new DateTimeInfo(calendar,new Builder().setLanguage("it").setRegion("IT").build()));
         calendar.getTimetableSettings().setShowCurrentTime(true);
-        calendar.setTheme(ThemeType.Windows2003);
+        calendar.setTheme(ThemeType.Silver);
 
         for (int i= 1 ; i < 7; i++){
             calendar.getTimetableSettings().getDates().add(DateTime.today().addDays(i));
@@ -65,7 +66,7 @@ public class  CreateCalendar extends JPanel {
 
         calendar.addCalendarListener(new Listener(calendar,nome_struttura));
         try {
-            Calendario PC  =  establishConnection(nome_struttura);
+          establishConnection(nome_struttura);
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -75,9 +76,9 @@ public class  CreateCalendar extends JPanel {
     }
 
 
-    public Calendario establishConnection(Object nome_struttura) throws ClassNotFoundException, SQLException {
+    public void establishConnection(Object nome_struttura) throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
-        Calendario Cal = null;
+        Calendario Cal;
         try {
             String query = String.format("SELECT * FROM CALENDARIO WHERE NOME_STRUTTURA LIKE '%s' ",nome_struttura);
             ResultSet rs = statement.executeQuery(query);
@@ -108,7 +109,8 @@ public class  CreateCalendar extends JPanel {
                                 calen_f.get(java.util.Calendar.HOUR_OF_DAY),
                                 calen_f.get(java.util.Calendar.MINUTE),
                                 calen_f.get(java.util.Calendar.SECOND)),
-                        rs.getInt("numero_ricursioni"));
+                        rs.getInt("numero_ricorsioni"));
+
 
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
@@ -143,7 +145,6 @@ public class  CreateCalendar extends JPanel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Cal;
     }
 
     private DayOfWeekType getDayOfWeek(int i) {
@@ -222,7 +223,7 @@ public class  CreateCalendar extends JPanel {
         if(item.getRecurrenceState() == RecurrenceState.Master){
             System.out.println(item.getRecurrence().getNumOccurrences());
             Statement statement = DBManager.getConnection().createStatement();
-            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%s','%d')",
+            String query = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%s','%d')",
                     nome_struttura,
                     item.getHeaderText(),
                     item.getDescriptionText(),
@@ -234,7 +235,7 @@ public class  CreateCalendar extends JPanel {
             int i = 1;
             while (item.getRecurrence().getNumOccurrences() > i){
                 Statement statement1 = DBManager.getConnection().createStatement();
-                String query1 = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricursioni) values ('%s','%s','%s','%s','%s','%d')",
+                String query1 = String.format("INSERT INTO CALENDARIO (nome_struttura,info_prenotazione,descrizione_prenotazione,inizio_prenotazione,fine_prenotazione,numero_ricorsioni) values ('%s','%s','%s','%s','%s','%d')",
                         nome_struttura,
                         item.getRecurrence().getOccurrence(i).getHeaderText(),
                         item.getRecurrence().getOccurrence(i).getDescriptionText(),
@@ -285,14 +286,13 @@ public class  CreateCalendar extends JPanel {
             calendar.addCalendarListener(new CalendarAdapter(){
                 public void showForm(Item item){
                     AppointmentForm form = new AppointmentForm(calendar.getSchedule());
+                    form.setLocale(new Locale("it","ITALY"));
                     form.setAppointment((Appointment)item );
                     form.setTimeFormat("HH:mm:ss");
 
                     form.setVisible(true);
                     form.addWindowListener(new WindowAdapter()
                     {
-
-
                         @Override
                         public void windowClosed(WindowEvent we)
                         {
