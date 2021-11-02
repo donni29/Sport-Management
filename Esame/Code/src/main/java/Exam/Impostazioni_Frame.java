@@ -557,22 +557,22 @@ public class Impostazioni_Frame extends JFrame  {
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.QUESTION_MESSAGE);
                     if (result == JOptionPane.YES_NO_OPTION ) {
-                            try{
-                                Statement statement = DBManager.getConnection().createStatement();
-                                String query = String.format("DELETE FROM Struttura WHERE nome = '%s'",
-                                        txtname.getText());
-                                int rs = statement.executeUpdate(query);
-                                if (rs !=0) {
-                                    statement.close();
-                                    JOptionPane.showMessageDialog(this, "Eliminazione avvenuta con successo!");
-                                    dispose();
-                                }else {
-                                    JOptionPane.showMessageDialog(this,"Struttura non trovata");
-                                }
-                            } catch (SQLException throwables) {
-                                throwables.printStackTrace();
+                        try{
+                            Statement statement = DBManager.getConnection().createStatement();
+                            String query = String.format("DELETE FROM Struttura WHERE nome = '%s'",
+                                    txtname.getText());
+                            int rs = statement.executeUpdate(query);
+                            if (rs !=0) {
+                                statement.close();
+                                JOptionPane.showMessageDialog(this, "Eliminazione avvenuta con successo!");
+                                dispose();
+                            }else {
+                                JOptionPane.showMessageDialog(this,"Struttura non trovata");
                             }
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
                         }
+                    }
                     else if (result == JOptionPane.NO_OPTION){
                         JOptionPane.showMessageDialog(this, "Eliminazione non confermata");
                     }
