@@ -19,7 +19,7 @@ public class Change_User_Password_Sport extends JFrame {
     private static JPasswordField txtNewPassword;
     private static JTextField txinsert;
     private static JTextField dayinsert;
-    private static JComboBox<String> cbdelete;
+    private static JComboBox<Object> cbdelete;
 
     public Change_User_Password_Sport(int c) {
 
@@ -289,7 +289,7 @@ public class Change_User_Password_Sport extends JFrame {
                 lbdelete.setSize(90 , 60);
                 panel2.add(lbdelete);
 
-                cbdelete = new JComboBox(Utils.options.toArray());
+                cbdelete = new JComboBox<>(Utils.options.toArray());
                 cbdelete.setFont(new Font("Tahoma", Font.BOLD, 18));
                 cbdelete.setSize(90,60);
                 panel2.add(cbdelete);

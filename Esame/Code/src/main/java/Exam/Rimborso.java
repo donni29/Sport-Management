@@ -136,9 +136,6 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         pbutton.add(delete);
         JLabel label = new JLabel("Data Pagamento:", SwingConstants.CENTER);
         pbutton.add(label);
-        //JDatePickerImpl dataCheck = new JDatePickerImpl(datePanel,new DateLabelFormatter());
-        //dataCheck.setPreferredSize(new Dimension(120,30));
-        //pbutton.add(dataCheck);
         tfdate.setPreferredSize(new Dimension(120, 30));
         pbutton.add(tfdate);
         bPdf = new JButton("Genera Pdf");

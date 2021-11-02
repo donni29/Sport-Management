@@ -37,7 +37,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     private final JTextField tfsquadra;
     private final JTextField tftelefono;
     private final JComboBox<String> cbtipo;
-    private final JComboBox<String> cbsport;
+    private final JComboBox<Object> cbsport;
     private JTable table;
     private PersonaTableModel tableModel;
 
@@ -83,7 +83,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfCF = new JTextField();
         tfCF.addActionListener(this);
         tfCF.addKeyListener(this);
-        cbsport =new JComboBox(Utils.options.toArray());
+        cbsport =new JComboBox<>(Utils.options.toArray());
         cbsport.addActionListener(this);
         tfsquadra = new JTextField();
         tfsquadra.addActionListener(this);
@@ -365,7 +365,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         tfcognome.setText("");
         tfdatanascita.setText("");
         tfluogonascita.setText("");
-        cbsport.setSelectedItem(Utils.options.toArray());
+        cbsport.setSelectedItem(0);
         tfcittadiresidenza.setText("");
         tfsquadra.setText("");
         tftelefono.setText("");
