@@ -103,38 +103,13 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         Open.addActionListener(this);
         Rimborso.add(Open);
 
-        // parte di menù Impostazioni
-
-        /*JMenu modifica_Login = new JMenu("Modifica Login...");
-        modifica_Login.addActionListener(this);
-        Impostazioni.add(modifica_Login);
-
-        NewUser = new JMenuItem("Aggiungi User");
-        NewUser.addActionListener(this);
-        modifica_Login.add(NewUser);
-
-        CambiaPsw = new JMenuItem("Cambia Password");
-        CambiaPsw.addActionListener(this);
-        modifica_Login.add(CambiaPsw);
-
-        add_del_Sport = new JMenuItem("Aggiungi/Elimina Sport");
-        add_del_Sport.addActionListener(this);
-        Impostazioni.add(add_del_Sport);
-
-        add_strutture = new JMenuItem("Aggiungi/Elimina Struttura");
-        add_strutture.addActionListener(this);
-        Impostazioni.add(add_strutture);*/
-
         setJMenuBar(menuBar);
 
         setSize(1040,600);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
-
     }
-
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == close) {
@@ -208,19 +183,6 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
                 setContentPane(rim);
                 setVisible(true);
             }
-            /*if (e.getSource() == NewUser){
-                new Change_User_Password_Sport(0);
-            }
-            if (e.getSource() == CambiaPsw){
-                new Change_User_Password_Sport(1);
-            }
-            if(e.getSource() == add_del_Sport){
-                new Change_User_Password_Sport(2);
-            }
-            if (e.getSource() == add_strutture){
-                
-            }*/
-
         }
     }
 
