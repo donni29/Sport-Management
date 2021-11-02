@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="Impostazioni_Frame + altre modifiche qua e la + path">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Impostazioni_Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Impostazioni_Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,13 +206,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00068" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login">
-      <created>1633427778334</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1633427778334</updated>
     </task>
     <task id="LOCAL-00069" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table">
       <created>1633619746115</created>
@@ -558,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635867806329</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento">
+      <created>1635869419972</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1635869419972</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -575,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica" />
     <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica 2.0" />
     <MESSAGE value="prova 1" />
@@ -600,7 +591,8 @@
     <MESSAGE value="risolto icon ma un casino il resto+ javadoc + cambio Places + inizio pulizia + rimborsi" />
     <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la" />
     <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la + path" />
-    <option name="LAST_COMMIT_MESSAGE" value="Impostazioni_Frame + altre modifiche qua e la + path" />
+    <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

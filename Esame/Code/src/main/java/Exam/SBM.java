@@ -116,6 +116,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         } else {
             if (e.getSource() == Open) {
                 JFileChooser openSource = new JFileChooser();
+                openSource.setCurrentDirectory(new File(Utils.path1));
 
                 int option = openSource.showOpenDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
