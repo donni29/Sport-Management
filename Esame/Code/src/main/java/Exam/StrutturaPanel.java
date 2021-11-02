@@ -31,6 +31,7 @@ public class StrutturaPanel extends JPanel implements ActionListener {
     public static JPanel p2;
 
     public StrutturaPanel() throws SQLException, ClassNotFoundException {
+        super();
         setLayout(new BorderLayout(10,10));
         jc = new JComboBox(Utils.places.toArray());
         jc.setEditable(true);

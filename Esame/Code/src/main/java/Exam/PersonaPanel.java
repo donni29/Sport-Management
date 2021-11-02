@@ -53,7 +53,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
      */
     public PersonaPanel(String query) throws SQLException {
 
-
+        super();
         setLayout(new BorderLayout(1,1));
         this.query =query;
         btnRemove = new JButton("Delete");

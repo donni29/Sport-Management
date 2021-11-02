@@ -257,6 +257,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 class DesktopTop extends JPanel {
 
     public DesktopTop() {
+        super();
         setLayout(new BorderLayout());
         ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
         Image image = sportIcon.getImage();

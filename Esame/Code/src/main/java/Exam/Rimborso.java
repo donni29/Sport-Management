@@ -1,5 +1,9 @@
 package Exam;
 
+/**
+ * Class to create Refunds to Club's Members
+ *  @authors Rossi Nicolò Delsante Laura
+ */
 
 import Exam.Utils.DBManager;
 import Exam.Utils.JTableUtilities;
@@ -150,6 +154,10 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * To generate the Refund's PDF of a member
+     * @param person - Member who is receiving the Refunds
+     */
     public void Generate_PDF(Persona person) {
         try {
             String foldername =  "C:\\Users\\Utente\\Desktop\\Rimborsi";
@@ -292,7 +300,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-
+    /**
+     * To check the being of a selected member, to obtain his sport and his Training's days
+     * @return - a Persona
+     * @throws SQLException - if there is no value with the inserted CF
+     */
     public Persona checkCF() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
         person = null;
@@ -331,6 +343,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * To obtain the amount of money the member has received until now
+     */
     public void SoldiCheck(){
          soldi = 0;
 
@@ -347,6 +362,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * To obtain Refunds' number of money the member has received until now
+     */
     public void NumRimb(){
         getNumRim =0;
 
@@ -380,28 +398,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
 
 
-    public static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
-
-        private final String datePattern = "dd/MM/yyyy";
-        private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-
-        @Override
-        public Object stringToValue(String text) throws ParseException {
-            return dateFormatter.parseObject(text);
-        }
-
-        @Override
-        public String valueToString(Object value) {
-            if (value != null) {
-                Calendar cal = (Calendar) value;
-                return dateFormatter.format(cal.getTime());
-            }
-
-            return "";
-        }
-
-    }
-
+    /**
+     * To update the amount of money the member has received
+     */
     public void UpdateSoldi(){
         try {
             Statement statement = DBManager.getConnection().createStatement();
@@ -415,7 +414,9 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
 
     }
-
+    /**
+     * To obtain Refunds' number of money the member has received
+     */
     public void UpdateNum(){
         try {
             Statement statement = DBManager.getConnection().createStatement();
@@ -429,6 +430,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         }
 
     }
+
+    /**
+     * To create the table with the range of Training's days selected and amount of money for that determined Refund
+     * @return - a table
+     */
 
     public JTable crtTable(){
         table = new JTable();
@@ -449,3 +455,24 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     }
 }
 
+class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
+
+    private final String datePattern = "dd/MM/yyyy";
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+    @Override
+    public Object stringToValue(String text) throws ParseException {
+        return dateFormatter.parseObject(text);
+    }
+
+    @Override
+    public String valueToString(Object value) {
+        if (value != null) {
+            Calendar cal = (Calendar) value;
+            return dateFormatter.format(cal.getTime());
+        }
+
+        return "";
+    }
+
+}
