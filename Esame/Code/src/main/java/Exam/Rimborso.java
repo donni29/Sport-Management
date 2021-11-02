@@ -157,12 +157,12 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             if (!folder.isDirectory()){
                 folder.mkdir();
             }
-            String foldername1 =new String(foldername + "\\" +  person.getCognome() + "_" + person.getNome());
+            String foldername1 = foldername + "\\" + person.getCognome() + "_" + person.getNome();
             File folder1 = new File(foldername1);
             if (!folder1.isDirectory()){
                 folder1.mkdir();
             }
-            String file_name = new String(foldername1 + "\\" + person.getCognome()+"_"+ getNumRim +".pdf");
+            String file_name = foldername1 + "\\" + person.getCognome() + "_" + getNumRim + ".pdf";
             com.itextpdf.text.Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
             document.setPageSize(PageSize.A4);
