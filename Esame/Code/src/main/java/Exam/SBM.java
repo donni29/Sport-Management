@@ -37,11 +37,6 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     private static JMenuItem Nuovo;
     private static JMenu Strutture;
     private static JMenu Impostazioni;
-    private static JMenuItem CambiaPsw;
-    private static JMenuItem NewUser;
-    private static JMenuItem add_del_Sport;
-    private static JMenuItem add_strutture;
-
 
     public SBM() {
         super("Sport Business Management ");
