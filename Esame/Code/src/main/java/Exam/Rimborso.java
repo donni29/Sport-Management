@@ -157,12 +157,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
      */
     public void Generate_PDF(Persona person) {
         try {
-            String foldername =  "C:\\Users\\Utente\\Desktop\\Rimborsi";
-            File folder = new File(foldername);
-            if (!folder.isDirectory()){
-                folder.mkdir();
-            }
-            String foldername1 = foldername + "\\" + person.getCognome() + "_" + person.getNome();
+            String foldername1 = Utils.path1 + "\\" + person.getCognome() + "_" + person.getNome();
             File folder1 = new File(foldername1);
             if (!folder1.isDirectory()){
                 folder1.mkdir();

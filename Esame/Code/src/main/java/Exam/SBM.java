@@ -43,6 +43,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
         try {
             Utils.List_init();
+            Utils.Create_Dir();
         } catch (SQLException e) {
             e.printStackTrace();
         }

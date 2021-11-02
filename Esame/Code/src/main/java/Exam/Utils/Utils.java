@@ -16,10 +16,13 @@ import java.util.List;
 
 public class Utils {
 
-        public static String JDBC_Driver ="org.sqlite.JDBC";
-        public static String JDBC_URL =String.format("jdbc:sqlite:%s",
-                Paths.get(Utils.examdir(), "exam.sqlite"));
-        public static String Intestazione = """
+    public static String path1 = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),
+            "Desktop", System.getProperty("file.separator"), "Rimborsi");
+
+    public static String JDBC_Driver ="org.sqlite.JDBC";
+    public static String JDBC_URL =String.format("jdbc:sqlite:%s",
+            Paths.get(Utils.examdir(), "exam.sqlite"));
+    public static String Intestazione = """
                 Societ\u00E0/Associazione
                 SPORTINSIEME A.S.D
                 Via Don Reverberi,17/B
@@ -27,19 +30,19 @@ public class Utils {
                 P.Iva: 02510550359
                 CF: 02510550359""";
 
-        /**per la prima installazione
-        public static String User= "insieme";
-        public static String Password = "1234";**/
+    /**per la prima installazione
+     public static String User= "insieme";
+     public static String Password = "1234";**/
 
-        public static List<String> options;
-        public static List<String> places;
+    public static List<String> options;
+    public static List<String> places;
     /**
      * Method for the Initialization of Sports and Facilities' List played/used in the club
      */
-        public static void List_init() throws SQLException {
-            options =ListSport();
-            places = ListPlaces();
-        }
+    public static void List_init() throws SQLException {
+        options =ListSport();
+        places = ListPlaces();
+    }
 
     /**
      * Create List of Sports in the club
@@ -48,21 +51,21 @@ public class Utils {
      */
 
     public static ArrayList<String> ListSport() throws SQLException {
-            ArrayList<String> options = new ArrayList<>();
-            Statement statement =DBManager.getConnection().createStatement();
-            try{
-                ResultSet rs = statement.executeQuery("SELECT * FROM Sport");
-                while(rs.next()){
-                    options.add(
-                            rs.getString("Name")
-                            );
-                }
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+        ArrayList<String> options = new ArrayList<>();
+        Statement statement =DBManager.getConnection().createStatement();
+        try{
+            ResultSet rs = statement.executeQuery("SELECT * FROM Sport");
+            while(rs.next()){
+                options.add(
+                        rs.getString("Name")
+                );
             }
-            return options;
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return options;
+    }
 
     /**
      * Create List of Facilities owned by the club
@@ -87,12 +90,24 @@ public class Utils {
         return options;
     }
 
-
-    public static String examdir() {
-            String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),
-                    "Desktop", System.getProperty("file.separator"), "Exam");
-            new File(path).mkdirs();
-            return path;
+    /**
+     * To create Directory Rimborsi where all Refunds' Pdf are going to be stored
+     */
+    public static void Create_Dir(){
+        File folder = new File(path1);
+        if (!folder.isDirectory()){
+            folder.mkdir();
         }
+    }
+
+    /**
+     * To create Directory Exam where all SQLite's Dates are going to be stored
+     */
+    public static String examdir() {
+        String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),
+                "Desktop", System.getProperty("file.separator"), "Exam");
+        new File(path).mkdirs();
+        return path;
+    }
 }
 
