@@ -1,11 +1,14 @@
 package Exam.Utils;
 /**
  * a class that create a Jframe for the management of a calendar appointment , which is an event to be created, or to be deleted
+ *
+ * @authors Rossi Nicolò Delsante
  */
 
 
 import com.mindfusion.common.DateTime;
 import com.mindfusion.common.DayOfWeek;
+import com.mindfusion.scheduling.ItemModifiedEvent;
 import com.mindfusion.scheduling.model.*;
 
 import javax.swing.*;
@@ -261,6 +264,23 @@ public class Form extends JFrame implements ActionListener {
             statement.executeUpdate(query);
             statement.close();
         }
+    }
+    /**
+     * method that allows to update a single appointment in the DB
+     * @param  itemModifiedEvent the appointment that must be updated
+     * @param  nome_struttura the name of the updated appointment structure
+     * @throws  SQLException if there is no table Calendario or a problem with entering data
+     */
+    public static void UpdateEvento(ItemModifiedEvent itemModifiedEvent, Object nome_struttura)  throws  SQLException{
+        Statement statement =  DBManager.getConnection().createStatement();
+        String query = String.format("UPDATE CALENDARIO SET descrizione_prenotazione = '%s' ,inizio_prenotazione = '%s' ,fine_prenotazione = '%s'  WHERE nome_struttura LIKE '%s' and inizio_prenotazione like '%s'",
+                itemModifiedEvent.getItem().getDescriptionText(),
+                itemModifiedEvent.getItem().getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
+                itemModifiedEvent.getItem().getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
+                nome_struttura,
+                itemModifiedEvent.getOldStartTime().toString("yyyy-MM-dd HH:mm:ss"));
+        statement.executeUpdate(query);
+        statement.close();
     }
 
     /**

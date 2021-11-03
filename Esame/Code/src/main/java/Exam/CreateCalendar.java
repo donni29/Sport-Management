@@ -8,15 +8,14 @@ import Exam.Utils.Calendario;
 import Exam.Utils.DBManager;
 import Exam.Utils.Form;
 import com.mindfusion.common.DateTime;
-import com.mindfusion.common.DayOfWeek;
 import com.mindfusion.common.Duration;
 import com.mindfusion.scheduling.*;
-import com.mindfusion.scheduling.model.*;
+import com.mindfusion.scheduling.model.Appointment;
+import com.mindfusion.scheduling.model.Item;
+import com.mindfusion.scheduling.model.ItemEvent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.Serial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Locale.Builder;
 
 public class  CreateCalendar extends JPanel {
@@ -34,9 +32,9 @@ public class  CreateCalendar extends JPanel {
     public Calendar calendar;
     /**
      * Calendar initialization and setting
-     * @param - nome_struttura
-     * @throws -SQLException
-     * @throws -ClassNotFoundException
+     * @param  nome_struttura - the name of Facility needed
+     * @throws SQLException - problem with the table Struttura or no entry in it
+     * @throws ClassNotFoundException - no definition for the class
      */
     public CreateCalendar( Object nome_struttura) throws SQLException, ClassNotFoundException {
         setLayout(new BorderLayout(10,10));
@@ -67,11 +65,11 @@ public class  CreateCalendar extends JPanel {
 
         calendar.endInit();
 
-        calendar.addCalendarListener(new Listener(calendar,nome_struttura));
+        calendar.addCalendarListener(new Listener(calendar, nome_struttura));
         try {
             establishConnection(nome_struttura);
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         add(calendar,BorderLayout.CENTER);
@@ -80,8 +78,8 @@ public class  CreateCalendar extends JPanel {
 
     /**
      * Insert in the new empty Calendar the appointments already present in the DB of the Calendar table
-     * @param - nome_struttura the name of the specific Structure in which to insert the appointments
-     * @throws - SQLException if there is no Table Calendario or no Entry in it
+     * @param  nome_struttura -the name of the specific Structure in which to insert the appointments
+     * @throws SQLException if there is no Table Calendario or no Entry in it
      */
 
     public void establishConnection(Object nome_struttura) throws SQLException {
@@ -116,27 +114,11 @@ public class  CreateCalendar extends JPanel {
             e.printStackTrace();
         }
     }
-    /**
-     * method that allows to update a single appointment in the DB
-     * @param  itemModifiedEvent the appointment that must be updated
-     * @param  nome_struttura the name of the updated appointment structure
-     * @throws  SQLException if there is no table Calendario or a problem with entering data
-     */
-    public void UpdateEvento(ItemModifiedEvent itemModifiedEvent, Object nome_struttura)  throws  SQLException{
-        Statement statement =  DBManager.getConnection().createStatement();
-        String query = String.format("UPDATE CALENDARIO SET descrizione_prenotazione = '%s' ,inizio_prenotazione = '%s' ,fine_prenotazione = '%s'  WHERE nome_struttura LIKE '%s' and inizio_prenotazione like '%s'",
-                itemModifiedEvent.getItem().getDescriptionText(),
-                itemModifiedEvent.getItem().getStartTime().toString("yyyy-MM-dd HH:mm:ss"),
-                itemModifiedEvent.getItem().getEndTime().toString("yyyy-MM-dd HH:mm:ss"),
-                nome_struttura,
-                itemModifiedEvent.getOldStartTime().toString("yyyy-MM-dd HH:mm:ss"));
-        statement.executeUpdate(query);
-        statement.close();
-    }
+
     /**
      * the listener method of the Calendar , with its override methods
      */
-    public class Listener extends CalendarAdapter {
+    public static class Listener extends CalendarAdapter {
 
         public Listener(Calendar calendar, Object nome_struttura) {
             calendar.addCalendarListener(new CalendarAdapter(){
@@ -185,7 +167,7 @@ public class  CreateCalendar extends JPanel {
                 @Override
                 public void itemModified(ItemModifiedEvent itemModifiedEvent) {
                     try {
-                        UpdateEvento(itemModifiedEvent,nome_struttura);
+                        Form.UpdateEvento(itemModifiedEvent,nome_struttura);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
