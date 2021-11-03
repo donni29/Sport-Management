@@ -11,8 +11,8 @@ Exam/Utils/DBManager.java
  Exam.Utils.DBManager
 Exam/ExamTest.java
  Exam.ExamTest
-Exam/SBM.java
- Exam.SBM
+Exam/DB_Model.java
+ Exam.DB_Model
 Exam/Utils/JTableUtilities.java
  Exam.Utils.JTableUtilities
 Exam/PersonaPanel.java
@@ -29,10 +29,8 @@ Exam/Utils/DesktopTop.java
  Exam.Utils.DesktopTop
 Exam/Utils/Calendario.java
  Exam.Utils.Calendario
-Exam/CreateCalendar.java
- Exam.CreateCalendar
- Exam.CreateCalendar$Listener
- Exam.CreateCalendar$Listener$1
+Exam/SBM.java
+ Exam.SBM
 Exam/Login.java
  Exam.Login
 Exam/Utils/PersonaTableModel.java
@@ -40,7 +38,9 @@ Exam/Utils/PersonaTableModel.java
 Exam/SearchFrame.java
  Exam.SearchFrame
  Exam.SearchFrame$1
-Exam/DB_Model.java
- Exam.DB_Model
+Exam/CreateCalendar.java
+ Exam.CreateCalendar
+ Exam.CreateCalendar$Listener
+ Exam.CreateCalendar$Listener$1
 Exam/StrutturaPanel.java
  Exam.StrutturaPanel

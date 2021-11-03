@@ -99,8 +99,6 @@ public class  CreateCalendar extends JPanel {
                         new DateTime( inizio),
                         new DateTime(fine),
                         rs.getInt("numero_ricorsioni"));
-
-
                 Appointment a = new Appointment();
                 a.setId(Cal.getNome_struttura());
                 a.setHeaderText(Cal.getInfo_struttura());
@@ -109,6 +107,7 @@ public class  CreateCalendar extends JPanel {
                 a.setEndTime(Cal.getFine_prenotazione());
                 a.setAllowChangeEnd(true);
                 a.setAllowChangeStart(true);
+                this.calendar.getSchedule().getItems().add(a);
             }
         } catch (SQLException | ParseException e) {
             e.printStackTrace();

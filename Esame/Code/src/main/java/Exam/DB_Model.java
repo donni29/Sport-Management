@@ -31,9 +31,9 @@ public class DB_Model {
         } catch (SQLException e) {
             //statement.executeUpdate("DROP TABLE IF EXISTS Persona");
             statement.executeUpdate("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita VARCHAR(10)," + "residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50)," + "Telefono VARCHAR(20))");
-            statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra,telefono) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli','17/12/1950','Via Puccini 12,Modena','0764352056C','Tennis','Circolo Modena','340-2944234')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra,telefono) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli','17/12/1950','Via Puccini 12,Modena','0764352056C','Ciclismo','Circolo Modena','340-2944234')");
             statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza, CF, sport,squadra,telefono) VALUES ('Cavoli', 'Racho','Dirigente','Rodi','17/11/1991','Via Toti 12, Sassuolo','0764357052C','Calcio','Valsa Calcio','333-2938456')");
-            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza,CF, sport,squadra,telefono) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle','14/02/2001','Via Roma 1, Reggio Emilia','0764352086F','Nuoto','Piscina Reggio Emilia', '329-6621908')");
+            statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza,CF, sport,squadra,telefono) VALUES ('Giovanni', 'Sforza','Allenatore','CentoCelle','14/02/2001','Via Roma 1, Reggio Emilia','0764352086F','Podismo','Piscina Reggio Emilia', '329-6621908')");
         }
 
         try{
