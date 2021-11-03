@@ -77,7 +77,6 @@ public class StrutturaPanel extends JPanel implements ActionListener {
 
         p2.add(p3, BorderLayout.NORTH);
 
-        //p2.add(new CreateCalendar(jc.getSelectedItem()),BorderLayout.CENTER);
 
         add(p1,BorderLayout.NORTH);
         add(p2,BorderLayout.CENTER);

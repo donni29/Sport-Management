@@ -24,7 +24,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="95a9691f-7331-4876-9672-d0ac77318f80">
+        <schema name="main" object-types="table, view, column" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0754a19a-0892-4c86-97a0-289847e8fcee">
@@ -90,14 +94,14 @@ info_prenotazione varchar(50),
 descrizione_prenotazione varchar(500),
 inizio_prenotazione varchar(50),
 fine_prenotazione varchar(50),
-numero_ricursioni int default 1,
+numero_ricorsioni int default 1,
 primary key(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione)
 )
 drop table "Calendario"
 insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Poggio","Calcio a 5","2021-10-18 09:30:00 ","2021-10-18 10:30:00 ")
 insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Poggio","Pallavolo Allenamento","2021-10-19 12:30:00","2021-10-19 14:30:00")
 insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Tazio Nuvolari","Tennis","2021-10-20 12:30:00 ","2021-10-20 14:30:00 ")
-insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Tazio Nuvolari","Ping Pong","2021-10-18 08:30:00 ","2021-10-18 11:30:00 ")
+insert  into "Calendario"(nome_struttura,info_prenotazione,inizio_prenotazione,fine_prenotazione) values ("Tazio Nuvolari","Ping Pong","2021-11-02 08:30:00 ","2021-11-02 11:30:00 ")
 select * from "Calendario" where nome_struttura like "Poggio"
 select * from "Calendario"
 

@@ -6,20 +6,23 @@ import com.mindfusion.common.DateTime;
 import com.mindfusion.common.Duration;
 import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
+import com.mindfusion.scheduling.model.ItemEvent;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
 import com.mindfusion.scheduling.standardforms.DialogResult;
 import com.mindfusion.scheduling.standardforms.LocalizationInfo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.Serial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Locale.Builder;
@@ -50,12 +53,8 @@ public class  CreateCalendar extends JPanel {
         for (int i= 1 ; i < 7; i++){
             calendar.getTimetableSettings().getDates().add(DateTime.today().addDays(i));
         }
-        //calendar.getTimetableSettings().setItemOffset(30);
-        //calendar.getTimetableSettings().setShowItemSpans(false);
-        //calendar.getTimetableSettings().setSnapInterval(Duration.fromMinutes(1));
         calendar.getTimetableSettings().setStartTime(510);
         calendar.getTimetableSettings().setCellTime(Duration.fromHours(1));
-        //calendar.getTimetableSettings().setEndTime(2850);
         calendar.getTimetableSettings().setVisibleColumns(8);
         calendar.getTimetableSettings().getStyle().setBorderLeftWidth(5);
         calendar.getTimetableSettings().setShowNavigationButtons(true);
@@ -67,7 +66,7 @@ public class  CreateCalendar extends JPanel {
 
         calendar.addCalendarListener(new Listener(calendar,nome_struttura));
         try {
-          establishConnection(nome_struttura);
+            establishConnection(nome_struttura);
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -84,32 +83,15 @@ public class  CreateCalendar extends JPanel {
             String query = String.format("SELECT * FROM CALENDARIO WHERE NOME_STRUTTURA LIKE '%s' ",nome_struttura);
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                System.out.println(rs.getString("nome_struttura"));
-                System.out.println(rs.getString("inizio_prenotazione"));
-                System.out.println(rs.getString("fine_prenotazione"));
-                System.out.println(rs.getString("info_prenotazione"));
-
-                new Swap(rs.getString("inizio_prenotazione"));
-                System.out.println(calen_i.get(java.util.Calendar.YEAR));
-                System.out.println(calen_i.get(java.util.Calendar.MONTH));
-                System.out.println(calen_i.get(java.util.Calendar.DAY_OF_MONTH));
-                new Swap(rs.getString("fine_prenotazione"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date inizio = sdf.parse(rs.getString("inizio_prenotazione"));
+                Date fine = sdf.parse(rs.getString("fine_prenotazione"));
 
                 Cal = new Calendario(rs.getString("nome_struttura"),
                         rs.getString("info_prenotazione"),
                         rs.getString("descrizione_prenotazione"),
-                        new DateTime( calen_i.get(java.util.Calendar.YEAR),
-                                calen_i.get(java.util.Calendar.MONTH) + 1,
-                                calen_i.get(java.util.Calendar.DAY_OF_MONTH),
-                                calen_i.get(java.util.Calendar.HOUR_OF_DAY),
-                                calen_i.get(java.util.Calendar.MINUTE),
-                                calen_i.get(java.util.Calendar.SECOND)),
-                        new DateTime(calen_f.get(java.util.Calendar.YEAR),
-                                calen_f.get(java.util.Calendar.MONTH) + 1,
-                                calen_f.get(java.util.Calendar.DAY_OF_MONTH),
-                                calen_f.get(java.util.Calendar.HOUR_OF_DAY),
-                                calen_f.get(java.util.Calendar.MINUTE),
-                                calen_f.get(java.util.Calendar.SECOND)),
+                        new DateTime( inizio),
+                        new DateTime(fine),
                         rs.getInt("numero_ricorsioni"));
 
 
@@ -119,105 +101,16 @@ public class  CreateCalendar extends JPanel {
                 a.setDescriptionText(Cal.getDescrizione_prenotazione());
                 a.setStartTime(Cal.getInizio_prenotazione());
                 a.setEndTime(Cal.getFine_prenotazione());
-                //a.setRecurrence(new Recurrence().setInterval(new Duration()));
                 a.setAllowChangeEnd(true);
                 a.setAllowChangeStart(true);
                 if(a.getEndTime().isLessThan(DateTime.now()))
                     a.getStyle().setBorderLeftColor(new Color(0xB81104));
                 else
                     a.getStyle().setBorderLeftColor(new Color(0x2E8402));
-                /*
-                if (Cal.getNumero_ricursioni() > 1){
-                    int DayIndex = calen_i.get(java.util.Calendar.DAY_OF_WEEK);
-                    Recurrence recurrence = new Recurrence();
-                    //recurrence.setPattern(RecurrencePattern.Weekly);
-                    recurrence.setDay(getDayOfWeek(DayIndex));
-                    recurrence.setStartDate(Cal.getInizio_prenotazione());
-                    recurrence.setNumOccurrences(Cal.getNumero_ricursioni());
-                    recurrence.setRecurrenceEnd(RecurrenceEnd.NumOccurrences);
-                    a.setRecurrence(recurrence);
-                } */
-
-
-                calen_f = null;
-                calen_i = null;
                 calendar.getSchedule().getItems().add(a);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             e.printStackTrace();
-        }
-    }
-
-    private DayOfWeekType getDayOfWeek(int i) {
-        return switch (i) {
-            case 1 -> DayOfWeekType.Monday;
-            case 2 -> DayOfWeekType.Tuesday;
-            case 3 -> DayOfWeekType.Wednesday;
-            case 4 -> DayOfWeekType.Thursday;
-            case 5 -> DayOfWeekType.Friday;
-            case 6 -> DayOfWeekType.Saturday;
-            default -> DayOfWeekType.Sunday;
-        };
-
-    }
-
-
-    public static class Swap extends java.util.Calendar {
-        public Swap(String date) {
-            try {
-                if (calen_i == null) {
-                    calen_i = new GregorianCalendar();
-
-                    calen_i.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date));
-
-                } else {
-                    calen_f = new GregorianCalendar();
-
-                    calen_f.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date));
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected void computeTime() {
-
-        }
-
-        @Override
-        protected void computeFields() {
-
-        }
-
-        @Override
-        public void add(int field, int amount) {
-
-        }
-
-        @Override
-        public void roll(int field, boolean up) {
-
-        }
-
-        @Override
-        public int getMinimum(int field) {
-            return 0;
-        }
-
-        @Override
-        public int getMaximum(int field) {
-            return 0;
-        }
-
-        @Override
-        public int getGreatestMinimum(int field) {
-            return 0;
-        }
-
-        @Override
-        public int getLeastMaximum(int field) {
-            return 0;
         }
     }
     public void InsertEvento(Item item, Object nome_struttura) throws SQLException {
@@ -285,6 +178,9 @@ public class  CreateCalendar extends JPanel {
 
         public Listener(Calendar calendar, Object nome_struttura) {
             calendar.addCalendarListener(new CalendarAdapter(){
+                public void showForm(Item item) throws ParseException {
+                    new Form(item,nome_struttura);
+                }/*
                 public void showForm(Item item){
                     LocalizationInfo local = new LocalizationInfo();
                     local.loadFromXml("Localization-IT.xml");
@@ -326,7 +222,7 @@ public class  CreateCalendar extends JPanel {
                         }
                     });
 
-                }
+                }*/
 
                 @Override
                 public void itemModified(ItemModifiedEvent itemModifiedEvent) {
@@ -339,8 +235,13 @@ public class  CreateCalendar extends JPanel {
 
                 @Override
                 public void itemClick(ItemMouseEvent e) {
-                    if(e.getClicks() == 2)
-                        showForm(e.getItem());
+                    if(e.getClicks() == 2) {
+                        try {
+                            showForm(e.getItem());
+                        } catch (ParseException parseException) {
+                            parseException.printStackTrace();
+                        }
+                    }
                 }
 
                 @Override
@@ -348,10 +249,191 @@ public class  CreateCalendar extends JPanel {
                     calendar.getSelection().reset();
                     calendar.getSelection().add(e.getItem().getStartTime(),
                             e.getItem().getEndTime());
-                    showForm(e.getItem());
+                    try {
+                        showForm(e.getItem());
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
+                    }
                 }
             });
         }
+
+        private class Form extends JFrame implements ActionListener {
+
+            JLabel nome;
+            JButton insert;
+            JButton delete;
+            JTextField titolo;
+            JTextField descrizione;
+            JSpinner inizio;
+            JSpinner fine;
+            Item item1;
+            JTextField ric;
+            JCheckBox day;
+            JCheckBox week;
+            JCheckBox month;
+            SimpleDateFormat formatter;
+
+            public Form(Item item, Object nome_struttura) throws ParseException  {
+                super("Gestione Evento");
+                setLocation(250,150);
+                setSize(650,600);
+                Font font = new Font("Helvetica", Font.BOLD, 30);
+                setFont(font);
+                JPanel p1 = new JPanel(new GridLayout(1,2,5,5));
+                p1.setAlignmentY(Component.CENTER_ALIGNMENT);
+                JLabel l0 = new JLabel("nome_struttura:");
+                nome = new JLabel(nome_struttura.toString());
+                p1.add(l0);
+                p1.add(nome);
+
+                JPanel p2 = new JPanel(new GridLayout(1,2,5,5));
+
+                JLabel l1 = new JLabel("Titolo Evento:");
+                titolo = new JTextField(item.getHeaderText());
+                titolo.setPreferredSize(new Dimension(1,30));
+                p2.add(l1);
+                p2.add(titolo);
+
+                JPanel p3 = new JPanel(new GridLayout(1,2,5,5));
+                JLabel l2 = new JLabel("Descrizione Evento:");
+                descrizione = new JTextField(item.getDescriptionText());
+                descrizione.setSize(1,70);
+                p3.add(l2);
+                p3.add(descrizione);
+
+                JPanel p4 = new JPanel(new GridLayout(1,2,5,5));
+
+                JLabel l3 = new JLabel("Ora Inizio:");
+                formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.ITALIAN);
+                Date start = formatter.parse(item.getStartTime().toString("yyyy-MM-dd HH:mm:ss"));
+                System.out.println(start.getTime());
+                SpinnerDateModel sm = new SpinnerDateModel(start,null,null, java.util.Calendar.HOUR_OF_DAY);
+                inizio = new JSpinner(sm);
+                inizio.setEditor(new JSpinner.DateEditor(inizio,"yyyy-MM-dd HH:mm:ss"));
+                JLabel l4 = new JLabel("Ora Fine:");
+                Date end = formatter.parse(item.getEndTime().toString("yyyy-MM-dd HH:mm:ss"));
+                SpinnerDateModel sf = new SpinnerDateModel(end,null,null, java.util.Calendar.HOUR_OF_DAY);
+                fine = new JSpinner(sf);
+                fine.setEditor(new JSpinner.DateEditor(fine,"yyyy-MM-dd HH:mm:ss"));
+
+                p4.add(l3);
+                p4.add(inizio);
+                p4.add(l4);
+                p4.add(fine);
+
+                JPanel p5 = new JPanel(new GridLayout(1,2,5,5));
+                JLabel l5 = new JLabel("Inserisci  Numero Ricorsioni");
+                ric = new JTextField();
+                if (item.getOccurrenceIndex() < 0)
+                    ric.setText("1");
+                else
+                    ric.setText(String.valueOf(item.getOccurrenceIndex()));
+
+                p5.add(l5);
+                p5.add(ric);
+
+                JPanel p7 = new JPanel((new GridLayout(1,3,5,5)));
+                day = new JCheckBox("giornalmente");
+                day.setSelected(false);
+                week = new JCheckBox("settimanalmente");
+                week.setSelected(false);
+                month = new JCheckBox("mensilmente");
+                month.setSelected(false);
+
+                p7.add(day);
+                p7.add(week);
+                p7.add(month);
+                JPanel p0 = new JPanel(new GridLayout(8,1,10,5));
+                p0.add(p1);
+                p0.add(p2);
+                p0.add(p3);
+                p0.add(p4);
+                p0.add(p5);
+                p0.add(p7);
+                add(p0,BorderLayout.NORTH);
+
+                JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
+                insert = new JButton("Inserisci Evento");
+                insert.setPreferredSize(new Dimension(120,30));
+                insert.addActionListener(this);
+                delete = new JButton("Elimina Evento");
+                delete.setPreferredSize(new Dimension(120,30));
+                delete.addActionListener(this);
+                p6.add(insert);
+                p6.add(delete);
+
+                setVisible(true);
+                    item1 = item;
+
+
+                add(p6,BorderLayout.PAGE_END);
+                setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() == this.insert){
+                        item1.setHeaderText(titolo.getText());
+                        item1.setDescriptionText(descrizione.getText());
+
+
+                        Date str = (Date) inizio.getValue();
+                        item1.setStartTime(new DateTime(str));
+
+                        str = (Date) fine.getValue();
+
+                        item1.setEndTime(new DateTime(str));
+
+                        if (Integer.valueOf(ric.getText()) > 1){
+                            Recurrence recurrence = new Recurrence();
+                            recurrence.setStartDate(DateTime.now());
+                            if(this.day.isSelected()){
+                                recurrence.setDays(1);
+                                recurrence.setDailyRecurrence(DailyRecurrence.ByDayInterval);
+                            }else if (this.week.isSelected()){
+                                recurrence.setDays(7);
+                                recurrence.setDailyRecurrence(DailyRecurrence.ByDayInterval);
+                            } else {
+                                recurrence.setMonthlyRecurrence(MonthlyRecurrence.ByDayNumber);
+                            }
+                            recurrence.setNumOccurrences(Integer.valueOf(ric.getText()));
+                            item1.setRecurrence(recurrence);
+                            dispose();
+                        }
+                        try {
+                            InsertEvento(item1,nome.getText());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+                    if (e.getSource() == this.delete){
+                        item1.setHeaderText(titolo.getText());
+                        item1.setDescriptionText(descrizione.getText());
+
+
+
+                        Date  str = (Date) inizio.getValue();
+                        item1.setStartTime(new DateTime(str));
+
+                        str = (Date) fine.getValue();
+
+                        item1.setEndTime(new DateTime(str));
+                        if (Integer.valueOf(ric.getText()) > 1){
+                            Recurrence recurrence = new Recurrence();
+                            recurrence.setStartDate(item1.getStartTime());
+                            recurrence.setNumOccurrences(Integer.valueOf(ric.getText()));
+                            item1.setRecurrence(recurrence);
+                            dispose();
+                        }
+                        try {
+                            DeleteEvento(item1,nome.getText());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        }
     }
-}
 
