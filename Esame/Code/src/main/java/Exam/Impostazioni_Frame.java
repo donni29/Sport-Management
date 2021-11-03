@@ -11,12 +11,13 @@ import Exam.Utils.DBManager;
 import Exam.Utils.Utils;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,17 +82,20 @@ public class Impostazioni_Frame extends JFrame  {
         tree = new JTree(root);
         tree.setCellRenderer(new LeafRenderer());
         tree.setModel(new DefaultTreeModel(root));
-        tree.addMouseListener(new MouseAdapter() {
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                Object mia =  ((DefaultMutableTreeNode) requireNonNull(tree.getSelectionPath()).getLastPathComponent()).getUserObject();
-                if (mia instanceof Leaf) {
-                    String str = ((Leaf) mia).getName();
-                    if ( (((BorderLayout) panel.getLayout()).getLayoutComponent(BorderLayout.CENTER)) != null){
-                        (((BorderLayout) panel.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(false);
+            public void valueChanged(TreeSelectionEvent e) {
+                if (tree.getLastSelectedPathComponent() != null){
+                    Object mia =  ((DefaultMutableTreeNode) (requireNonNull(tree.getSelectionPath())).getLastPathComponent()).getUserObject();
+                    if (mia instanceof Leaf) {
+                        String str = ((Leaf) mia).getName();
+                        if ( (((BorderLayout) panel.getLayout()).getLayoutComponent(BorderLayout.CENTER)) != null){
+                            (((BorderLayout) panel.getLayout()).getLayoutComponent(BorderLayout.CENTER)).setVisible(false);
+                        }
+                        panel.add(SelectPanel(str),BorderLayout.CENTER);
+                        setVisible(true);
                     }
-                    panel.add(SelectPanel(str),BorderLayout.CENTER);
-                    setVisible(true);
                 }
             }
         });
