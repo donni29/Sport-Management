@@ -1,4 +1,8 @@
 package Exam;
+/**
+ * Class to manage appointments of specific structures
+ * @authors Rossi Nicolò Delsante Laura
+ */
 
 import Exam.Utils.DBManager;
 import Exam.Utils.Struttura;
@@ -18,19 +22,16 @@ import java.sql.Statement;
 public class StrutturaPanel extends JPanel implements ActionListener {
     @Serial
     private static final long serialVersionUID = 1L;
-    private Calendar calendar;
-    public static java.util.Calendar calen_i = null;
-    public static java.util.Calendar calen_f = null;
 
     public JComboBox<String> jc;
-    private JTextArea tel;
-    private  JTextArea Ind;
-    private  JTextArea Ora_ap;
-    private  JTextArea Ora_ch;
-    private  JTextArea nome;
+    private final JTextArea tel;
+    private final JTextArea Ind;
+    private final JTextArea Ora_ap;
+    private final JTextArea Ora_ch;
+    private final JTextArea nome;
     public static JPanel p2;
 
-    public StrutturaPanel() throws SQLException, ClassNotFoundException {
+    public StrutturaPanel() throws SQLException {
         super();
         setLayout(new BorderLayout(10,10));
         jc = new JComboBox(Utils.places.toArray());
@@ -80,52 +81,9 @@ public class StrutturaPanel extends JPanel implements ActionListener {
 
         add(p1,BorderLayout.NORTH);
         add(p2,BorderLayout.CENTER);
-        //setBackground();
         setVisible(true);
 
     }
-    private void testconnection() throws SQLException {
-        DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
-        Statement statement = DBManager.getConnection().createStatement();
-
-        try {
-            statement.executeQuery("SELECT * FROM Struttura");
-        } catch (SQLException e) {
-            System.out.println("non funziona");
-        }
-    }
-
-    /*public JTable getTable(String query) throws SQLException {
-        JTable table = new JTable();
-
-
-        return table;
-    }*/
-
-
-
-    /*public List<Struttura> getListStruttura(String query) throws  SQLException{
-        ArrayList<Struttura> Strutture = new ArrayList<>();
-        Statement statement = DBManager.getConnection().createStatement();
-        try{
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                Strutture.add(
-                        new Struttura(rs.getString("nome"),
-                                rs.getString("via"),
-                                rs.getString("num_telefono"),
-                                rs.getString("orario_apertura"),
-                                rs.getString("orario_chiusura")
-                        )
-                );
-            }
-            statement.close();
-        } catch (SQLException e){
-            System.out.println(e);
-        }
-        return  Strutture;
-    } */
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -141,11 +99,16 @@ public class StrutturaPanel extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(this,"struttura errata oppure non presente");
                 }
             }
-        } catch (SQLException | ClassNotFoundException throwables){
-            System.out.println(throwables);
+        } catch (SQLException | ClassNotFoundException el){
+            el.printStackTrace();
         }
     }
 
+    /**
+     * method to show the attributes into the corresponding JPanel's JtextArea related of every column
+     * @return a new Struttura Object taken from the DB Structure table
+     * @throws SQLException - if there is no Table Struttura or no Entry in it
+     */
     private Struttura Cerca() throws SQLException {
         Statement statement = DBManager.getConnection().createStatement();
         Struttura Posto = null;
@@ -169,6 +132,7 @@ public class StrutturaPanel extends JPanel implements ActionListener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 
         return Posto;
     }

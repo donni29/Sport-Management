@@ -199,7 +199,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
             StrutturaPanel st = null;
             try {
                 st = new StrutturaPanel();
-            } catch (SQLException | ClassNotFoundException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             setContentPane(st);
