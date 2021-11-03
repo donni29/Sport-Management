@@ -263,6 +263,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
             getNumRim +=1;
             UpdateNum();
             Generate_PDF(person);
+            tfdate.setText("");
         } else if (e.getSource() == this.cbn) {
             numAll = (int) cbn.getSelectedItem();
             dateList = new String[numAll];

@@ -35,6 +35,7 @@ public class Impostazioni_Frame extends JFrame  {
     private static JTextField txinsert;
     private static JTextField dayinsert;
     private static JComboBox<Object> cbdelete2;
+    private static JComboBox<Object> cbdelete1;
 
     private final JPanel panel;
 
@@ -374,6 +375,8 @@ public class Impostazioni_Frame extends JFrame  {
                         statement.close();
                         Utils.List_init();
                         txinsert.setText("");
+                        cbdelete1.setModel(new DefaultComboBoxModel<>(Utils.options.toArray()));
+                        cbdelete2.setModel(new DefaultComboBoxModel<>(Utils.options.toArray()));
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -388,7 +391,7 @@ public class Impostazioni_Frame extends JFrame  {
                 lbdelete.setSize(90 , 60);
                 panel3.add(lbdelete);
 
-                JComboBox<Object> cbdelete1 = new JComboBox<>(Utils.options.toArray());
+                cbdelete1 = new JComboBox<>(Utils.options.toArray());
                 cbdelete1.setFont(new Font("Tahoma", Font.BOLD, 18));
                 cbdelete1.setSize(90,60);
                 panel3.add(cbdelete1);
@@ -456,6 +459,9 @@ public class Impostazioni_Frame extends JFrame  {
                                 cbdelete2.getSelectedItem()
                         );
                         statement.executeUpdate(query);
+                        statement.close();
+                        dayinsert.setText("");
+                        cbdelete2.setSelectedItem(0);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
