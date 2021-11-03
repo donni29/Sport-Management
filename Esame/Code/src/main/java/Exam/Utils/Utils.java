@@ -22,6 +22,7 @@ public class Utils {
     public static String JDBC_Driver ="org.sqlite.JDBC";
     public static String JDBC_URL =String.format("jdbc:sqlite:%s",
             Paths.get(Utils.examdir(), "exam.sqlite"));
+
     public static String Intestazione = """
                 Societ\u00E0/Associazione
                 SPORTINSIEME A.S.D
@@ -30,12 +31,10 @@ public class Utils {
                 P.Iva: 02510550359
                 CF: 02510550359""";
 
-    /**per la prima installazione
-     public static String User= "insieme";
-     public static String Password = "1234";**/
 
     public static List<String> options;
     public static List<String> places;
+
     /**
      * Method for the Initialization of Sports and Facilities' List played/used in the club
      */

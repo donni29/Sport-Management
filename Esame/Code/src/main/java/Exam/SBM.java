@@ -11,6 +11,8 @@ package Exam;
  * @authors Rossi Nicolò Delsante Laura
  */
 
+import Exam.Utils.DBManager;
+import Exam.Utils.DesktopTop;
 import Exam.Utils.Utils;
 
 import javax.swing.*;
@@ -72,7 +74,7 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         JMenu openArchivio = new JMenu("Open Archivio di ...");
         Archivio.add(openArchivio);
 
-        /* parte di codice che implementa il menu */
+        /* parte di codice che implementa il menu Archivio*/
 
         Atleti = new JMenuItem("Atleti");
         Atleti.addActionListener(this);
@@ -86,11 +88,12 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
         Dirigenti.addActionListener(this);
         openArchivio.add(Dirigenti);
 
-        close = new JMenuItem("Close");
+        close = new JMenuItem("Chiusura Connessione Database");
         close.addActionListener(this);
         Archivio.add(close);
 
-        //parte codice menu Rimborso
+        /*parte codice menu Rimborso*/
+
         Nuovo = new JMenuItem("Nuovo...");
         Nuovo.addActionListener(this);
         Rimborso.add(Nuovo);
@@ -109,8 +112,14 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == close) {
-            DesktopTop desktopTop    = new DesktopTop();
+            DesktopTop desktopTop  = new DesktopTop();
             setContentPane(desktopTop);
+            try {
+                DBManager.close();
+                JOptionPane.showMessageDialog(this,"Connessione al Database Chiusa");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             setVisible(true);
 
         } else {
@@ -205,31 +214,4 @@ public class SBM extends JFrame implements ActionListener, MenuListener {
     public void menuDeselected(MenuEvent e) {}
     @Override
     public void menuCanceled(MenuEvent e) {}
-}
-
-/**
- * This Inner Class implements a JPanel to create the home screen of the application.
- *
- * @authors Rossi Nicolò Delsante Laura
- */
-
-class DesktopTop extends JPanel {
-
-    public DesktopTop() {
-        super();
-        setLayout(new BorderLayout());
-        ImageIcon sportIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/sportinsime.jpg")));
-        Image image = sportIcon.getImage();
-        Image newing = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
-        sportIcon = new ImageIcon(newing);
-        JLabel jLabelObject = new JLabel();
-        jLabelObject.setText("<html>Welcome to  SPORTINSIEME's  Sport Management <br/> Created and Managed By Students: <br/> Rossi Nicol\u00F2 & Delsante Laura");
-        jLabelObject.setIcon(sportIcon);
-        Font font = new Font("Helvetica", Font.BOLD, 30);
-        jLabelObject.setFont(font);
-        jLabelObject.setHorizontalAlignment(JLabel.CENTER);
-        add(jLabelObject,BorderLayout.CENTER);
-        setSize(900, 600);
-        setVisible(true);
-    }
 }

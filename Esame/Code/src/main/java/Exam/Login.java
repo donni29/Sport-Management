@@ -1,6 +1,5 @@
 package Exam;
 
-
 /**
  * Class to allow users to Login in the Application
  *
@@ -125,7 +124,7 @@ public class Login implements KeyListener {
                 sbm.setVisible(true);
                 frame.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Username o Password Errati", "Login Error", JOptionPane.ERROR_MESSAGE);
                 txtPassword.setText(null);
                 txtUsername.setText(null);
             }

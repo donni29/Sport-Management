@@ -137,7 +137,7 @@ public class Impostazioni_Frame extends JFrame  {
 
         switch (c){
             case 0->{
-                JLabel lbname = new JLabel("ADD/DELETE NEW USER");
+                JLabel lbname = new JLabel("AGGIUNGER/ELIMINARE USER");
                 lbname.setHorizontalAlignment(CENTER);
                 lbname.setFont(new Font("Tahoma", Font.BOLD, 30));
                 lbname.setBounds(28, 10, 300, 66);
@@ -193,7 +193,9 @@ public class Impostazioni_Frame extends JFrame  {
                             statement.executeUpdate(query);
                             statement.close();
                             JOptionPane.showMessageDialog(this,"Inserimento Nuovo User Avvenuto con successo!!");
-                            dispose();
+                            txtPassword1.setText("");
+                            txtPassword.setText("");
+                            txtUsername.setText("");
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
@@ -223,7 +225,9 @@ public class Impostazioni_Frame extends JFrame  {
                                 if (rs !=0) {
                                     statement.close();
                                     JOptionPane.showMessageDialog(this, "Eliminazione avvenuta con successo!");
-                                    dispose();
+                                    txtPassword1.setText("");
+                                    txtPassword.setText("");
+                                    txtUsername.setText("");
                                 }else {
                                     JOptionPane.showMessageDialog(this,"User non trovato");
                                 }
@@ -324,10 +328,13 @@ public class Impostazioni_Frame extends JFrame  {
                                     newStatement.executeUpdate(newquery);
                                     statement.close();
                                     JOptionPane.showMessageDialog(this, "Cambiamento di Password Avvenuto con Successo");
-                                    dispose();
+                                    txtPassword1.setText("");
+                                    txtPassword.setText("");
+                                    txtUsername.setText("");
+                                    txtNewPassword.setText("");
                                 }
                                 else if (result == JOptionPane.NO_OPTION){
-                                    JOptionPane.showMessageDialog(this, "Eliminazione non confermata");
+                                    JOptionPane.showMessageDialog(this, "Modifica non confermata");
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(this, "Conferma nuova Password Errata");
@@ -626,36 +633,6 @@ public class Impostazioni_Frame extends JFrame  {
     }
 }
 
-/**
- * Class to Render the TreeCell Our Jtree
- *
- * @authors Rossi Nicolò Delsante Laura
- */
-class LeafRenderer implements TreeCellRenderer {
-    private final JLabel label;
-
-    LeafRenderer() {
-        label = new JLabel();
-    }
-
-    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
-                                                  boolean leaf1, int row, boolean hasFocus) {
-        Object mia =  ((DefaultMutableTreeNode) value).getUserObject();
-        if (mia instanceof Leaf) {
-            URL imageUrl = getClass().getResource(((Leaf) mia).getLeafIcon());
-            if (imageUrl != null) {
-                ImageIcon icon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(18,18,Image.SCALE_DEFAULT));
-                label.setIcon(icon);
-            }
-            label.setText(((Leaf)mia).getName());
-        }
-        else {
-            label.setIcon(null);
-            label.setText(value.toString());
-        }
-        return label;
-    }
-}
 
 /**
  * Class represents Leaf of our JTree
@@ -678,4 +655,33 @@ class Leaf {
         return leafIcon;
     }
 
+}
+
+/**
+ * Class to Render TreeCell of our JTree
+ */
+class LeafRenderer implements TreeCellRenderer {
+    private final JLabel label;
+
+    LeafRenderer() {
+        label = new JLabel();
+    }
+
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
+                                                  boolean leaf1, int row, boolean hasFocus) {
+        Object mia =  ((DefaultMutableTreeNode) value).getUserObject();
+        if (mia instanceof Exam.Leaf) {
+            URL imageUrl = getClass().getResource(((Exam.Leaf) mia).getLeafIcon());
+            if (imageUrl != null) {
+                ImageIcon icon = new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(18,18,Image.SCALE_DEFAULT));
+                label.setIcon(icon);
+            }
+            label.setText(((Exam.Leaf)mia).getName());
+        }
+        else {
+            label.setIcon(null);
+            label.setText(value.toString());
+        }
+        return label;
+    }
 }

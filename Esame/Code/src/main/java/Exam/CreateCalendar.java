@@ -8,6 +8,7 @@ import com.mindfusion.scheduling.*;
 import com.mindfusion.scheduling.model.*;
 import com.mindfusion.scheduling.standardforms.AppointmentForm;
 import com.mindfusion.scheduling.standardforms.DialogResult;
+import com.mindfusion.scheduling.standardforms.LocalizationInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -285,8 +286,12 @@ public class  CreateCalendar extends JPanel {
         public Listener(Calendar calendar, Object nome_struttura) {
             calendar.addCalendarListener(new CalendarAdapter(){
                 public void showForm(Item item){
-                    AppointmentForm form = new AppointmentForm(calendar.getSchedule());
-                    form.setLocale(new Locale("it","ITALY"));
+                    LocalizationInfo local = new LocalizationInfo();
+                    local.loadFromXml("Localization-IT.xml");
+                    DateTimeInfo info = new DateTimeInfo(
+                            calendar, Locale.ITALY);
+                    AppointmentForm form = new AppointmentForm(
+                            calendar.getSchedule(),  info, local);
                     form.setAppointment((Appointment)item );
                     form.setTimeFormat("HH:mm:ss");
 

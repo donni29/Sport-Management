@@ -52,7 +52,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
     private final JButton srcat;
     private final JComboBox<Integer> cbn;
     public static JTextField tcf;
-    private final JComboBox<String> jc;
+    private final JComboBox jc;
     public int soldi;
     public int getNumRim;
     private final JDatePickerImpl[] checkInDatePicker = new JDatePickerImpl[8];
@@ -76,11 +76,11 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
         JPanel p1 = new JPanel(new GridLayout(1, 3, 10, 2));
         p1.add(new JLabel(("CF: "), SwingConstants.CENTER));
         p1.add(tcf);
-        srcat = new JButton("Search");
+        srcat = new JButton("Cerca Membro");
         srcat.setSize(4, 4);
         srcat.addActionListener(this);
         p1.add(srcat);
-        check = new JButton("check");
+        check = new JButton("Controlla");
         check.setSize(4, 4);
         check.addActionListener(this);
         p1.add(check);
@@ -197,7 +197,7 @@ public  class Rimborso extends JPanel implements ActionListener, KeyListener {
 
             pdfPTable.setTotalWidth(PageSize.A4.getWidth() - 30);
             pdfPTable.setLockedWidth(true);
-            JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER); //non funziona secondo me, da controllare
+            JTableUtilities.setCellsAlignment(table, SwingConstants.CENTER);
             document.add(pdfPTable);
 
             document.add(new Paragraph(" "));
@@ -466,5 +466,4 @@ class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
         return "";
     }
-
 }

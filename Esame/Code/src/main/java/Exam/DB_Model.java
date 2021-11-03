@@ -9,15 +9,12 @@ package Exam;
  */
 
 import Exam.Utils.DBManager;
-import Exam.Utils.Persona;
 import Exam.Utils.Utils;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DB_Model {
-    ResultSet rs;
     Statement statement;
     Statement statement1;
 
@@ -32,7 +29,7 @@ public class DB_Model {
         try {
             statement.executeQuery("SELECT * FROM Persona");
         } catch (SQLException e) {
-            statement.executeUpdate("DROP TABLE IF EXISTS Persona");
+            //statement.executeUpdate("DROP TABLE IF EXISTS Persona");
             statement.executeUpdate("CREATE TABLE Persona (" + " nome VARCHAR(50)," +"cognome VARCHAR(50)," + " tipo varchar(11) check( tipo like 'Atleta' or tipo like 'Dirigente' or tipo like 'Allenatore'), " + " luogo_nascita VARCHAR(50)," + "data_nascita VARCHAR(10)," + "residenza VARCHAR(50)," + "CF VARCHAR(50)PRIMARY KEY," + " sport VARCHAR(50)," + "squadra VARCHAR(50)," + "Telefono VARCHAR(20))");
             statement.executeUpdate("INSERT INTO Persona (nome,cognome, tipo, luogo_nascita, data_nascita, residenza, CF, sport, squadra,telefono) VALUES ('Piero', 'Giovanni','Atleta','Ladispoli','17/12/1950','Via Puccini 12,Modena','0764352056C','Tennis','Circolo Modena','340-2944234')");
             statement.executeUpdate("INSERT INTO Persona (nome,cognome,tipo, luogo_nascita,data_nascita, residenza, CF, sport,squadra,telefono) VALUES ('Cavoli', 'Racho','Dirigente','Rodi','17/11/1991','Via Toti 12, Sassuolo','0764357052C','Calcio','Valsa Calcio','333-2938456')");
@@ -76,79 +73,6 @@ public class DB_Model {
             statement1.executeUpdate("INSERT INTO Struttura VALUES ('Tazio Nuvolari','Via fratelli Cervi 5,Savignano Sul Panaro','346-8523354','8:30','23:30')");
             statement1.executeUpdate("INSERT INTO Struttura VALUES ('Poggio','Via Giovanni Falcone 10, Vignola (MO)','348-3050565','8:30','23:30')");
             statement1.executeUpdate("INSERT INTO Struttura VALUES ('Bosco Saliceta','Via Vignolese 33, Modena','334-1256354','8:30','23:00')");
-        }
-    }
-/**tutto questo sotto da eliminare prima dell'esame pechè per ora non serve a nulla**/
-
-    public Persona getSelectedItem() {
-        try {
-            return new Persona(rs.getString("nome"),rs.getString("cognome"),rs.getString("tipo"), rs.getString("luogo_nascita"),rs.getString("data_nascita"),
-                    rs.getString("citt\u00E0_residenza"), rs.getString("CF"),rs.getString("sport"),rs.getString("squadra"),rs.getString("telefono"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public int getSelectedIndex() {
-        try {
-            return rs.getRow();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public void first() {
-        try {
-            rs.first();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void last() {
-        try {
-            rs.last();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void next() {
-        try {
-            if (!rs.isLast())
-                rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void previous() {
-        try {
-            if (!rs.isFirst())
-                rs.previous();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void insert(String nome,String cognome,String tipo, String luogo_nascita, String citta_residenza, String CF, String data_nascita, String sport, String squadra) {
-        try {
-            rs.moveToInsertRow();
-            rs.updateString("nome", nome);
-            rs.updateString("cognome", cognome);
-            rs.updateString("tipo", tipo);
-            rs.updateString("luogo_nascita", luogo_nascita);
-            rs.updateString("citta_residenza", citta_residenza);
-            rs.updateString("CF", CF);
-            rs.updateString("data_nascita",(data_nascita));
-            rs.updateString("sport", sport);
-            rs.updateString("squadra", squadra);
-            rs.insertRow();
-            rs.last();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

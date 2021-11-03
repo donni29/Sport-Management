@@ -56,13 +56,13 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
         super();
         setLayout(new BorderLayout(1,1));
         this.query =query;
-        btnRemove = new JButton("Delete");
+        btnRemove = new JButton("Elimina");
         btnRemove.addActionListener(this);
-        btnInsert = new JButton("Insert");
+        btnInsert = new JButton("Inserisci");
         btnInsert.addActionListener(this);
-        JButton btnSelezione = new JButton("Filter");
+        JButton btnSelezione = new JButton("Filtra");
         btnSelezione.addActionListener(this);
-        btnUpdate =new JButton("Update");
+        btnUpdate =new JButton("Aggiorna");
         btnUpdate.addActionListener(this);
 
 
@@ -166,23 +166,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
     }
 
     /**
-     *Method to test our JDBC Connection
-     * @throws SQLException - if there is no Table Persona or no Entry in it
-     */
-
-    private void testconnection() throws SQLException {
-        DBManager.setConnection(Utils.JDBC_Driver, Utils.JDBC_URL);
-        Statement statement = DBManager.getConnection().createStatement();
-
-        try {
-            statement.executeQuery("SELECT * FROM Persona");
-        } catch (SQLException e1) {
-            System.out.println("SQL Exception");
-
-        }
-    }
-
-    /**
      * Update our List created in method getListPersona every time it's called
      */
     private void update() {
@@ -245,8 +228,7 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
      */
 
     public void ShowItem(){
-        try {
-            testconnection();
+
             table = new JTable();
             tableModel = new PersonaTableModel(listPersona);
             table.setModel(tableModel);
@@ -261,10 +243,6 @@ public class PersonaPanel extends JPanel implements ActionListener, KeyListener 
                     SelectRow();
                 }
             });
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database Error");
-            e.printStackTrace();
-        }
 
     }
 

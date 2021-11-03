@@ -15,12 +15,21 @@ public class DBManager {
         public static String JDBC_URL = null;
         static Connection connection;
 
-
+    /**
+     * Set Connection
+     * @param Driver - Driver's String
+     * @param URL -Url's String
+     */
         public static void setConnection(String Driver, String URL) {
             JDBC_Driver = Driver;
             JDBC_URL = URL;
         }
 
+    /**
+     * Get Connection
+     * @return - Connection
+     * @throws SQLException - if Illegal request or Driver null
+     */
         public static Connection getConnection() throws SQLException {
 
             if (connection == null) {
@@ -57,6 +66,10 @@ public class DBManager {
             System.out.println("Supports CONCUR_UPDATABLE: " + md.supportsResultSetType(ResultSet.CONCUR_UPDATABLE));
         }
 
+    /**
+     * Close Connesction
+     * @throws SQLException - if connection is null
+     */
         public static void close() throws SQLException {
             if (connection != null) {
                 connection.close();
