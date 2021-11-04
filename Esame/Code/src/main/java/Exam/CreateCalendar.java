@@ -122,7 +122,7 @@ public class  CreateCalendar extends JPanel {
         public Listener(Calendar calendar, Object nome_struttura) {
             calendar.addCalendarListener(new CalendarAdapter(){
                 public void showForm(Item item) throws ParseException {
-                    new Form(item,nome_struttura);
+                    new Form(item,nome_struttura,calendar);
                 }/*
                 public void showForm(Item item){
                     AppointmentForm form = new AppointmentForm(calendar.getSchedule());

@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento">
-      <change afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DesktopTop.java" afterDir="false" />
+    <list default="true" id="e7d168e2-96fe-4e56-9abf-c7506023d25b" name="Default Changelist" comment="ultim update ver3.0">
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,25 +12,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.8/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2021_15_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2021_15_20__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar$Swap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/CreateCalendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DB_Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/DesktopTop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ExamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/ExamTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/SBM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/classes/java/main/Exam/Utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/CreateCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/DB_Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/ExamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/ExamTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/PersonaPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Rimborso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/SBM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/Exam/Utils/Form.java" afterDir="false" />
     </list>
     <list id="ebe62ecf-88d5-4f76-9f3b-2c531073db05" name="Changes by nicor" comment="Changes by nicor" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,6 +100,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="MIXED" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -231,48 +217,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621788891277</updated>
-    </task>
-    <task id="LOCAL-00070" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel">
-      <created>1633621811866</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1633621811866</updated>
-    </task>
-    <task id="LOCAL-00071" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica">
-      <created>1633879806694</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1633879806694</updated>
-    </task>
-    <task id="LOCAL-00072" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica 2.0">
-      <created>1633880329614</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1633880329614</updated>
-    </task>
-    <task id="LOCAL-00073" summary="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica 2.0">
-      <created>1633880659387</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1633880659387</updated>
-    </task>
-    <task id="LOCAL-00074" summary="prova 1">
-      <created>1633951566941</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1633951566941</updated>
-    </task>
-    <task id="LOCAL-00075" summary="invio">
-      <created>1633953309154</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1633953309155</updated>
     </task>
     <task id="LOCAL-00076" summary="invio + residenza + bottoni">
       <created>1633956192382</created>
@@ -575,7 +519,49 @@
       <option name="project" value="LOCAL" />
       <updated>1635869883614</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="ultimi update speriamo">
+      <created>1635949339670</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1635949339671</updated>
+    </task>
+    <task id="LOCAL-00120" summary="ultim update ver2.0">
+      <created>1635949721466</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1635949721466</updated>
+    </task>
+    <task id="LOCAL-00121" summary="ultim update ver3.0">
+      <created>1635950530393</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1635950530393</updated>
+    </task>
+    <task id="LOCAL-00122" summary="ultim update ver3.0">
+      <created>1635950988419</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1635950988419</updated>
+    </task>
+    <task id="LOCAL-00123" summary="ultim update ver3.0">
+      <created>1635951900144</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1635951900145</updated>
+    </task>
+    <task id="LOCAL-00124" summary="ultim update ver3.0">
+      <created>1635951949992</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1635951949992</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -592,9 +578,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica" />
-    <MESSAGE value="migliorie SearchFrame + problemi risolti Rimborso + FIRST Login + migliorie sport table + inserimento numero tel+ ultime modifiche domenica 2.0" />
-    <MESSAGE value="prova 1" />
     <MESSAGE value="invio" />
     <MESSAGE value="invio + residenza + bottoni" />
     <MESSAGE value="invio + residenza + bottoni 2.0" />
@@ -617,7 +600,10 @@
     <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la" />
     <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la + path" />
     <MESSAGE value="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Impostazioni_Frame + altre modifiche qua e la + path +risolto aggiornamento" />
+    <MESSAGE value="ultimi update speriamo" />
+    <MESSAGE value="ultim update ver2.0" />
+    <MESSAGE value="ultim update ver3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultim update ver3.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

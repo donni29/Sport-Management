@@ -8,6 +8,7 @@ package Exam.Utils;
 
 import com.mindfusion.common.DateTime;
 import com.mindfusion.common.DayOfWeek;
+import com.mindfusion.scheduling.Calendar;
 import com.mindfusion.scheduling.ItemModifiedEvent;
 import com.mindfusion.scheduling.model.*;
 
@@ -35,9 +36,12 @@ public class Form extends JFrame implements ActionListener {
     private final JTextField ric;
     private final JCheckBox day;
     private final JCheckBox week;
+    private static Calendar calendar1;
 
-    public Form(Item item, Object nome_struttura) throws ParseException {
+    public Form(Item item, Object nome_struttura, Calendar calendar) throws ParseException {
         super("Gestione Evento");
+        this.calendar1 =calendar;
+        this.item1 =item;
         setLocation(250,150);
         setSize(650,600);
         Font font = new Font("Helvetica", Font.BOLD, 30);
@@ -126,10 +130,10 @@ public class Form extends JFrame implements ActionListener {
         p6.add(delete);
 
         setVisible(true);
-        item1 = item;
 
 
         add(p6,BorderLayout.PAGE_END);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
@@ -197,6 +201,7 @@ public class Form extends JFrame implements ActionListener {
             item1.setEndTime(new DateTime(str));
             dispose();
             try {
+                calendar1.getSchedule().getItems().remove(item1);
                 DeleteEvento(item1,nome.getText());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
