@@ -33,13 +33,13 @@ Exam/Impostazioni_Frame.java
  Exam.Impostazioni_Frame
  Exam.Leaf
  Exam.LeafRenderer
-Exam/StrutturaPanel.java
- Exam.StrutturaPanel
-Exam/SBM.java
- Exam.SBM
 Exam/Utils/Form.java
  Exam.Utils.Form
+Exam/SBM.java
+ Exam.SBM
 Exam/CreateCalendar.java
  Exam.CreateCalendar
  Exam.CreateCalendar$Listener
  Exam.CreateCalendar$Listener$1
+Exam/StrutturaPanel.java
+ Exam.StrutturaPanel

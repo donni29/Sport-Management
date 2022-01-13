@@ -123,39 +123,40 @@ public class  CreateCalendar extends JPanel {
             calendar.addCalendarListener(new CalendarAdapter(){
                 public void showForm(Item item) throws ParseException {
                     new Form(item,nome_struttura,calendar);
-                }/*
-                public void showForm(Item item){
-                    AppointmentForm form = new AppointmentForm(calendar.getSchedule());
-                    form.setLocale(new Locale("it","ITALY"));
-                    form.setAppointment((Appointment)item );
-                    form.setTimeFormat("HH:mm:ss");
 
-                    form.setVisible(true);
-                    form.addWindowListener(new WindowAdapter()
+                }/*
+                public void showform(item item){
+                    appointmentform form = new appointmentform(calendar.getschedule());
+                    form.setlocale(new locale("it","italy"));
+                    form.setappointment((appointment)item );
+                    form.settimeformat("hh:mm:ss");
+
+                    form.setvisible(true);
+                    form.addwindowlistener(new windowadapter()
                     {
-                        @Override
-                        public void windowClosed(WindowEvent we)
+                        @override
+                        public void windowclosed(windowevent we)
                         {
-                            if (form.getDialogResult() == DialogResult.Remove)
+                            if (form.getdialogresult() == dialogresult.remove)
                             {
                                 try {
-                                    if (item.getRecurrenceState() == RecurrenceState.Occurrence ||
-                                            item.getRecurrenceState() == RecurrenceState.Exception) {
-                                        item.getRecurrence().markException(item, true);
-                                        DeleteEvento(item,nome_struttura);
+                                    if (item.getrecurrencestate() == recurrencestate.occurrence ||
+                                            item.getrecurrencestate() == recurrencestate.exception) {
+                                        item.getrecurrence().markexception(item, true);
+                                        deleteevento(item,nome_struttura);
                                     } else {
-                                        calendar.getSchedule().getItems().remove(item);
-                                        DeleteEvento(item, nome_struttura);
+                                        calendar.getschedule().getitems().remove(item);
+                                        deleteevento(item, nome_struttura);
                                     }
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
+                                } catch (sqlexception e) {
+                                    e.printstacktrace();
                                 }
                             }else{
                                 try {
-                                    InsertEvento(item, nome_struttura);
+                                    insertevento(item, nome_struttura);
 
-                                } catch (SQLException throwables) {
-                                    throwables.printStackTrace();
+                                } catch (sqlexception throwables) {
+                                    throwables.printstacktrace();
                                 }
                             }
                         }
